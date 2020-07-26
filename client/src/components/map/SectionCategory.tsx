@@ -5,7 +5,7 @@ interface SectionCategory {
   centerPieceType: string;
 }
 
-function SectionCategory(props: SectionCategory) {
+const SectionCategory = (props: SectionCategory): JSX.Element => {
   return (
     <div className='section__category'>
       <div
@@ -16,6 +16,6 @@ function SectionCategory(props: SectionCategory) {
       </div>
     </div>
   );
-}
+};
 
 export default SectionCategory;

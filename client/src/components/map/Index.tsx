@@ -5,34 +5,38 @@ import { v4 as uuidv4 } from 'uuid';
 import SVG from './SVG';
 import ResizeObserver from 'react-resize-observer';
 
-function Main() {
-  const [svgs, updateSvgs]: any = useState([]);
+const Main: React.FC = (): JSX.Element => {
+  const [svgs, updateSvgs] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     updateSvgs(generateSvgs());
   }, []);
 
-  const generateSvgs = () => {
-    const svgs = [];
-    const children = [];
-    let parents = [];
-    const elements: any = document.getElementsByClassName('elem');
+  const generateSvgs = (): JSX.Element[] => {
+    const svgs: JSX.Element[] = [];
+    const children: Element[] = [];
+    let parents: Element[] = [];
+    const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(
+      'elem'
+    );
     for (const element of elements) {
-      const dataVal = element.getAttribute('data-parent');
+      const dataVal: string | null = element.getAttribute('data-parent');
+      const childVal: string | null = element.getAttribute('data-children');
       if (dataVal) {
         children.push(element);
-      } else {
+      }
+      if (childVal) {
         parents.push(element);
       }
     }
     for (const parent of parents) {
-      const parentRect = parent.getBoundingClientRect();
+      const parentRect: DOMRect = parent.getBoundingClientRect();
       for (const child of children) {
         if (
           child.getAttribute('data-parent') ===
           parent.getAttribute('data-children')
         ) {
-          const childRect = child.getBoundingClientRect();
+          const childRect: DOMRect = child.getBoundingClientRect();
           svgs.push(
             <SVG key={uuidv4()} parentRect={parentRect} childRect={childRect} />
           );
@@ -42,8 +46,8 @@ function Main() {
     return svgs;
   };
 
-  const generateCategories = () => {
-    const categories = [];
+  const generateCategories = (): JSX.Element[] => {
+    const categories: JSX.Element[] = [];
     for (const category of frontend) {
       categories.push(<Section key={uuidv4()} category={category}></Section>);
     }
@@ -61,6 +65,6 @@ function Main() {
       {svgs}
     </div>
   );
-}
+};
 
 export default Main;

@@ -28,6 +28,7 @@ html {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  padding: 5vh 10vw;
 }
 
 .elem {
@@ -39,7 +40,6 @@ html {
   text-align: center;
   font-size: 1.5rem;
   background-color: #ffff00;
-  width: 20vw;
 }
 
 .svg {
