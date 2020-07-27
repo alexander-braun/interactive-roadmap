@@ -27,14 +27,55 @@ function Section({ sections }: Section) {
   };
 
   const generateSubChildren = (direction: Direction): Category | Category[] => {
+    // Get the appropriate subchildren for the left or right position
+    const subChildrenLeft = [];
+    const subChildrenRight = [];
+    for (let i = 0; i < children.length; i++) {
+      const subs = children[i].children;
+      if (subs.length) {
+        for (let j = 0; j < subs.length; j++) {
+          if (i < Math.floor(children.length / 2)) {
+            subChildrenLeft.push(subs[j].id);
+          } else {
+            subChildrenRight.push(subs[j].id);
+          }
+        }
+      }
+    }
+
     if (!subchildren) return [];
     if (subchildren.length === 1) {
-      return subchildren;
+      if (
+        direction === 'left' &&
+        subChildrenLeft.indexOf(subchildren[0].id) >= 0
+      ) {
+        return subchildren;
+      } else if (
+        direction === 'right' &&
+        subChildrenRight.indexOf(subchildren[0].id) >= 0
+      ) {
+        console.log(subchildren);
+        return subchildren;
+      }
     }
-    const middle: number = Math.floor(subchildren.length / 2);
+
     if (direction === 'left') {
-      return subchildren.slice(0, middle);
-    } else return subchildren.slice(middle);
+      const childrenLeft = [];
+      for (let i = 0; i < subchildren.length; i++) {
+        if (subChildrenLeft.indexOf(subchildren[i].id) >= 0) {
+          childrenLeft.push(subchildren[i]);
+        }
+      }
+      return childrenLeft;
+    } else {
+      const childrenRight = [];
+      for (let i = 0; i < subchildren.length; i++) {
+        if (subChildrenRight.indexOf(subchildren[i].id) >= 0) {
+          childrenRight.push(subchildren[i]);
+        }
+      }
+      return childrenRight;
+    }
   };
 
   return (
@@ -45,10 +86,7 @@ function Section({ sections }: Section) {
       <Children
         children={children.length === 1 ? [] : generateChildren('right')}
       />
-      <Children
-        children={children.length === 1 ? [] : generateSubChildren('right')}
-        subchildren
-      />
+      <Children children={generateSubChildren('right')} subchildren />
     </div>
   );
 }

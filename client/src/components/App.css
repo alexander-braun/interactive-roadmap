@@ -37,7 +37,8 @@ html {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 2rem;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
 .section__side-elements {
@@ -59,8 +60,27 @@ html {
   background-color: #ffe599;
 }
 
-.category {
+.center {
   background-color: #ffff00;
+}
+
+.notRecommended {
+  background-color: #d4d4d4;
+}
+
+.map {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.svgs {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  pointer-events: none;
 }
 
 .svg {

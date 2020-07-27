@@ -9,8 +9,18 @@ interface Children {
 }
 
 function Children({ children, ...props }: Children) {
-  const color: string =
-    props.subchildren || !props.center ? 'element' : 'category';
+  const style = (child: Category) => {
+    const styles = [];
+    if (child.mainKnot) {
+      styles.push('center');
+    } else if (!child.mainKnot) {
+      styles.push('element');
+    }
+    if (child.recommended === 'not-recommended') {
+      styles.push('notRecommended');
+    }
+    return styles;
+  };
   const generateChildElements = (): JSX.Element | null => {
     if (Array.isArray(children) && children.length > 0) {
       return (
@@ -20,7 +30,7 @@ function Children({ children, ...props }: Children) {
               return (
                 <div
                   key={uuidv4()}
-                  className={`elem ${color} ${props.center && 'center'}`}
+                  className={`elem ${style(child).join(' ')}`}
                   id={child.id}
                 >
                   {child.title}
@@ -35,7 +45,7 @@ function Children({ children, ...props }: Children) {
         <div className='section__side-elements'>
           <div
             key={uuidv4()}
-            className={`elem ${color} ${props.center && 'center'}`}
+            className={`elem ${children.mainKnot ? 'center' : 'element'}`}
             id={children.id}
           >
             {children.title}
