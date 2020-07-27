@@ -20,7 +20,7 @@ function Section({ sections }: Section) {
     if (children.length === 1) {
       return children;
     }
-    const middle: number = Math.floor(children.length / 2);
+    const middle: number = Math.ceil(children.length / 2);
     if (direction === 'left') {
       return children.slice(0, middle);
     } else return children.slice(middle);
@@ -34,7 +34,7 @@ function Section({ sections }: Section) {
       const subs = children[i].children;
       if (subs.length) {
         for (let j = 0; j < subs.length; j++) {
-          if (i < Math.floor(children.length / 2)) {
+          if (i < Math.ceil(children.length / 2)) {
             subChildrenLeft.push(subs[j].id);
           } else {
             subChildrenRight.push(subs[j].id);

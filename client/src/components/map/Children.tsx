@@ -1,5 +1,6 @@
 import React from 'react';
 import { Category } from '../../roadmap-data/frontend';
+import Child from './Child';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Children {
@@ -8,54 +9,19 @@ interface Children {
   center?: boolean;
 }
 
-function Children({ children, ...props }: Children) {
-  const style = (child: Category) => {
-    const styles = [];
-    if (child.mainKnot) {
-      styles.push('center');
-    } else if (!child.mainKnot) {
-      styles.push('element');
-    }
-    if (child.recommended === 'not-recommended') {
-      styles.push('notRecommended');
-    }
-    return styles;
-  };
-  const generateChildElements = (): JSX.Element | null => {
-    if (Array.isArray(children) && children.length > 0) {
-      return (
-        <div className='section__side-elements'>
-          {children.map(
-            (child): JSX.Element => {
-              return (
-                <div
-                  key={uuidv4()}
-                  className={`elem ${style(child).join(' ')}`}
-                  id={child.id}
-                >
-                  {child.title}
-                </div>
-              );
-            }
-          )}
-        </div>
-      );
-    } else if (!Array.isArray(children) && children.title) {
-      return (
-        <div className='section__side-elements'>
-          <div
-            key={uuidv4()}
-            className={`elem ${children.mainKnot ? 'center' : 'element'}`}
-            id={children.id}
-          >
-            {children.title}
-          </div>
-        </div>
-      );
-    } else return null;
-  };
-
-  return generateChildElements();
+function Children({ children, ...props }: Children): JSX.Element | null {
+  if (Array.isArray(children) && children.length === 0) return null;
+  return (
+    <div className='section__side-elements'>
+      {Array.isArray(children) ? (
+        children.map((child) => {
+          return <Child key={uuidv4()} child={child} />;
+        })
+      ) : (
+        <Child child={children} />
+      )}
+    </div>
+  );
 }
 
 export default Children;

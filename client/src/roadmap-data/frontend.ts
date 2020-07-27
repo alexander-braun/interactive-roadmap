@@ -177,8 +177,37 @@ export const frontend: Category[] = [
         id: uuidv4(),
         children: [
           {
-            title:
-              'Floats, Positioning, Display, Box Model, CSS Grid, Flex Box',
+            title: 'Floats',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'Positioning',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'Display',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'Box Model',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'CSS Grid',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'Flex Box',
             type: 'element',
             id: uuidv4(),
             children: [],
@@ -218,11 +247,48 @@ export const frontend: Category[] = [
         children: [],
       },
       {
-        title:
-          'Understand the concepts Hoisting, Event Bubbling, Scope, Prototype, Shadow DOM, strict',
+        title: 'Understand these concepts',
         type: 'element',
         id: uuidv4(),
-        children: [],
+
+        children: [
+          {
+            title: 'Hoisting',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'Event Bubbling',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'Scope',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'Prototype',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'Shadow DOM',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+          {
+            title: 'strict',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+        ],
       },
     ],
   },
