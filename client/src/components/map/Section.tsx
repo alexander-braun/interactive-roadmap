@@ -8,16 +8,21 @@ interface Section {
   category: Category;
 }
 
+interface SectionSideElementsI {
+  children: Category[];
+  title: string;
+}
+
+type Subchildren = [Category[], string];
+
 function Section(props: Section) {
   const generateChildren = (children: any, direction: string) => {
     if (children.length === 1) return children;
-    if (props.category && props.category.children) {
-      const middle = Math.floor(props.category.children.length / 2);
-      if (direction === 'left') {
-        return children.slice(0, middle);
-      } else {
-        return children.slice(middle);
-      }
+    const middle = Math.floor(props.category.children.length / 2);
+    if (direction === 'left') {
+      return children.slice(0, middle);
+    } else {
+      return children.slice(middle);
     }
   };
 
@@ -40,9 +45,7 @@ function Section(props: Section) {
         }
       }
     }
-    if (children.length !== 0) {
-      return children;
-    } else return [];
+    return children;
   };
 
   return (

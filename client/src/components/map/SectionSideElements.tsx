@@ -2,12 +2,12 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Category } from '../../roadmap-data/frontend';
 
-interface SectionSideElements {
+interface SectionSideElementsI {
   children: Category[];
   title: string;
 }
 
-function SectionSideElements(props: SectionSideElements) {
+function SectionSideElements(props: SectionSideElementsI) {
   return (
     <div className='section__side-elements'>
       {props.children.map((child) => {

@@ -66,45 +66,54 @@ export const frontend: Category[] = [
         title: 'How does the internet work?',
         type: 'element',
         children: [],
+        id: uuidv4(),
       },
       {
         title: 'What is Domain Name?',
         type: 'element',
         children: [],
+        id: uuidv4(),
       },
       {
         title: 'What is hosting?',
         type: 'element',
         children: [],
+        id: uuidv4(),
       },
       {
         title: 'DNS and how it works?',
         type: 'element',
         children: [],
+        id: uuidv4(),
       },
       {
         title: 'What is HTTP?',
         type: 'element',
         children: [],
+        id: uuidv4(),
       },
       {
         title: 'Browsers and how they work?',
         type: 'element',
         children: [],
+        id: uuidv4(),
       },
     ],
   },
   {
     title: 'HTML',
     type: 'category',
+    id: uuidv4(),
     children: [
       {
         title: 'Learn the basics',
         type: 'element',
+        id: uuidv4(),
         children: [
           {
             title: 'To the Side 1',
             type: 'element',
+            id: uuidv4(),
             children: [],
           },
         ],
@@ -112,30 +121,36 @@ export const frontend: Category[] = [
       {
         title: 'Writing Semantic HTML',
         type: 'element',
+        id: uuidv4(),
         children: [],
       },
       {
         title: 'Forms and Validations',
         type: 'element',
+        id: uuidv4(),
         children: [],
       },
       {
         title: 'Conventions and Best Practices',
         type: 'element',
+        id: uuidv4(),
         children: [],
       },
       {
         title: 'Accessibility',
         type: 'element',
+        id: uuidv4(),
         children: [],
       },
       {
         title: 'SEO Basics',
         type: 'element',
+        id: uuidv4(),
         children: [
           {
             title: 'To the Side 2',
             type: 'element',
+            id: uuidv4(),
             children: [],
           },
         ],
