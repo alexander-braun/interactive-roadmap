@@ -34,10 +34,14 @@ html {
 .section {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 5vh 10vw;
+  padding: 2rem;
+}
+
+.section__side-elements {
+  margin: 0 2vw;
 }
 
 .elem {
@@ -48,6 +52,14 @@ html {
   background: white;
   text-align: center;
   font-size: 1.5rem;
+  width: 10vw;
+}
+
+.element {
+  background-color: #ffe599;
+}
+
+.category {
   background-color: #ffff00;
 }
 

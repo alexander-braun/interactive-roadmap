@@ -4,26 +4,48 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface Children {
   children: Category[] | Category;
+  subchildren?: boolean;
+  center?: boolean;
 }
 
-function Children({ children }: Children) {
-  return (
-    <div className='section__side-elements'>
-      {Array.isArray(children) ? (
-        children.map(
-          (child): JSX.Element => {
-            return (
-              <div key={uuidv4()} className='elem'>
-                {child.title}
-              </div>
-            );
-          }
-        )
-      ) : (
-        <div className='elem'>{children.title}</div>
-      )}
-    </div>
-  );
+function Children({ children, ...props }: Children) {
+  const color: string =
+    props.subchildren || !props.center ? 'element' : 'category';
+  const generateChildElements = (): JSX.Element | null => {
+    if (Array.isArray(children) && children.length > 0) {
+      return (
+        <div className='section__side-elements'>
+          {children.map(
+            (child): JSX.Element => {
+              return (
+                <div
+                  key={uuidv4()}
+                  className={`elem ${color} ${props.center && 'center'}`}
+                  id={child.id}
+                >
+                  {child.title}
+                </div>
+              );
+            }
+          )}
+        </div>
+      );
+    } else if (!Array.isArray(children) && children.title) {
+      return (
+        <div className='section__side-elements'>
+          <div
+            key={uuidv4()}
+            className={`elem ${color} ${props.center && 'center'}`}
+            id={children.id}
+          >
+            {children.title}
+          </div>
+        </div>
+      );
+    } else return null;
+  };
+
+  return generateChildElements();
 }
 
 export default Children;

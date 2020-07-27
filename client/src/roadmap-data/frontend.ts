@@ -36,7 +36,7 @@ export const frontend = [
 export interface Category {
   title: string;
   finished?: boolean;
-  id?: string;
+  id: string;
   type: 'category' | 'element';
   importance?: number;
   technologiesTags?: string[];
@@ -144,6 +144,26 @@ export const frontend: Category[] = [
       },
       {
         title: 'SEO Basics',
+        type: 'element',
+        id: uuidv4(),
+        children: [
+          {
+            title: 'To the Side 2',
+            type: 'element',
+            id: uuidv4(),
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'HTML3',
+    type: 'category',
+    id: uuidv4(),
+    children: [
+      {
+        title: 'SEO Basics!',
         type: 'element',
         id: uuidv4(),
         children: [

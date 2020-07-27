@@ -3,14 +3,16 @@ import '../App.css';
 import { frontend, Category } from '../../roadmap-data/frontend';
 import Section from './Section';
 import { v4 as uuidv4 } from 'uuid';
+import SvgGenerator from './SvgGenerator';
 
 export interface Sections {
   [key: string]: [Category, Category[], Category[]];
 }
 
+export type IDs = [string, string][];
+
 function Map() {
-  const [sections, setSections]: [Sections, Function] = useState({});
-  const generateElements = (): Sections => {
+  const generateSections = (): Sections => {
     const sections: Sections = {};
     for (const section of frontend) {
       const center: Category = section;
@@ -27,17 +29,45 @@ function Map() {
     return sections;
   };
 
+  const generateSvgParentsAndChildrenIds = (): IDs => {
+    const pairs: IDs = [];
+    let currentCategoryId = '';
+    for (let i = 0; i < frontend.length; i++) {
+      const node = frontend[i];
+      const parentId = node.id;
+      if (currentCategoryId.length) {
+        pairs.push([currentCategoryId, parentId]);
+      }
+      currentCategoryId = parentId;
+      for (const child of node.children) {
+        const childId = child.id;
+        pairs.push([parentId, childId]);
+        if (child.children) {
+          for (const subchild of child.children) {
+            pairs.push([childId, subchild.id]);
+          }
+        }
+      }
+    }
+    return pairs;
+  };
+
+  const [ids, setSvgs] = useState<IDs>([]);
+
   useEffect(() => {
-    setSections(generateElements());
+    setSvgs(generateSvgParentsAndChildrenIds());
   }, []);
 
   return (
     <div className='map'>
-      {Object.keys(sections).map((section) => {
-        return <Section key={uuidv4()} sections={sections[section]} />;
+      {Object.keys(generateSections()).map((section) => {
+        return (
+          <Section key={uuidv4()} sections={generateSections()[section]} />
+        );
       })}
+      <SvgGenerator ids={ids} />
     </div>
   );
 }
 
-export default Map;
+export default React.memo(Map);
