@@ -51,6 +51,13 @@ export interface Category {
 
 export const frontend: Category[] = [
   {
+    title: 'Front-end',
+    type: 'category',
+    id: uuidv4(),
+    mainKnot: true,
+    children: [],
+  },
+  {
     title: 'Internet',
     type: 'category',
     finished: false,

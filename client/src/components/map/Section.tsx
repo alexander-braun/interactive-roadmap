@@ -1,86 +1,91 @@
 import React from 'react';
-import SectionCategory from './SectionCategory';
-import SectionSideElements from './SectionSideElements';
-import { v4 as uuidv4 } from 'uuid';
 import { Category } from '../../roadmap-data/frontend';
+import Children from './Children';
 
 interface Section {
-  category: Category;
+  sections: [Category, Category[], Category[]];
 }
 
-interface SectionSideElementsI {
-  children: Category[];
-  title: string;
-}
+type Direction = 'left' | 'right';
 
-type Subchildren = [Category[], string];
+type ChildT = Category[] | Category;
 
-function Section(props: Section) {
-  const generateChildren = (children: any, direction: string) => {
-    if (children.length === 1) return children;
-    const middle = Math.floor(props.category.children.length / 2);
+function Section({ sections }: Section) {
+  const section: Category = sections[0];
+  const children: Category[] = sections[1];
+  const subchildren: Category[] = sections[2];
+
+  const generateChildren = (direction: Direction): Category | Category[] => {
+    if (!children) return [];
+    if (children.length === 1) {
+      return children;
+    }
+    const middle: number = Math.floor(children.length / 2);
     if (direction === 'left') {
       return children.slice(0, middle);
-    } else {
-      return children.slice(middle);
-    }
+    } else return children.slice(middle);
   };
 
-  const generateSubChildren = (direction: string) => {
-    const children = [];
-    if (props.category.children) {
-      const middle = Math.floor(props.category.children.length / 2);
-      let elements;
-      if (direction === 'right') {
-        elements = props.category.children.slice(middle);
-      } else {
-        elements = props.category.children.slice(0, middle);
-      }
-      for (const element of elements) {
-        if (element.children.length) {
-          children.push([
-            ...generateChildren(element.children, 'right'),
-            element.title,
-          ]);
+  const generateSubChildren = (direction: Direction): Category | Category[] => {
+    // Get the appropriate subchildren for the left or right position
+    const subChildrenLeft = [];
+    const subChildrenRight = [];
+    for (let i = 0; i < children.length; i++) {
+      const subs = children[i].children;
+      if (subs.length) {
+        for (let j = 0; j < subs.length; j++) {
+          if (i < Math.floor(children.length / 2)) {
+            subChildrenLeft.push(subs[j].id);
+          } else {
+            subChildrenRight.push(subs[j].id);
+          }
         }
       }
     }
-    return children;
+
+    if (!subchildren) return [];
+    if (subchildren.length === 1) {
+      if (
+        direction === 'left' &&
+        subChildrenLeft.indexOf(subchildren[0].id) >= 0
+      ) {
+        return subchildren;
+      } else if (
+        direction === 'right' &&
+        subChildrenRight.indexOf(subchildren[0].id) >= 0
+      ) {
+        return subchildren;
+      }
+    }
+
+    if (direction === 'left') {
+      const childrenLeft = [];
+      for (let i = 0; i < subchildren.length; i++) {
+        if (subChildrenLeft.indexOf(subchildren[i].id) >= 0) {
+          childrenLeft.push(subchildren[i]);
+        }
+      }
+      return childrenLeft;
+    } else {
+      const childrenRight = [];
+      for (let i = 0; i < subchildren.length; i++) {
+        if (subChildrenRight.indexOf(subchildren[i].id) >= 0) {
+          childrenRight.push(subchildren[i]);
+        }
+      }
+      return childrenRight;
+    }
   };
 
   return (
     <div className='section'>
-      {generateSubChildren('left') !== undefined &&
-        generateSubChildren('left').map((parent) => {
-          return (
-            <SectionSideElements
-              key={uuidv4()}
-              children={[parent[0]]}
-              title={parent[1]}
-            />
-          );
-        })}
-      <SectionSideElements
-        children={generateChildren(props.category.children, 'left')}
-        title={props.category.title}
+      <Children children={generateSubChildren('left')} subchildren />
+      <Children children={generateChildren('left')} />
+      <Children children={section} center />
+      <Children
+        children={children.length === 1 ? [] : generateChildren('right')}
       />
-      <SectionCategory
-        centerPieceTitle={props.category.title}
-        centerPieceType={props.category.type}
-      />
-      <SectionSideElements
-        children={generateChildren(props.category.children, 'right')}
-        title={props.category.title}
-      />
-      {generateSubChildren('right').map((parent) => {
-        return (
-          <SectionSideElements
-            key={uuidv4()}
-            children={[parent[0]]}
-            title={parent[1]}
-          />
-        );
-      })}
+      <Children children={generateSubChildren('right')} subchildren />
     </div>
   );
 }

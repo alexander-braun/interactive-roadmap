@@ -1,6 +1,5 @@
 import React from 'react';
-import Main from './map/Index';
-import Map from './map2';
+import Map from './map';
 import './App.css';
 
 function App() {

@@ -1,70 +1,79 @@
 import React, { useEffect, useState } from 'react';
-import { frontend } from '../../roadmap-data/frontend';
+import '../App.css';
+import { frontend, Category } from '../../roadmap-data/frontend';
 import Section from './Section';
 import { v4 as uuidv4 } from 'uuid';
-import SVG from './SVG';
+import SvgGenerator from './SvgGenerator';
 import ResizeObserver from 'react-resize-observer';
 
-const Main: React.FC = (): JSX.Element => {
-  const [svgs, updateSvgs] = useState<JSX.Element[]>([]);
+export interface Sections {
+  [key: string]: [Category, Category[], Category[]];
+}
 
-  useEffect(() => {
-    updateSvgs(generateSvgs());
-  }, []);
+export type IDs = [string, string][];
 
-  const generateSvgs = (): JSX.Element[] => {
-    const svgs: JSX.Element[] = [];
-    const children: Element[] = [];
-    let parents: Element[] = [];
-    const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(
-      'elem'
-    );
-    for (const element of elements) {
-      const dataVal: string | null = element.getAttribute('data-parent');
-      const childVal: string | null = element.getAttribute('data-children');
-      if (dataVal) {
-        children.push(element);
+function Map() {
+  const generateSections = (): Sections => {
+    const sections: Sections = {};
+    for (const section of frontend) {
+      const center: Category = section;
+      const children: Category[] = [];
+      const subchildren: Category[] = [];
+      for (const child of section.children) {
+        if (child.children) {
+          subchildren.push(...child.children);
+        }
+        children.push(child);
       }
-      if (childVal) {
-        parents.push(element);
-      }
+      sections[section.title] = [center, children, subchildren];
     }
-    for (const parent of parents) {
-      const parentRect: DOMRect = parent.getBoundingClientRect();
-      for (const child of children) {
-        if (
-          child.getAttribute('data-parent') ===
-          parent.getAttribute('data-children')
-        ) {
-          const childRect: DOMRect = child.getBoundingClientRect();
-          svgs.push(
-            <SVG key={uuidv4()} parentRect={parentRect} childRect={childRect} />
-          );
+    return sections;
+  };
+
+  const generateSvgParentsAndChildrenIds = (): IDs => {
+    const pairs: IDs = [];
+    let currentCategoryId = '';
+    for (let i = 0; i < frontend.length; i++) {
+      const node = frontend[i];
+      const parentId = node.id;
+      if (currentCategoryId.length) {
+        pairs.push([currentCategoryId, parentId]);
+      }
+      currentCategoryId = parentId;
+      for (const child of node.children) {
+        const childId = child.id;
+        pairs.push([parentId, childId]);
+        if (child.children) {
+          for (const subchild of child.children) {
+            pairs.push([childId, subchild.id]);
+          }
         }
       }
     }
-    return svgs;
+    return pairs;
   };
 
-  const generateCategories = (): JSX.Element[] => {
-    const categories: JSX.Element[] = [];
-    for (const category of frontend) {
-      categories.push(<Section key={uuidv4()} category={category}></Section>);
-    }
-    return categories;
-  };
+  const [ids, setSvgs] = useState<IDs>([]);
+
+  useEffect(() => {
+    setSvgs(generateSvgParentsAndChildrenIds());
+  }, []);
 
   return (
-    <div className='main'>
+    <div className='map'>
+      {Object.keys(generateSections()).map((section) => {
+        return (
+          <Section key={uuidv4()} sections={generateSections()[section]} />
+        );
+      })}
       <ResizeObserver
         onResize={() => {
-          updateSvgs(generateSvgs());
+          setSvgs(generateSvgParentsAndChildrenIds());
         }}
       />
-      {generateCategories()}
-      {svgs}
+      <SvgGenerator ids={ids} />;
     </div>
   );
-};
+}
 
-export default Main;
+export default React.memo(Map);
