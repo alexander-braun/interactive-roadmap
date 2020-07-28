@@ -44,7 +44,14 @@ export interface Category {
   comments?: string[];
   resources?: string[];
   order?: boolean;
-  recommended?: 'option' | 'recommended' | 'not-recommended';
+  recommended?:
+    | 'option'
+    | 'recommended'
+    | 'not-recommended'
+    | 'not-strict'
+    | 'not-recommended-option'
+    | 'not-recommended-none'
+    | 'none';
   children: Category[] | [];
   mainKnot?: boolean;
 }
@@ -68,7 +75,6 @@ export const frontend: Category[] = [
     comments: ['this is hard'],
     resources: ['http://www.youtube.com'],
     order: true,
-    recommended: 'recommended',
     mainKnot: true,
     children: [
       {
@@ -125,6 +131,7 @@ export const frontend: Category[] = [
         title: 'Writing Semantic HTML',
         type: 'element',
         id: uuidv4(),
+        recommended: 'not-strict',
         children: [],
       },
       {
@@ -144,12 +151,14 @@ export const frontend: Category[] = [
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'SEO Basics',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
     ],
   },
@@ -302,6 +311,7 @@ export const frontend: Category[] = [
         title: 'Repo hosting services',
         type: 'category',
         id: uuidv4(),
+        recommended: 'none',
         children: [
           {
             title: 'GitHub',
@@ -314,14 +324,14 @@ export const frontend: Category[] = [
             type: 'element',
             id: uuidv4(),
             children: [],
-            recommended: 'not-recommended',
+            recommended: 'not-recommended-option',
           },
           {
             title: 'Bitbucket',
             type: 'element',
             id: uuidv4(),
             children: [],
-            recommended: 'not-recommended',
+            recommended: 'not-recommended-option',
           },
         ],
       },
@@ -338,30 +348,35 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'HTTPS',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'Content Security Policy',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'CORS',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'OWASP Security Risks',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
     ],
   },
@@ -396,20 +411,21 @@ export const frontend: Category[] = [
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'OOCSS',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
       {
         title: 'SMACSS',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
     ],
   },
@@ -424,19 +440,21 @@ export const frontend: Category[] = [
         type: 'category',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'PostCSS',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'Less',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
     ],
   },
@@ -456,19 +474,21 @@ export const frontend: Category[] = [
             type: 'category',
             id: uuidv4(),
             children: [],
+            recommended: 'not-strict',
           },
           {
             title: 'ESLint',
             type: 'category',
             id: uuidv4(),
             children: [],
+            recommended: 'not-strict',
           },
           {
             title: 'StandardJS',
             type: 'category',
             id: uuidv4(),
             children: [],
-            recommended: 'not-recommended',
+            recommended: 'not-recommended-none',
           },
         ],
       },
@@ -488,7 +508,7 @@ export const frontend: Category[] = [
             type: 'element',
             id: uuidv4(),
             children: [],
-            recommended: 'not-recommended',
+            recommended: 'not-recommended-none',
           },
         ],
       },
@@ -508,12 +528,14 @@ export const frontend: Category[] = [
             type: 'element',
             id: uuidv4(),
             children: [],
+            recommended: 'option',
           },
           {
             title: 'Parcel',
             type: 'element',
             id: uuidv4(),
             children: [],
+            recommended: 'option',
           },
         ],
       },
@@ -541,6 +563,7 @@ export const frontend: Category[] = [
             type: 'element',
             id: uuidv4(),
             children: [],
+            recommended: 'option',
           },
         ],
       },
@@ -548,18 +571,21 @@ export const frontend: Category[] = [
         title: 'Angular',
         type: 'element',
         id: uuidv4(),
+        recommended: 'option',
         children: [
           {
             title: 'RxJS',
             type: 'category',
             id: uuidv4(),
             children: [],
+            recommended: 'option',
           },
           {
             title: 'NgRx',
             type: 'category',
             id: uuidv4(),
             children: [],
+            recommended: 'option',
           },
         ],
       },
@@ -567,12 +593,14 @@ export const frontend: Category[] = [
         title: 'Vue.js',
         type: 'element',
         id: uuidv4(),
+        recommended: 'option',
         children: [
           {
             title: 'VueX',
             type: 'element',
             id: uuidv4(),
             children: [],
+            recommended: 'option',
           },
         ],
       },
@@ -601,26 +629,28 @@ export const frontend: Category[] = [
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
       {
         title: 'Emotion',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
       {
         title: 'Radium',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
       {
         title: 'Glamorous',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
     ],
   },
@@ -629,24 +659,28 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'HTML Templates',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'Custom Elements',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'Shadow DOM',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
     ],
   },
@@ -673,12 +707,14 @@ export const frontend: Category[] = [
         type: 'category',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
       {
         title: 'Chakra UI',
         type: 'category',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
       {
         title: 'Bootstrap',
@@ -691,12 +727,14 @@ export const frontend: Category[] = [
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
       {
         title: 'Bulma',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
     ],
   },
@@ -735,28 +773,28 @@ export const frontend: Category[] = [
         type: 'category',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
       {
         title: 'Chai',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
       {
         title: 'Ava',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
       {
         title: 'Jasmine',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
     ],
   },
@@ -765,19 +803,21 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'TypeScript',
         type: 'category',
         id: uuidv4(),
         children: [],
+        recommended: 'not-strict',
       },
       {
         title: 'Flow',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
     ],
   },
@@ -786,11 +826,13 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'Calculating, Measuring, improving Performance',
         type: 'category',
         id: uuidv4(),
+        recommended: 'not-strict',
         children: [
           {
             title: 'Storage',
@@ -846,6 +888,7 @@ export const frontend: Category[] = [
         title: "Web API's used in PWAs",
         type: 'category',
         id: uuidv4(),
+        recommended: 'not-strict',
         children: [
           {
             title: 'PRPL Pattern',
@@ -886,6 +929,7 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'React.js',
@@ -903,7 +947,7 @@ export const frontend: Category[] = [
             type: 'category',
             id: uuidv4(),
             children: [],
-            recommended: 'not-recommended',
+            recommended: 'not-recommended-none',
           },
         ],
       },
@@ -911,12 +955,14 @@ export const frontend: Category[] = [
         title: 'Angular',
         type: 'element',
         id: uuidv4(),
+        recommended: 'option',
         children: [
           {
             title: 'Universal',
             type: 'category',
             id: uuidv4(),
             children: [],
+            recommended: 'option',
           },
         ],
       },
@@ -924,12 +970,14 @@ export const frontend: Category[] = [
         title: 'Vue.js',
         type: 'element',
         id: uuidv4(),
+        recommended: 'option',
         children: [
           {
             title: 'Nuxt.js',
             type: 'category',
             id: uuidv4(),
             children: [],
+            recommended: 'option',
           },
         ],
       },
@@ -940,6 +988,7 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'Apollo',
@@ -952,6 +1001,7 @@ export const frontend: Category[] = [
         type: 'category',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
     ],
   },
@@ -960,6 +1010,7 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'Next.js',
@@ -978,24 +1029,28 @@ export const frontend: Category[] = [
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
       {
         title: 'Vuepress',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
       {
         title: 'Jekyll',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
       {
         title: 'Hugo',
         type: 'element',
         id: uuidv4(),
         children: [],
+        recommended: 'option',
       },
     ],
   },
@@ -1004,6 +1059,7 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'React Native',
@@ -1036,6 +1092,7 @@ export const frontend: Category[] = [
     type: 'category',
     id: uuidv4(),
     mainKnot: true,
+    recommended: 'not-strict',
     children: [
       {
         title: 'Electron',
@@ -1048,14 +1105,14 @@ export const frontend: Category[] = [
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
       {
         title: 'Proton Native',
         type: 'element',
         id: uuidv4(),
         children: [],
-        recommended: 'not-recommended',
+        recommended: 'not-recommended-none',
       },
     ],
   },
@@ -1065,6 +1122,7 @@ export const frontend: Category[] = [
     id: uuidv4(),
     mainKnot: true,
     children: [],
+    recommended: 'not-strict',
   },
   {
     title: 'Keep Learning',

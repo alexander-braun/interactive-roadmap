@@ -8,10 +8,9 @@ interface SVG {
 
 function SVG(props: SVG) {
   const scrollHeight = window.pageYOffset;
-  const strokeDasharray = !props.center ? '3,7' : '0';
-  const strokeWidth = !props.center ? '2' : '4';
+  const strokeDasharray = !props.center ? '5,10' : '0';
+  const strokeWidth = !props.center ? '2.5' : '4';
 
-  console.log(props.parentRect, props.childRect);
   return (
     <svg style={{ position: 'absolute' }} className='svg' width='100%'>
       <line

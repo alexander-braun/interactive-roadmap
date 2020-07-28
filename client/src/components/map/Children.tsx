@@ -15,10 +15,16 @@ function Children({ children, ...props }: Children): JSX.Element | null {
     <div className='section__side-elements'>
       {Array.isArray(children) ? (
         children.map((child) => {
-          return <Child key={uuidv4()} child={child} />;
+          return (
+            <Child
+              key={uuidv4()}
+              child={child}
+              subchildren={props.subchildren}
+            />
+          );
         })
       ) : (
-        <Child child={children} />
+        <Child child={children} subchildren={props.subchildren} />
       )}
     </div>
   );
