@@ -8,18 +8,19 @@ interface SVG {
 
 function SVG(props: SVG) {
   const scrollHeight = window.pageYOffset;
-  const strokeDasharray = !props.center ? '5,10' : '0';
+  const strokeDasharray = !props.center ? '5,15' : '0';
   const strokeWidth = !props.center ? '2.5' : '4';
+  const insetSvgBy = 5;
 
   return (
     <svg style={{ position: 'absolute' }} className='svg' width='100%'>
       <line
         x1={
           props.childRect.x > props.parentRect.x && !props.center
-            ? props.parentRect.x + props.parentRect.width
+            ? props.parentRect.x + props.parentRect.width - insetSvgBy
             : props.center
             ? props.parentRect.x + props.parentRect.width / 2
-            : props.parentRect.x
+            : props.parentRect.x + insetSvgBy
         }
         y1={props.parentRect.y + props.parentRect.height / 2 + scrollHeight}
         x2={

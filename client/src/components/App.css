@@ -67,7 +67,7 @@ html {
   border: 1.5px solid rgba(22, 22, 22, 0);
   border-radius: 0.25rem;
   padding: 1rem 0.5rem;
-  margin: 10px;
+  margin: 15px;
   background: white;
   text-align: center;
   font-size: 1.5rem;
@@ -81,12 +81,13 @@ html {
   min-height: 3vh;
   flex-wrap: wrap;
   box-shadow: 0 5px 30px -15px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  transition: transform 0.3s, border 0.3s, background 0.1s;
 }
 
 .elem:hover {
   border: 1.5px dashed rgba(22, 22, 22, 0.8);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px;
+  transform: scale(1.01);
 }
 
 .element {
@@ -100,7 +101,6 @@ html {
 .center {
   background-color: #ffff00;
   font-weight: 600;
-  font-family: 'Open Sans';
   font-size: 1.75rem;
   letter-spacing: 0;
   width: 10vw;
@@ -115,7 +115,8 @@ html {
   background-color: #d4d4d4;
 }
 
-.notRecommended:hover {
+.notRecommended:hover,
+.not-recommended-option:hover {
   background-color: #ebebeb;
 }
 
@@ -167,36 +168,49 @@ html {
   background-color: #39761d;
 }
 
-.add-circle-child-right {
+.elem .add-circle {
+  position: absolute;
+  bottom: -8px;
+  left: -8px;
+
   width: 10px;
   height: 10px;
-  background-color: #fff2ca;
-  border: 1px solid black;
-  position: absolute;
-  top: calc(50% - 10px);
-  left: -12.5px;
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 100px;
   z-index: 2;
   color: black;
   font-weight: 500;
-  line-height: 0.4;
-  padding: 5px;
-  font-size: 2rem;
+  padding: 4px;
+  line-height: 0.55;
+  font-size: 2.25rem;
   cursor: default;
-  z-index: 0;
-  font-size: 25px;
+  transition: 0.15s;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  font-family: 'Roboto';
+  transform: scale(0.001);
+  cursor: pointer;
+  animation-timing-function: ease-in;
+}
+
+.center .add-circle {
+}
+
+.elem:hover > .add-circle {
+  line-height: 0.6;
+  transform: rotate(90deg) scale(1.3);
 }
 
 .inner-text {
   cursor: default;
   margin-right: 0.5vw;
   text-align: left;
-  margin-left: 0.5vw;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 800;
   max-width: 70%;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
 }
 
 .heading {
@@ -210,30 +224,122 @@ html {
 
 .center .inner-text {
   text-align: center;
-  font-family: 'SegoeUI';
+  font-family: 'Raleway';
   font-size: 2.25rem;
 }
 
 .due-date {
-  margin-right: 0.5vw;
-  font-weight: 600;
-  font-size: 1.25rem;
+  margin-right: 0;
+  margin-left: auto;
+  font-weight: 400;
+  font-size: 1.4rem;
   letter-spacing: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'SegoeUI';
+  font-family: 'Raleway';
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  width: 40%;
+  height: 15px;
+  text-align: right;
+  width: fit-content;
+  transition: 0.1s;
+}
+
+.due-date:hover {
+  text-shadow: 0px 0px 0px black;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+}
+
+.status .status-text {
+  margin-left: 0.5rem;
+  line-height: 2;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.status .status-text:hover {
+  text-shadow: 0 0 0px black;
+}
+
+.status .green-dot {
+  width: 10px;
+  height: 10px;
+  background-color: chartreuse;
+  border-radius: 100px;
+  margin-left: auto;
+}
+
+.status .red-dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(255, 0, 0);
+  border-radius: 100px;
+  margin-left: auto;
+}
+
+.importance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 400;
+  width: 100%;
+  transition: 0.1s;
+  width: fit-content;
+  margin-right: auto;
+}
+
+.bottom-row .importance {
+  margin-left: 0;
+}
+
+.importance:hover {
+  text-shadow: 0 0 0px black;
 }
 
 .bottom-row,
-.comments-row {
+.comments-row,
+.heading {
   width: 100%;
   align-self: flex-end;
   display: flex;
   justify-content: flex-end;
-  align-content: flex-end;
+  align-content: center;
   margin-right: 0.5vw;
   margin-left: 0.5vw;
+}
+
+.comments-row ul {
+  list-style: none;
+  padding: 5px;
+}
+
+.comments-row textarea {
+  background-color: #ffedb8;
+  width: fit-content;
+}
+
+.comments-row textarea {
+  resize: none;
+  padding: 2px;
+  border: none;
+}
+
+.element:hover > .comments-row textarea {
+  background-color: #fff7dd;
 }
 
 .bottom-row {
@@ -242,6 +348,8 @@ html {
   justify-content: flex-end;
   align-content: center;
   line-height: 1;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
 }
 
 .bottom-row div {
@@ -256,8 +364,48 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-content: flex-start;
+  align-content: center;
   text-align: left;
   margin-top: 1rem;
   width: 100%;
+  font-family: 'Raleway';
+}
+
+.comments-row input {
+  background-color: transparent;
+  color: black;
+  border: none;
+  font-weight: 400;
+  font-family: 'Raleway';
+}
+
+.comments-row input::placeholder {
+  color: black;
+  font-weight: 400;
+  font-family: 'Raleway';
+}
+
+.add-comment-button {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  font-size: 1.75rem;
+  transition: 0.1s;
+  letter-spacing: 0;
+}
+
+.add-comment-button:hover {
+  text-shadow: 0 0 0px black;
+}
+
+.github-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-row .github-link {
+  margin-left: 0;
 }
