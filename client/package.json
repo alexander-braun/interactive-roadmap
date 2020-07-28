@@ -1,5 +1,6 @@
 {
   "name": "roadmap-interactive",
+  "homepage": "https://github.io/alexander-braun/interactive-roadmap",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +13,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/uuid": "^8.0.0",
+    "@welldone-software/why-did-you-render": "^4.2.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -25,6 +27,8 @@
     "uuid": "^8.2.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

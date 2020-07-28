@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { IDs } from './index';
 import Svg from './Svg';
 import { v4 as uuidv4 } from 'uuid';
@@ -6,8 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 interface SvgGenerator {
   ids: IDs;
 }
-
-type BoundingRectPair = [DOMRect, DOMRect] | [null, null];
 
 function SvgGenerator({ ids, ...props }: SvgGenerator) {
   const generateSvg = (id: [string, string]): JSX.Element | null => {
@@ -45,4 +43,4 @@ function SvgGenerator({ ids, ...props }: SvgGenerator) {
   );
 }
 
-export default SvgGenerator;
+export default memo(SvgGenerator);

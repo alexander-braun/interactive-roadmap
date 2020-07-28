@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface SVG {
   parentRect: DOMRect;
@@ -42,4 +42,4 @@ function SVG(props: SVG) {
 
 // x2 for left side + props.childRect.width / 2
 
-export default SVG;
+export default memo(SVG);

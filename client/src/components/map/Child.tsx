@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Category } from '../../roadmap-data/frontend';
-import { v4 as uuidv4 } from 'uuid';
-import { useDispatch } from 'react-redux';
-import { addComment } from '../../actions/addComment';
+import Comments from './Comments';
 
 interface Child {
   child: Category;
@@ -11,8 +9,6 @@ interface Child {
 }
 
 function Children({ child, ...props }: Child): JSX.Element {
-  const dispatch = useDispatch();
-
   const style = (child: Category): string[] => {
     const styles: string[] = [];
     if (child.mainKnot) {
@@ -38,10 +34,6 @@ function Children({ child, ...props }: Child): JSX.Element {
     return styles;
   };
 
-  const handleAddNewComment = (e: any, id: any) => {
-    dispatch(addComment('', id));
-  };
-
   return (
     <div className={`elem ${style(child).join(' ')}`} id={child.id}>
       {!child.mainKnot &&
@@ -58,30 +50,7 @@ function Children({ child, ...props }: Child): JSX.Element {
           <div className='due-date'>26.05.2022</div>
         </div>
       )}
-
-      {child.mainKnot ? null : (
-        <div className='comments-row'>
-          <div
-            className='add-comment-button'
-            onClick={(e) => handleAddNewComment(e, child.id)}
-          >
-            + Add Comment
-          </div>
-          {child.comments && (
-            <ul>
-              {child.comments.map((comment) => (
-                <li key={uuidv4()}>
-                  <textarea
-                    defaultValue={comment}
-                    rows={2}
-                    maxLength={100}
-                  ></textarea>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
+      <Comments child={child} />
       {child.mainKnot ? null : (
         <div className='bottom-row'>
           <div className='importance'>Importance: 10</div>
@@ -104,4 +73,4 @@ function Children({ child, ...props }: Child): JSX.Element {
   );
 }
 
-export default Children;
+export default memo(Children);

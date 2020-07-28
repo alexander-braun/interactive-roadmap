@@ -1,12 +1,23 @@
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const CHANGE_COMMENT = 'CHANGE_COMMENT';
+
 export type Comment = string;
 export type ID = string;
+export type Index = number;
+
 export interface AddComment {
   type: typeof ADD_COMMENT;
   comment: Comment;
   id: ID;
 }
-export type CommentActionTypes = AddComment;
+export interface ChangeComment {
+  type: typeof CHANGE_COMMENT;
+  comment: Comment;
+  id: ID;
+  index: Index;
+}
+
+export type CommentActionTypes = AddComment | ChangeComment;
 export type AppActions = CommentActionTypes;
 
 /*

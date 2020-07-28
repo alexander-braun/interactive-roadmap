@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Category } from '../../roadmap-data/frontend';
 import Child from './Child';
 import { v4 as uuidv4 } from 'uuid';
@@ -30,4 +30,4 @@ function Children({ children, ...props }: Children): JSX.Element | null {
   );
 }
 
-export default Children;
+export default memo(Children);

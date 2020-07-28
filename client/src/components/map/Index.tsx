@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import '../App.css';
-import { frontend, Category } from '../../roadmap-data/frontend';
+import { Category } from '../../roadmap-data/frontend';
 import Section from './Section';
 import { v4 as uuidv4 } from 'uuid';
 import SvgGenerator from './SvgGenerator';
@@ -20,7 +20,7 @@ export interface MapType {
 export type IDs = [string, string][];
 
 function Map({ data }: MapType) {
-  const generateSections = (): Sections => {
+  const generateSections = useCallback((): Sections => {
     const sections: Sections = {};
     for (const section of data) {
       const center: Category = section;
@@ -35,7 +35,7 @@ function Map({ data }: MapType) {
       sections[section.title] = [center, children, subchildren];
     }
     return sections;
-  };
+  }, [data]);
 
   const generateSvgParentsAndChildrenIds = (): IDs => {
     const pairs: IDs = [];
@@ -61,20 +61,23 @@ function Map({ data }: MapType) {
   };
 
   const [ids, setSvgs] = useState<IDs>([]);
+  const [sections, updateSections] = useState<Sections>({});
+
+  useEffect(() => {
+    updateSections(generateSections());
+  }, [generateSections]);
 
   return (
     <div className='map'>
-      {Object.keys(generateSections()).map((section) => {
-        return (
-          <Section key={uuidv4()} sections={generateSections()[section]} />
-        );
+      {Object.keys(sections).map((section) => {
+        return <Section key={uuidv4()} sections={sections[section]} />;
       })}
       <ResizeObserver
         onResize={() => {
           setSvgs(generateSvgParentsAndChildrenIds());
         }}
       />
-      <SvgGenerator ids={ids} />;
+      <SvgGenerator ids={ids} />
     </div>
   );
 }
@@ -87,4 +90,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
   data: state.data,
 });
 
-export default React.memo(connect(mapStateToProps)(Map));
+export default memo(connect(mapStateToProps)(Map));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Category } from '../../roadmap-data/frontend';
 import Children from './Children';
 
@@ -7,8 +7,6 @@ interface Section {
 }
 
 type Direction = 'left' | 'right';
-
-type ChildT = Category[] | Category;
 
 function Section({ sections }: Section) {
   const section: Category = sections[0];
@@ -44,6 +42,7 @@ function Section({ sections }: Section) {
     }
 
     if (!subchildren) return [];
+
     if (subchildren.length === 1) {
       if (
         direction === 'left' &&
@@ -90,4 +89,4 @@ function Section({ sections }: Section) {
   );
 }
 
-export default Section;
+export default memo(Section);
