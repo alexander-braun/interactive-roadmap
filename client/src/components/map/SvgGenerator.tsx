@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { IDs } from './index';
-import Svg from './Svg';
+import { IDs } from './Index';
+import Svg from './SVG';
 import { v4 as uuidv4 } from 'uuid';
 
 interface SvgGenerator {
