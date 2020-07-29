@@ -80,7 +80,7 @@ function Section({ sections }: Section) {
     <div className='section'>
       <Children children={generateSubChildren('left')} subchildren />
       <Children children={generateChildren('left')} />
-      <Children children={section} center />
+      <Children children={section} center={true} />
       <Children
         children={children.length === 1 ? [] : generateChildren('right')}
       />

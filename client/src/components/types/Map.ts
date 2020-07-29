@@ -17,6 +17,6 @@ export interface Map {
     | 'not-recommended-option'
     | 'not-recommended-none'
     | 'none';
-  children: Map[] | [];
+  children: Map[];
   mainKnot?: boolean;
 }

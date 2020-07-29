@@ -1,6 +1,8 @@
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const CHANGE_COMMENT = 'CHANGE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const ADD_CHILDNODE = 'ADD_CHILDNODE';
+export const DELETE_CHILDNODE = 'DELETE_CHILDNODE';
 
 export type Comment = string;
 export type ID = string;
@@ -17,15 +19,23 @@ export interface ChangeComment {
   id: ID;
   index: Index;
 }
-
 export interface DeleteComment {
   type: typeof DELETE_COMMENT;
   id: ID;
   index: Index;
 }
+export interface AddChildnode {
+  type: typeof ADD_CHILDNODE;
+  id: ID;
+}
+export interface DeleteChildnode {
+  type: typeof DELETE_CHILDNODE;
+  id: ID;
+}
 
 export type CommentActionTypes = AddComment | ChangeComment | DeleteComment;
-export type AppActions = CommentActionTypes;
+export type NodeActionTypes = AddChildnode | DeleteChildnode;
+export type AppActions = CommentActionTypes | NodeActionTypes;
 
 /*
 export interface Map {

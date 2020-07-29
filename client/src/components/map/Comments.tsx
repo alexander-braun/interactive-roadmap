@@ -20,7 +20,7 @@ function Comments({ child }: Comments): JSX.Element {
     <>
       {child.mainKnot ? null : (
         <div className='comments-row'>
-          {child.comments && (
+          {child.comments.length ? (
             <ul>
               {child.comments.map((comment, index) => {
                 return (
@@ -33,7 +33,7 @@ function Comments({ child }: Comments): JSX.Element {
                 );
               })}
             </ul>
-          )}
+          ) : null}
           <div
             className='add-comment-button'
             onClick={(e) => handleAddNewComment(e, child.id)}
@@ -43,7 +43,7 @@ function Comments({ child }: Comments): JSX.Element {
                 <path
                   d='M6 6V.5a.5.5 0 0 1 1 0V6h5.5a.5.5 0 1 1 0 1H7v5.5a.5.5 0 1 1-1 0V7H.5a.5.5 0 0 1 0-1H6z'
                   fill='currentColor'
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                 ></path>
               </svg>
             </div>

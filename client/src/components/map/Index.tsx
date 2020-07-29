@@ -19,7 +19,7 @@ export interface MapType {
 
 export type IDs = [string, string][];
 
-function Map({ data }: MapType) {
+function Map({ data }: MapType): JSX.Element {
   const generateSections = useCallback((): Sections => {
     const sections: Sections = {};
     for (const section of data) {
@@ -62,6 +62,10 @@ function Map({ data }: MapType) {
 
   const [ids, setSvgs] = useState<IDs>([]);
   const [sections, updateSections] = useState<Sections>({});
+
+  useEffect(() => {
+    setSvgs(generateSvgParentsAndChildrenIds());
+  }, [sections]);
 
   useEffect(() => {
     updateSections(generateSections());

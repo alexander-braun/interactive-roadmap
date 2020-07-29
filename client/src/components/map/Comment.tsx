@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo, SyntheticEvent } from 'react';
+import React, { useState, useRef, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { changeComment } from '../../actions/changeComment';
 import { deleteComment } from '../../actions/deleteComment';
@@ -27,11 +27,6 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
 
   const handleDelete = (): void => {
     dispatch(deleteComment(id, index));
-  };
-
-  const handleInputChange = (e: any): void => {
-    e.target.style.height = 0;
-    e.target.style.height = `${e.target.scrollHeight}px`;
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {

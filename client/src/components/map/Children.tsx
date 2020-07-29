@@ -12,7 +12,11 @@ interface Children {
 function Children({ children, ...props }: Children): JSX.Element | null {
   if (Array.isArray(children) && children.length === 0) return null;
   return (
-    <div className='section__side-elements'>
+    <div
+      className={`section__side-elements ${
+        props.center ? 'center-section' : ''
+      }`}
+    >
       {Array.isArray(children) ? (
         children.map((child) => {
           return (
@@ -20,11 +24,16 @@ function Children({ children, ...props }: Children): JSX.Element | null {
               key={uuidv4()}
               child={child}
               subchildren={props.subchildren}
+              center={props.center ? true : false}
             />
           );
         })
       ) : (
-        <Child child={children} subchildren={props.subchildren} />
+        <Child
+          child={children}
+          subchildren={props.subchildren}
+          center={props.center ? true : false}
+        />
       )}
     </div>
   );
