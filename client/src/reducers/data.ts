@@ -1,4 +1,9 @@
-import { ADD_COMMENT, CHANGE_COMMENT, AppActions } from '../actions/constants';
+import {
+  ADD_COMMENT,
+  CHANGE_COMMENT,
+  DELETE_COMMENT,
+  AppActions,
+} from '../actions/constants';
 import { Map } from '../components/types/Map';
 import { frontend } from '../roadmap-data/frontend';
 
@@ -10,17 +15,26 @@ export const data = (
 ): Map[] => {
   const newState = [...state];
   switch (action.type) {
+    case DELETE_COMMENT:
+      for (const category of newState) {
+        for (const element of category.children) {
+          if (element.id === action.id) {
+            element.comments.splice(action.index, 1);
+            return newState;
+          } else if (element.children) {
+            for (const child of element.children) {
+              if (child.id === action.id) {
+                child.comments.splice(action.index, 1);
+                return newState;
+              }
+            }
+          }
+        }
+      }
+      return newState;
     case ADD_COMMENT:
       for (const category of newState) {
-        if (category.id === action.id) {
-          if (
-            category.comments.length > 0 &&
-            !category.comments[category.comments.length - 1]
-          )
-            break;
-          category.comments.push(action.comment);
-          return newState;
-        } else if (category.children) {
+        if (category.children) {
           for (const element of category.children) {
             if (element.id === action.id) {
               if (
@@ -49,10 +63,7 @@ export const data = (
       return newState;
     case CHANGE_COMMENT:
       for (const category of newState) {
-        if (category.id === action.id) {
-          category.comments[action.index] = action.comment;
-          return newState;
-        } else if (category.children) {
+        if (category.children) {
           for (const element of category.children) {
             if (element.id === action.id) {
               element.comments[action.index] = action.comment;

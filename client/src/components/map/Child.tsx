@@ -53,7 +53,6 @@ function Children({ child, ...props }: Child): JSX.Element {
       <Comments child={child} />
       {child.mainKnot ? null : (
         <div className='bottom-row'>
-          <div className='importance'>Importance: 10</div>
           <div className='status'>
             {child.finished ? (
               <>

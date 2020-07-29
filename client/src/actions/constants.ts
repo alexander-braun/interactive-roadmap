@@ -1,5 +1,6 @@
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const CHANGE_COMMENT = 'CHANGE_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 export type Comment = string;
 export type ID = string;
@@ -17,7 +18,13 @@ export interface ChangeComment {
   index: Index;
 }
 
-export type CommentActionTypes = AddComment | ChangeComment;
+export interface DeleteComment {
+  type: typeof DELETE_COMMENT;
+  id: ID;
+  index: Index;
+}
+
+export type CommentActionTypes = AddComment | ChangeComment | DeleteComment;
 export type AppActions = CommentActionTypes;
 
 /*
