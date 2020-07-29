@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/alexander-braun/interactive-roadmap/precache-manifest.3397ae628400aae71cf2a7e3884c23b9.js"
+  "/alexander-braun/interactive-roadmap/precache-manifest.151aebab3aad0d7834942fd6a1ac3881.js"
 );
 
 self.addEventListener('message', (event) => {

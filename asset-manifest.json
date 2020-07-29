@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/alexander-braun/interactive-roadmap/static/css/main.95f5f7ef.chunk.css",
-    "main.js": "/alexander-braun/interactive-roadmap/static/js/main.09e5c263.chunk.js",
-    "main.js.map": "/alexander-braun/interactive-roadmap/static/js/main.09e5c263.chunk.js.map",
+    "main.css": "/alexander-braun/interactive-roadmap/static/css/main.f6fe6dca.chunk.css",
+    "main.js": "/alexander-braun/interactive-roadmap/static/js/main.67d79b1f.chunk.js",
+    "main.js.map": "/alexander-braun/interactive-roadmap/static/js/main.67d79b1f.chunk.js.map",
     "runtime-main.js": "/alexander-braun/interactive-roadmap/static/js/runtime-main.5f9aad70.js",
     "runtime-main.js.map": "/alexander-braun/interactive-roadmap/static/js/runtime-main.5f9aad70.js.map",
     "static/js/2.4817de90.chunk.js": "/alexander-braun/interactive-roadmap/static/js/2.4817de90.chunk.js",
     "static/js/2.4817de90.chunk.js.map": "/alexander-braun/interactive-roadmap/static/js/2.4817de90.chunk.js.map",
     "index.html": "/alexander-braun/interactive-roadmap/index.html",
-    "precache-manifest.3397ae628400aae71cf2a7e3884c23b9.js": "/alexander-braun/interactive-roadmap/precache-manifest.3397ae628400aae71cf2a7e3884c23b9.js",
+    "precache-manifest.151aebab3aad0d7834942fd6a1ac3881.js": "/alexander-braun/interactive-roadmap/precache-manifest.151aebab3aad0d7834942fd6a1ac3881.js",
     "service-worker.js": "/alexander-braun/interactive-roadmap/service-worker.js",
-    "static/css/main.95f5f7ef.chunk.css.map": "/alexander-braun/interactive-roadmap/static/css/main.95f5f7ef.chunk.css.map",
+    "static/css/main.f6fe6dca.chunk.css.map": "/alexander-braun/interactive-roadmap/static/css/main.f6fe6dca.chunk.css.map",
     "static/js/2.4817de90.chunk.js.LICENSE.txt": "/alexander-braun/interactive-roadmap/static/js/2.4817de90.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5f9aad70.js",
     "static/js/2.4817de90.chunk.js",
-    "static/css/main.95f5f7ef.chunk.css",
-    "static/js/main.09e5c263.chunk.js"
+    "static/css/main.f6fe6dca.chunk.css",
+    "static/js/main.67d79b1f.chunk.js"
   ]
 }

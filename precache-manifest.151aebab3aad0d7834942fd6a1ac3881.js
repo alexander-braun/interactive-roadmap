@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a2746cca0599cb0af4c95395fd7f82d2",
+    "revision": "f2fdaf0c060c0e73ce0c529cb5c928f3",
     "url": "/alexander-braun/interactive-roadmap/index.html"
   },
   {
-    "revision": "fb4808df0f3d47578c9e",
-    "url": "/alexander-braun/interactive-roadmap/static/css/main.95f5f7ef.chunk.css"
+    "revision": "941fca27f0b77a14033f",
+    "url": "/alexander-braun/interactive-roadmap/static/css/main.f6fe6dca.chunk.css"
   },
   {
     "revision": "2269aaa4039ce81f640c",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/alexander-braun/interactive-roadmap/static/js/2.4817de90.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fb4808df0f3d47578c9e",
-    "url": "/alexander-braun/interactive-roadmap/static/js/main.09e5c263.chunk.js"
+    "revision": "941fca27f0b77a14033f",
+    "url": "/alexander-braun/interactive-roadmap/static/js/main.67d79b1f.chunk.js"
   },
   {
     "revision": "ed31c23878601e8fd0be",
