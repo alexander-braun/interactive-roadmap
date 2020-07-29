@@ -16,8 +16,8 @@ function SvgGenerator({ ids, ...props }: SvgGenerator) {
       const parentRect = parent.getBoundingClientRect();
       const childRect = child.getBoundingClientRect();
       if (
-        parent.classList.contains('center') &&
-        child.classList.contains('center')
+        parent.classList.contains('card--center') &&
+        child.classList.contains('card--center')
       ) {
         return (
           <Svg

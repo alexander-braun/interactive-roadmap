@@ -36,7 +36,7 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
   };
 
   return (
-    <li>
+    <li className='comments-row__list-item'>
       <textarea
         onChange={(e) => {
           updateText(e.target.value);
@@ -44,7 +44,7 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
         rows={2}
         maxLength={100}
         value={text}
-        className='comments-textarea'
+        className='comments-row__comments-textarea'
         onFocus={handleFocus}
         onBlur={(e) => {
           handleFocus();
@@ -62,11 +62,18 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
       </button>*/}
       <button
         ref={buttonRef}
-        className={`comment-action-button ${focus ? 'focus' : ''}`}
+        className={`comments-row__comment-action-button ${
+          focus ? 'focus' : ''
+        }`}
         type='submit'
         onClick={handleDelete}
       >
-        <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='24'
+          height='24'
+          className='comments-row__svg'
+        >
           <g fill='none' fillRule='evenodd'>
             <path d='M0 0h24v24H0z'></path>
             <rect

@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
-import '../App.css';
 import { Category } from '../../roadmap-data/frontend';
 import Section from './Section';
 import { v4 as uuidv4 } from 'uuid';
 import SvgGenerator from './SvgGenerator';
 import ResizeObserver from 'react-resize-observer';
-import { AppState } from '../../reducers';
 import { Map as MapT } from '../types/Map';
-import { connect } from 'react-redux';
 
 export interface Sections {
   [key: string]: [Category, Category[], Category[]];
@@ -16,6 +13,29 @@ export interface Sections {
 export interface MapType {
   data: MapT[];
 }
+
+const generateSvgParentsAndChildrenIds = (data: MapT[]): IDs => {
+  const pairs: IDs = [];
+  let currentCategoryId = '';
+  for (let i = 0; i < data.length; i++) {
+    const node = data[i];
+    const parentId = node.id;
+    if (currentCategoryId.length) {
+      pairs.push([currentCategoryId, parentId]);
+    }
+    currentCategoryId = parentId;
+    for (const child of node.children) {
+      const childId = child.id;
+      pairs.push([parentId, childId]);
+      if (child.children) {
+        for (const subchild of child.children) {
+          pairs.push([childId, subchild.id]);
+        }
+      }
+    }
+  }
+  return pairs;
+};
 
 export type IDs = [string, string][];
 
@@ -37,35 +57,12 @@ function Map({ data }: MapType): JSX.Element {
     return sections;
   }, [data]);
 
-  const generateSvgParentsAndChildrenIds = (): IDs => {
-    const pairs: IDs = [];
-    let currentCategoryId = '';
-    for (let i = 0; i < data.length; i++) {
-      const node = data[i];
-      const parentId = node.id;
-      if (currentCategoryId.length) {
-        pairs.push([currentCategoryId, parentId]);
-      }
-      currentCategoryId = parentId;
-      for (const child of node.children) {
-        const childId = child.id;
-        pairs.push([parentId, childId]);
-        if (child.children) {
-          for (const subchild of child.children) {
-            pairs.push([childId, subchild.id]);
-          }
-        }
-      }
-    }
-    return pairs;
-  };
-
   const [ids, setSvgs] = useState<IDs>([]);
   const [sections, updateSections] = useState<Sections>({});
 
   useEffect(() => {
-    setSvgs(generateSvgParentsAndChildrenIds());
-  }, [sections]);
+    setSvgs(generateSvgParentsAndChildrenIds(data));
+  }, [sections, data]);
 
   useEffect(() => {
     updateSections(generateSections());
@@ -73,12 +70,14 @@ function Map({ data }: MapType): JSX.Element {
 
   return (
     <div className='map'>
-      {Object.keys(sections).map((section) => {
-        return <Section key={uuidv4()} sections={sections[section]} />;
+      {Object.keys(sections).map((section, index) => {
+        return (
+          <Section index={index} key={uuidv4()} sections={sections[section]} />
+        );
       })}
       <ResizeObserver
         onResize={() => {
-          setSvgs(generateSvgParentsAndChildrenIds());
+          setSvgs(generateSvgParentsAndChildrenIds(data));
         }}
       />
       <SvgGenerator ids={ids} />
@@ -86,12 +85,4 @@ function Map({ data }: MapType): JSX.Element {
   );
 }
 
-interface StateProps {
-  data: MapT[];
-}
-
-const mapStateToProps = (state: AppState): StateProps => ({
-  data: state.data,
-});
-
-export default memo(connect(mapStateToProps)(Map));
+export default memo(Map);

@@ -14,7 +14,7 @@ function Children({ children, ...props }: Children): JSX.Element | null {
   return (
     <div
       className={`section__side-elements ${
-        props.center ? 'center-section' : ''
+        props.center ? 'section__side-elements--center-section' : ''
       }`}
     >
       {Array.isArray(children) ? (

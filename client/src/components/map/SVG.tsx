@@ -13,7 +13,11 @@ function SVG(props: SVG) {
   const insetSvgBy = 5;
 
   return (
-    <svg style={{ position: 'absolute' }} className='svg' width='100%'>
+    <svg
+      style={{ position: 'absolute' }}
+      className='svgs__single-svg'
+      width='100%'
+    >
       <line
         x1={
           props.childRect.x > props.parentRect.x && !props.center

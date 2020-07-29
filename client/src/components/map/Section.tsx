@@ -4,11 +4,12 @@ import Children from './Children';
 
 interface Section {
   sections: [Category, Category[], Category[]];
+  index: number;
 }
 
 type Direction = 'left' | 'right';
 
-function Section({ sections }: Section) {
+function Section({ sections, index }: Section) {
   const section: Category = sections[0];
   const children: Category[] = sections[1];
   const subchildren: Category[] = sections[2];

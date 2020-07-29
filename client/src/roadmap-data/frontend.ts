@@ -1,49 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
-/*
-export const frontend = [
-  {
-    title: 'Internet',
-    finished: false,
-    id: uuidv4(),
-    type: 'category',
-    importance: 10,
-    technologiesTags: [],
-    goalDate: '20.01.2022',
-    comments: ['this is hard'],
-    resources: ['http://www.youtube.com'],
-    order: true,
-    recommended: 'recommended',
-    children: [
-      {
-        title: 'How does the internet work?',
-        finished: false,
-        id: uuidv4(),
-        type: 'element',
-        importance: 5,
-        technologiesTags: [],
-        goalDate: '20.01.2022',
-        comments: ['this is hard'],
-        resources: ['http://www.youtube.com'],
-        order: true,
-        recommended: 'option' | 'recommended' | 'not-recommended',
-        children: [],
-      },
-    ],
-  },
-];
-*/
 
 export interface Category {
   title: string;
   finished?: boolean;
   id: string;
-  type: 'category' | 'element';
   importance?: number;
-  technologiesTags?: string[];
   goalDate?: string;
   comments: string[];
   resources?: string[];
-  order?: boolean;
   recommended?:
     | 'option'
     | 'recommended'
@@ -59,7 +23,6 @@ export interface Category {
 export const frontend: Category[] = [
   {
     title: 'Front-end',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -68,20 +31,16 @@ export const frontend: Category[] = [
   },
   {
     title: 'Internet',
-    type: 'category',
     finished: false,
     id: uuidv4(),
     importance: 10,
-    technologiesTags: [],
     goalDate: '20.01.2022',
     comments: ['this is hard'],
     resources: ['http://www.youtube.com'],
-    order: true,
     mainKnot: true,
     children: [
       {
         title: 'How does the internet work?',
-        type: 'element',
         children: [],
         id: uuidv4(),
         finished: true,
@@ -89,7 +48,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'What is Domain Name?',
-        type: 'element',
         children: [],
         comments: ['Redo this', 'whats going on here', 'this is a comment'],
         id: uuidv4(),
@@ -97,7 +55,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'What is hosting?',
-        type: 'element',
         children: [],
         id: uuidv4(),
         finished: false,
@@ -105,7 +62,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'DNS and how it works?',
-        type: 'element',
         children: [],
         id: uuidv4(),
         finished: false,
@@ -113,7 +69,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'What is HTTP?',
-        type: 'element',
         children: [],
         id: uuidv4(),
         finished: false,
@@ -121,7 +76,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Browsers and how they work?',
-        type: 'element',
         children: [],
         id: uuidv4(),
         finished: false,
@@ -131,7 +85,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'HTML',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -139,7 +92,6 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Learn the basics',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -147,7 +99,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Writing Semantic HTML',
-        type: 'element',
         id: uuidv4(),
         recommended: 'not-strict',
         children: [],
@@ -156,7 +107,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Forms and Validations',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -164,7 +114,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Conventions and Best Practices',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -172,7 +121,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Accessibility',
-        type: 'element',
         id: uuidv4(),
         children: [],
         recommended: 'not-strict',
@@ -181,7 +129,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'SEO Basics',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -192,7 +139,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'CSS',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -200,14 +146,12 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Learn the basics',
-        type: 'element',
         id: uuidv4(),
         children: [],
         comments: [],
       },
       {
         title: 'Making Layouts',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         children: [],
@@ -215,14 +159,13 @@ export const frontend: Category[] = [
       },
       {
         title: 'Responsive design and Media Queries',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
         children: [
           {
             title: 'Floats',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             children: [],
@@ -230,7 +173,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Positioning',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -238,7 +181,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Display',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -246,7 +189,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Box Model',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -254,7 +197,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'CSS Grid',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -262,7 +205,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Flex Box',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -274,7 +217,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Javascript',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -282,7 +224,6 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Syntax and Basic Constructs',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -290,7 +231,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Learn DOM Manipulation',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -298,7 +238,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Learn Fetch API / Ajax (XHR)',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -306,7 +245,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'ES6+ and modular Javascript',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -314,14 +252,13 @@ export const frontend: Category[] = [
       },
       {
         title: 'Understand these concepts',
-        type: 'element',
         finished: false,
         id: uuidv4(),
         comments: [],
         children: [
           {
             title: 'Hoisting',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             children: [],
@@ -329,7 +266,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Event Bubbling',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -337,7 +274,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Scope',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -345,7 +282,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Prototype',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -353,7 +290,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Shadow DOM',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -361,7 +298,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'strict',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -373,7 +310,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Version Control Systems',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -381,7 +317,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Repo hosting services',
-        type: 'category',
+
         id: uuidv4(),
         recommended: 'none',
         finished: false,
@@ -389,7 +325,7 @@ export const frontend: Category[] = [
         children: [
           {
             title: 'GitHub',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -397,7 +333,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'GitLab',
-            type: 'element',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -406,7 +342,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Bitbucket',
-            type: 'element',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -417,7 +353,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Basic Usage of Git',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         children: [],
@@ -427,7 +363,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Web Security Knowledge',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     recommended: 'not-strict',
@@ -436,7 +371,6 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'HTTPS',
-        type: 'element',
         id: uuidv4(),
         children: [],
         comments: [],
@@ -444,7 +378,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Content Security Policy',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -453,7 +386,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'CORS',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -462,7 +394,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'OWASP Security Risks',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -473,7 +404,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Package Managers',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -481,7 +411,6 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'npm',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -489,7 +418,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'yarn',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -499,7 +427,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'CSS Architecture',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -507,7 +434,6 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'BEM',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -516,7 +442,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'OOCSS',
-        type: 'element',
         id: uuidv4(),
         children: [],
         comments: [],
@@ -525,7 +450,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'SMACSS',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         children: [],
@@ -536,7 +460,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'CSS Preprocessors',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -544,7 +467,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Sass',
-        type: 'category',
+
         id: uuidv4(),
         children: [],
         finished: false,
@@ -553,7 +476,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'PostCSS',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -562,7 +484,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Less',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -573,7 +494,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Build Tools',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -581,14 +501,14 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Linters and Formatters',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
         children: [
           {
             title: 'Prettier',
-            type: 'category',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -597,7 +517,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'ESLint',
-            type: 'category',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -606,7 +526,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'StandardJS',
-            type: 'category',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -617,14 +537,14 @@ export const frontend: Category[] = [
       },
       {
         title: 'Task Runners',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
         children: [
           {
             title: 'npm scripts',
-            type: 'category',
+
             id: uuidv4(),
             finished: false,
             children: [],
@@ -632,7 +552,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Gulp',
-            type: 'element',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -643,14 +563,13 @@ export const frontend: Category[] = [
       },
       {
         title: 'Module Bundlers',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
         children: [
           {
             title: 'Webpack',
-            type: 'category',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -658,7 +577,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Rollup',
-            type: 'element',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -667,7 +586,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Parcel',
-            type: 'element',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -680,7 +599,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Pick a Framework',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -688,14 +606,14 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'React.js',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
         children: [
           {
             title: 'Redux',
-            type: 'category',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -703,7 +621,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'MobX',
-            type: 'element',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -714,7 +632,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Angular',
-        type: 'element',
         id: uuidv4(),
         recommended: 'option',
         finished: false,
@@ -722,7 +639,7 @@ export const frontend: Category[] = [
         children: [
           {
             title: 'RxJS',
-            type: 'category',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -731,7 +648,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'NgRx',
-            type: 'category',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -742,7 +659,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Vue.js',
-        type: 'element',
         id: uuidv4(),
         recommended: 'option',
         finished: false,
@@ -750,7 +666,7 @@ export const frontend: Category[] = [
         children: [
           {
             title: 'VueX',
-            type: 'element',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -763,7 +679,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Modern CSS',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -771,7 +686,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Styled Components',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -779,7 +694,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'CSS Modules',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -787,7 +702,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Styled JSX',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -796,7 +710,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Emotion',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -805,7 +718,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Radium',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -814,7 +726,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Glamorous',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -825,7 +736,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Web Components',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -834,7 +744,6 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'HTML Templates',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -843,7 +752,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Custom Elements',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -852,7 +760,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Shadow DOM',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -863,7 +770,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'CSS Frameworks',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -871,7 +777,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Reactstrap',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -879,7 +785,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Material UI',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -887,7 +793,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Tailwind CSS',
-        type: 'category',
+
         id: uuidv4(),
         children: [],
         finished: false,
@@ -896,7 +802,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Chakra UI',
-        type: 'category',
+
         id: uuidv4(),
         children: [],
         finished: false,
@@ -905,7 +811,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Bootstrap',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -913,7 +819,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Materialize CSS',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -922,7 +827,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Bulma',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -933,7 +837,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Testing your Apps',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -941,7 +844,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Jest',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -949,7 +852,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'react-testing-library',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -957,7 +860,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Cypress',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -965,7 +868,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Enzyme',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -973,7 +876,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Mocha',
-        type: 'category',
+
         id: uuidv4(),
         children: [],
         finished: false,
@@ -982,7 +885,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Chai',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -991,7 +893,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Ava',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1000,7 +901,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Jasmine',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1011,7 +911,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Type Checkers',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     recommended: 'not-strict',
@@ -1020,7 +919,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'TypeScript',
-        type: 'category',
+
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1029,7 +928,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Flow',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1040,7 +938,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Progressive Web Apps',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -1049,7 +946,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Calculating, Measuring, improving Performance',
-        type: 'category',
+
         id: uuidv4(),
         recommended: 'not-strict',
         finished: false,
@@ -1057,7 +954,7 @@ export const frontend: Category[] = [
         children: [
           {
             title: 'Storage',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1065,7 +962,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Web Sockets',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1073,7 +970,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Service Workers',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1081,7 +978,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Location',
-            type: 'element',
+
             id: uuidv4(),
             comments: [],
             finished: false,
@@ -1089,7 +986,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Notifications',
-            type: 'element',
+
             id: uuidv4(),
             comments: [],
             finished: false,
@@ -1097,7 +994,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Device Orientation',
-            type: 'element',
+
             id: uuidv4(),
             comments: [],
             finished: false,
@@ -1105,7 +1002,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Payments',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             children: [],
@@ -1113,7 +1010,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Credentials',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             children: [],
@@ -1123,7 +1020,7 @@ export const frontend: Category[] = [
       },
       {
         title: "Web API's used in PWAs",
-        type: 'category',
+
         id: uuidv4(),
         recommended: 'not-strict',
         finished: false,
@@ -1131,7 +1028,7 @@ export const frontend: Category[] = [
         children: [
           {
             title: 'PRPL Pattern',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1139,7 +1036,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'RAIL Model',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1147,7 +1044,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Performance Metrics',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1155,7 +1052,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Using Lighthouse',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1163,7 +1060,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'Using DevTools',
-            type: 'element',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1175,7 +1072,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Server Side Rendering',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     recommended: 'not-strict',
@@ -1184,14 +1080,14 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'React.js',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
         children: [
           {
             title: 'Next.js',
-            type: 'category',
+
             id: uuidv4(),
             finished: false,
             comments: [],
@@ -1199,7 +1095,7 @@ export const frontend: Category[] = [
           },
           {
             title: 'After.js',
-            type: 'category',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -1210,7 +1106,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Angular',
-        type: 'element',
         id: uuidv4(),
         recommended: 'option',
         finished: false,
@@ -1218,7 +1113,7 @@ export const frontend: Category[] = [
         children: [
           {
             title: 'Universal',
-            type: 'category',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -1229,7 +1124,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Vue.js',
-        type: 'element',
         id: uuidv4(),
         recommended: 'option',
         finished: false,
@@ -1237,7 +1131,7 @@ export const frontend: Category[] = [
         children: [
           {
             title: 'Nuxt.js',
-            type: 'category',
+
             id: uuidv4(),
             children: [],
             finished: false,
@@ -1250,7 +1144,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'GraphQL',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -1259,7 +1152,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Apollo',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         children: [],
@@ -1267,7 +1160,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'Relay Modern',
-        type: 'category',
+
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1278,7 +1171,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Static Site Generators',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -1287,7 +1179,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Next.js',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -1295,7 +1187,7 @@ export const frontend: Category[] = [
       },
       {
         title: 'GatsbyJS',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -1303,7 +1195,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Nuxt.js',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1312,7 +1203,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Vuepress',
-        type: 'element',
         id: uuidv4(),
         children: [],
         recommended: 'option',
@@ -1321,7 +1211,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Jekyll',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1330,7 +1219,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Hugo',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1341,7 +1229,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Mobile Applications',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -1350,7 +1237,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'React Native',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -1358,7 +1245,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Native Script',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -1366,7 +1252,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Flutter',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -1374,7 +1259,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Ionic',
-        type: 'element',
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -1384,7 +1268,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Desktop Applications',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     finished: false,
@@ -1393,7 +1276,7 @@ export const frontend: Category[] = [
     children: [
       {
         title: 'Electron',
-        type: 'category',
+
         id: uuidv4(),
         finished: false,
         comments: [],
@@ -1401,7 +1284,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Carlo',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1410,7 +1292,6 @@ export const frontend: Category[] = [
       },
       {
         title: 'Proton Native',
-        type: 'element',
         id: uuidv4(),
         children: [],
         finished: false,
@@ -1421,7 +1302,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Web Assembly',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     children: [],
@@ -1431,7 +1311,6 @@ export const frontend: Category[] = [
   },
   {
     title: 'Keep Learning',
-    type: 'category',
     id: uuidv4(),
     mainKnot: true,
     children: [],

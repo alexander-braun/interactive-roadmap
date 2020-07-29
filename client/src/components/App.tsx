@@ -1,13 +1,31 @@
 import React from 'react';
 import Map from './map/Index';
-import './App.css';
+import '../styles/main.css';
+import { Map as MapT } from './types/Map';
+import { AppState } from '../reducers';
+import { InviewElements } from '../actions/constants';
+import { connect } from 'react-redux';
 
-function App(): JSX.Element {
+interface AppProps {
+  data: MapT[];
+}
+
+function App({ data }: AppProps): JSX.Element {
   return (
     <div className='App'>
-      <Map />
+      <Map data={data} />
     </div>
   );
 }
 
-export default App;
+interface StateProps {
+  data: MapT[];
+  inView: InviewElements;
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+  data: state.data,
+  inView: state.inView,
+});
+
+export default connect(mapStateToProps)(App);

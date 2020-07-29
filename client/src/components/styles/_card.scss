@@ -1,0 +1,252 @@
+.card {
+  border: 1.5px dashed transparent;
+  border-radius: 0.25rem;
+  padding: 1rem 1rem;
+  background-color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  width: fit-content;
+  max-width: 30rem;
+  margin: 2vh 0;
+  letter-spacing: 0.1rem;
+  position: relative;
+  font-family: 'Raleway';
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 3vh;
+  flex-wrap: wrap;
+  box-shadow: 0 5px 30px -15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, border 0.3s, background 0.1s;
+
+  &--element {
+    background-color: #ffe599;
+
+    &:hover {
+      background-color: #fff0c4;
+    }
+  }
+
+  &--center &__inner-text {
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 2.25rem;
+  }
+
+  &--not-recommended,
+  &--not-recommended-option {
+    background-color: #d4d4d4;
+
+    &:hover {
+      background-color: #ebebeb;
+    }
+  }
+
+  &--center {
+    background-color: #ffff00;
+    font-weight: 600;
+    font-size: 1.75rem;
+    letter-spacing: 0;
+    width: 10vw;
+
+    &:hover {
+      background-color: #ffffa8;
+    }
+  }
+
+  &--option &__indication-circle,
+  &--not-recommended-option &__indication-circle {
+    background-color: #39761d;
+  }
+
+  &--not-strict &__indication-circle {
+    background-color: #d4d4d4;
+  }
+
+  &__button-container {
+    position: absolute;
+    bottom: -10px;
+    left: -11px;
+    width: 55px;
+    height: fit-content;
+    background: transparent;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__indication-circle {
+    width: 10px;
+    height: 10px;
+    background-color: #a537ff;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border-radius: 100px;
+    z-index: 2;
+    color: white;
+    font-weight: 600;
+    padding: 5px;
+    line-height: 1;
+    font-size: 1.5rem;
+    cursor: default;
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    width: 100%;
+
+    align-self: flex-end;
+    justify-content: flex-end;
+  }
+
+  &__inner-text {
+    cursor: default;
+    margin-right: 0.5vw;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    max-width: 70%;
+    font-size: 1.75rem;
+    letter-spacing: 0.05rem;
+    font-family: 'Roboto';
+    background-color: transparent;
+    border: none;
+    resize: none;
+    overflow: auto;
+  }
+
+  &__due-date {
+    margin-right: 0;
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 1.4rem;
+    letter-spacing: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway';
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    width: 40%;
+    height: 15px;
+    text-align: right;
+    transition: 0.1s;
+
+    &:hover {
+      text-shadow: 0px 0px 0px black;
+      font-weight: 600;
+    }
+  }
+
+  &__status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+
+    &--status-text {
+      margin-left: 0.5rem;
+      line-height: 2;
+      cursor: pointer;
+      transition: 0.1s;
+
+      &:hover {
+        text-shadow: 0 0 0px black;
+        font-weight: 600;
+      }
+    }
+
+    &--green-dot {
+      width: 10px;
+      height: 10px;
+      background-color: chartreuse;
+      border-radius: 100px;
+      margin-left: auto;
+    }
+
+    &--red-dot {
+      width: 10px;
+      height: 10px;
+      background-color: rgb(255, 0, 0);
+      border-radius: 100px;
+      margin-left: auto;
+    }
+  }
+
+  &__bottom-row {
+    width: 100%;
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
+    line-height: 1;
+  }
+
+  &__add-circle,
+  &__delete-circle {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 100px;
+    z-index: 2;
+    color: black;
+    padding: 4px;
+    font-size: 2.25rem;
+    cursor: default;
+    transition: 0.15s;
+    transform: scale(0.001);
+    opacity: 0;
+    cursor: pointer;
+    animation-timing-function: ease-in;
+    overflow: visible;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.95);
+
+    svg {
+      overflow: visible;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 400px;
+    }
+  }
+
+  &:hover &__add-circle:hover,
+  &:hover &__delete-circle:hover {
+    transform: scale(1.4);
+    background-color: #ffd75f;
+  }
+
+  &:hover &__add-circle {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.3);
+  }
+
+  &:hover &__delete-circle {
+    opacity: 1;
+    transform: rotate(90deg) scale(1.3);
+  }
+
+  &:hover {
+    border: 1.5px dashed rgba(22, 22, 22, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px;
+    transform: scale(1.01);
+  }
+}

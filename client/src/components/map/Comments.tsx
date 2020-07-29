@@ -21,7 +21,7 @@ function Comments({ child }: Comments): JSX.Element {
       {child.mainKnot ? null : (
         <div className='comments-row'>
           {child.comments.length ? (
-            <ul>
+            <ul className='comments-row__list'>
               {child.comments.map((comment, index) => {
                 return (
                   <Comment
@@ -35,10 +35,10 @@ function Comments({ child }: Comments): JSX.Element {
             </ul>
           ) : null}
           <div
-            className='add-comment-button'
+            className='comments-row__add-comment-button'
             onClick={(e) => handleAddNewComment(e, child.id)}
           >
-            <div className='add-comment-svg'>
+            <div className='comments-row__add-comment-svg'>
               <svg width='13' height='13'>
                 <path
                   d='M6 6V.5a.5.5 0 0 1 1 0V6h5.5a.5.5 0 1 1 0 1H7v5.5a.5.5 0 1 1-1 0V7H.5a.5.5 0 0 1 0-1H6z'

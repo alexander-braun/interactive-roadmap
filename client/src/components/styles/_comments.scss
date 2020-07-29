@@ -1,0 +1,100 @@
+.comments-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: left;
+  margin-top: 1rem;
+  width: 100%;
+  font-family: 'Raleway';
+  min-height: 75px;
+
+  &__list {
+    list-style: none;
+  }
+
+  &__list-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid transparent;
+  }
+
+  &__add-comment-button {
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1.75rem;
+    transition: 0.1s;
+    letter-spacing: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: 0.2s;
+    width: fit-content;
+
+    &:hover {
+      text-shadow: 0 0 0px black;
+      font-weight: 600;
+    }
+  }
+
+  &__add-comment-svg {
+    align-items: center;
+    color: #dd4b39;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    height: 17px;
+    justify-content: center;
+    margin-right: 7px;
+    vertical-align: 7px;
+    width: 17px;
+    border: 1px solid transparent;
+    transition: 0.2s;
+  }
+
+  &__add-comment-button:hover &__add-comment-svg {
+    border: 1px dashed rgba(0, 0, 0, 0.397);
+    background-color: #ffd75f;
+  }
+
+  &__comments-textarea {
+    background-color: #ffedb8;
+    resize: none;
+    padding: 5px 5px;
+    border: 1px solid transparent;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 1px 0;
+
+    &:hover {
+      border: 1px dashed rgba(0, 0, 0, 0.514);
+    }
+  }
+
+  &__svg {
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  &__comment-action-button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    margin-left: 10px;
+    &:hover {
+      background-color: #ffd75f;
+      border: 1px dashed rgba(0, 0, 0, 0.514);
+    }
+  }
+}
+
+.card {
+  &:hover {
+    .comments-row__comments-textarea {
+      background-color: #fff7dd;
+    }
+  }
+}

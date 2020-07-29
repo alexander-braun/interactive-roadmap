@@ -1,0 +1,28 @@
+.section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  margin: 0 auto;
+  width: -moz-fit-content;
+  position: relative;
+  margin: 3vh 6vw;
+
+  &:first-child {
+    margin-bottom: 5vh;
+  }
+
+  &__side-elements {
+    margin: 0 auto;
+    position: relative;
+
+    &--center-section {
+      margin: 0;
+
+      &:first-child {
+        margin: 0 auto;
+      }
+    }
+  }
+}

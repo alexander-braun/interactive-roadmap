@@ -4,6 +4,7 @@ import {
   DELETE_COMMENT,
   ADD_CHILDNODE,
   DELETE_CHILDNODE,
+  SET_CARD_HEADING,
   AppActions,
 } from '../actions/constants';
 import { Map } from '../components/types/Map';
@@ -18,6 +19,29 @@ export const data = (
 ): Map[] => {
   const newState = [...state];
   switch (action.type) {
+    case SET_CARD_HEADING:
+      console.log('set');
+      for (const category of newState) {
+        if (category.id === action.id) {
+          category.title = action.heading;
+          return newState;
+        } else if (category.children) {
+          for (const element of category.children) {
+            if (element.id === action.id) {
+              element.title = action.heading;
+              return newState;
+            } else if (element.children) {
+              for (const child of element.children) {
+                if (child.id === action.id) {
+                  child.title = action.heading;
+                  return newState;
+                }
+              }
+            }
+          }
+        }
+      }
+      return newState;
     case DELETE_CHILDNODE:
       for (const category of newState) {
         if (category.children) {
@@ -40,7 +64,6 @@ export const data = (
     case ADD_CHILDNODE:
       const Childnode: Map = {
         title: 'Your title',
-        type: 'element',
         children: [],
         id: uuidv4(),
         finished: false,
