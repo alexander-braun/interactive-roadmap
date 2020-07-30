@@ -5,6 +5,7 @@ import {
   ADD_CHILDNODE,
   DELETE_CHILDNODE,
   SET_CARD_HEADING,
+  SET_STATUS,
   AppActions,
 } from '../actions/constants';
 import { Map } from '../components/types/Map';
@@ -19,8 +20,26 @@ export const data = (
 ): Map[] => {
   const newState = [...state];
   switch (action.type) {
+    case SET_STATUS:
+      for (const category of newState) {
+        if (category.children) {
+          for (const element of category.children) {
+            if (element.id === action.id) {
+              element.status = action.status;
+              return newState;
+            } else if (element.children) {
+              for (const child of element.children) {
+                if (child.id === action.id) {
+                  child.status = action.status;
+                  return newState;
+                }
+              }
+            }
+          }
+        }
+      }
+      return newState;
     case SET_CARD_HEADING:
-      console.log('set');
       for (const category of newState) {
         if (category.id === action.id) {
           category.title = action.heading;
@@ -66,7 +85,7 @@ export const data = (
         title: 'Your title',
         children: [],
         id: uuidv4(),
-        finished: false,
+        status: 'Pending',
         comments: [],
       };
       for (const category of newState) {

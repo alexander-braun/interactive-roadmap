@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import SvgGenerator from './SvgGenerator';
 import ResizeObserver from 'react-resize-observer';
 import { Map as MapT } from '../types/Map';
+import EditCardModal from './EditCardModal';
 
 export interface Sections {
   [key: string]: [Category, Category[], Category[]];
@@ -81,6 +82,7 @@ function Map({ data }: MapType): JSX.Element {
         }}
       />
       <SvgGenerator ids={ids} />
+      <EditCardModal></EditCardModal>
     </div>
   );
 }

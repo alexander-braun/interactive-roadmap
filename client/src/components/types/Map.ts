@@ -1,6 +1,6 @@
 export interface Map {
   title: string;
-  finished?: boolean;
+  status: 'Pending' | 'In-Work' | 'Done';
   id: string;
   importance?: number;
   goalDate?: string;

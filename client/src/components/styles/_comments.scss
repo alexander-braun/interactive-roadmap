@@ -4,7 +4,6 @@
   justify-content: center;
   align-content: center;
   text-align: left;
-  margin-top: 1rem;
   width: 100%;
   font-family: 'Raleway';
   min-height: 75px;
@@ -69,6 +68,8 @@
     overflow-x: hidden;
     overflow-y: auto;
     margin: 1px 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    line-height: 15px;
 
     &:hover {
       border: 1px dashed rgba(0, 0, 0, 0.514);

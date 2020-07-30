@@ -6,7 +6,7 @@
   text-align: center;
   font-size: 1.5rem;
   width: fit-content;
-  max-width: 30rem;
+  max-width: 15vw;
   margin: 2vh 0;
   letter-spacing: 0.1rem;
   position: relative;
@@ -114,13 +114,22 @@
     align-items: center;
     font-weight: 800;
     max-width: 70%;
-    font-size: 1.75rem;
+    font-size: 2rem;
     letter-spacing: 0.05rem;
-    font-family: 'Roboto';
+    font-family: 'Raleway';
     background-color: transparent;
     border: none;
     resize: none;
     overflow: auto;
+    overflow-y: hidden;
+    padding: 5px;
+    border: 1px dashed transparent;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fff7dd;
+      border: 1px dashed rgba(0, 0, 0, 0.514);
+    }
   }
 
   &__due-date {
@@ -140,7 +149,7 @@
     cursor: pointer;
     width: 40%;
     height: 15px;
-    text-align: right;
+    width: fit-content;
     transition: 0.1s;
 
     &:hover {
@@ -172,6 +181,14 @@
       width: 10px;
       height: 10px;
       background-color: chartreuse;
+      border-radius: 100px;
+      margin-left: auto;
+    }
+
+    &--yellow-dot {
+      width: 10px;
+      height: 10px;
+      background-color: rgb(255, 251, 0);
       border-radius: 100px;
       margin-left: auto;
     }
@@ -228,12 +245,6 @@
     }
   }
 
-  &:hover &__add-circle:hover,
-  &:hover &__delete-circle:hover {
-    transform: scale(1.4);
-    background-color: #ffd75f;
-  }
-
   &:hover &__add-circle {
     opacity: 1;
     transform: rotate(45deg) scale(1.3);
@@ -242,6 +253,17 @@
   &:hover &__delete-circle {
     opacity: 1;
     transform: rotate(90deg) scale(1.3);
+  }
+
+  &:hover &__add-circle:hover,
+  &:hover &__delete-circle:hover {
+    transform: scale(1.4);
+    background-color: #ffd75f;
+  }
+
+  &:hover &__add-circle:hover {
+    transform: scale(1.4) rotate(135deg);
+    background-color: #ffd75f;
   }
 
   &:hover {

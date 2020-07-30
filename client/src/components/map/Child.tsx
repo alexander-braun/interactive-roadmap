@@ -1,10 +1,10 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { Category } from '../../roadmap-data/frontend';
 import { useDispatch } from 'react-redux';
 import Comments from './Comments';
 import { addChildnode } from '../../actions/addChildnode';
 import { deleteChildnode } from '../../actions/deleteChildnode';
-import { setCardHeading } from '../../actions/setCardHeading';
+import { toggleEditCardModal } from '../../actions/toggleEditCardModal';
 
 interface Child {
   child: Category;
@@ -47,22 +47,8 @@ function Children({ child, ...props }: Child): JSX.Element {
     dispatch(deleteChildnode(child.id));
   };
 
-  const [text, updateText] = useState<string>(child.title);
-  const [focus, toggleFocus] = useState<boolean>(false);
-
-  const handleFocus = () => {
-    toggleFocus(!focus);
-  };
-
-  const handleSubmit = () => {
-    if (!text.length) return;
-    dispatch(setCardHeading(child.id, text));
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
+  const toggleEditModal = () => {
+    dispatch(toggleEditCardModal(child.id));
   };
 
   return (
@@ -72,42 +58,15 @@ function Children({ child, ...props }: Child): JSX.Element {
         child.recommended !== 'not-recommended-none' && (
           <div className='card__indication-circle'>✓</div>
         )}
-
-      {child.mainKnot && (
-        <textarea
-          onChange={(e) => {
-            updateText(e.target.value);
-          }}
-          rows={3}
-          maxLength={100}
-          value={text}
-          onFocus={handleFocus}
-          onBlur={(e) => {
-            handleFocus();
-            handleSubmit();
-          }}
-          onKeyPress={handleKeyPress}
-          className='card__inner-text'
-        ></textarea>
-      )}
-
-      {child.mainKnot ? null : (
+      {child.mainKnot ? (
+        <div className='card__inner-text' onClick={toggleEditModal}>
+          {child.title}
+        </div>
+      ) : (
         <div className='card__heading'>
-          <textarea
-            onChange={(e) => {
-              updateText(e.target.value);
-            }}
-            rows={2}
-            maxLength={100}
-            value={text}
-            onFocus={handleFocus}
-            onBlur={(e) => {
-              handleFocus();
-              handleSubmit();
-            }}
-            onKeyPress={handleKeyPress}
-            className='card__inner-text'
-          ></textarea>
+          <div className='card__inner-text' onClick={toggleEditModal}>
+            {child.title}
+          </div>
           <div className='card__due-date'>26.05.2022</div>
         </div>
       )}
@@ -115,15 +74,20 @@ function Children({ child, ...props }: Child): JSX.Element {
       {child.mainKnot ? null : (
         <div className='card__bottom-row'>
           <div className='card__status'>
-            {child.finished ? (
+            {child.status === 'Done' ? (
               <>
                 <div className='card__status--green-dot'></div>
                 <div className='card__status--status-text'>Done</div>
               </>
-            ) : (
+            ) : child.status === 'Pending' ? (
               <>
                 <div className='card__status--red-dot'></div>
                 <div className='card__status--status-text'>Pending</div>
+              </>
+            ) : (
+              <>
+                <div className='card__status--yellow-dot'></div>
+                <div className='card__status--status-text'>In Progress</div>
               </>
             )}
           </div>
@@ -142,7 +106,7 @@ function Children({ child, ...props }: Child): JSX.Element {
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 512 512'
             >
-              <title>remove-delete-circle-glyph</title>
+              <title>Add New Card As Child</title>
               <path
                 d='M256,24C383.9,24,488,128.1,488,256S383.9,488,256,488,24.06,383.9,24.06,256,128.1,24,256,24ZM0,256C0,397.16,114.84,512,256,512S512,397.16,512,256,397.16,0,256,0,0,114.84,0,256Z'
                 fill='#5b5b5f'
@@ -166,7 +130,7 @@ function Children({ child, ...props }: Child): JSX.Element {
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 512 512'
             >
-              <title>remove-delete-circle-glyph</title>
+              <title>Delete This Card</title>
               <path
                 d='M256,24C383.9,24,488,128.1,488,256S383.9,488,256,488,24.06,383.9,24.06,256,128.1,24,256,24ZM0,256C0,397.16,114.84,512,256,512S512,397.16,512,256,397.16,0,256,0,0,114.84,0,256Z'
                 fill='#5b5b5f'

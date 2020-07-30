@@ -17,7 +17,7 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleSubmit = (): void => {
-    if (!text.length) return;
+    if (!text.length || comment === text) return;
     dispatch(changeComment(text, id, index));
   };
 
@@ -41,25 +41,20 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
         onChange={(e) => {
           updateText(e.target.value);
         }}
-        rows={2}
         maxLength={100}
         value={text}
         className='comments-row__comments-textarea'
-        onFocus={handleFocus}
+        onFocus={() => {
+          handleFocus();
+        }}
         onBlur={(e) => {
           handleFocus();
           handleSubmit();
         }}
-        onKeyPress={handleKeyPress}
+        onKeyPress={(e) => {
+          handleKeyPress(e);
+        }}
       ></textarea>
-      {/*      <button
-        ref={buttonRef}
-        className={`comment-action-button ${focus ? 'focus' : ''}`}
-        type='submit'
-        onClick={handleSubmit}
-      >
-        Save
-      </button>*/}
       <button
         ref={buttonRef}
         className={`comments-row__comment-action-button ${
