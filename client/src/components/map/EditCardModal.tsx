@@ -201,7 +201,6 @@ function EditCardModal({
             </div>
           </div>
         )}
-
         <button
           className='edit-card-modal__close-button'
           onClick={() => dispatch(toggleEditCardModal(''))}

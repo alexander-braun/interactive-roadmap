@@ -62,12 +62,14 @@ function Map({ data }: MapType): JSX.Element {
   const [sections, updateSections] = useState<Sections>({});
 
   useEffect(() => {
-    setSvgs(generateSvgParentsAndChildrenIds(data));
-  }, [sections, data]);
-
-  useEffect(() => {
     updateSections(generateSections());
   }, [generateSections]);
+
+  useEffect(() => {
+    setSvgs(generateSvgParentsAndChildrenIds(data));
+  }, [data]);
+
+  const [width, updateWidth] = useState<number>();
 
   return (
     <div className='map'>
@@ -77,8 +79,11 @@ function Map({ data }: MapType): JSX.Element {
         );
       })}
       <ResizeObserver
-        onResize={() => {
-          setSvgs(generateSvgParentsAndChildrenIds(data));
+        onResize={(rect) => {
+          if (rect.width !== width) {
+            updateWidth(rect.width);
+            setSvgs(generateSvgParentsAndChildrenIds(data));
+          }
         }}
       />
       <SvgGenerator ids={ids} />

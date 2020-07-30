@@ -34,7 +34,7 @@ function Comments({ child }: Comments): JSX.Element {
               })}
             </ul>
           ) : null}
-          <div
+          <button
             className='comments-row__add-comment-button'
             onClick={(e) => handleAddNewComment(e, child.id)}
           >
@@ -48,7 +48,7 @@ function Comments({ child }: Comments): JSX.Element {
               </svg>
             </div>
             <div>Add Comment</div>
-          </div>
+          </button>
         </div>
       )}
     </>

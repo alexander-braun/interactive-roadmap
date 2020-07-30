@@ -28,6 +28,7 @@ body {
   overflow: hidden;
   position: relative;
   width: auto;
+  height: calc(100% + 500px);
 }
 
 .section {
@@ -108,7 +109,7 @@ body {
   font-weight: 600;
   font-size: 1.75rem;
   letter-spacing: 0;
-  width: 10vw;
+  min-width: 10vw;
 }
 
 .card--center:hover {
@@ -367,12 +368,11 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: fit-content;
   border: 1px solid transparent;
 }
 
 .comments-row__add-comment-button {
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   margin-top: 1rem;
   font-size: 1.75rem;
@@ -383,11 +383,13 @@ body {
   align-items: center;
   transition: 0.2s;
   width: fit-content;
+  background-color: transparent;
+  border: none;
+  transition-duration: 0.2s;
 }
 
 .comments-row__add-comment-button:hover {
-  text-shadow: 0 0 0px black;
-  font-weight: 600;
+  text-shadow: 0 0 1px black;
 }
 
 .comments-row__add-comment-svg {
@@ -418,6 +420,8 @@ body {
   margin: 1px 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
   line-height: 15px;
+  overflow-wrap: break-word;
+  width: 80%;
 }
 
 .comments-row__comments-textarea:hover {

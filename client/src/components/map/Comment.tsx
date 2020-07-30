@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo } from 'react';
+import React, { useState, useRef, memo, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { changeComment } from '../../actions/changeComment';
 import { deleteComment } from '../../actions/deleteComment';
@@ -18,6 +18,7 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
 
   const handleSubmit = (): void => {
     if (!text.length || comment === text) return;
+
     dispatch(changeComment(text, id, index));
   };
 
@@ -35,14 +36,53 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
     }
   };
 
+  const autoresize = (evt: HTMLDivElement) => {
+    let el = evt;
+    el.style.height = '';
+    let computed = window.getComputedStyle(el);
+    let height =
+      el.scrollHeight -
+      (parseInt(computed.getPropertyValue('padding-top')) +
+        parseInt(computed.getPropertyValue('padding-bottom')));
+    el.style.height = height + 'px';
+  };
+
+  const resizeRef = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      autoresize(ref.current);
+    }
+  };
+
+  const textareaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      resizeRef(textareaRef);
+    }
+  });
+
   return (
     <li className='comments-row__list-item'>
-      <textarea
-        onChange={(e) => {
-          updateText(e.target.value);
+      <div
+        suppressContentEditableWarning={true}
+        ref={textareaRef}
+        contentEditable
+        onInput={(e) => {
+          const text = e.currentTarget.innerHTML;
+          const regex = /&nbsp;/gi;
+          let nonbsp = text.replace(regex, '').trim();
+          updateText(nonbsp);
         }}
-        maxLength={100}
-        value={text}
+        onKeyDown={(e) => {
+          if (
+            e.currentTarget.innerHTML.length > 130 &&
+            e.key !== 'Backspace' &&
+            e.key !== 'Enter'
+          ) {
+            e.preventDefault();
+            return;
+          }
+        }}
         className='comments-row__comments-textarea'
         onFocus={() => {
           handleFocus();
@@ -54,7 +94,10 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
         onKeyPress={(e) => {
           handleKeyPress(e);
         }}
-      ></textarea>
+        defaultValue={comment}
+      >
+        {comment}
+      </div>
       <button
         ref={buttonRef}
         className={`comments-row__comment-action-button ${
