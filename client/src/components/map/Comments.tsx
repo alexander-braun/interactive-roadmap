@@ -47,7 +47,7 @@ function Comments({ child }: Comments): JSX.Element {
                 ></path>
               </svg>
             </div>
-            <div>Add Comment</div>
+            <div className='comments-row__add-comment-text'>Add Comment</div>
           </button>
         </div>
       )}

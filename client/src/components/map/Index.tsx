@@ -67,7 +67,7 @@ function Map({ data }: MapType): JSX.Element {
 
   useEffect(() => {
     setSvgs(generateSvgParentsAndChildrenIds(data));
-  }, [data]);
+  }, [data, sections]);
 
   const [width, updateWidth] = useState<number>();
 

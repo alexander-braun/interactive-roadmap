@@ -36,11 +36,14 @@ body {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  /* flex-wrap: wrap; */
   margin: 0 auto;
-  width: -moz-fit-content;
   position: relative;
-  margin: 3vh 6vw;
+  margin: 5vh auto;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(1fr);
+  grid-template-areas: 'sub-left left-side centered right-side sub-right';
 }
 
 .section:first-child {
@@ -52,12 +55,24 @@ body {
   position: relative;
 }
 
-.section__side-elements--center-section {
-  margin: 0;
+.section__side-elements--left {
+  grid-area: left-side;
 }
 
-.section__side-elements--center-section:first-child {
-  margin: 0 auto;
+.section__side-elements--right {
+  grid-area: right-side;
+}
+
+.section__side-elements--right.section__side-elements--subchild {
+  grid-area: sub-right;
+}
+
+.section__side-elements--left.section__side-elements--subchild {
+  grid-area: sub-left;
+}
+
+.section__side-elements--center-section {
+  grid-area: centered;
 }
 
 .card {
@@ -240,27 +255,29 @@ body {
 }
 
 .card__status--green-dot {
-  width: 10px;
-  height: 10px;
   background-color: chartreuse;
-  border-radius: 100px;
-  margin-left: auto;
 }
 
 .card__status--yellow-dot {
-  width: 10px;
-  height: 10px;
   background-color: #fffb00;
-  border-radius: 100px;
-  margin-left: auto;
 }
 
 .card__status--red-dot {
+  background-color: red;
+}
+
+.card__status--red-dot, .card__status--yellow-dot, .card__status--green-dot {
   width: 10px;
   height: 10px;
-  background-color: red;
   border-radius: 100px;
   margin-left: auto;
+  border: 1px solid transparent;
+}
+
+.card:hover .card__status--red-dot,
+.card:hover .card__status--yellow-dot,
+.card:hover .card__status--green-dot {
+  border: 1px dashed rgba(0, 0, 0, 0.397);
 }
 
 .card__bottom-row {
@@ -372,24 +389,25 @@ body {
 }
 
 .comments-row__add-comment-button {
-  font-weight: 400;
-  cursor: pointer;
-  margin-top: 1rem;
-  font-size: 1.75rem;
-  transition: 0.1s;
-  letter-spacing: 0;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  transition: 0.2s;
   width: fit-content;
   background-color: transparent;
   border: none;
-  transition-duration: 0.2s;
 }
 
-.comments-row__add-comment-button:hover {
-  text-shadow: 0 0 1px black;
+.comments-row__add-comment-text {
+  margin-left: 0.5rem;
+  line-height: 2;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: 'Raleway';
+}
+
+.comments-row__add-comment-text:hover {
+  font-weight: 700;
 }
 
 .comments-row__add-comment-svg {

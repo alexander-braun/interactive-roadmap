@@ -3,11 +3,14 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  /* flex-wrap: wrap; */
   margin: 0 auto;
-  width: -moz-fit-content;
   position: relative;
-  margin: 3vh 6vw;
+  margin: 5vh auto;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(1fr);
+  grid-template-areas: 'sub-left left-side centered right-side sub-right';
 
   &:first-child {
     margin-bottom: 5vh;
@@ -17,12 +20,24 @@
     margin: 0 auto;
     position: relative;
 
-    &--center-section {
-      margin: 0;
+    &--left {
+      grid-area: left-side;
+    }
 
-      &:first-child {
-        margin: 0 auto;
-      }
+    &--right {
+      grid-area: right-side;
+    }
+
+    &--right.section__side-elements--subchild {
+      grid-area: sub-right;
+    }
+
+    &--left.section__side-elements--subchild {
+      grid-area: sub-left;
+    }
+
+    &--center-section {
+      grid-area: centered;
     }
   }
 }

@@ -178,30 +178,32 @@
     }
 
     &--green-dot {
-      width: 10px;
-      height: 10px;
       background-color: chartreuse;
-      border-radius: 100px;
-      margin-left: auto;
     }
 
     &--yellow-dot {
-      width: 10px;
-      height: 10px;
       background-color: rgb(255, 251, 0);
-      border-radius: 100px;
-      margin-left: auto;
     }
 
     &--red-dot {
+      background-color: rgb(255, 0, 0);
+    }
+
+    &--red-dot,
+    &--yellow-dot,
+    &--green-dot {
       width: 10px;
       height: 10px;
-      background-color: rgb(255, 0, 0);
       border-radius: 100px;
       margin-left: auto;
+      border: 1px solid transparent;
     }
   }
-
+  &:hover &__status--red-dot,
+  &:hover &__status--yellow-dot,
+  &:hover &__status--green-dot {
+    border: 1px dashed rgba(0, 0, 0, 0.397);
+  }
   &__bottom-row {
     width: 100%;
     align-self: flex-end;

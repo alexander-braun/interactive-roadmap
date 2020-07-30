@@ -22,23 +22,25 @@
   }
 
   &__add-comment-button {
-    font-weight: 400;
-    cursor: pointer;
-    margin-top: 1rem;
-    font-size: 1.75rem;
-    transition: 0.1s;
-    letter-spacing: 0;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    transition: 0.2s;
+    width: -moz-fit-content;
     width: fit-content;
     background-color: transparent;
     border: none;
-    transition-duration: 0.2s;
+  }
+
+  &__add-comment-text {
+    margin-left: 0.5rem;
+    line-height: 2;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Raleway';
 
     &:hover {
-      text-shadow: 0 0 1px black;
+      font-weight: 700;
     }
   }
 

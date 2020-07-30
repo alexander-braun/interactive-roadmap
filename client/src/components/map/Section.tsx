@@ -79,13 +79,14 @@ function Section({ sections, index }: Section) {
 
   return (
     <div className='section'>
-      <Children children={generateSubChildren('left')} subchildren />
-      <Children children={generateChildren('left')} />
+      <Children children={generateSubChildren('left')} subchildren left />
+      <Children children={generateChildren('left')} left />
       <Children children={section} center={true} />
       <Children
         children={children.length === 1 ? [] : generateChildren('right')}
+        right
       />
-      <Children children={generateSubChildren('right')} subchildren />
+      <Children children={generateSubChildren('right')} subchildren right />
     </div>
   );
 }

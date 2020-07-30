@@ -7,6 +7,8 @@ interface Children {
   children: Category[] | Category;
   subchildren?: boolean;
   center?: boolean;
+  left?: boolean;
+  right?: boolean;
 }
 
 function Children({ children, ...props }: Children): JSX.Element | null {
@@ -14,7 +16,13 @@ function Children({ children, ...props }: Children): JSX.Element | null {
   return (
     <div
       className={`section__side-elements ${
-        props.center ? 'section__side-elements--center-section' : ''
+        props.left
+          ? 'section__side-elements--left'
+          : props.right
+          ? 'section__side-elements--right'
+          : ''
+      } ${props.center ? 'section__side-elements--center-section' : ''} ${
+        props.subchildren ? 'section__side-elements--subchild' : ''
       }`}
     >
       {Array.isArray(children) ? (
@@ -25,6 +33,8 @@ function Children({ children, ...props }: Children): JSX.Element | null {
               child={child}
               subchildren={props.subchildren}
               center={props.center ? true : false}
+              left={props.left}
+              right={props.right}
             />
           );
         })
@@ -33,6 +43,8 @@ function Children({ children, ...props }: Children): JSX.Element | null {
           child={children}
           subchildren={props.subchildren}
           center={props.center ? true : false}
+          left={props.left}
+          right={props.right}
         />
       )}
     </div>

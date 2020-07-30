@@ -69,8 +69,10 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
         contentEditable
         onInput={(e) => {
           const text = e.currentTarget.innerHTML;
-          const regex = /&nbsp;/gi;
-          let nonbsp = text.replace(regex, '').trim();
+          let nonbsp = text.replace(
+            /<div>|<\/div>|<br>|<\/br>|&nbsp;|&amp;|\n/gi,
+            ''
+          );
           updateText(nonbsp);
         }}
         onKeyDown={(e) => {

@@ -8,7 +8,7 @@ interface SVG {
 
 function SVG(props: SVG) {
   const scrollHeight = window.pageYOffset;
-  const strokeDasharray = !props.center ? '5,15' : '0';
+  const strokeDasharray = !props.center ? '5,12' : '0';
   const strokeWidth = !props.center ? '2.5' : '4';
   const insetSvgBy = 5;
 

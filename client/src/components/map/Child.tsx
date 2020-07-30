@@ -10,6 +10,8 @@ interface Child {
   child: Category;
   subchildren?: boolean;
   center?: boolean;
+  left?: boolean;
+  right?: boolean;
 }
 
 function Children({ child, ...props }: Child): JSX.Element {
@@ -35,6 +37,14 @@ function Children({ child, ...props }: Child): JSX.Element {
     }
     if (child.recommended === 'not-recommended-option') {
       styles.push('card--not-recommended-option');
+    }
+    if (props.subchildren) {
+      styles.push('card--subchild');
+    }
+    if (props.left) {
+      styles.push('card--left');
+    } else if (props.right) {
+      styles.push('card--right');
     }
     return styles;
   };
@@ -73,7 +83,7 @@ function Children({ child, ...props }: Child): JSX.Element {
       <Comments child={child} />
       {child.mainKnot ? null : (
         <div className='card__bottom-row'>
-          <div className='card__status'>
+          <div className='card__status' onClick={toggleEditModal}>
             {child.status === 'Done' ? (
               <>
                 <div className='card__status--green-dot'></div>
