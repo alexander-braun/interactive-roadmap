@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
-import { Category } from '../../roadmap-data/frontend';
+import { Map } from '../types/Map';
 import Child from './Child';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Children {
-  children: Category[] | Category;
+  children: Map[] | Map;
   subchildren?: boolean;
   center?: boolean;
   left?: boolean;

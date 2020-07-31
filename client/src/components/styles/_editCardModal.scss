@@ -7,8 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 3;
 
   &__heading {
     font-size: 4rem;
@@ -16,14 +14,13 @@
   }
 
   &__wrapper {
-    background-color: white;
-    width: 50vw;
-    height: 50vh;
+    background-color: #ffe599;
+    width: fit-content;
+    height: fit-content;
     padding: 2rem;
   }
 
   &__edit-title-wrapper {
-    background-color: white;
     font-family: 'Raleway';
     font-size: 2rem;
     margin-top: 2rem;

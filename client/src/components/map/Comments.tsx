@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
-import { Category } from '../../roadmap-data/frontend';
+import { Map } from '../types/Map';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addComment } from '../../actions/addComment';
 import Comment from './Comment';
 
 interface Comments {
-  child: Category;
+  child: Map;
 }
 
 function Comments({ child }: Comments): JSX.Element {

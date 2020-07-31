@@ -1,26 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import { Map } from '../components/types/Map';
 
-export interface Category {
-  title: string;
-  status: 'Pending' | 'In-Work' | 'Done';
-  id: string;
-  importance?: number;
-  goalDate?: string;
-  comments: string[];
-  resources?: string[];
-  recommended?:
-    | 'option'
-    | 'recommended'
-    | 'not-recommended'
-    | 'not-strict'
-    | 'not-recommended-option'
-    | 'not-recommended-none'
-    | 'none';
-  children: Category[] | [];
-  mainKnot?: boolean;
-}
-
-export const frontend: Category[] = [
+export const frontend: Map[] = [
   {
     title: 'Front-end',
     id: uuidv4(),

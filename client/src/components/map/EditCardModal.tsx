@@ -141,24 +141,6 @@ function EditCardModal({
   return (
     <div className='edit-card-modal' onClick={(e) => handleOffClick(e)}>
       <div className='edit-card-modal__wrapper'>
-        <div className='edit-card-modal__edit-title-wrapper'>
-          <h2 className='edit-card-modal__heading'>Edit Title</h2>
-          <textarea
-            ref={textareaRef}
-            onChange={(e) => {
-              updateText(e.target.value);
-              resizeEvent(e);
-            }}
-            maxLength={100}
-            value={text}
-            onFocus={handleFocus}
-            onBlur={(e) => {
-              handleFocus();
-            }}
-            className='edit-card-modal__inner-text'
-          ></textarea>
-        </div>
-
         {card && !card.mainKnot && (
           <div className='edit-card-modal__edit-title-wrapper'>
             <h2 className='edit-card-modal__heading'>Edit Status</h2>

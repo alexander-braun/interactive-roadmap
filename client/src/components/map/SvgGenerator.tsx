@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface SvgGenerator {
   ids: IDs;
+  width: number | undefined;
 }
 
 function SvgGenerator({ ids, ...props }: SvgGenerator) {
@@ -36,9 +37,17 @@ function SvgGenerator({ ids, ...props }: SvgGenerator) {
 
   return (
     <div className='svgs'>
-      {ids.map((id) => {
-        return generateSvg(id);
-      })}
+      <svg
+        style={{
+          position: 'absolute',
+          width: '100%',
+        }}
+        className='svgs__single-svg'
+      >
+        {ids.map((id) => {
+          return generateSvg(id);
+        })}
+      </svg>
     </div>
   );
 }

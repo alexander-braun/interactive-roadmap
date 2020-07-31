@@ -9,7 +9,7 @@
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: repeat(1fr);
+  grid-template-rows: 1fr;
   grid-template-areas: 'sub-left left-side centered right-side sub-right';
 
   &:first-child {

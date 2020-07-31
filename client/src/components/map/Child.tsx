@@ -1,13 +1,15 @@
-import React, { memo } from 'react';
-import { Category } from '../../roadmap-data/frontend';
+import React, { memo, useRef, useState } from 'react';
+import { Map } from '../types/Map';
 import { useDispatch } from 'react-redux';
 import Comments from './Comments';
 import { addChildnode } from '../../actions/addChildnode';
 import { deleteChildnode } from '../../actions/deleteChildnode';
 import { toggleEditCardModal } from '../../actions/toggleEditCardModal';
+import { setCardHeading } from '../../actions/setCardHeading';
+import { setStatus } from '../../actions/setStatus';
 
 interface Child {
-  child: Category;
+  child: Map;
   subchildren?: boolean;
   center?: boolean;
   left?: boolean;
@@ -16,7 +18,7 @@ interface Child {
 
 function Children({ child, ...props }: Child): JSX.Element {
   const dispatch = useDispatch();
-  const style = (child: Category): string[] => {
+  const style = (child: Map): string[] => {
     const styles: string[] = [];
     if (child.mainKnot) {
       styles.push('card--center');
@@ -61,6 +63,34 @@ function Children({ child, ...props }: Child): JSX.Element {
     dispatch(toggleEditCardModal(child.id));
   };
 
+  const textareaRef = useRef(null);
+  const [text, updateText] = useState<string>(child.title.trim());
+
+  const [focus, toggleFocus] = useState<boolean>(false);
+
+  const handleFocus = (): void => {
+    toggleFocus(!focus);
+  };
+
+  const handleSubmit = (): void => {
+    if (!text.length || child.title === text) return;
+    dispatch(setCardHeading(child.id, text));
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
+  const [statusVisible, updateStatusVisible] = useState(false);
+
+  const handleStatusUpdate = (status: string) => {
+    if (status === 'Pending' || status === 'In-Work' || status === 'Done') {
+      dispatch(setStatus(status, child.id));
+    }
+  };
+
   return (
     <div className={`card ${style(child).join(' ')}`} id={child.id}>
       {!child.mainKnot &&
@@ -69,36 +99,124 @@ function Children({ child, ...props }: Child): JSX.Element {
           <div className='card__indication-circle'>✓</div>
         )}
       {child.mainKnot ? (
-        <div className='card__inner-text' onClick={toggleEditModal}>
+        <div
+          suppressContentEditableWarning={true}
+          ref={textareaRef}
+          contentEditable
+          onInput={(e) => {
+            const text = e.currentTarget.innerText;
+            updateText(text);
+          }}
+          onKeyDown={(e) => {
+            if (
+              e.currentTarget.innerHTML.length > 60 &&
+              e.key !== 'Backspace' &&
+              e.key !== 'Enter'
+            ) {
+              e.preventDefault();
+              return;
+            }
+          }}
+          className='card__inner-text'
+          onFocus={() => {
+            handleFocus();
+          }}
+          onBlur={(e) => {
+            handleFocus();
+            handleSubmit();
+          }}
+          onKeyPress={(e) => {
+            handleKeyPress(e);
+          }}
+          defaultValue={child.title}
+        >
           {child.title}
         </div>
       ) : (
         <div className='card__heading'>
-          <div className='card__inner-text' onClick={toggleEditModal}>
+          <div
+            suppressContentEditableWarning={true}
+            ref={textareaRef}
+            contentEditable
+            onInput={(e) => {
+              const text = e.currentTarget.innerText;
+              updateText(text);
+            }}
+            onKeyDown={(e) => {
+              if (
+                e.currentTarget.innerHTML.length > 60 &&
+                e.key !== 'Backspace' &&
+                e.key !== 'Enter'
+              ) {
+                e.preventDefault();
+                return;
+              }
+            }}
+            className='card__inner-text'
+            onFocus={() => {
+              handleFocus();
+            }}
+            onBlur={(e) => {
+              handleFocus();
+              handleSubmit();
+            }}
+            onKeyPress={(e) => {
+              handleKeyPress(e);
+            }}
+            defaultValue={child.title}
+          >
             {child.title}
           </div>
           <div className='card__due-date'>26.05.2022</div>
         </div>
       )}
       <Comments child={child} />
-      {child.mainKnot ? null : (
+      {!child.mainKnot && (
         <div className='card__bottom-row'>
-          <div className='card__status' onClick={toggleEditModal}>
+          <div
+            className='card__status'
+            onMouseEnter={() => updateStatusVisible(true)}
+            onMouseLeave={() => updateStatusVisible(false)}
+          >
+            <div
+              className={`card__status-choice ${
+                statusVisible ? '' : 'card__status-choice--hidden'
+              }`}
+            >
+              <div
+                onClick={() => handleStatusUpdate('Done')}
+                className='card__status-choice--green-dot'
+                title='Done'
+              ></div>
+              <div
+                onClick={() => handleStatusUpdate('In-Work')}
+                className='card__status-choice--yellow-dot'
+                title='In Progress'
+              ></div>
+              <div
+                onClick={() => handleStatusUpdate('Pending')}
+                className='card__status-choice--red-dot'
+                title='Pending'
+              ></div>
+            </div>
             {child.status === 'Done' ? (
-              <>
-                <div className='card__status--green-dot'></div>
+              <div className='card__status-wrapper'>
+                <div className='card__status--green-dot' title='Done'></div>
                 <div className='card__status--status-text'>Done</div>
-              </>
+              </div>
             ) : child.status === 'Pending' ? (
-              <>
-                <div className='card__status--red-dot'></div>
+              <div className='card__status-wrapper'>
+                <div className='card__status--red-dot' title='Pending'></div>
                 <div className='card__status--status-text'>Pending</div>
-              </>
+              </div>
             ) : (
-              <>
-                <div className='card__status--yellow-dot'></div>
+              <div className='card__status-wrapper'>
+                <div
+                  className='card__status--yellow-dot'
+                  title='In Progress'
+                ></div>
                 <div className='card__status--status-text'>In Progress</div>
-              </>
+              </div>
             )}
           </div>
         </div>

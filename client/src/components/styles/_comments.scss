@@ -30,6 +30,7 @@
     width: fit-content;
     background-color: transparent;
     border: none;
+    cursor: pointer;
   }
 
   &__add-comment-text {
@@ -59,7 +60,7 @@
   }
 
   &__add-comment-button:hover &__add-comment-svg {
-    border: 1px dashed rgba(0, 0, 0, 0.397);
+    border: 1px solid rgba(0, 0, 0, 0.397);
     background-color: #ffd75f;
   }
 
@@ -92,7 +93,7 @@
     margin-left: 10px;
     &:hover {
       background-color: #ffd75f;
-      border: 1px dashed rgba(0, 0, 0, 0.514);
+      border: 1px solid rgba(0, 0, 0, 0.514);
     }
   }
 }

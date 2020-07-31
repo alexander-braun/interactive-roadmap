@@ -1,20 +1,19 @@
 import React, { memo } from 'react';
-import { Category } from '../../roadmap-data/frontend';
+import { Map } from '../types/Map';
 import Children from './Children';
 
 interface Section {
-  sections: [Category, Category[], Category[]];
+  sections: [Map, Map[]];
   index: number;
 }
 
 type Direction = 'left' | 'right';
 
 function Section({ sections, index }: Section) {
-  const section: Category = sections[0];
-  const children: Category[] = sections[1];
-  const subchildren: Category[] = sections[2];
+  const section: Map = sections[0];
+  const children: Map[] = sections[1];
 
-  const generateChildren = (direction: Direction): Category | Category[] => {
+  const generateChildren = (direction: Direction): Map | Map[] => {
     if (!children) return [];
     if (children.length === 1) {
       return children;
@@ -25,56 +24,28 @@ function Section({ sections, index }: Section) {
     } else return children.slice(middle);
   };
 
-  const generateSubChildren = (direction: Direction): Category | Category[] => {
+  const generateSubChildren = (direction: Direction): Map | Map[] => {
     // Get the appropriate subchildren for the left or right position
     const subChildrenLeft = [];
     const subChildrenRight = [];
     for (let i = 0; i < children.length; i++) {
-      const subs = children[i].children;
-      if (subs.length) {
-        for (let j = 0; j < subs.length; j++) {
+      const subchildren = children[i].children;
+      if (subchildren.length) {
+        for (let j = 0; j < subchildren.length; j++) {
           if (i < Math.ceil(children.length / 2)) {
-            subChildrenLeft.push(subs[j].id);
+            subChildrenLeft.push(subchildren[j]);
           } else {
-            subChildrenRight.push(subs[j].id);
+            subChildrenRight.push(subchildren[j]);
           }
         }
       }
     }
 
-    if (!subchildren) return [];
-
-    if (subchildren.length === 1) {
-      if (
-        direction === 'left' &&
-        subChildrenLeft.indexOf(subchildren[0].id) >= 0
-      ) {
-        return subchildren;
-      } else if (
-        direction === 'right' &&
-        subChildrenRight.indexOf(subchildren[0].id) >= 0
-      ) {
-        return subchildren;
-      }
-    }
-
-    if (direction === 'left') {
-      const childrenLeft = [];
-      for (let i = 0; i < subchildren.length; i++) {
-        if (subChildrenLeft.indexOf(subchildren[i].id) >= 0) {
-          childrenLeft.push(subchildren[i]);
-        }
-      }
-      return childrenLeft;
-    } else {
-      const childrenRight = [];
-      for (let i = 0; i < subchildren.length; i++) {
-        if (subChildrenRight.indexOf(subchildren[i].id) >= 0) {
-          childrenRight.push(subchildren[i]);
-        }
-      }
-      return childrenRight;
-    }
+    if (direction === 'left' && subChildrenLeft.length) {
+      return subChildrenLeft;
+    } else if (direction === 'right' && subChildrenRight.length) {
+      return subChildrenRight;
+    } else return [];
   };
 
   return (

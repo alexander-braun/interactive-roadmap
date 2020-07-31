@@ -158,15 +158,25 @@
     }
   }
 
-  &__status {
+  &__status-wrapper {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__status {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: fit-content;
+    min-width: 95px;
 
     &--status-text {
-      margin-left: 0.5rem;
+      margin-left: 1.25rem;
       line-height: 2;
       cursor: pointer;
       transition: 0.1s;
@@ -196,16 +206,18 @@
       height: 10px;
       border-radius: 100px;
       margin-left: auto;
-      border: 1px solid transparent;
+      border: 1px solid rgba(0, 0, 0, 0.397);
     }
   }
+
   &:hover &__status--red-dot,
   &:hover &__status--yellow-dot,
   &:hover &__status--green-dot {
-    border: 1px dashed rgba(0, 0, 0, 0.397);
+    border: 1px solid rgba(0, 0, 0, 1);
   }
   &__bottom-row {
-    width: 100%;
+    margin-left: auto;
+    width: fit-content;
     align-self: flex-end;
     display: flex;
     justify-content: flex-end;
@@ -216,6 +228,60 @@
     justify-content: flex-end;
     align-content: center;
     line-height: 1;
+  }
+
+  &__status-choice {
+    display: flex;
+    width: calc(100% - 10px);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.1s;
+    position: absolute;
+    top: -25px;
+    left: 0;
+    z-index: 3;
+    background-color: #fff7dd;
+    border: 1px solid rgba(0, 0, 0, 0.397);
+    opacity: 1;
+    padding: 5px;
+    border-radius: 10px;
+
+    &:hover {
+      border: 1px solid rgba(0, 0, 0, 1);
+    }
+
+    &--green-dot {
+      background-color: chartreuse;
+    }
+
+    &--yellow-dot {
+      background-color: rgb(255, 251, 0);
+    }
+
+    &--red-dot {
+      background-color: rgb(255, 0, 0);
+    }
+
+    &--hidden {
+      height: 0;
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    &--yellow-dot,
+    &--green-dot,
+    &--red-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 100px;
+      border: 1px solid transparent;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px dashed rgba(0, 0, 0, 1);
+      }
+    }
   }
 
   &__add-circle,

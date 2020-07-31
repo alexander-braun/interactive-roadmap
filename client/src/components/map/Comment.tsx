@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo, useEffect } from 'react';
+import React, { useState, useRef, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { changeComment } from '../../actions/changeComment';
 import { deleteComment } from '../../actions/deleteComment';
@@ -36,30 +36,7 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
     }
   };
 
-  const autoresize = (evt: HTMLDivElement) => {
-    let el = evt;
-    el.style.height = '';
-    let computed = window.getComputedStyle(el);
-    let height =
-      el.scrollHeight -
-      (parseInt(computed.getPropertyValue('padding-top')) +
-        parseInt(computed.getPropertyValue('padding-bottom')));
-    el.style.height = height + 'px';
-  };
-
-  const resizeRef = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      autoresize(ref.current);
-    }
-  };
-
   const textareaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (textareaRef.current) {
-      resizeRef(textareaRef);
-    }
-  });
 
   return (
     <li className='comments-row__list-item'>
@@ -68,12 +45,9 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
         ref={textareaRef}
         contentEditable
         onInput={(e) => {
-          const text = e.currentTarget.innerHTML;
-          let nonbsp = text.replace(
-            /<div>|<\/div>|<br>|<\/br>|&nbsp;|&amp;|\n/gi,
-            ''
-          );
-          updateText(nonbsp);
+          const text = e.currentTarget.innerText;
+
+          updateText(text);
         }}
         onKeyDown={(e) => {
           if (
