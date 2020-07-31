@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import Section from './Section';
 import { v4 as uuidv4 } from 'uuid';
-import SvgGenerator from './SvgGenerator';
-import ResizeObserver from 'react-resize-observer';
 import { Map as MapT } from '../types/Map';
 
 export interface Sections {
@@ -16,7 +14,6 @@ export interface MapType {
 export type IDs = [string, string][];
 
 function Map({ data }: MapType): JSX.Element {
-  const [ids, setSvgs] = useState<IDs>([]);
   const [sections, updateSections] = useState<Sections>({});
 
   const generateSections = useCallback((): Sections => {
@@ -29,38 +26,9 @@ function Map({ data }: MapType): JSX.Element {
     return sections;
   }, [data]);
 
-  const generateSvgParentsAndChildrenIds = useCallback((): IDs => {
-    const pairs: IDs = [];
-    let currentCategoryId = '';
-    for (let i = 0; i < data.length; i++) {
-      const node = data[i];
-      const parentId = node.id;
-      if (currentCategoryId.length) {
-        pairs.push([currentCategoryId, parentId]);
-      }
-      currentCategoryId = parentId;
-      for (const child of node.children) {
-        const childId = child.id;
-        pairs.push([parentId, childId]);
-        if (child.children) {
-          for (const subchild of child.children) {
-            pairs.push([childId, subchild.id]);
-          }
-        }
-      }
-    }
-    return pairs;
-  }, [data]);
-
-  const [width, updateWidth] = useState<number>();
-
   useEffect(() => {
     updateSections(generateSections());
-  }, [generateSections]);
-
-  useEffect(() => {
-    setSvgs(generateSvgParentsAndChildrenIds());
-  }, [data, generateSvgParentsAndChildrenIds]);
+  }, [generateSections, data]);
 
   return (
     <div className='map'>
@@ -69,17 +37,6 @@ function Map({ data }: MapType): JSX.Element {
           <Section index={index} key={uuidv4()} sections={sections[section]} />
         );
       })}
-
-      <ResizeObserver
-        onResize={(rect) => {
-          updateWidth(rect.width);
-        }}
-        onPosition={(rect) => {
-          updateWidth(rect.width);
-        }}
-      />
-
-      <SvgGenerator ids={ids} width={width} />
     </div>
   );
 }

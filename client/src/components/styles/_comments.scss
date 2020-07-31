@@ -32,6 +32,9 @@
     border: none;
     cursor: pointer;
   }
+  &__add-comment-button:hover &__add-comment-text {
+    font-weight: 600;
+  }
 
   &__add-comment-text {
     margin-left: 0.5rem;
@@ -76,6 +79,7 @@
     line-height: 15px;
     overflow-wrap: break-word;
     width: 80%;
+    min-height: 15px;
 
     &:hover {
       border: 1px dashed rgba(0, 0, 0, 0.514);

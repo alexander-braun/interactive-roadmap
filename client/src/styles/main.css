@@ -24,6 +24,11 @@ body {
   background-color: #ffffff;
 }
 
+.App {
+  height: 100%;
+  position: relative;
+}
+
 .map {
   overflow: hidden;
   position: relative;
@@ -189,7 +194,7 @@ body {
   justify-content: center;
   align-items: center;
   font-weight: 800;
-  max-width: 70%;
+  max-width: 100%;
   font-size: 2rem;
   letter-spacing: 0.05rem;
   font-family: 'Raleway';
@@ -201,6 +206,9 @@ body {
   padding: 5px;
   border: 1px dashed transparent;
   cursor: pointer;
+  width: fit-content;
+  min-width: 20%;
+  text-align: left;
 }
 
 .card__inner-text:hover {
@@ -281,13 +289,13 @@ body {
   height: 10px;
   border-radius: 100px;
   margin-left: auto;
-  border: 1px solid rgba(0, 0, 0, 0.397);
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .card:hover .card__status--red-dot,
 .card:hover .card__status--yellow-dot,
 .card:hover .card__status--green-dot {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .card__bottom-row {
@@ -462,6 +470,10 @@ body {
   cursor: pointer;
 }
 
+.comments-row__add-comment-button:hover .comments-row__add-comment-text {
+  font-weight: 600;
+}
+
 .comments-row__add-comment-text {
   margin-left: 0.5rem;
   line-height: 2;
@@ -504,6 +516,7 @@ body {
   line-height: 15px;
   overflow-wrap: break-word;
   width: 80%;
+  min-height: 15px;
 }
 
 .comments-row__comments-textarea:hover {

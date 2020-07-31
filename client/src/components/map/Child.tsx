@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import Comments from './Comments';
 import { addChildnode } from '../../actions/addChildnode';
 import { deleteChildnode } from '../../actions/deleteChildnode';
-import { toggleEditCardModal } from '../../actions/toggleEditCardModal';
 import { setCardHeading } from '../../actions/setCardHeading';
 import { setStatus } from '../../actions/setStatus';
 
@@ -57,10 +56,6 @@ function Children({ child, ...props }: Child): JSX.Element {
 
   const handleDeleteChildnode = (): void => {
     dispatch(deleteChildnode(child.id));
-  };
-
-  const toggleEditModal = () => {
-    dispatch(toggleEditCardModal(child.id));
   };
 
   const textareaRef = useRef(null);

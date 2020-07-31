@@ -2,10 +2,11 @@ import React, { memo } from 'react';
 import { IDs } from './Index';
 import Svg from './SVG';
 import { v4 as uuidv4 } from 'uuid';
+import { Map } from '../types/Map';
 
 interface SvgGenerator {
   ids: IDs;
-  width: number | undefined;
+  data: Map[];
 }
 
 function SvgGenerator({ ids, ...props }: SvgGenerator) {
