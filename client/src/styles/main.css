@@ -81,7 +81,7 @@ body {
 }
 
 .card {
-  border: 1.5px dashed transparent;
+  border: 2.5px dashed transparent;
   border-radius: 0.25rem;
   padding: 1rem 1rem;
   background-color: white;
@@ -181,6 +181,7 @@ body {
   flex-direction: row;
   align-content: center;
   width: 100%;
+  margin-top: 1rem;
   align-self: flex-end;
   justify-content: flex-end;
 }
@@ -423,7 +424,7 @@ body {
 }
 
 .card:hover {
-  border: 1.5px dashed rgba(22, 22, 22, 0.8);
+  border: 2.5px dashed #2b78e4;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px;
   transform: scale(1.01);
 }
@@ -526,7 +527,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   margin: 1px 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px dashed transparent;
   line-height: 15px;
   overflow-wrap: break-word;
   width: 80%;
