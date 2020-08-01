@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import Map from './map/Index';
 import '../styles/main.css';
 import { Map as MapT } from './types/Map';
 import { AppState } from '../reducers';
 import { connect } from 'react-redux';
 import SvgGenerator from './map/SvgGenerator';
-import ResizeObserver from 'react-resize-observer';
 
 interface AppProps {
   data: MapT[];

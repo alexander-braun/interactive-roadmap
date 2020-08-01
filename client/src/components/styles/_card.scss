@@ -153,6 +153,8 @@
     justify-content: center;
     align-items: center;
     font-family: 'Raleway';
+    font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto,
+      'Segoe UI', Arial, sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -191,6 +193,8 @@
       line-height: 2;
       cursor: pointer;
       transition: 0.1s;
+      font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto,
+        'Segoe UI', Arial, sans-serif;
 
       &:hover {
         text-shadow: 0 0 0px black;

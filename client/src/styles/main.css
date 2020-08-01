@@ -232,6 +232,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Raleway';
+  font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -271,6 +272,7 @@ body {
   line-height: 2;
   cursor: pointer;
   transition: 0.1s;
+  font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Arial, sans-serif;
 }
 
 .card__status--status-text:hover {
@@ -451,6 +453,7 @@ body {
   width: 100%;
   font-family: 'Raleway';
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .comments-row__list {
