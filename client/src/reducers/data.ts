@@ -19,6 +19,7 @@ export const data = (
   action: AppActions
 ): Map[] => {
   const newState = [...state];
+  console.log(action.type);
   switch (action.type) {
     case SET_STATUS:
       for (const category of newState) {

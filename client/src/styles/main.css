@@ -43,7 +43,7 @@ body {
   align-items: center;
   margin: 0 auto;
   position: relative;
-  margin: 5vh auto;
+  margin: 2vh auto;
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -100,6 +100,7 @@ body {
   flex-wrap: wrap;
   box-shadow: 0 5px 30px -15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s, border 0.3s, background 0.1s;
+  border-radius: 10px;
 }
 
 .card--element {
@@ -112,7 +113,6 @@ body {
 
 .card--center .card__inner-text {
   text-align: center;
-  font-family: 'Raleway';
   font-size: 2.25rem;
 }
 
@@ -209,6 +209,12 @@ body {
   width: fit-content;
   min-width: 20%;
   text-align: left;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Lucida Console', Monaco, monospace;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  overflow: hidden;
+  color: #24292e;
 }
 
 .card__inner-text:hover {
@@ -289,7 +295,7 @@ body {
   height: 10px;
   border-radius: 100px;
   margin-left: auto;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .card:hover .card__status--red-dot,
@@ -314,14 +320,14 @@ body {
 
 .card__status-choice {
   display: flex;
-  width: calc(100% - 10px);
+  width: fit-content;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   transition: 0.1s;
   position: absolute;
   top: -25px;
-  left: 0;
+  right: 0;
   z-index: 3;
   background-color: #fff7dd;
   border: 1px solid rgba(0, 0, 0, 0.397);
@@ -353,6 +359,7 @@ body {
 }
 
 .card__status-choice--yellow-dot, .card__status-choice--green-dot, .card__status-choice--red-dot {
+  margin: 0 2px;
   width: 12px;
   height: 12px;
   border-radius: 100px;
@@ -405,12 +412,12 @@ body {
 .card:hover .card__add-circle:hover,
 .card:hover .card__delete-circle:hover {
   transform: scale(1.4);
-  background-color: #ffd75f;
+  background-color: #fff7dd;
 }
 
 .card:hover .card__add-circle:hover {
   transform: scale(1.4) rotate(135deg);
-  background-color: #ffd75f;
+  background-color: #fff7dd;
 }
 
 .card:hover {
@@ -443,7 +450,7 @@ body {
   text-align: left;
   width: 100%;
   font-family: 'Raleway';
-  min-height: 75px;
+  margin-top: 1rem;
 }
 
 .comments-row__list {
@@ -468,6 +475,7 @@ body {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  margin-top: 0.5rem;
 }
 
 .comments-row__add-comment-button:hover .comments-row__add-comment-text {
@@ -475,11 +483,13 @@ body {
 }
 
 .comments-row__add-comment-text {
-  margin-left: 0.5rem;
-  line-height: 2;
+  margin-left: 2px;
+  line-height: 1.5;
   cursor: pointer;
   transition: 0.2s;
   font-family: 'Raleway';
+  font-size: 1.5rem;
+  font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Arial, sans-serif;
 }
 
 .comments-row__add-comment-text:hover {
@@ -492,16 +502,17 @@ body {
   display: inline-flex;
   height: 17px;
   justify-content: center;
-  margin-right: 7px;
+  margin-right: 2px;
   vertical-align: 7px;
   width: 17px;
   border: 1px solid transparent;
   transition: 0.2s;
+  border-radius: 4px;
 }
 
 .comments-row__add-comment-button:hover .comments-row__add-comment-svg {
   border: 1px solid rgba(0, 0, 0, 0.397);
-  background-color: #ffd75f;
+  background-color: #fff7dd;
 }
 
 .comments-row__comments-textarea {
@@ -517,6 +528,7 @@ body {
   overflow-wrap: break-word;
   width: 80%;
   min-height: 15px;
+  border-radius: 4px;
 }
 
 .comments-row__comments-textarea:hover {
@@ -532,10 +544,11 @@ body {
   background-color: transparent;
   border: 1px solid transparent;
   margin-left: 10px;
+  border-radius: 4px;
 }
 
 .comments-row__comment-action-button:hover {
-  background-color: #ffd75f;
+  background-color: #fff7dd;
   border: 1px solid rgba(0, 0, 0, 0.514);
 }
 
