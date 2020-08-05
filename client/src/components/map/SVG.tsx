@@ -32,21 +32,20 @@ function SVG(props: SVG): JSX.Element | null {
   const curveY = props.childRect.y + props.childRect.height / 2 + scrollHeight;
 
   const curveX1 =
-    props.childRect.x > props.parentRect.x
+    props.childRect.x > props.parentRect.x && !props.center
       ? moveToX + 20
       : props.center
-      ? moveToX - 40
+      ? moveToX
       : moveToX - 20;
 
   const curveX2 =
-    props.childRect.x > props.parentRect.x
+    props.childRect.x > props.parentRect.x && !props.center
       ? moveToX + 50
       : props.center
-      ? moveToX + 40
+      ? moveToX
       : moveToX - 50;
 
   const curveY1 = moveToY;
-
   const curveY2 = moveToY;
 
   return (

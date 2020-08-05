@@ -18,7 +18,7 @@
   flex-wrap: wrap;
   box-shadow: 0 5px 30px -15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s, border 0.3s, background 0.1s;
-  border-radius: 10px;
+  border-radius: 1rem;
 
   &--element {
     background-color: #ffe599;
@@ -67,7 +67,7 @@
     position: absolute;
     bottom: -10px;
     left: -11px;
-    width: 55px;
+    width: 50px;
     height: fit-content;
     background: transparent;
     margin-right: auto;
@@ -170,8 +170,7 @@
     padding: 5px;
 
     &:hover {
-      text-shadow: 0px 0px 0px black;
-      font-weight: 600;
+      text-decoration: underline;
     }
   }
 
@@ -311,18 +310,17 @@
     height: 12px;
     border-radius: 100px;
     z-index: 2;
-    color: black;
     padding: 4px;
     font-size: 2.25rem;
     cursor: default;
-    transition: 0.15s;
+    transition: 0.075s;
     transform: scale(0.001);
     opacity: 0;
     cursor: pointer;
     animation-timing-function: ease-in;
     overflow: visible;
     border: none;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: #ffff00;
 
     svg {
       overflow: visible;

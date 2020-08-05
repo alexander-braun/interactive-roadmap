@@ -10,6 +10,9 @@ interface Section {
 type Direction = 'left' | 'right';
 
 function Section({ sectionId, data }: Section) {
+  if (!data[sectionId]) {
+    return null;
+  }
   const children: string[] = data[sectionId].children;
 
   const generateChildren = (direction: Direction): string[] => {

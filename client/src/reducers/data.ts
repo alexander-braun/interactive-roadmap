@@ -8,6 +8,7 @@ import {
   ADD_COMMENT,
   CHANGE_COMMENT,
   DELETE_COMMENT,
+  ADD_CENTER_NODE,
 } from '../actions/constants';
 import { Nodes } from '../components/types/Map-Data';
 import { frontend } from '../roadmap-data/frontend';
@@ -22,9 +23,9 @@ export const data = (
   const newState = Object.assign({}, state);
   switch (action.type) {
     case ADD_CHILDNODE:
-      const id = uuidv4();
-      newState[action.id].children.push(id);
-      newState[id] = {
+      const child_id = uuidv4();
+      newState[action.id].children.push(child_id);
+      newState[child_id] = {
         comments: [],
         title: 'Edit me!',
         goalDate: Date.now(),
@@ -36,7 +37,41 @@ export const data = (
         importance: 0,
       };
       return newState;
+    case ADD_CENTER_NODE:
+      const center_id = uuidv4();
+      const newObject: Nodes = {};
+      const keys = Object.keys(newState);
+      for (let i = 0; i < keys.length; i++) {
+        if (keys[i] === action.id) {
+          newObject[keys[i]] = newState[keys[i]];
+          newObject[center_id] = {
+            comments: [],
+            title: 'Edit me!',
+            goalDate: Date.now(),
+            status: 'Pending',
+            recommended: 'none',
+            children: [],
+            mainKnot: true,
+            resources: [],
+            importance: 0,
+          };
+        } else {
+          newObject[keys[i]] = newState[keys[i]];
+        }
+      }
+      return newObject;
     case DELETE_CHILDNODE:
+      const children: string[] = newState[action.id].children;
+      if (children) {
+        for (const child of children) {
+          if (newState[child].children) {
+            for (const subChild of newState[child].children) {
+              delete newState[subChild];
+            }
+          }
+          delete newState[child];
+        }
+      }
       delete newState[action.id];
       for (const node of Object.keys(newState)) {
         if (newState[node].children.includes(action.id)) {

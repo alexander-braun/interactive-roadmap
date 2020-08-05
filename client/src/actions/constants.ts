@@ -7,6 +7,7 @@ export const SET_CARD_HEADING = 'SET_CARD_HEADING';
 export const SET_STATUS = 'SET_STATUS';
 export const TOGGLE_CALENDAR_MODAL = 'TOGGLE_CALENDAR_MODAL';
 export const CHANGE_DATE = 'CHANGE_DATE';
+export const ADD_CENTER_NODE = 'ADD_CENTER_NODE';
 
 export type Comment = string;
 export type ID = string;
@@ -49,6 +50,10 @@ export interface AddChildnode {
   type: typeof ADD_CHILDNODE;
   id: ID;
 }
+export interface AddCenternode {
+  type: typeof ADD_CENTER_NODE;
+  id: ID;
+}
 export interface DeleteChildnode {
   type: typeof DELETE_CHILDNODE;
   id: ID;
@@ -63,7 +68,11 @@ export type DateActionTypes = ChangeDate;
 export type ModalActionTypes = ToggleCalendarModal;
 export type StatusActionTypes = SetStatus;
 export type CommentActionTypes = AddComment | ChangeComment | DeleteComment;
-export type NodeActionTypes = AddChildnode | DeleteChildnode | SetCardHeading;
+export type NodeActionTypes =
+  | AddChildnode
+  | DeleteChildnode
+  | SetCardHeading
+  | AddCenternode;
 export type AppActions =
   | StatusActionTypes
   | CommentActionTypes

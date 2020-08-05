@@ -5,6 +5,8 @@ import ResizeObserver from 'react-resize-observer';
 import { AppState } from '../../reducers';
 import { connect } from 'react-redux';
 import { Nodes } from '../types/Map-Data';
+import { useDispatch } from 'react-redux';
+import { addCenternode } from '../../actions/addCenternode';
 
 interface SvgGenerator {
   data: Nodes;
@@ -13,6 +15,7 @@ interface SvgGenerator {
 export type IDs = [string, string][];
 
 function SvgGenerator({ data }: SvgGenerator) {
+  const dispatch = useDispatch();
   const generateSvgParentsAndChildrenIds = useCallback((): IDs => {
     const pairs: IDs = [];
     const nodeIds = Object.keys(data);
@@ -35,6 +38,35 @@ function SvgGenerator({ data }: SvgGenerator) {
 
     return pairs;
   }, [data]);
+
+  const generateBubbles = (ids: [string, string][]): JSX.Element[] => {
+    const bubbleDivs: JSX.Element[] = [];
+    const scrollHeight: number = window.scrollY;
+    for (const id of ids) {
+      const parent = document.getElementById(id[0]);
+      const child = document.getElementById(id[1]);
+      if (!parent || !child) continue;
+      const parentRect = parent.getBoundingClientRect();
+      const childRect = child.getBoundingClientRect();
+      if (
+        parent.classList.contains('card--center') &&
+        child.classList.contains('card--center')
+      ) {
+        bubbleDivs.push(
+          <div
+            key={uuidv4()}
+            className='bubble'
+            onClick={() => dispatch(addCenternode(id[0]))}
+            style={{
+              top:
+                scrollHeight + childRect.y - (childRect.y - parentRect.y) / 2,
+            }}
+          ></div>
+        );
+      }
+    }
+    return bubbleDivs;
+  };
 
   const generateSvg = (ids: [string, string][]): JSX.Element[] => {
     const svgCollection = [];
@@ -66,22 +98,27 @@ function SvgGenerator({ data }: SvgGenerator) {
   const [svgs, setSvgs] = useState<any>([]);
 
   return (
-    <div className='svgs'>
-      <ResizeObserver
-        onResize={(rect) => {
-          setSvgs(generateSvg(generateSvgParentsAndChildrenIds()));
-        }}
-      />
-      <svg
-        style={{
-          position: 'absolute',
-          width: '100%',
-        }}
-        className='svgs__single-svg'
-      >
-        {svgs}
-      </svg>
-    </div>
+    <>
+      <div className='svgs'>
+        <ResizeObserver
+          onResize={(rect) => {
+            setSvgs(generateSvg(generateSvgParentsAndChildrenIds()));
+          }}
+        />
+        <svg
+          style={{
+            position: 'absolute',
+            width: '100%',
+          }}
+          className='svgs__single-svg'
+        >
+          {svgs}
+        </svg>
+      </div>
+      <div className='bubble-collection'>
+        {generateBubbles(generateSvgParentsAndChildrenIds())}
+      </div>
+    </>
   );
 }
 

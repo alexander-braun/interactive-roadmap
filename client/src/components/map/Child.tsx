@@ -166,15 +166,13 @@ function Children({ child, data, ...props }: Child): JSX.Element {
             <AddDeleteSvg title='Add New Card As Child' />
           </button>
         )}
-        {!props.center && (
-          <button
-            name='Remove Child'
-            className='card__delete-circle'
-            onClick={handleDeleteChildnode}
-          >
-            <AddDeleteSvg title='Delete This Card' />
-          </button>
-        )}
+        <button
+          name='Remove Child'
+          className='card__delete-circle'
+          onClick={handleDeleteChildnode}
+        >
+          <AddDeleteSvg title='Delete This Card' />
+        </button>
       </div>
     </div>
   );

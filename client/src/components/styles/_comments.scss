@@ -6,7 +6,7 @@
   text-align: left;
   width: 100%;
   font-family: 'Raleway';
-  margin-top: 1rem;
+  margin-top: 3rem;
   margin-bottom: 1rem;
   //min-height: 75px;
 
@@ -33,10 +33,10 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
   }
   &__add-comment-button:hover &__add-comment-text {
-    font-weight: 600;
+    //font-weight: 600;
   }
 
   &__add-comment-text {
@@ -45,12 +45,13 @@
     cursor: pointer;
     transition: 0.2s;
     font-family: 'Raleway';
+    color: rgb(44, 47, 51);
     font-size: 1.5rem;
     font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto,
       'Segoe UI', Arial, sans-serif;
 
     &:hover {
-      font-weight: 700;
+      //font-weight: 700;
     }
   }
 
