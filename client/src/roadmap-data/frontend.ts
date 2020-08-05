@@ -14,7 +14,7 @@ export const frontend: Nodes = {
     status: 'Pending',
     goalDate: 1596576825190,
     importance: 10,
-    comments: ['this is hard'],
+    comments: [],
     resources: ['http://www.youtube.com'],
     mainKnot: true,
     children: [
@@ -36,7 +36,7 @@ export const frontend: Nodes = {
   '3d7b7cb0-f45d-4e35-9e10-9e40b7319bf6': {
     title: 'What is Domain Name?',
     children: [],
-    comments: ['Redo this', 'whats going on here', 'this is a comment'],
+    comments: ['Edit me!'],
     goalDate: 1596576825190,
     status: 'Pending',
   },

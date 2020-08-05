@@ -57,7 +57,8 @@ export const data = (
       }
       return newState;
     case ADD_COMMENT:
-      newState[action.id].comments.push(action.comment);
+      if (action.comment === '') newState[action.id].comments.push('Edit me!');
+      else newState[action.id].comments.push(action.comment);
       return newState;
     case DELETE_COMMENT:
       newState[action.id].comments.splice(action.index, 1);

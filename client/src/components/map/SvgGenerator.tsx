@@ -19,15 +19,13 @@ function SvgGenerator({ data }: SvgGenerator) {
     const mainKnots: string[] = [];
 
     for (const id of nodeIds) {
+      if (data[id].mainKnot) {
+        mainKnots.push(id);
+      }
+
       const children = data[id].children;
       for (const child of children) {
         pairs.push([id, child]);
-      }
-    }
-
-    for (const id of nodeIds) {
-      if (data[id].mainKnot) {
-        mainKnots.push(id);
       }
     }
 
