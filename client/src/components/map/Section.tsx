@@ -25,19 +25,20 @@ function Section({ sectionId, data }: Section) {
 
   const generateSubChildren = (direction: Direction): string[] => {
     // Get the appropriate subchildren for the left or right position
-    let children: string[] = [];
+    let childrenNew: string[] = [];
     const middle: number = Math.ceil(children.length / 2);
     for (let i = 0; i < children.length; i++) {
       const subchildren = data[children[i]].children;
       if (subchildren.length) {
         if (direction === 'left' && i < middle) {
-          children = [...children, ...subchildren];
+          childrenNew = [...childrenNew, ...subchildren];
         } else if (direction === 'right' && i >= middle) {
-          children = [...children, ...subchildren];
+          childrenNew = [...childrenNew, ...subchildren];
         }
       }
     }
-    return children;
+
+    return childrenNew;
   };
 
   return (
