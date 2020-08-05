@@ -1,17 +1,18 @@
 import React, { memo } from 'react';
-import { Map } from '../types/Map';
 import Child from './Child';
 import { v4 as uuidv4 } from 'uuid';
+import { Nodes } from '../types/Map-Data';
 
 interface Children {
-  children: Map[] | Map;
+  children: string[];
   subchildren?: boolean;
   center?: boolean;
   left?: boolean;
   right?: boolean;
+  data: Nodes;
 }
 
-function Children({ children, ...props }: Children): JSX.Element | null {
+function Children({ children, data, ...props }: Children): JSX.Element | null {
   if (Array.isArray(children) && children.length === 0) return null;
   return (
     <div
@@ -25,28 +26,19 @@ function Children({ children, ...props }: Children): JSX.Element | null {
         props.subchildren ? 'section__side-elements--subchild' : ''
       }`}
     >
-      {Array.isArray(children) ? (
-        children.map((child) => {
-          return (
-            <Child
-              key={uuidv4()}
-              child={child}
-              subchildren={props.subchildren}
-              center={props.center ? true : false}
-              left={props.left}
-              right={props.right}
-            />
-          );
-        })
-      ) : (
-        <Child
-          child={children}
-          subchildren={props.subchildren}
-          center={props.center ? true : false}
-          left={props.left}
-          right={props.right}
-        />
-      )}
+      {children.map((child) => {
+        return (
+          <Child
+            key={uuidv4()}
+            child={child}
+            subchildren={props.subchildren}
+            center={props.center}
+            left={props.left}
+            right={props.right}
+            data={data}
+          />
+        );
+      })}
     </div>
   );
 }

@@ -19,6 +19,10 @@
   &__side-elements {
     margin: 0 auto;
     position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     &--left {
       grid-area: left-side;
@@ -38,6 +42,7 @@
 
     &--center-section {
       grid-area: centered;
+      height: auto;
     }
   }
 }

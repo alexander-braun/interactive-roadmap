@@ -1,5 +1,5 @@
 .card {
-  border: 2.5px dashed transparent;
+  border: 2.25px dashed transparent;
   border-radius: 0.25rem;
   padding: 1rem 1rem;
   background-color: white;
@@ -165,6 +165,9 @@
     height: 15px;
     width: fit-content;
     transition: 0.1s;
+    width: fit-content;
+    height: 100%;
+    padding: 5px;
 
     &:hover {
       text-shadow: 0px 0px 0px black;
@@ -352,7 +355,7 @@
   }
 
   &:hover {
-    border: 2.5px dashed #2b78e4;
+    border: 2.25px dashed #2b78e4;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px;
     transform: scale(1.01);
   }

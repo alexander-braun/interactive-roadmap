@@ -1,13 +1,14 @@
 import React from 'react';
-import Map from './map/Index';
+import Map from './map/Map';
 import '../styles/main.css';
-import { Map as MapT } from './types/Map';
+import { Nodes } from './types/Map-Data';
 import { AppState } from '../reducers';
 import { connect } from 'react-redux';
 import SvgGenerator from './map/SvgGenerator';
+import CalendarModal from './map/CalendarModal';
 
 interface AppProps {
-  data: MapT[];
+  data: Nodes;
 }
 
 export type IDs = [string, string][];
@@ -16,13 +17,14 @@ function App({ data }: AppProps): JSX.Element {
   return (
     <div className='App'>
       <Map data={data} />
-      <SvgGenerator data={data} />
+      <SvgGenerator />
+      <CalendarModal />
     </div>
   );
 }
 
 interface StateProps {
-  data: MapT[];
+  data: Nodes;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({

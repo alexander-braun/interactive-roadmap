@@ -1,11 +1,8 @@
-export interface Map {
-  title: string;
-  status: 'Pending' | 'In-Work' | 'Done';
-  id: string;
-  importance?: number;
-  goalDate?: string;
+export type Node = {
   comments: string[];
-  resources?: string[];
+  title: string;
+  goalDate: number;
+  status: 'Pending' | 'In-Work' | 'Done';
   recommended?:
     | 'option'
     | 'recommended'
@@ -14,6 +11,12 @@ export interface Map {
     | 'not-recommended-option'
     | 'not-recommended-none'
     | 'none';
-  children: Map[];
+  children: string[];
   mainKnot?: boolean;
+  resources?: string[];
+  importance?: number;
+};
+
+export interface Nodes {
+  [key: string]: Node;
 }

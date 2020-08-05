@@ -1,19 +1,18 @@
 import React, { memo } from 'react';
-import { Map } from '../types/Map';
 import Children from './Children';
+import { Nodes } from '../types/Map-Data';
 
 interface Section {
-  sections: [Map, Map[]];
-  index: number;
+  sectionId: string;
+  data: Nodes;
 }
 
 type Direction = 'left' | 'right';
 
-function Section({ sections, index }: Section) {
-  const section: Map = sections[0];
-  const children: Map[] = sections[1];
+function Section({ sectionId, data }: Section) {
+  const children: string[] = data[sectionId].children;
 
-  const generateChildren = (direction: Direction): Map | Map[] => {
+  const generateChildren = (direction: Direction): string[] => {
     if (!children) return [];
     if (children.length === 1) {
       return children;
@@ -24,40 +23,44 @@ function Section({ sections, index }: Section) {
     } else return children.slice(middle);
   };
 
-  const generateSubChildren = (direction: Direction): Map | Map[] => {
+  const generateSubChildren = (direction: Direction): string[] => {
     // Get the appropriate subchildren for the left or right position
-    const subChildrenLeft = [];
-    const subChildrenRight = [];
+    let children: string[] = [];
+    const middle: number = Math.ceil(children.length / 2);
     for (let i = 0; i < children.length; i++) {
-      const subchildren = children[i].children;
+      const subchildren = data[children[i]].children;
       if (subchildren.length) {
-        for (let j = 0; j < subchildren.length; j++) {
-          if (i < Math.ceil(children.length / 2)) {
-            subChildrenLeft.push(subchildren[j]);
-          } else {
-            subChildrenRight.push(subchildren[j]);
-          }
+        if (direction === 'left' && i < middle) {
+          children = [...children, ...subchildren];
+        } else if (direction === 'right' && i >= middle) {
+          children = [...children, ...subchildren];
         }
       }
     }
-
-    if (direction === 'left' && subChildrenLeft.length) {
-      return subChildrenLeft;
-    } else if (direction === 'right' && subChildrenRight.length) {
-      return subChildrenRight;
-    } else return [];
+    return children;
   };
 
   return (
     <div className='section'>
-      <Children children={generateSubChildren('left')} subchildren left />
-      <Children children={generateChildren('left')} left />
-      <Children children={section} center={true} />
+      <Children
+        children={generateSubChildren('left')}
+        subchildren
+        left
+        data={data}
+      />
+      <Children children={generateChildren('left')} left data={data} />
+      <Children children={[sectionId]} center={true} data={data} />
       <Children
         children={children.length === 1 ? [] : generateChildren('right')}
         right
+        data={data}
       />
-      <Children children={generateSubChildren('right')} subchildren right />
+      <Children
+        children={generateSubChildren('right')}
+        subchildren
+        right
+        data={data}
+      />
     </div>
   );
 }

@@ -58,6 +58,10 @@ body {
 .section__side-elements {
   margin: 0 auto;
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .section__side-elements--left {
@@ -78,10 +82,11 @@ body {
 
 .section__side-elements--center-section {
   grid-area: centered;
+  height: auto;
 }
 
 .card {
-  border: 2.5px dashed transparent;
+  border: 2.25px dashed transparent;
   border-radius: 0.25rem;
   padding: 1rem 1rem;
   background-color: white;
@@ -243,6 +248,9 @@ body {
   height: 15px;
   width: fit-content;
   transition: 0.1s;
+  width: fit-content;
+  height: 100%;
+  padding: 5px;
 }
 
 .card__due-date:hover {
@@ -424,7 +432,7 @@ body {
 }
 
 .card:hover {
-  border: 2.5px dashed #2b78e4;
+  border: 2.25px dashed #2b78e4;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px;
   transform: scale(1.01);
 }
@@ -628,5 +636,25 @@ body {
   border: 1.5px dashed rgba(22, 22, 22, 0.8);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 10px;
   transform: scale(1.01);
+}
+
+.calendar-modal {
+  font-size: 200%;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.calendar-modal__calendar {
+  padding: 20px;
+  z-index: 4;
 }
 /*# sourceMappingURL=main.css.map */

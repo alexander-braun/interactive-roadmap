@@ -18,7 +18,6 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
 
   const handleSubmit = (): void => {
     if (!text.length || comment === text) return;
-
     dispatch(changeComment(text, id, index));
   };
 
@@ -37,7 +36,6 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
   };
 
   const textareaRef = useRef<HTMLDivElement>(null);
-
   return (
     <li className='comments-row__list-item'>
       <div

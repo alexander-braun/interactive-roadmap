@@ -1,77 +1,77 @@
 import React, { memo, useEffect, useState, useCallback } from 'react';
-import { IDs } from './Index';
 import Svg from './SVG';
 import { v4 as uuidv4 } from 'uuid';
-import { Map } from '../types/Map';
 import ResizeObserver from 'react-resize-observer';
+import { AppState } from '../../reducers';
+import { connect } from 'react-redux';
+import { Nodes } from '../types/Map-Data';
 
 interface SvgGenerator {
-  data: Map[];
+  data: Nodes;
 }
+
+export type IDs = [string, string][];
 
 function SvgGenerator({ data }: SvgGenerator) {
   const generateSvgParentsAndChildrenIds = useCallback((): IDs => {
     const pairs: IDs = [];
-    let currentCategoryId = '';
-    for (let i = 0; i < data.length; i++) {
-      const node = data[i];
-      const parentId = node.id;
-      if (currentCategoryId.length) {
-        pairs.push([currentCategoryId, parentId]);
-      }
-      currentCategoryId = parentId;
-      for (const child of node.children) {
-        const childId = child.id;
-        pairs.push([parentId, childId]);
-        if (child.children) {
-          for (const subchild of child.children) {
-            pairs.push([childId, subchild.id]);
-          }
-        }
+    const nodeIds = Object.keys(data);
+    const mainKnots: string[] = [];
+
+    for (const id of nodeIds) {
+      const children = data[id].children;
+      for (const child of children) {
+        pairs.push([id, child]);
       }
     }
+
+    for (const id of nodeIds) {
+      if (data[id].mainKnot) {
+        mainKnots.push(id);
+      }
+    }
+
+    for (let i = 0; i < mainKnots.length; i++) {
+      pairs.push([mainKnots[i], mainKnots[i + 1]]);
+    }
+
     return pairs;
   }, [data]);
 
-  const generateSvg = (id: [string, string]): JSX.Element | null => {
-    const parent = document.getElementById(id[0])!;
-    const child = document.getElementById(id[1])!;
-    if (!parent || !child) return null;
-    else {
+  const generateSvg = (ids: [string, string][]): JSX.Element[] => {
+    const svgCollection = [];
+    for (const id of ids) {
+      const parent = document.getElementById(id[0]);
+      const child = document.getElementById(id[1]);
+      if (!parent || !child) continue;
       const parentRect = parent.getBoundingClientRect();
       const childRect = child.getBoundingClientRect();
-      if (
-        parent.classList.contains('card--center') &&
-        child.classList.contains('card--center')
-      ) {
-        return (
-          <Svg
-            key={uuidv4()}
-            center
-            parentRect={parentRect}
-            childRect={childRect}
-          />
-        );
-      } else
-        return (
-          <Svg key={uuidv4()} parentRect={parentRect} childRect={childRect} />
-        );
+      svgCollection.push(
+        <Svg
+          key={uuidv4()}
+          center={
+            parent.classList.contains('card--center') &&
+            child.classList.contains('card--center')
+          }
+          parentRect={parentRect}
+          childRect={childRect}
+        />
+      );
     }
+    return svgCollection;
   };
 
-  const [ids, setSvgs] = useState<IDs>([]);
-
   useEffect(() => {
-    setTimeout(() => {
-      setSvgs(generateSvgParentsAndChildrenIds());
-    });
+    setSvgs(generateSvg(generateSvgParentsAndChildrenIds()));
   }, [generateSvgParentsAndChildrenIds, data]);
+
+  const [svgs, setSvgs] = useState<any>([]);
 
   return (
     <div className='svgs'>
       <ResizeObserver
         onResize={(rect) => {
-          setSvgs(generateSvgParentsAndChildrenIds());
+          setSvgs(generateSvg(generateSvgParentsAndChildrenIds()));
         }}
       />
       <svg
@@ -81,12 +81,18 @@ function SvgGenerator({ data }: SvgGenerator) {
         }}
         className='svgs__single-svg'
       >
-        {ids.map((id) => {
-          return generateSvg(id);
-        })}
+        {svgs}
       </svg>
     </div>
   );
 }
 
-export default memo(SvgGenerator);
+interface StateProps {
+  data: Nodes;
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+  data: state.data,
+});
+
+export default memo(connect(mapStateToProps)(SvgGenerator));

@@ -14,10 +14,10 @@ function SVG(props: SVG): JSX.Element | null {
 
   const moveToX =
     props.childRect.x > props.parentRect.x && !props.center
-      ? props.parentRect.x + props.parentRect.width - insetSvgBy
+      ? props.parentRect.x + props.parentRect.width - insetSvgBy - 20
       : props.center
       ? props.parentRect.x + props.parentRect.width / 2
-      : props.parentRect.x + insetSvgBy;
+      : props.parentRect.x + insetSvgBy + 20;
 
   const moveToY =
     props.parentRect.y + props.parentRect.height / 2 + scrollHeight;
@@ -40,10 +40,10 @@ function SVG(props: SVG): JSX.Element | null {
 
   const curveX2 =
     props.childRect.x > props.parentRect.x
-      ? moveToX - 50
+      ? moveToX + 50
       : props.center
       ? moveToX + 40
-      : moveToX + 50;
+      : moveToX - 50;
 
   const curveY1 = moveToY;
 

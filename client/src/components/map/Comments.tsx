@@ -1,34 +1,36 @@
 import React, { memo } from 'react';
-import { Map } from '../types/Map';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addComment } from '../../actions/addComment';
 import Comment from './Comment';
+import { ID } from '../../actions/constants';
+import { Nodes } from '../types/Map-Data';
 
 interface Comments {
-  child: Map;
+  child: string;
+  data: Nodes;
 }
 
-function Comments({ child }: Comments): JSX.Element {
+function Comments({ child, data }: Comments): JSX.Element {
   const dispatch = useDispatch();
 
-  const handleAddNewComment = (e: any, id: any): void => {
+  const handleAddNewComment = (id: ID): void => {
     dispatch(addComment('', id));
   };
 
   return (
     <>
-      {child.mainKnot ? null : (
+      {!data[child].mainKnot && (
         <div className='comments-row'>
-          {child.comments.length ? (
+          {data[child].comments ? (
             <ul className='comments-row__list'>
-              {child.comments.map((comment, index) => {
+              {data[child].comments.map((comment, index) => {
                 return (
                   <Comment
                     key={uuidv4()}
                     comment={comment}
                     index={index}
-                    id={child.id}
+                    id={child}
                   />
                 );
               })}
@@ -36,7 +38,7 @@ function Comments({ child }: Comments): JSX.Element {
           ) : null}
           <button
             className='comments-row__add-comment-button'
-            onClick={(e) => handleAddNewComment(e, child.id)}
+            onClick={() => handleAddNewComment(child)}
           >
             <div className='comments-row__add-comment-svg'>
               <svg width='13' height='13'>
