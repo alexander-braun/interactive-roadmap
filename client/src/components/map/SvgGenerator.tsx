@@ -39,62 +39,67 @@ function SvgGenerator({ data }: SvgGenerator) {
     return pairs;
   }, [data]);
 
-  const generateBubbles = (ids: [string, string][]): JSX.Element[] => {
-    const bubbleDivs: JSX.Element[] = [];
-    const scrollHeight: number = window.scrollY;
-    for (const id of ids) {
-      const parent = document.getElementById(id[0]);
-      const child = document.getElementById(id[1]);
-      if (!parent || !child) continue;
-      const parentRect = parent.getBoundingClientRect();
-      const childRect = child.getBoundingClientRect();
-      if (
-        parent.classList.contains('card--center') &&
-        child.classList.contains('card--center')
-      ) {
-        bubbleDivs.push(
-          <div
+  const generateSvg = useCallback(
+    (ids: [string, string][]): void => {
+      const bubbleDivs: JSX.Element[] = [];
+      const svgCollection: JSX.Element[] = [];
+      const scrollHeight: number = window.scrollY;
+
+      for (const id of ids) {
+        const parent = document.getElementById(id[0]);
+        const child = document.getElementById(id[1]);
+
+        if (!parent || !child) continue;
+
+        const parentRect = parent.getBoundingClientRect();
+        const childRect = child.getBoundingClientRect();
+
+        if (
+          parent.classList.contains('card--center') &&
+          child.classList.contains('card--center')
+        ) {
+          bubbleDivs.push(
+            <div
+              key={uuidv4()}
+              className='bubble'
+              onClick={() => dispatch(addCenternode(id[0]))}
+              style={{
+                top:
+                  scrollHeight -
+                  childRect.height / 2 +
+                  parentRect.height / 2 +
+                  childRect.y -
+                  (childRect.y - parentRect.y) / 2 +
+                  8,
+              }}
+              //8 is for borderradius 4px * 2
+            ></div>
+          );
+        }
+
+        const center =
+          parent.classList.contains('card--center') &&
+          child.classList.contains('card--center');
+        svgCollection.push(
+          <Svg
             key={uuidv4()}
-            className='bubble'
-            onClick={() => dispatch(addCenternode(id[0]))}
-            style={{
-              top:
-                scrollHeight + childRect.y - (childRect.y - parentRect.y) / 2,
-            }}
-          ></div>
+            center={center}
+            parentRect={parentRect}
+            childRect={childRect}
+          />
         );
       }
-    }
-    return bubbleDivs;
-  };
-
-  const generateSvg = (ids: [string, string][]): JSX.Element[] => {
-    const svgCollection = [];
-    for (const id of ids) {
-      const parent = document.getElementById(id[0]);
-      const child = document.getElementById(id[1]);
-      if (!parent || !child) continue;
-      const parentRect = parent.getBoundingClientRect();
-      const childRect = child.getBoundingClientRect();
-      svgCollection.push(
-        <Svg
-          key={uuidv4()}
-          center={
-            parent.classList.contains('card--center') &&
-            child.classList.contains('card--center')
-          }
-          parentRect={parentRect}
-          childRect={childRect}
-        />
-      );
-    }
-    return svgCollection;
-  };
+      setBubbles(bubbleDivs);
+      setSvgs(svgCollection);
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
-    setSvgs(generateSvg(generateSvgParentsAndChildrenIds()));
-  }, [generateSvgParentsAndChildrenIds, data]);
+    generateSvg(generateSvgParentsAndChildrenIds());
+  }, [generateSvgParentsAndChildrenIds, data, generateSvg]);
 
+  const [bubbles, setBubbles] = useState<JSX.Element[]>();
   const [svgs, setSvgs] = useState<any>([]);
 
   return (
@@ -102,7 +107,7 @@ function SvgGenerator({ data }: SvgGenerator) {
       <div className='svgs'>
         <ResizeObserver
           onResize={(rect) => {
-            setSvgs(generateSvg(generateSvgParentsAndChildrenIds()));
+            generateSvg(generateSvgParentsAndChildrenIds());
           }}
         />
         <svg
@@ -115,9 +120,7 @@ function SvgGenerator({ data }: SvgGenerator) {
           {svgs}
         </svg>
       </div>
-      <div className='bubble-collection'>
-        {generateBubbles(generateSvgParentsAndChildrenIds())}
-      </div>
+      <div className='bubble-collection'>{bubbles}</div>
     </>
   );
 }

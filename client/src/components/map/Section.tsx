@@ -5,11 +5,12 @@ import { Nodes } from '../types/Map-Data';
 interface Section {
   sectionId: string;
   data: Nodes;
+  index: number;
 }
 
 type Direction = 'left' | 'right';
 
-function Section({ sectionId, data }: Section) {
+function Section({ sectionId, data, index }: Section) {
   if (!data[sectionId]) {
     return null;
   }

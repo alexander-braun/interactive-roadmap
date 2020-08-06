@@ -1,24 +1,20 @@
 .card {
-  border: 2.25px dashed transparent;
+  border: 2px dashed transparent;
   border-radius: 0.25rem;
   padding: 1rem 1rem;
-  background-color: white;
   text-align: center;
   font-size: 1.5rem;
-  width: fit-content;
   max-width: 15vw;
-  margin: 2vh 0;
+  margin: 1vh 0;
   letter-spacing: 0.1rem;
   position: relative;
   font-family: 'Raleway';
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   min-height: 3vh;
-  flex-wrap: wrap;
-  box-shadow: 0 5px 30px -15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s, border 0.3s, background 0.1s;
-  border-radius: 1rem;
+  min-width: 15vw;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  will-change: border, background;
+  transition: border 0.3s, background 0.5s;
+  border-radius: 0px;
 
   &--element {
     background-color: #ffe599;
@@ -31,6 +27,7 @@
   &--center &__inner-text {
     text-align: center;
     font-size: 2.25rem;
+    margin-left: auto;
   }
 
   &--not-recommended,
@@ -67,7 +64,7 @@
     position: absolute;
     bottom: -10px;
     left: -11px;
-    width: 50px;
+    width: 53px;
     height: fit-content;
     background: transparent;
     margin-right: auto;
@@ -78,18 +75,18 @@
   }
 
   &__indication-circle {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     background-color: #a537ff;
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: -12.5px;
+    right: -12.5px;
     border-radius: 100px;
     z-index: 2;
     color: white;
     font-weight: 600;
     padding: 5px;
-    line-height: 1;
+    line-height: 1.3;
     font-size: 1.5rem;
     cursor: default;
   }
@@ -97,49 +94,35 @@
   &__heading {
     display: flex;
     flex-direction: row;
-    align-content: center;
     width: 100%;
-    margin-top: 1rem;
-
-    align-self: flex-end;
-    justify-content: flex-end;
+    align-self: center;
+    justify-content: center;
   }
 
   &__inner-text {
-    cursor: default;
-    margin-right: 0.5vw;
-    margin-bottom: 0.5rem;
-    text-align: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 800;
-    max-width: 100%;
+    margin: 0 auto;
+    margin-left: 0;
     font-size: 2rem;
-    letter-spacing: 0.05rem;
-    font-family: 'Raleway';
-    background-color: transparent;
-    border: none;
+    background: transparent;
     resize: none;
-    overflow: auto;
-    overflow-y: hidden;
     padding: 5px;
     border: 1px dashed transparent;
     cursor: pointer;
+    width: -moz-fit-content;
     width: fit-content;
-    min-width: 20%;
+    max-width: 100%;
     text-align: left;
     border-radius: 4px;
-
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
       'Lucida Console', Monaco, monospace;
     font-weight: 700;
     letter-spacing: -0.5px;
     overflow: hidden;
-    color: rgb(36, 41, 46);
+    color: #24292e;
+    transition: border 0.2s, background 0.2s;
 
     &:hover {
-      background-color: #fff7dd;
+      background: #fff7dd;
       border: 1px dashed rgba(0, 0, 0, 0.514);
     }
   }
@@ -150,24 +133,14 @@
     font-weight: 400;
     font-size: 1.4rem;
     letter-spacing: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Raleway';
     font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto,
       'Segoe UI', Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     cursor: pointer;
-    width: 40%;
-    height: 15px;
-    width: fit-content;
-    transition: 0.1s;
-    width: fit-content;
+    width: 30%;
     height: 100%;
     padding: 5px;
+    align-self: center;
+    justify-self: center;
 
     &:hover {
       text-decoration: underline;
@@ -190,31 +163,32 @@
     align-items: center;
     width: fit-content;
     min-width: 95px;
+    margin-top: 1rem;
 
     &--status-text {
-      margin-left: 1.25rem;
+      margin-left: 1rem;
       line-height: 2;
       cursor: pointer;
-      transition: 0.1s;
+      transition: text-shadow 0.1s, font-weight 0.1s;
+      will-change: text-shadow, font-weight;
       font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto,
         'Segoe UI', Arial, sans-serif;
 
       &:hover {
         text-shadow: 0 0 0px black;
-        font-weight: 600;
       }
     }
 
     &--green-dot {
-      background-color: chartreuse;
+      background-color: rgb(118, 236, 0);
     }
 
     &--yellow-dot {
-      background-color: rgb(255, 251, 0);
+      background-color: rgb(255, 255, 0);
     }
 
     &--red-dot {
-      background-color: rgb(255, 0, 0);
+      background-color: rgb(200, 0, 0);
     }
 
     &--red-dot,
@@ -224,23 +198,13 @@
       height: 10px;
       border-radius: 100px;
       margin-left: auto;
-      border: 1px solid rgba(0, 0, 0, 0.2);
     }
   }
 
-  &:hover &__status--red-dot,
-  &:hover &__status--yellow-dot,
-  &:hover &__status--green-dot {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-  }
   &__bottom-row {
     margin-left: auto;
     width: fit-content;
     align-self: flex-end;
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
-
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -254,7 +218,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    transition: 0.1s;
+    will-change: border, transform;
+    transition: border 0.1s, transform 0.1s;
     position: absolute;
     top: -25px;
     right: 0;
@@ -263,10 +228,11 @@
     border: 1px solid rgba(0, 0, 0, 0.397);
     opacity: 1;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
+    transform: scale(1.05);
 
     &:hover {
-      border: 1px solid rgba(0, 0, 0, 1);
+      border: 1px solid rgba(0, 0, 0, 0.397);
     }
 
     &--green-dot {
@@ -296,11 +262,16 @@
       border-radius: 100px;
       border: 1px solid transparent;
       cursor: pointer;
+      backface-visibility: hidden;
 
       &:hover {
-        border: 1px dashed rgba(0, 0, 0, 1);
+        border: 1px solid rgba(0, 0, 0, 0.65);
       }
     }
+  }
+
+  &:hover {
+    border: 2px dashed #2b78e4;
   }
 
   &__add-circle,
@@ -312,16 +283,14 @@
     z-index: 2;
     padding: 4px;
     font-size: 2.25rem;
-    cursor: default;
-    transition: 0.075s;
-    transform: scale(0.001);
+    will-change: transform opacity;
+    transition-duration: 0.2s;
     opacity: 0;
     cursor: pointer;
-    animation-timing-function: ease-in;
     overflow: visible;
     border: none;
-    background-color: #ffff00;
-
+    background-color: #fff;
+    transform: rotate(90deg);
     svg {
       overflow: visible;
       position: absolute;
@@ -331,30 +300,25 @@
     }
   }
 
+  &__add-circle {
+    transform: rotate(45deg);
+  }
+
   &:hover &__add-circle {
     opacity: 1;
-    transform: rotate(45deg) scale(1.3);
+    transform: scale(1.3) rotate(135deg);
   }
 
   &:hover &__delete-circle {
     opacity: 1;
-    transform: rotate(90deg) scale(1.3);
+    transform: scale(1.3);
   }
 
-  &:hover &__add-circle:hover,
   &:hover &__delete-circle:hover {
-    transform: scale(1.4);
-    background-color: #fff7dd;
+    transform: scale(1.4) rotate(-90deg);
   }
 
   &:hover &__add-circle:hover {
-    transform: scale(1.4) rotate(135deg);
-    background-color: #fff7dd;
-  }
-
-  &:hover {
-    border: 2.25px dashed #2b78e4;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px;
-    transform: scale(1.01);
+    transform: scale(1.4) rotate(45deg);
   }
 }

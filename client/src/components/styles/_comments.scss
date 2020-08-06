@@ -8,7 +8,6 @@
   font-family: 'Raleway';
   margin-top: 3rem;
   margin-bottom: 1rem;
-  //min-height: 75px;
 
   &__list {
     list-style: none;
@@ -28,31 +27,22 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: -moz-fit-content;
     width: fit-content;
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin-top: 0.75rem;
   }
-  &__add-comment-button:hover &__add-comment-text {
-    //font-weight: 600;
-  }
 
   &__add-comment-text {
     margin-left: 2px;
     line-height: 1.5;
     cursor: pointer;
-    transition: 0.2s;
-    font-family: 'Raleway';
     color: rgb(44, 47, 51);
     font-size: 1.5rem;
     font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto,
       'Segoe UI', Arial, sans-serif;
-
-    &:hover {
-      //font-weight: 700;
-    }
+    backface-visibility: hidden;
   }
 
   &__add-comment-svg {
@@ -65,8 +55,9 @@
     vertical-align: 7px;
     width: 17px;
     border: 1px solid transparent;
-    transition: 0.2s;
+    transition: background-color 0.2s, border 0.2s;
     border-radius: 4px;
+    backface-visibility: hidden;
   }
 
   &__add-comment-button:hover &__add-comment-svg {
@@ -78,16 +69,16 @@
     background-color: #ffedb8;
     resize: none;
     padding: 5px 5px;
-    border: 1px solid transparent;
     overflow-x: hidden;
     overflow-y: auto;
-    margin: 1px 0;
     border: 1px dashed transparent;
     line-height: 15px;
     overflow-wrap: break-word;
     width: 80%;
     min-height: 15px;
     border-radius: 4px;
+    color: black;
+    backface-visibility: hidden;
 
     &:hover {
       border: 1px dashed rgba(0, 0, 0, 0.514);
@@ -104,6 +95,7 @@
     border: 1px solid transparent;
     margin-left: 10px;
     border-radius: 4px;
+    backface-visibility: hidden;
     &:hover {
       background-color: #fff7dd;
       border: 1px solid rgba(0, 0, 0, 0.514);

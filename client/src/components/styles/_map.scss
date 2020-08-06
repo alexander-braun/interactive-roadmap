@@ -2,5 +2,109 @@
   overflow: hidden;
   position: relative;
   width: auto;
-  height: calc(100% + 500px);
+
+  &__section-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+  }
+
+  &__legend,
+  &__resource-wrapper {
+    width: fit-content;
+    height: auto;
+    margin: 0 auto;
+    padding: 5rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 30px -15px;
+    max-width: 30vw;
+  }
+
+  &__legend {
+    max-width: 35vw;
+  }
+
+  &__ul {
+    list-style: none;
+  }
+
+  &__li {
+    font-size: 2.25rem;
+    margin-left: auto;
+    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
+      'Lucida Console', Monaco, monospace;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    overflow: hidden;
+    color: #24292e;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem;
+    letter-spacing: 0.05rem;
+  }
+
+  &__indication-circle {
+    font-family: 'Raleway';
+    width: 15px;
+    height: 15px;
+    background-color: #a537ff;
+    border-radius: 100px;
+    color: white;
+    font-weight: 600;
+    padding: 5px;
+    line-height: 1;
+    font-size: 2rem;
+    cursor: default;
+    margin-right: 1rem;
+
+    &--not-recommended {
+      background-color: #d4d4d4;
+    }
+
+    &--option {
+      background-color: #39761d;
+    }
+  }
+
+  &__resource-text {
+    font-size: 2.25rem;
+    margin-left: auto;
+    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
+      'Lucida Console', Monaco, monospace;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    overflow: hidden;
+    color: #24292e;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem;
+    letter-spacing: 0.05rem;
+    white-space: pre-line;
+  }
+
+  &__resource-link {
+    width: 100%;
+    background-color: #4135d6;
+    height: 5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+
+    a {
+      color: white;
+      font-size: 2rem;
+      font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
+        'Lucida Console', Monaco, monospace;
+    }
+  }
 }

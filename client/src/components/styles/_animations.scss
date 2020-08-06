@@ -1,0 +1,62 @@
+@keyframes action-tada {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  40% {
+    transform: scale(0.97);
+  }
+  60% {
+    transform: scale(0.99) rotate(-3deg);
+  }
+  80% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes action-tada-card-del {
+  0% {
+    transform: scale(1.4);
+  }
+  20% {
+    transform: scale(1.5) rotate(3deg);
+  }
+  40% {
+    transform: scale(1.37);
+  }
+  60% {
+    transform: scale(1.399) rotate(-3deg);
+  }
+  80% {
+    transform: scale(1.45);
+  }
+  100% {
+    transform: scale(1.4);
+  }
+}
+
+@keyframes action-tada-card-add {
+  0% {
+    transform: scale(1.4);
+  }
+  20% {
+    transform: scale(1.5);
+  }
+  40% {
+    transform: scale(1.37);
+  }
+  60% {
+    transform: scale(1.399);
+  }
+  80% {
+    transform: scale(1.45);
+  }
+  100% {
+    transform: scale(1.4) rotate(45deg);
+  }
+}

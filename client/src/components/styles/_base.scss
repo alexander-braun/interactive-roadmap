@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+@font-face {
+  font-family: 'Quadrit';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Quadrit.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans'), local('OpenSans'),
+    url('./fonts/Quadrit.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('./fonts/Quadrit.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('./fonts/Quadrit.woff') format('woff'),
+    /* Modern Browsers */ url('./fonts/Quadrit.ttf') format('truetype'),
+    /* Safari, Android, iOS */ url('./fonts/Quadrit.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
 
 *,
 *::after,
@@ -22,7 +34,8 @@ input:focus {
 
 body {
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #fafbfc;
+  background-color: #fff;
 }
 
 .App {

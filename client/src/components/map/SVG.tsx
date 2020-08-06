@@ -8,8 +8,6 @@ interface SVG {
 
 function SVG(props: SVG): JSX.Element | null {
   const scrollHeight = window.pageYOffset;
-  const strokeDasharray = !props.center ? '5,12' : '0';
-  const strokeWidth = !props.center ? '2.5' : '4';
   const insetSvgBy = 5;
 
   const moveToX =
@@ -19,8 +17,9 @@ function SVG(props: SVG): JSX.Element | null {
       ? props.parentRect.x + props.parentRect.width / 2
       : props.parentRect.x + insetSvgBy + 20;
 
-  const moveToY =
-    props.parentRect.y + props.parentRect.height / 2 + scrollHeight;
+  const moveToY = props.center
+    ? props.parentRect.y + props.parentRect.height + scrollHeight
+    : props.parentRect.y + props.parentRect.height / 2 + scrollHeight;
 
   const curveX =
     props.childRect.x < props.parentRect.x && !props.center
@@ -29,7 +28,9 @@ function SVG(props: SVG): JSX.Element | null {
       ? props.childRect.x + props.childRect.width / 2
       : props.childRect.x;
 
-  const curveY = props.childRect.y + props.childRect.height / 2 + scrollHeight;
+  const curveY = props.center
+    ? props.childRect.y + scrollHeight
+    : props.childRect.y + props.childRect.height / 2 + scrollHeight;
 
   const curveX1 =
     props.childRect.x > props.parentRect.x && !props.center
@@ -52,11 +53,7 @@ function SVG(props: SVG): JSX.Element | null {
     <>
       <path
         d={`M ${moveToX} ${moveToY} C ${curveX1} ${curveY1}, ${curveX2} ${curveY2}, ${curveX} ${curveY}`}
-        stroke='#2b78e4'
-        fill='transparent'
-        strokeDasharray={strokeDasharray}
-        strokeLinecap='round'
-        strokeWidth={strokeWidth}
+        className={props.center ? 'svg-center' : 'svg-dash'}
       />
     </>
   );

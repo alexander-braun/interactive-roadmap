@@ -12,4 +12,20 @@
     height: 100%;
     z-index: -1;
   }
+
+  path {
+    stroke: #2b78e4;
+    stroke-linecap: round;
+    fill: transparent;
+  }
+
+  .svg-center {
+    stroke-dasharray: 0;
+    stroke-width: 4;
+  }
+
+  .svg-dash {
+    stroke-dasharray: 5, 12;
+    stroke-width: 2.5;
+  }
 }
