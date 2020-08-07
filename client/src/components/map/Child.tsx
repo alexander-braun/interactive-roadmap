@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useRef, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Comments from './Comments';
 import { addChildnode } from '../../actions/addChildnode';
@@ -13,6 +13,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { AppState } from '../../reducers';
+import { connect } from 'react-redux';
+import {
+  Statuses,
+  Dates,
+  Headings,
+  Recommendations,
+} from '../../actions/constants';
+import RecommendationBubbles from './RecommendationBubbles';
 
 interface Child {
   child: string;
@@ -21,9 +30,21 @@ interface Child {
   left?: boolean;
   right?: boolean;
   data: Nodes;
+  status: Statuses;
+  goalDates: Dates;
+  headings: Headings;
+  recommendations: Recommendations;
 }
 
-function Children({ child, data, ...props }: Child): JSX.Element {
+function Children({
+  child,
+  data,
+  status,
+  goalDates,
+  headings,
+  recommendations,
+  ...props
+}: Child): JSX.Element {
   const dispatch = useDispatch();
 
   const style = (child: string): string[] => {
@@ -33,13 +54,13 @@ function Children({ child, data, ...props }: Child): JSX.Element {
     } else if (!data[child].mainKnot) {
       styles.push('card--element');
     }
-    if (data[child].recommended === 'not-recommended') {
+    if (recommendations[child] === 'not-recommended') {
       styles.push('card--not-recommended');
     }
-    if (data[child].recommended === 'recommended') {
+    if (recommendations[child] === 'recommended') {
       styles.push('card--recommended');
     }
-    if (data[child].recommended === 'option') {
+    if (recommendations[child] === 'option') {
       styles.push('card--option');
     }
     if (props.subchildren) {
@@ -62,7 +83,16 @@ function Children({ child, data, ...props }: Child): JSX.Element {
   };
 
   const textareaRef = useRef(null);
-  const [text, updateText] = useState<string>(data[child].title.trim());
+  const [text, updateText] = useState<string>(
+    headings[child] && headings[child].trim()
+  );
+
+  useEffect(() => {
+    if (!text) {
+      handleSubmit();
+    }
+  });
+
   const [focus, toggleFocus] = useState<boolean>(false);
 
   const handleFocus = (): void => {
@@ -70,13 +100,17 @@ function Children({ child, data, ...props }: Child): JSX.Element {
   };
 
   const handleSubmit = (): void => {
-    if (!text.length || data[child].title === text) return;
-    dispatch(setCardHeading(child, text));
+    if (headings[child] === text) return;
+    else if (!text) dispatch(setCardHeading(child, 'Edit me!'));
+    else dispatch(setCardHeading(child, text));
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: React.KeyboardEvent): void => {
     if (e.key === 'Enter') {
-      handleSubmit();
+      e.preventDefault();
+      const el = document.activeElement as HTMLDivElement;
+      el.blur();
+      return handleSubmit();
     }
   };
 
@@ -109,11 +143,11 @@ function Children({ child, data, ...props }: Child): JSX.Element {
   return (
     <div className={`card ${style(child).join(' ')}`} id={child}>
       {!data[child].mainKnot &&
-        data[child].recommended !== undefined &&
-        data[child].recommended !== 'not-recommended' && (
+        recommendations[child] !== undefined &&
+        recommendations[child] !== 'not-recommended' && (
           <>
             <div className='card__indication-circle'>
-              {data[child].recommended === 'option' ? (
+              {recommendations[child] === 'option' ? (
                 <FontAwesomeIcon
                   className='card__font-awesome-exclamation'
                   icon={faCheck}
@@ -125,46 +159,18 @@ function Children({ child, data, ...props }: Child): JSX.Element {
                 />
               )}
             </div>
-            <div className='card__recommend-choice'>
-              <div className='card__indication-circle card__indication-circle--recommended'>
-                <FontAwesomeIcon
-                  className='card__font-awesome-exclamation'
-                  icon={faExclamation}
-                />
-              </div>
-              <div className='card__indication-circle card__indication-circle--option'>
-                <FontAwesomeIcon
-                  className='card__font-awesome-exclamation'
-                  icon={faCheck}
-                />
-              </div>
-              <div className='card__indication-circle card__indication-circle--not-recommended'></div>
-            </div>
+            <RecommendationBubbles id={child} />
           </>
         )}
-      {data[child].recommended === 'not-recommended' && (
+      {recommendations[child] === 'not-recommended' && (
         <>
           <div className='card__indication-circle card__indication-circle--not-recommended'></div>
-          <div className='card__recommend-choice'>
-            <div className='card__indication-circle card__indication-circle--recommended'>
-              <FontAwesomeIcon
-                className='card__font-awesome-exclamation'
-                icon={faExclamation}
-              />
-            </div>
-            <div className='card__indication-circle card__indication-circle--option'>
-              <FontAwesomeIcon
-                className='card__font-awesome-exclamation'
-                icon={faCheck}
-              />
-            </div>
-            <div className='card__indication-circle card__indication-circle--not-recommended'></div>
-          </div>
+          <RecommendationBubbles id={child} />
         </>
       )}
       {data[child].mainKnot ? (
         <CardHeading
-          title={data[child].title}
+          title={headings[child] || 'Edit me!'}
           updateText={updateText}
           handleKeyDown={handleKeyDown}
           handleKeyPress={handleKeyPress}
@@ -175,7 +181,7 @@ function Children({ child, data, ...props }: Child): JSX.Element {
       ) : (
         <div className='card__heading'>
           <CardHeading
-            title={data[child].title}
+            title={headings[child] || 'Edit me!'}
             updateText={updateText}
             handleKeyDown={handleKeyDown}
             handleKeyPress={handleKeyPress}
@@ -185,13 +191,11 @@ function Children({ child, data, ...props }: Child): JSX.Element {
           />
           <div
             onClick={() => {
-              dispatch(
-                toggleCalendarModal([child, data[child].goalDate, true])
-              );
+              dispatch(toggleCalendarModal([child, goalDates[child], true]));
             }}
             className='card__due-date'
           >
-            {convertDate(data[child].goalDate)}
+            {convertDate(goalDates[child] || Date.now())}
           </div>
         </div>
       )}
@@ -200,7 +204,7 @@ function Children({ child, data, ...props }: Child): JSX.Element {
       {!data[child].mainKnot && (
         <Statusrow
           handleStatusUpdate={handleStatusUpdate}
-          status={data[child].status}
+          status={status[child] || 'Pending'}
         />
       )}
       <div className='card__button-container'>
@@ -225,4 +229,18 @@ function Children({ child, data, ...props }: Child): JSX.Element {
   );
 }
 
-export default memo(Children);
+interface StateProps {
+  status: Statuses;
+  goalDates: Dates;
+  headings: Headings;
+  recommendations: Recommendations;
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+  status: state.status,
+  goalDates: state.goalDates,
+  headings: state.headings,
+  recommendations: state.recommendations,
+});
+
+export default memo(connect(mapStateToProps)(Children));

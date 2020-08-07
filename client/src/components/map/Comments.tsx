@@ -7,26 +7,29 @@ import { ID } from '../../actions/constants';
 import { Nodes } from '../types/Map-Data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { AppState } from '../../reducers';
+import { connect } from 'react-redux';
+import { Comments as CommentsState } from '../../actions/constants';
 
 interface Comments {
   child: string;
   data: Nodes;
+  comments: CommentsState;
 }
 
-function Comments({ child, data }: Comments): JSX.Element {
+function Comments({ child, data, comments }: Comments): JSX.Element {
   const dispatch = useDispatch();
 
   const handleAddNewComment = (id: ID): void => {
     dispatch(addComment('', id));
   };
-
   return (
     <>
       {!data[child].mainKnot && (
         <div className='comments-row'>
-          {data[child].comments ? (
+          {comments[child] ? (
             <ul className='comments-row__list'>
-              {data[child].comments.map((comment, index) => {
+              {comments[child].map((comment, index) => {
                 return (
                   <Comment
                     key={uuidv4()}
@@ -54,4 +57,12 @@ function Comments({ child, data }: Comments): JSX.Element {
   );
 }
 
-export default memo(Comments);
+interface StateProps {
+  comments: CommentsState;
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+  comments: state.comments,
+});
+
+export default memo(connect(mapStateToProps)(Comments));

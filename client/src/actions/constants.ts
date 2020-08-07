@@ -8,6 +8,7 @@ export const SET_STATUS = 'SET_STATUS';
 export const TOGGLE_CALENDAR_MODAL = 'TOGGLE_CALENDAR_MODAL';
 export const CHANGE_DATE = 'CHANGE_DATE';
 export const ADD_CENTER_NODE = 'ADD_CENTER_NODE';
+export const CHANGE_RECOMMENDATION = 'CHANGE_RECOMMENDATION';
 
 export type Comment = string;
 export type ID = string;
@@ -15,7 +16,32 @@ export type Index = number;
 export type CardHeading = string;
 export type Status = 'Pending' | 'In-Work' | 'Done';
 export type CalendarModal = [ID, number, boolean];
+export type Comments = {
+  [key: string]: string[];
+};
+export type Statuses = {
+  [key: string]: Status;
+};
+export type Dates = {
+  [key: string]: number;
+};
+export type Headings = {
+  [key: string]: string;
+};
+export type Recommendation =
+  | 'option'
+  | 'recommended'
+  | 'not-recommended'
+  | 'own';
+export type Recommendations = {
+  [key: string]: Recommendation;
+};
 
+export interface ChangeRecommendation {
+  type: typeof CHANGE_RECOMMENDATION;
+  recommendation: Recommendation;
+  id: ID;
+}
 export interface ChangeDate {
   type: typeof CHANGE_DATE;
   date: number;
@@ -64,6 +90,7 @@ export interface SetCardHeading {
   id: ID;
 }
 
+export type RecommendationActionTypes = ChangeRecommendation;
 export type DateActionTypes = ChangeDate;
 export type ModalActionTypes = ToggleCalendarModal;
 export type StatusActionTypes = SetStatus;
@@ -78,4 +105,5 @@ export type AppActions =
   | CommentActionTypes
   | NodeActionTypes
   | ModalActionTypes
-  | DateActionTypes;
+  | DateActionTypes
+  | RecommendationActionTypes;

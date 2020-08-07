@@ -1,13 +1,7 @@
 import {
   ADD_CHILDNODE,
   DELETE_CHILDNODE,
-  SET_CARD_HEADING,
-  SET_STATUS,
   AppActions,
-  CHANGE_DATE,
-  ADD_COMMENT,
-  CHANGE_COMMENT,
-  DELETE_COMMENT,
   ADD_CENTER_NODE,
 } from '../actions/constants';
 import { Nodes } from '../components/types/Map-Data';
@@ -26,15 +20,8 @@ export const data = (
       const child_id = uuidv4();
       newState[action.id].children.push(child_id);
       newState[child_id] = {
-        comments: [],
-        title: 'Edit me!',
-        goalDate: Date.now(),
-        status: 'Pending',
-        recommended: 'own',
         children: [],
         mainKnot: false,
-        resources: [],
-        importance: 0,
       };
       return newState;
     case ADD_CENTER_NODE:
@@ -45,14 +32,9 @@ export const data = (
         if (keys[i] === action.id) {
           newObject[keys[i]] = newState[keys[i]];
           newObject[center_id] = {
-            comments: [],
-            title: 'Edit me!',
-            goalDate: Date.now(),
-            status: 'Pending',
             children: [],
             mainKnot: true,
             resources: [],
-            importance: 0,
           };
         } else {
           newObject[keys[i]] = newState[keys[i]];
@@ -78,27 +60,6 @@ export const data = (
           newState[node].children.splice(index, 1);
         }
       }
-      return newState;
-    case SET_CARD_HEADING:
-      newState[action.id].title = action.heading;
-      return newState;
-    case SET_STATUS:
-      newState[action.id].status = action.status;
-      return newState;
-    case CHANGE_DATE:
-      if (newState[action.id]) {
-        newState[action.id].goalDate = action.date;
-      }
-      return newState;
-    case ADD_COMMENT:
-      if (action.comment === '') newState[action.id].comments.push('Edit me!');
-      else newState[action.id].comments.push(action.comment);
-      return newState;
-    case DELETE_COMMENT:
-      newState[action.id].comments.splice(action.index, 1);
-      return newState;
-    case CHANGE_COMMENT:
-      newState[action.id].comments[action.index] = action.comment;
       return newState;
     default:
       return state;
