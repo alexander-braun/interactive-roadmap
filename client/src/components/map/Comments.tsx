@@ -5,6 +5,8 @@ import { addComment } from '../../actions/addComment';
 import Comment from './Comment';
 import { ID } from '../../actions/constants';
 import { Nodes } from '../types/Map-Data';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 interface Comments {
   child: string;
@@ -40,15 +42,10 @@ function Comments({ child, data }: Comments): JSX.Element {
             className='comments-row__add-comment-button'
             onClick={() => handleAddNewComment(child)}
           >
-            <div className='comments-row__add-comment-svg'>
-              <svg width='13' height='13'>
-                <path
-                  d='M6 6V.5a.5.5 0 0 1 1 0V6h5.5a.5.5 0 1 1 0 1H7v5.5a.5.5 0 1 1-1 0V7H.5a.5.5 0 0 1 0-1H6z'
-                  fill='black'
-                  fillRule='evenodd'
-                ></path>
-              </svg>
-            </div>
+            <FontAwesomeIcon
+              className='comments-row__font-awesome-plus'
+              icon={faPlus}
+            />
             <div className='comments-row__add-comment-text'>Add Comment</div>
           </button>
         </div>

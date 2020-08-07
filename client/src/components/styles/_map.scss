@@ -17,8 +17,10 @@
     height: auto;
     margin: 0 auto;
     padding: 5rem;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 30px -15px;
-    max-width: 30vw;
+    box-shadow: rgb(201, 201, 201) 0 5px 30px -15px;
+    max-width: 25vw;
+    flex-direction: column;
+    display: flex;
   }
 
   &__legend {
@@ -35,10 +37,7 @@
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
       'Lucida Console', Monaco, monospace;
     font-weight: 400;
-    letter-spacing: -0.5px;
-    overflow: hidden;
     color: #24292e;
-    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -47,26 +46,35 @@
     letter-spacing: 0.05rem;
   }
 
+  &__github-link {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    color: black;
+  }
+
+  &__github-icon {
+    width: 40px !important;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+
   &__indication-circle {
-    font-family: 'Raleway';
-    width: 15px;
-    height: 15px;
-    background-color: #a537ff;
-    border-radius: 100px;
+    width: 20px !important;
+    height: 20px;
+    background-color: $recommendation;
+    border-radius: 50%;
     color: white;
-    font-weight: 600;
     padding: 5px;
-    line-height: 1;
-    font-size: 2rem;
-    cursor: default;
     margin-right: 1rem;
 
     &--not-recommended {
-      background-color: #d4d4d4;
+      background-color: $not-recommended;
     }
 
     &--option {
-      background-color: #39761d;
+      background-color: $option;
     }
   }
 
@@ -76,35 +84,12 @@
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
       'Lucida Console', Monaco, monospace;
     font-weight: 400;
-    letter-spacing: -0.5px;
-    overflow: hidden;
     color: #24292e;
-    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     margin-top: 1rem;
     letter-spacing: 0.05rem;
-    white-space: pre-line;
-  }
-
-  &__resource-link {
-    width: 100%;
-    background-color: #4135d6;
-    height: 5rem;
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3px;
-
-    a {
-      color: white;
-      font-size: 2rem;
-      font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
-        'Lucida Console', Monaco, monospace;
-    }
   }
 }

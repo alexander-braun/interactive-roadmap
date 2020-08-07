@@ -5,11 +5,14 @@ import { addChildnode } from '../../actions/addChildnode';
 import { deleteChildnode } from '../../actions/deleteChildnode';
 import { setCardHeading } from '../../actions/setCardHeading';
 import { setStatus } from '../../actions/setStatus';
-import AddDeleteSvg from './AddDeleteSvg';
 import CardHeading from './CardHeading';
 import Statusrow from './Statusrow';
 import { toggleCalendarModal } from '../../actions/toggleCalendarModal';
 import { Nodes } from '../types/Map-Data';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 interface Child {
   child: string;
@@ -30,20 +33,14 @@ function Children({ child, data, ...props }: Child): JSX.Element {
     } else if (!data[child].mainKnot) {
       styles.push('card--element');
     }
-    if (
-      data[child].recommended === 'not-recommended' ||
-      data[child].recommended === 'not-recommended-none'
-    ) {
+    if (data[child].recommended === 'not-recommended') {
       styles.push('card--not-recommended');
+    }
+    if (data[child].recommended === 'recommended') {
+      styles.push('card--recommended');
     }
     if (data[child].recommended === 'option') {
       styles.push('card--option');
-    }
-    if (data[child].recommended === 'not-strict') {
-      styles.push('card--not-strict');
-    }
-    if (data[child].recommended === 'not-recommended-option') {
-      styles.push('card--not-recommended-option');
     }
     if (props.subchildren) {
       styles.push('card--subchild');
@@ -102,19 +99,69 @@ function Children({ child, data, ...props }: Child): JSX.Element {
 
   const convertDate = (milliseconds: number) => {
     const date = new Date(milliseconds).toString().split(' ');
-    const month = date[1];
+    const month =
+      'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(date[1]) / 3 + 1;
     const day = date[2];
     const year = date[3];
-    return `${day} ${month} ${year}`;
+    return `${day}.${month}.${year}`;
   };
 
   return (
     <div className={`card ${style(child).join(' ')}`} id={child}>
       {!data[child].mainKnot &&
-        data[child].recommended !== 'none' &&
-        data[child].recommended !== 'not-recommended-none' && (
-          <div className='card__indication-circle'>✓</div>
+        data[child].recommended !== undefined &&
+        data[child].recommended !== 'not-recommended' && (
+          <>
+            <div className='card__indication-circle'>
+              {data[child].recommended === 'option' ? (
+                <FontAwesomeIcon
+                  className='card__font-awesome-exclamation'
+                  icon={faCheck}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  className='card__font-awesome-exclamation'
+                  icon={faExclamation}
+                />
+              )}
+            </div>
+            <div className='card__recommend-choice'>
+              <div className='card__indication-circle card__indication-circle--recommended'>
+                <FontAwesomeIcon
+                  className='card__font-awesome-exclamation'
+                  icon={faExclamation}
+                />
+              </div>
+              <div className='card__indication-circle card__indication-circle--option'>
+                <FontAwesomeIcon
+                  className='card__font-awesome-exclamation'
+                  icon={faCheck}
+                />
+              </div>
+              <div className='card__indication-circle card__indication-circle--not-recommended'></div>
+            </div>
+          </>
         )}
+      {data[child].recommended === 'not-recommended' && (
+        <>
+          <div className='card__indication-circle card__indication-circle--not-recommended'></div>
+          <div className='card__recommend-choice'>
+            <div className='card__indication-circle card__indication-circle--recommended'>
+              <FontAwesomeIcon
+                className='card__font-awesome-exclamation'
+                icon={faExclamation}
+              />
+            </div>
+            <div className='card__indication-circle card__indication-circle--option'>
+              <FontAwesomeIcon
+                className='card__font-awesome-exclamation'
+                icon={faCheck}
+              />
+            </div>
+            <div className='card__indication-circle card__indication-circle--not-recommended'></div>
+          </div>
+        </>
+      )}
       {data[child].mainKnot ? (
         <CardHeading
           title={data[child].title}
@@ -158,21 +205,21 @@ function Children({ child, data, ...props }: Child): JSX.Element {
       )}
       <div className='card__button-container'>
         {!props.subchildren && (
-          <button
+          <FontAwesomeIcon
             onClick={handleAddChildnode}
             name='Add Child'
-            className='card__add-circle'
-          >
-            <AddDeleteSvg title='Add New Card As Child' />
-          </button>
+            className='card__font-awesome-add-delete'
+            title='Add New Card As Child'
+            icon={faPlusCircle}
+          />
         )}
-        <button
+        <FontAwesomeIcon
           name='Remove Child'
-          className='card__delete-circle'
+          className='card__font-awesome-add-delete'
+          title='Delete This Card'
+          icon={faTimesCircle}
           onClick={handleDeleteChildnode}
-        >
-          <AddDeleteSvg title='Delete This Card' />
-        </button>
+        />
       </div>
     </div>
   );

@@ -2,6 +2,9 @@ import React, { useState, useEffect, useCallback, memo } from 'react';
 import Section from './Section';
 import { v4 as uuidv4 } from 'uuid';
 import { Nodes } from '../types/Map-Data';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamation, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export interface Map {
   data: Nodes;
@@ -32,37 +35,36 @@ function Map({ data }: Map): JSX.Element {
         <div className='map__legend'>
           <ul className='map__ul'>
             <li className='map__li'>
-              <div className='map__indication-circle'>✓</div>Person
-              Recommendation / Option
+              <FontAwesomeIcon
+                icon={faExclamation}
+                className='map__indication-circle'
+              />
+              Recommended Option
             </li>
             <li className='map__li'>
-              <div className='map__indication-circle map__indication-circle--option'>
-                ✓
-              </div>
-              Alternative Option - Pick this or purple
-            </li>
-            <li className='map__li'>
-              <div className='map__indication-circle map__indication-circle--not-recommended'>
-                ✓
-              </div>
-              Order in roadmap not strict (Learn anytime)
+              <FontAwesomeIcon
+                icon={faCheck}
+                className='map__indication-circle map__indication-circle--option'
+              />
+              Good Alternative
             </li>
             <li className='map__li'>
               <div className='map__indication-circle map__indication-circle--not-recommended'></div>
-              I wouldn't recommend
+              Not recommended
             </li>
           </ul>
         </div>
         <div className='map__resource-wrapper'>
           <div className='map__resource-text'>
-            Find the detailed version of this roadmap along with resources and
-            other roadmaps
+            Visit the repository for this project
           </div>
-          <div className='map__resource-link'>
-            <a href='http://roadmap.sh' target='blank'>
-              http://roadmap.sh
-            </a>
-          </div>
+          <a
+            className='map__github-link'
+            href='https://github.com/alexander-braun'
+            target='blank'
+          >
+            <FontAwesomeIcon icon={faGithub} className='map__github-icon' />
+          </a>
         </div>
       </div>
       {sections.map((section, index) => {

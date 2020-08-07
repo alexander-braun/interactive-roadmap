@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  height: 300px;
+  height: 45vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -8,6 +8,7 @@
   background-color: #fff;
   background-color: #fafbfc;
   box-shadow: inset 0 -1px 0 #e1e4e8;
+  position: relative;
 
   &__heading {
     color: black;
@@ -21,5 +22,19 @@
     font-size: 48px;
     font-size: 8rem;
     font-weight: 700;
+  }
+
+  &__svg-left {
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    width: 25vw;
+  }
+
+  &__svg-right {
+    right: 0;
+    position: absolute;
+    bottom: 0;
+    width: 20vw;
   }
 }

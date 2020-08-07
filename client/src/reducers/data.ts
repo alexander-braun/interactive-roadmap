@@ -11,7 +11,7 @@ import {
   ADD_CENTER_NODE,
 } from '../actions/constants';
 import { Nodes } from '../components/types/Map-Data';
-import { frontend } from '../roadmap-data/frontend';
+import { frontend } from '../roadmap-data/frontendmap';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = frontend;
@@ -30,7 +30,7 @@ export const data = (
         title: 'Edit me!',
         goalDate: Date.now(),
         status: 'Pending',
-        recommended: 'none',
+        recommended: 'own',
         children: [],
         mainKnot: false,
         resources: [],
@@ -49,7 +49,6 @@ export const data = (
             title: 'Edit me!',
             goalDate: Date.now(),
             status: 'Pending',
-            recommended: 'none',
             children: [],
             mainKnot: true,
             resources: [],

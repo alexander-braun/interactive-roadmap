@@ -3,14 +3,7 @@ export type Node = {
   title: string;
   goalDate: number;
   status: 'Pending' | 'In-Work' | 'Done';
-  recommended?:
-    | 'option'
-    | 'recommended'
-    | 'not-recommended'
-    | 'not-strict'
-    | 'not-recommended-option'
-    | 'not-recommended-none'
-    | 'none';
+  recommended?: 'option' | 'recommended' | 'not-recommended' | 'own';
   children: string[];
   mainKnot?: boolean;
   resources?: string[];
