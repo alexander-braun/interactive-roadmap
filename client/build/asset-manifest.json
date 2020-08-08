@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.256b1b92.chunk.css",
+    "main.js": "/static/js/main.fd844c6d.chunk.js",
+    "main.js.map": "/static/js/main.fd844c6d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.009aece9.js",
+    "runtime-main.js.map": "/static/js/runtime-main.009aece9.js.map",
+    "static/css/2.8dbe6964.chunk.css": "/static/css/2.8dbe6964.chunk.css",
+    "static/js/2.d189428f.chunk.js": "/static/js/2.d189428f.chunk.js",
+    "static/js/2.d189428f.chunk.js.map": "/static/js/2.d189428f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.6eaf21cc69c819b42d3c14b1141274ec.js": "/precache-manifest.6eaf21cc69c819b42d3c14b1141274ec.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.8dbe6964.chunk.css.map": "/static/css/2.8dbe6964.chunk.css.map",
+    "static/css/main.256b1b92.chunk.css.map": "/static/css/main.256b1b92.chunk.css.map",
+    "static/js/2.d189428f.chunk.js.LICENSE.txt": "/static/js/2.d189428f.chunk.js.LICENSE.txt",
+    "static/media/main.css": "/static/media/Quadrit.df2a34bd.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.009aece9.js",
+    "static/css/2.8dbe6964.chunk.css",
+    "static/js/2.d189428f.chunk.js",
+    "static/css/main.256b1b92.chunk.css",
+    "static/js/main.fd844c6d.chunk.js"
+  ]
+}
