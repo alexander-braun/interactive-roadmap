@@ -7,10 +7,9 @@
     "dev": "concurrently \"cd backend && npm run dev\" \"cd client && npm start\" ",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
     "start": "cd backend && node server",
-    "client": "cd client && npm start",
-    "server": "cd backend && nodemon server"
+    "client": "cd client && npm start"
   },
   "repository": {
     "type": "git",
