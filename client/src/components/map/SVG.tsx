@@ -4,10 +4,10 @@ interface SVG {
   parentRect: DOMRect;
   childRect: DOMRect;
   center?: boolean;
+  scrollHeight: number;
 }
 
 function SVG(props: SVG): JSX.Element | null {
-  const scrollHeight = window.pageYOffset;
   const insetSvgBy = 5;
 
   const moveToX =
@@ -18,8 +18,8 @@ function SVG(props: SVG): JSX.Element | null {
       : props.parentRect.x + insetSvgBy + 20;
 
   const moveToY = props.center
-    ? props.parentRect.y + props.parentRect.height + scrollHeight
-    : props.parentRect.y + props.parentRect.height / 2 + scrollHeight;
+    ? props.parentRect.y + props.parentRect.height + props.scrollHeight
+    : props.parentRect.y + props.parentRect.height / 2 + props.scrollHeight;
 
   const curveX =
     props.childRect.x < props.parentRect.x && !props.center
@@ -29,8 +29,8 @@ function SVG(props: SVG): JSX.Element | null {
       : props.childRect.x;
 
   const curveY = props.center
-    ? props.childRect.y + scrollHeight
-    : props.childRect.y + props.childRect.height / 2 + scrollHeight;
+    ? props.childRect.y + props.scrollHeight
+    : props.childRect.y + props.childRect.height / 2 + props.scrollHeight;
 
   const curveX1 =
     props.childRect.x > props.parentRect.x && !props.center

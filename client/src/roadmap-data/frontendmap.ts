@@ -361,103 +361,78 @@ export const frontend: Nodes = {
   },
   '7d1a85f5-04c0-4505-a0ec-90c801055a73': {
     children: [],
-    mainKnot: false,
   },
   'd0ee0e22-0c12-42b9-afb3-9502b69a7c0f': {
     children: [],
-    mainKnot: false,
   },
   'a13fc893-8223-412e-9a26-5308293e1794': {
     children: [],
-    mainKnot: false,
   },
   'e730fcef-9c4e-4790-be00-ef295c7ee211': {
     children: [],
-    mainKnot: false,
   },
   'ad915d3d-41a0-403b-963f-2cde2cd46b34': {
     children: [],
-    mainKnot: false,
   },
   '2fb40e5e-8304-4678-b637-3da6027d856f': {
     children: [],
-    mainKnot: false,
   },
   '5d8de85f-75df-4cb9-895c-0305b7064b17': {
     children: [],
-    mainKnot: false,
   },
   '0314e1ed-043e-457b-a918-97f75a6aa4c4': {
     children: [],
-    mainKnot: false,
   },
   'ec4e3afc-8598-4b51-8c11-eaa08add9653': {
     children: [],
-    mainKnot: false,
   },
   'ce164afd-d623-401d-ab2b-6249b5cc8a6a': {
     children: [],
-    mainKnot: false,
   },
   '24ceb1c2-c3d1-4b3b-8eca-d87ea82171c4': {
     children: [],
-    mainKnot: false,
   },
   '9e423f75-9b00-47f7-93e1-72f3ca07e3f6': {
     children: [],
-    mainKnot: false,
   },
   '71e04865-8b62-4db6-a25a-e671ad5bf956': {
     children: [],
-    mainKnot: false,
   },
   '248088d6-307b-4a53-af5f-d338e442b6c8': {
     children: [],
-    mainKnot: false,
   },
   'd9cec797-183c-4d5d-b458-56d56580e4ba': {
     children: [],
-    mainKnot: false,
   },
   'c391fa35-58c5-4316-abaf-ccc34cfcaddb': {
     children: [],
-    mainKnot: false,
   },
   'e14b4425-ab30-41ff-bfa0-bb8a9676528d': {
     children: [],
-    mainKnot: false,
   },
   'b5deab53-1e25-4c15-a17d-254f661332f2': {
     children: [],
-    mainKnot: false,
   },
   '51225c2b-705b-4c79-bf8a-8295f7a3844f': {
     children: ['f80c9908-e85e-4abf-9008-c834383ceb62'],
-    mainKnot: false,
   },
   '5b4e24c0-1d99-4a38-b65b-300fbbc69ca7': {
     children: [],
-    mainKnot: false,
   },
   '6f120b57-c540-4671-8d6c-c42f69ebc7bc': {
     children: [],
-    mainKnot: false,
   },
   'abcb76ba-8fe6-4c9d-be2e-9c2d39ed1759': {
     children: [],
-    mainKnot: false,
   },
   'f80c9908-e85e-4abf-9008-c834383ceb62': {
     children: [],
-    mainKnot: false,
   },
   '9a4ff0e1-d1e1-4448-a12f-dda42e361f66': {
     children: [],
-    mainKnot: false,
   },
   '57b8585c-637d-42bb-99e0-1ef5f61f882b': {
     children: [],
-    mainKnot: false,
   },
   'f145ef78-2d03-46ce-b1f6-7fee4c40a481': {
     children: [
@@ -468,59 +443,45 @@ export const frontend: Nodes = {
       'cf176822-2a21-401c-bf43-0bb11bc0e091',
       '45126098-de6c-4336-a286-29ad0b536641',
     ],
-    mainKnot: false,
   },
   '4548e3ba-e06a-4670-9260-de173983be28': {
     children: [],
-    mainKnot: false,
   },
   '006a1dfe-7d3b-4183-925c-9788ecf0816e': {
     children: [],
-    mainKnot: false,
   },
   'cfbcc7fa-bf22-42c4-bf3a-c91ff70a87a6': {
     children: [],
-    mainKnot: false,
   },
   '122bf525-2f1e-49e3-a26e-764a191088ae': {
     children: [],
-    mainKnot: false,
   },
   '277d8c6b-94f5-4f21-aa6c-1cfb1dd84418': {
     children: [],
-    mainKnot: false,
   },
   'cf176822-2a21-401c-bf43-0bb11bc0e091': {
     children: [],
-    mainKnot: false,
   },
   '45126098-de6c-4336-a286-29ad0b536641': {
     children: [],
-    mainKnot: false,
   },
   'd54335e4-245e-446a-aa1d-ee2eb1279e56': {
     children: [],
-    mainKnot: false,
   },
   '48619d45-2228-4fa2-9541-f9ad9651fca9': {
     children: [],
-    mainKnot: false,
   },
   'e86b7c9a-9152-408f-88f1-f3a6420da046': {
     children: [],
-    mainKnot: false,
   },
   '6868898b-2b1d-4baf-bad1-a9b87304ed29': {
     children: [],
-    mainKnot: false,
   },
   '455d1477-b8bf-4033-8db9-50d0b499b539': {
     children: [],
-    mainKnot: false,
   },
   '9de871d4-7a89-4c05-a568-9d38d338a55a': {
     children: [],
-    mainKnot: false,
   },
   '3c68069a-ea25-4215-b7f2-336288ee3cb3': {
     children: [
@@ -528,35 +489,27 @@ export const frontend: Nodes = {
       '8a0ad729-7a85-4bba-abbc-db9143b774c2',
       'd34401c2-47d8-4049-9c99-6363304a6bd7',
     ],
-    mainKnot: false,
   },
   '06174070-ce7f-49d8-bd91-f0eb1b443091': {
     children: [],
-    mainKnot: false,
   },
   '55a552a0-77de-4d6c-85ec-0c68c7955814': {
     children: [],
-    mainKnot: false,
   },
   '8fcbf334-3497-47ea-8cc6-3753a75ae59c': {
     children: [],
-    mainKnot: false,
   },
   '0fb9a2d0-3640-49e4-b9ec-0e05327f8a79': {
     children: [],
-    mainKnot: false,
   },
   '1082cd07-4b98-4ca8-88ec-778a15d63adc': {
     children: [],
-    mainKnot: false,
   },
   '8a0ad729-7a85-4bba-abbc-db9143b774c2': {
     children: [],
-    mainKnot: false,
   },
   'd34401c2-47d8-4049-9c99-6363304a6bd7': {
     children: [],
-    mainKnot: false,
   },
   '479cc89a-5702-4e05-9ea1-71fcab6df919': {
     children: [
@@ -566,90 +519,68 @@ export const frontend: Nodes = {
       'bef448d9-e19c-4963-a9bc-52eb1f24af9e',
       'e30fbf6c-afa0-41b0-98ff-1a1a2677942b',
     ],
-    mainKnot: false,
   },
   '75f5b635-3c37-4d17-95a4-110860a25cc2': {
     children: [],
-    mainKnot: false,
   },
   '57a21238-0d89-4880-84f4-53f296279be2': {
     children: [],
-    mainKnot: false,
   },
   'b524a78a-e8f4-4151-bd23-484275f8b0db': {
     children: [],
-    mainKnot: false,
   },
   'bef448d9-e19c-4963-a9bc-52eb1f24af9e': {
     children: [],
-    mainKnot: false,
   },
   'e30fbf6c-afa0-41b0-98ff-1a1a2677942b': {
     children: [],
-    mainKnot: false,
   },
   '951ddd9b-b407-450b-9e0e-54a505b45bf3': {
     children: [],
-    mainKnot: false,
   },
   '696b8b83-6c80-452f-b4f6-f31d08350bda': {
     children: [],
-    mainKnot: false,
   },
   '468172ae-daff-4f7f-848c-70e317513c66': {
     children: [],
-    mainKnot: false,
   },
   '51d260ce-0d12-415b-b68b-c4916cb7ce27': {
     children: [],
-    mainKnot: false,
   },
   'a0f7c40d-cc1d-4fd5-bc45-1c2a2030592e': {
     children: [],
-    mainKnot: false,
   },
   '5e428a98-f47f-4eb9-8ec2-5d1b7a288e04': {
     children: [],
-    mainKnot: false,
   },
   '51ff62bc-4398-49e4-bf68-7cc8d459d349': {
     children: [],
-    mainKnot: false,
   },
   '8eb249e0-2018-44b0-8280-4e4978dd66f8': {
     children: [],
-    mainKnot: false,
   },
   '7bfac2cc-da48-4927-8ab9-19227347289b': {
     children: [],
-    mainKnot: false,
   },
   '92297db2-0cb8-495f-96e9-d050187de74d': {
     children: [],
-    mainKnot: false,
   },
   '601d338d-75a5-418c-ba6a-50cf29956f2b': {
     children: [],
-    mainKnot: false,
   },
   'bd5f925f-41af-4565-b345-93ef1da4d410': {
     children: [],
-    mainKnot: false,
   },
   'cfa715cd-0146-4446-80b4-02ae7babb379': {
     children: [],
-    mainKnot: false,
   },
   'b8348f3d-894d-46e7-898c-19c789c6e5dc': {
     children: [],
-    mainKnot: false,
   },
   'dbbe42b4-5f65-45e1-9aa8-e1f6012901d9': {
     children: [],
-    mainKnot: false,
   },
   'd82a727e-4bb6-4fa2-a06a-20e74a94d22f': {
     children: [],
-    mainKnot: false,
   },
 };

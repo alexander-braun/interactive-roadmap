@@ -6,6 +6,7 @@ import { status } from './statuses';
 import { goalDates } from './goalDates';
 import { headings } from './headings';
 import { recommendations } from './recommendations';
+import { auth } from './auth';
 
 export const rootReducer = combineReducers({
   data,
@@ -15,6 +16,7 @@ export const rootReducer = combineReducers({
   goalDates,
   headings,
   recommendations,
+  auth,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

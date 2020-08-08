@@ -34,6 +34,14 @@
     }
   }
 
+  &--own-edit {
+    background-color: $own;
+
+    &:hover {
+      background-color: $own-hover;
+    }
+  }
+
   &--center {
     background-color: $center;
     font-weight: 600;
@@ -55,6 +63,10 @@
 
   &--not-recommended &__indication-circle {
     background-color: $not-recommended;
+  }
+
+  &--own-edit &__indication-circle {
+    background-color: $own-edit;
   }
 
   &__button-container {
@@ -102,7 +114,6 @@
     cursor: pointer;
     width: fit-content;
     text-align: left;
-    border-radius: 4px;
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
       'Lucida Console', Monaco, monospace;
     font-weight: 700;
@@ -156,27 +167,36 @@
     &--not-recommended {
       background-color: $not-recommended;
     }
+    &--own-edit {
+      background-color: $own-edit;
+    }
   }
 
   &__indication-circle:hover + &__recommend-choice &__indication-circle,
   &__recommend-choice:hover &__indication-circle {
-    animation: FadeInDots 0.2s both 0s;
+    animation: FadeInDots 0.2s forwards 0s;
     &--recommended {
-      animation-delay: 0s;
+      animation-delay: 0.3s;
       &:hover {
-        border: 1px solid black;
+        background-color: #ffdb85;
       }
     }
     &--option {
-      animation-delay: 0.1s;
+      animation-delay: 0.2s;
       &:hover {
-        border: 1px solid black;
+        background-color: #4995ff;
       }
     }
     &--not-recommended {
-      animation-delay: 0.2s;
+      animation-delay: 0.1s;
       &:hover {
-        border: 1px solid black;
+        background-color: #cc18cc;
+      }
+    }
+    &--own-edit {
+      animation-delay: 0s;
+      &:hover {
+        background-color: #e7e7e7;
       }
     }
     opacity: 1;
@@ -278,11 +298,6 @@
       height: 12px;
       border-radius: 50%;
       cursor: pointer;
-      border: 1px solid transparent;
-
-      &:hover {
-        border: 1px solid rgba(0, 0, 0, 0.65);
-      }
     }
 
     &--done-dot {
@@ -323,7 +338,6 @@
     font-size: 3.25rem;
     will-change: transform, opacity;
     transition-duration: 0.2s;
-    opacity: 0;
     cursor: pointer;
     background-color: #fff;
   }
@@ -331,18 +345,11 @@
   &__font-awesome-add-delete {
     color: #2a445d;
     font-size: 3rem;
-    border-radius: 100px;
+    border-radius: 50%;
     cursor: pointer;
     transition-duration: 0.2s;
-    opacity: 0;
     transform: scale(0);
-    background: rgb(255, 255, 255);
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 1) 50%,
-      #2a445d 53%,
-      #2a445d 100%
-    );
+    background: white;
   }
 
   &:hover &__font-awesome-add-delete {
@@ -353,8 +360,7 @@
 
   &--center &__font-awesome-add-delete {
     color: #436e96;
-    background: #436e96;
-    background: radial-gradient(circle, white 50%, #436e96 53%, #436e96 100%);
+    background: white;
   }
 
   &--option &__font-awesome-exclamation,

@@ -59,10 +59,12 @@ function Comments({ child, data, comments }: Comments): JSX.Element {
 
 interface StateProps {
   comments: CommentsState;
+  data: Nodes;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
   comments: state.comments,
+  data: state.data,
 });
 
 export default memo(connect(mapStateToProps)(Comments));

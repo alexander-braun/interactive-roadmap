@@ -34,7 +34,6 @@ export const data = (
           newObject[center_id] = {
             children: [],
             mainKnot: true,
-            resources: [],
           };
         } else {
           newObject[keys[i]] = newState[keys[i]];

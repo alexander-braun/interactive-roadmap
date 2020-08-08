@@ -53,16 +53,18 @@ function SvgGenerator({ data }: SvgGenerator) {
 
         const parentRect = parent.getBoundingClientRect();
         const childRect = child.getBoundingClientRect();
-
-        if (
+        const center =
           parent.classList.contains('card--center') &&
-          child.classList.contains('card--center')
-        ) {
+          child.classList.contains('card--center');
+
+        if (center) {
           bubbleDivs.push(
             <div
-              key={uuidv4()}
+              key={id[0] + 'bubble'}
               className='bubble'
-              onClick={() => dispatch(addCenternode(id[0]))}
+              onClick={() => {
+                dispatch(addCenternode(id[0]));
+              }}
               style={{
                 top:
                   scrollHeight -
@@ -76,16 +78,13 @@ function SvgGenerator({ data }: SvgGenerator) {
             ></div>
           );
         }
-
-        const center =
-          parent.classList.contains('card--center') &&
-          child.classList.contains('card--center');
         svgCollection.push(
           <Svg
             key={uuidv4()}
             center={center}
             parentRect={parentRect}
             childRect={childRect}
+            scrollHeight={scrollHeight}
           />
         );
       }

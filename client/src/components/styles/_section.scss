@@ -8,6 +8,7 @@
   grid-template-areas: 'sub-left left-side centered right-side sub-right';
   margin-left: 4vw;
   margin-right: 4vw;
+  //height: 200vh;
 
   &:first-child {
     margin-bottom: 5vh;
@@ -47,7 +48,7 @@
 .bubble {
   width: 35px;
   height: 35px;
-  border-radius: 100%;
+  border-radius: 50%;
   background: #fff;
   left: calc(50% - 22px);
   position: absolute;

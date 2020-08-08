@@ -5,12 +5,11 @@ import { Nodes } from '../types/Map-Data';
 interface Section {
   sectionId: string;
   data: Nodes;
-  index: number;
 }
 
 type Direction = 'left' | 'right';
 
-function Section({ sectionId, data, index }: Section) {
+function Section({ sectionId, data }: Section) {
   if (!data[sectionId]) {
     return null;
   }
@@ -30,13 +29,17 @@ function Section({ sectionId, data, index }: Section) {
   const generateSubChildren = (direction: Direction): string[] => {
     // Get the appropriate subchildren for the left or right position
     let childrenNew: string[] = [];
-    const middle: number = Math.ceil(children.length / 2);
-    for (let i = 0; i < children.length; i++) {
+    const childrenLength = children.length;
+    const middle: number = Math.ceil(childrenLength / 2);
+    const l = direction === 'left' ? middle : childrenLength;
+    const m = direction === 'left' ? 0 : middle;
+
+    for (let i = m; i < l; i++) {
       const subchildren = data[children[i]].children;
       if (subchildren.length) {
-        if (direction === 'left' && i < middle) {
+        if (direction === 'left') {
           childrenNew = [...childrenNew, ...subchildren];
-        } else if (direction === 'right' && i >= middle) {
+        } else if (direction === 'right') {
           childrenNew = [...childrenNew, ...subchildren];
         }
       }
@@ -47,25 +50,14 @@ function Section({ sectionId, data, index }: Section) {
 
   return (
     <div className='section'>
-      <Children
-        children={generateSubChildren('left')}
-        subchildren
-        left
-        data={data}
-      />
-      <Children children={generateChildren('left')} left data={data} />
-      <Children children={[sectionId]} center={true} data={data} />
+      <Children children={generateSubChildren('left')} subchildren left />
+      <Children children={generateChildren('left')} left />
+      <Children children={[sectionId]} center={true} />
       <Children
         children={children.length === 1 ? [] : generateChildren('right')}
         right
-        data={data}
       />
-      <Children
-        children={generateSubChildren('right')}
-        subchildren
-        right
-        data={data}
-      />
+      <Children children={generateSubChildren('right')} subchildren right />
     </div>
   );
 }

@@ -76,6 +76,10 @@
     &--option {
       background-color: $option;
     }
+
+    &--own-edit {
+      background-color: $own-edit;
+    }
   }
 
   &__resource-text {
