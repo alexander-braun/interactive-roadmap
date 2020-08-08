@@ -45,8 +45,8 @@ router.post(
 );
 
 // @route       GET api/presets
-// @description Get all presets
-// @access      Public
+// @description Get all presets of user
+// @access      Private
 
 router.get('/', auth, async (req, res) => {
   try {
@@ -55,6 +55,24 @@ router.get('/', auth, async (req, res) => {
       return res.status(404).json({ msg: 'No presets found' });
     }
     res.json(presets);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route       GET api/presets/:id
+// @description Get a preset
+// @access      Private
+
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const preset = await Preset.findById(req.params.id);
+    console.log(req.params.id);
+    if (!preset) {
+      return res.status(404).json({ msg: 'No preset found' });
+    }
+    res.json(preset);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');

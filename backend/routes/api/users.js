@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const auth = require('../../middleware/auth');
 
 //User model
 const User = require('../../models/User');
@@ -68,5 +69,40 @@ router.post(
     }
   }
 );
+
+// @route       GET api/users/
+// @description Get all users
+// @access      Private
+
+router.get('/', auth, async (req, res) => {
+  try {
+    const users = await User.find();
+    console.log(req.params.id);
+    if (!users) {
+      return res.status(404).json({ msg: 'No users found' });
+    }
+    res.json(users);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route       GET api/users/:id
+// @description Get user by id
+// @access      Private
+
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ msg: 'No users found' });
+    }
+    res.json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

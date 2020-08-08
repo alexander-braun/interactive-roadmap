@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { AxiosResponse } from 'axios';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -9,12 +8,24 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   CLEAR_PROFILE,
+  RegisterUser,
+  Login,
 } from './constants';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
 
+//Thunk dispatch stuff
+import { Action } from 'redux';
+import { AppState } from '../reducers/index';
+import { ThunkAction } from 'redux-thunk';
+
 //Load User
-export const loadUser = () => async (dispatch: any) => {
+export const loadUser = (): ThunkAction<
+  void,
+  AppState,
+  unknown,
+  Action<string>
+> => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -32,16 +43,17 @@ export const loadUser = () => async (dispatch: any) => {
   }
 };
 
-export interface RegisterUser {
-  name: string;
-  email: string;
-  password: string;
-}
-
 //Register User
-export const register = ({ name, email, password }: RegisterUser) => async (
-  dispatch: any
-) => {
+export const register = ({
+  name,
+  email,
+  password,
+}: RegisterUser): ThunkAction<
+  void,
+  AppState,
+  unknown,
+  Action<string>
+> => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -68,26 +80,21 @@ export const register = ({ name, email, password }: RegisterUser) => async (
   }
 };
 
-interface Login {
-  email: string;
-  password: string;
-}
-
-interface Data {
-  token: string;
-}
-
 //Login User
-export const login = ({ email, password }: Login) => async (dispatch: any) => {
+export const login = ({
+  email,
+  password,
+}: Login): ThunkAction<void, AppState, unknown, Action<string>> => async (
+  dispatch
+) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
-
   const body = JSON.stringify({ email, password });
   try {
-    const res: AxiosResponse<any> = await axios.post('/api/auth', body, config);
+    const res = await axios.post('/api/auth', body, config);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -103,7 +110,6 @@ export const login = ({ email, password }: Login) => async (dispatch: any) => {
         );
       }
     }
-
     dispatch({
       type: LOGIN_FAIL,
     });
@@ -111,7 +117,12 @@ export const login = ({ email, password }: Login) => async (dispatch: any) => {
 };
 
 //Logout User /clear profile
-export const logout = () => (dispatch: any) => {
+export const logout = (): ThunkAction<
+  void,
+  AppState,
+  unknown,
+  Action<string>
+> => (dispatch) => {
   dispatch({
     type: CLEAR_PROFILE,
   });

@@ -112,7 +112,15 @@ export interface SetCardHeading {
   heading: CardHeading;
   id: ID;
 }
-
+export interface RegisterUser {
+  name: string;
+  email: string;
+  password: string;
+}
+export interface Login {
+  email: string;
+  password: string;
+}
 export type PayloadUser = {
   date: string;
   email: string;
@@ -120,22 +128,18 @@ export type PayloadUser = {
   __v: number;
   _id: string;
 };
-
 export interface LoadUser {
   type: typeof USER_LOADED;
   payload: PayloadUser;
 }
 export interface RegisterSuccess {
   type: typeof REGISTER_SUCCESS;
-  payload: string;
+  payload: { token: string };
 }
-export type token = string;
-
 export interface LoginSuccess {
   type: typeof LOGIN_SUCCESS;
   payload: { token: string };
 }
-
 export interface RegisterFail {
   type: typeof REGISTER_FAIL;
 }
@@ -148,9 +152,6 @@ export interface LoginFail {
 export interface Logout {
   type: typeof LOGOUT;
 }
-export interface ClearProfile {
-  type: typeof CLEAR_PROFILE;
-}
 
 export type AuthActionTypes =
   | LoadUser
@@ -159,8 +160,7 @@ export type AuthActionTypes =
   | RegisterFail
   | AuthError
   | LoginFail
-  | Logout
-  | ClearProfile;
+  | Logout;
 export type RecommendationActionTypes = ChangeRecommendation;
 export type DateActionTypes = ChangeDate;
 export type ModalActionTypes = ToggleCalendarModal | LoginRegisterModal;

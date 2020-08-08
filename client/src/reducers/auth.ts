@@ -28,17 +28,14 @@ export const auth = (state: Auth = initialState, action: AppActions): Auth => {
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      if (typeof action.payload !== 'string') {
-        const { token } = action.payload;
-        localStorage.setItem('token', token);
-        console.log();
-        return {
-          ...state,
-          token,
-          isAuthenticated: true,
-          loading: false,
-        };
-      } else return state;
+      const { token } = action.payload;
+      localStorage.setItem('token', token);
+      return {
+        ...state,
+        token,
+        isAuthenticated: true,
+        loading: false,
+      };
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:

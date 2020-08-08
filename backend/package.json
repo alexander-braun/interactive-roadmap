@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "dev": "npm run server"
+  },
+  "author": "Alexander Braun",
+  "license": "MIT",
+  "dependencies": {
+    "@types/redux-thunk": "^2.1.0",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "gravatar": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.10",
+    "prettier": "^2.0.5",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.3"
+  }
+}

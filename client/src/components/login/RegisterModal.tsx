@@ -4,7 +4,8 @@ import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AppState } from '../../reducers';
-import { register, RegisterUser } from '../../actions/authenticate';
+import { register } from '../../actions/authenticate';
+import { RegisterUser } from '../../actions/constants';
 
 interface RegisterModal {
   isAuthenticated: boolean | null;
