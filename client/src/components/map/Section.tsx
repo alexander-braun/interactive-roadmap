@@ -4,16 +4,16 @@ import { Nodes } from '../types/Map-Data';
 
 interface Section {
   sectionId: string;
-  data: Nodes;
+  nodes: Nodes;
 }
 
 type Direction = 'left' | 'right';
 
-function Section({ sectionId, data }: Section) {
-  if (!data[sectionId]) {
+function Section({ sectionId, nodes }: Section) {
+  if (!nodes[sectionId]) {
     return null;
   }
-  const children: string[] = data[sectionId].children;
+  const children: string[] = nodes[sectionId].children;
 
   const generateChildren = (direction: Direction): string[] => {
     if (!children) return [];
@@ -35,7 +35,7 @@ function Section({ sectionId, data }: Section) {
     const m = direction === 'left' ? 0 : middle;
 
     for (let i = m; i < l; i++) {
-      const subchildren = data[children[i]].children;
+      const subchildren = nodes[children[i]].children;
       if (subchildren.length) {
         if (direction === 'left') {
           childrenNew = [...childrenNew, ...subchildren];

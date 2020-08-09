@@ -3,6 +3,8 @@ import {
   ADD_COMMENT,
   CHANGE_COMMENT,
   DELETE_COMMENT,
+  DELETE_ALL_COMMENTS,
+  ADD_COMMENTS,
   Comments,
 } from '../actions/constants';
 
@@ -16,6 +18,8 @@ export const comments = (
 ): Comments => {
   const newState = Object.assign({}, state);
   switch (action.type) {
+    case ADD_COMMENTS:
+      return action.comments;
     case ADD_COMMENT:
       if (action.comment === '') {
         if (newState[action.id]) {
@@ -36,6 +40,8 @@ export const comments = (
     case CHANGE_COMMENT:
       newState[action.id][action.index] = action.comment;
       return newState;
+    case DELETE_ALL_COMMENTS:
+      return {};
     default:
       return state;
   }

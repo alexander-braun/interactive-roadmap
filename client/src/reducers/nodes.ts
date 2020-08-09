@@ -3,6 +3,8 @@ import {
   DELETE_CHILDNODE,
   AppActions,
   ADD_CENTER_NODE,
+  DELETE_ALL_NODES,
+  ADD_NODES,
 } from '../actions/constants';
 import { Nodes } from '../components/types/Map-Data';
 import { frontend } from '../roadmap-data/frontendmap';
@@ -10,12 +12,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 const initialState = frontend;
 
-export const data = (
+export const nodes = (
   state: Nodes = initialState,
   action: AppActions
 ): Nodes => {
   const newState = Object.assign({}, state);
   switch (action.type) {
+    case ADD_NODES:
+      return action.nodes;
+    case DELETE_ALL_NODES:
+      return {};
     case ADD_CHILDNODE:
       const child_id = uuidv4();
       newState[action.id].children.push(child_id);

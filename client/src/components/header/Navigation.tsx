@@ -4,18 +4,25 @@ import { AppState } from '../../reducers';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../actions/authenticate';
+import { PayloadUser, NewPreset } from '../../actions/constants';
+import History from '../helper/history';
 
 export type IDs = [string, string][];
 
 interface Navigation {
   isAuthenticated: boolean | null;
+  user: PayloadUser | null;
 }
 
-function Navigation({ isAuthenticated }: Navigation): JSX.Element {
+function Navigation({ isAuthenticated, user }: Navigation): JSX.Element {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logout());
+  };
+
+  const handleSave = () => {
+    if (!isAuthenticated) History.push('/login');
   };
 
   return (
@@ -26,7 +33,9 @@ function Navigation({ isAuthenticated }: Navigation): JSX.Element {
           Interactive Roadmap
         </Link>
         <div className='menue-bar__links'>
-          <button className='menue-bar__link'>Save</button>
+          <button className='menue-bar__link' onClick={handleSave}>
+            Save
+          </button>
           <Link
             to={`${isAuthenticated ? '/load' : '/login'}`}
             className='menue-bar__link'
@@ -57,10 +66,12 @@ function Navigation({ isAuthenticated }: Navigation): JSX.Element {
 
 interface StateProps {
   isAuthenticated: boolean | null;
+  user: PayloadUser | null;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
   isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps)(Navigation);

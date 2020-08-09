@@ -13,11 +13,11 @@ import { Comments as CommentsState } from '../../actions/constants';
 
 interface Comments {
   child: string;
-  data: Nodes;
+  nodes: Nodes;
   comments: CommentsState;
 }
 
-function Comments({ child, data, comments }: Comments): JSX.Element {
+function Comments({ child, nodes, comments }: Comments): JSX.Element {
   const dispatch = useDispatch();
 
   const handleAddNewComment = (id: ID): void => {
@@ -25,7 +25,7 @@ function Comments({ child, data, comments }: Comments): JSX.Element {
   };
   return (
     <>
-      {!data[child].mainKnot && (
+      {!nodes[child].mainKnot && (
         <div className='comments-row'>
           {comments[child] ? (
             <ul className='comments-row__list'>
@@ -59,12 +59,12 @@ function Comments({ child, data, comments }: Comments): JSX.Element {
 
 interface StateProps {
   comments: CommentsState;
-  data: Nodes;
+  nodes: Nodes;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
   comments: state.comments,
-  data: state.data,
+  nodes: state.nodes,
 });
 
 export default memo(connect(mapStateToProps)(Comments));

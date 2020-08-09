@@ -79,6 +79,25 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
+// @route       PUT api/presets/:id
+// @description Update Preset by id
+// @access      Private
+
+router.put('/:id', auth, async (req, res) => {
+  try {
+    const preset = await Preset.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!preset) {
+      return res.status(404).json({ msg: 'No preset found' });
+    }
+    res.json(preset);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route       DELETE api/presets/:id
 // @description Delete a preset
 // @access      Private

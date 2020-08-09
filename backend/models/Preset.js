@@ -28,6 +28,10 @@ const PresetSchema = new mongoose.Schema({
         mainKnot: true,
         children: [],
       },
+      '74050a71-947b-42d3-ae83-66907a1ac017': {
+        mainKnot: true,
+        children: [],
+      },
     },
   },
   goalDates: {

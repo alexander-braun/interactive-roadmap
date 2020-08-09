@@ -5,7 +5,10 @@ import {
   ADD_PRESET,
   DELETE_PRESET_SUCCESS,
   DELETE_PRESET_ERROR,
+  UPDATE_PRESET_SUCCESS,
+  UPDATE_PRESET_ERROR,
   Preset,
+  NewPreset,
   ID,
 } from './constants';
 
@@ -36,7 +39,7 @@ export const loadPresets = (): ThunkAction<
 
 //Add Preset
 export const addPreset = (
-  formData: Preset
+  formData: NewPreset
 ): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
   try {
     const config = {
@@ -56,6 +59,26 @@ export const addPreset = (
         msg: error.response.statusText,
         status: error.response.status,
       },
+    });
+  }
+};
+
+//Update a preset
+export const updatePreset = (
+  id: ID,
+  preset: Preset
+): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/presets/${id}`, preset);
+    dispatch({
+      type: UPDATE_PRESET_SUCCESS,
+      payload: res.data,
+      id: id,
+    });
+  } catch (error) {
+    console.error('ERROR', error);
+    dispatch({
+      type: UPDATE_PRESET_ERROR,
     });
   }
 };

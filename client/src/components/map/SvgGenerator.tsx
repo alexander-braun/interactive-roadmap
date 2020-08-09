@@ -9,24 +9,24 @@ import { useDispatch } from 'react-redux';
 import { addCenternode } from '../../actions/addCenternode';
 
 interface SvgGenerator {
-  data: Nodes;
+  nodes: Nodes;
 }
 
 export type IDs = [string, string][];
 
-function SvgGenerator({ data }: SvgGenerator) {
+function SvgGenerator({ nodes }: SvgGenerator) {
   const dispatch = useDispatch();
   const generateSvgParentsAndChildrenIds = useCallback((): IDs => {
     const pairs: IDs = [];
-    const nodeIds = Object.keys(data);
+    const nodeIds = Object.keys(nodes);
     const mainKnots: string[] = [];
 
     for (const id of nodeIds) {
-      if (data[id].mainKnot) {
+      if (nodes[id].mainKnot) {
         mainKnots.push(id);
       }
 
-      const children = data[id].children;
+      const children = nodes[id].children;
       for (const child of children) {
         pairs.push([id, child]);
       }
@@ -37,7 +37,7 @@ function SvgGenerator({ data }: SvgGenerator) {
     }
 
     return pairs;
-  }, [data]);
+  }, [nodes]);
 
   const generateSvg = useCallback(
     (ids: [string, string][]): void => {
@@ -96,7 +96,7 @@ function SvgGenerator({ data }: SvgGenerator) {
 
   useEffect(() => {
     generateSvg(generateSvgParentsAndChildrenIds());
-  }, [generateSvgParentsAndChildrenIds, data, generateSvg]);
+  }, [generateSvgParentsAndChildrenIds, nodes, generateSvg]);
 
   const [bubbles, setBubbles] = useState<JSX.Element[]>();
   const [svgs, setSvgs] = useState<any>([]);
@@ -125,11 +125,11 @@ function SvgGenerator({ data }: SvgGenerator) {
 }
 
 interface StateProps {
-  data: Nodes;
+  nodes: Nodes;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-  data: state.data,
+  nodes: state.nodes,
 });
 
 export default memo(connect(mapStateToProps)(SvgGenerator));

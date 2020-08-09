@@ -55,7 +55,6 @@
   transform-origin: center;
   transition: background 0.5s;
   cursor: pointer;
-  z-index: 4;
   border: 4px solid $add-node-color;
 
   &::before {

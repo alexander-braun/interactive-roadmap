@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { data } from './data';
+import { nodes } from './nodes';
 import { calendarModal } from './calendarModal';
 import { comments } from './comments';
 import { status } from './statuses';
@@ -10,7 +10,7 @@ import { auth } from './auth';
 import { presets } from './presets';
 
 export const rootReducer = combineReducers({
-  data,
+  nodes,
   calendarModal,
   comments,
   status,

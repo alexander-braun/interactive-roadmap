@@ -19,7 +19,7 @@ import { loadPresets } from '../actions/presets';
 import { useDispatch } from 'react-redux';
 
 interface AppProps {
-  data: Nodes;
+  nodes: Nodes;
   isAuthenticated: boolean | null;
 }
 
@@ -28,7 +28,7 @@ if (localStorage.token) {
 }
 
 export type IDs = [string, string][];
-function App({ data, isAuthenticated }: AppProps): JSX.Element {
+function App({ nodes, isAuthenticated }: AppProps): JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function App({ data, isAuthenticated }: AppProps): JSX.Element {
       </Router>
       <Navigation />
       <Header />
-      <Map data={data} />
+      <Map nodes={nodes} />
       <SvgGenerator />
       <CalendarModal />
     </div>
@@ -61,12 +61,12 @@ function App({ data, isAuthenticated }: AppProps): JSX.Element {
 }
 
 interface StateProps {
-  data: Nodes;
+  nodes: Nodes;
   isAuthenticated: boolean | null;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-  data: state.data,
+  nodes: state.nodes,
   isAuthenticated: state.auth.isAuthenticated,
 });
 

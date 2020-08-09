@@ -13,6 +13,19 @@ export const CHANGE_DATE = 'CHANGE_DATE';
 export const ADD_CENTER_NODE = 'ADD_CENTER_NODE';
 export const CHANGE_RECOMMENDATION = 'CHANGE_RECOMMENDATION';
 export const TOGGLE_LOGIN_REGISTER_MODAL = 'TOGGLE_LOGIN_REGISTER_MODAL';
+export const DELETE_ALL_COMMENTS = 'DELETE_ALL_COMMENTS';
+export const DELETE_ALL_NODES = 'DELETE_ALL_NODES';
+export const DELETE_ALL_DATES = 'DELETE_ALL_DATES';
+export const DELETE_ALL_HEADINGS = 'DELETE_ALL_HEADINGS';
+export const DELETE_ALL_RECOMMENDATIONS = 'DELETE_ALL_RECOMMENDATIONS';
+export const DELETE_ALL_STATUSES = 'DELETE_ALL_STATUSES';
+export const ADD_COMMENTS = 'ADD_COMMENTS';
+export const ADD_DATES = 'ADD_DATES';
+export const ADD_HEADINGS = 'ADD_HEADINGS';
+export const ADD_RECOMMENDATIONS = 'ADD_RECOMMENDATIONS';
+export const ADD_STATUSES = 'ADD_STATUSES';
+export const UPDATE_PRESET_SUCCESS = 'UPDATE_PRESET_SUCCESS';
+export const UPDATE_PRESET_ERROR = 'UPDATE_PRESET_ERROR';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
@@ -29,6 +42,7 @@ export const PRESET_ERROR = 'PRESET_ERROR';
 export const ADD_PRESET = 'ADD_PRESET';
 export const DELETE_PRESET_ERROR = 'DELETE_PRESET_ERROR';
 export const DELETE_PRESET_SUCCESS = 'DELETE_PRESET_SUCCESS';
+export const ADD_NODES = 'ADD_NODES';
 
 export type Comment = string;
 export type ID = string;
@@ -77,10 +91,24 @@ export interface ChangeRecommendation {
   recommendation: Recommendation;
   id: ID;
 }
+export interface DeleteAllRecommendations {
+  type: typeof DELETE_ALL_RECOMMENDATIONS;
+}
+export interface AddRecommendations {
+  type: typeof ADD_RECOMMENDATIONS;
+  recommendations: Recommendations;
+}
 export interface ChangeDate {
   type: typeof CHANGE_DATE;
   date: number;
   id: ID;
+}
+export interface AddDates {
+  type: typeof ADD_DATES;
+  dates: Dates;
+}
+export interface DeleteAllDates {
+  type: typeof DELETE_ALL_DATES;
 }
 export interface ToggleCalendarModal {
   type: typeof TOGGLE_CALENDAR_MODAL;
@@ -91,10 +119,21 @@ export interface SetStatus {
   status: Status;
   id: ID;
 }
+export interface DeleteAllStatuses {
+  type: typeof DELETE_ALL_STATUSES;
+}
+export interface AddStatuses {
+  type: typeof ADD_STATUSES;
+  statuses: Statuses;
+}
 export interface AddComment {
   type: typeof ADD_COMMENT;
   comment: Comment;
   id: ID;
+}
+export interface AddComments {
+  type: typeof ADD_COMMENTS;
+  comments: Comments;
 }
 export interface ChangeComment {
   type: typeof CHANGE_COMMENT;
@@ -107,6 +146,9 @@ export interface DeleteComment {
   id: ID;
   index: Index;
 }
+export interface DeleteAllComments {
+  type: typeof DELETE_ALL_COMMENTS;
+}
 export interface AddChildnode {
   type: typeof ADD_CHILDNODE;
   id: ID;
@@ -114,6 +156,13 @@ export interface AddChildnode {
 export interface AddCenternode {
   type: typeof ADD_CENTER_NODE;
   id: ID;
+}
+export interface DeleteAllNodes {
+  type: typeof DELETE_ALL_NODES;
+}
+export interface AddNodes {
+  type: typeof ADD_NODES;
+  nodes: Nodes;
 }
 export interface DeleteChildnode {
   type: typeof DELETE_CHILDNODE;
@@ -123,6 +172,13 @@ export interface SetCardHeading {
   type: typeof SET_CARD_HEADING;
   heading: CardHeading;
   id: ID;
+}
+export interface DeleteAllHeadings {
+  type: typeof DELETE_ALL_HEADINGS;
+}
+export interface AddHeadings {
+  type: typeof ADD_HEADINGS;
+  headings: Headings;
 }
 export interface RegisterUser {
   name: string;
@@ -178,12 +234,24 @@ export type Preset = {
   __v: number;
   __id: string;
 };
+export type NewPreset = {
+  user: PayloadUser;
+  name: string;
+};
+export interface UpdatePresetSuccess {
+  type: typeof UPDATE_PRESET_SUCCESS;
+  payload: Preset;
+  id: ID;
+}
 export interface LoadPresets {
   type: typeof LOAD_PRESETS;
   payload: Preset[];
 }
 export interface PresetError {
   type: typeof PRESET_ERROR;
+}
+export interface UpdatePresetErrror {
+  type: typeof UPDATE_PRESET_ERROR;
 }
 export interface AddPreset {
   type: typeof ADD_PRESET;
@@ -202,7 +270,9 @@ export type PresetActionTypes =
   | PresetError
   | AddPreset
   | DeletePresetError
-  | DeletePresetSuccess;
+  | DeletePresetSuccess
+  | UpdatePresetSuccess
+  | UpdatePresetErrror;
 export type AlertActionTypes = SetAlert;
 export type AuthActionTypes =
   | LoadUser
@@ -212,16 +282,28 @@ export type AuthActionTypes =
   | AuthError
   | LoginFail
   | Logout;
-export type RecommendationActionTypes = ChangeRecommendation;
-export type DateActionTypes = ChangeDate;
+export type RecommendationActionTypes =
+  | ChangeRecommendation
+  | DeleteAllRecommendations
+  | AddRecommendations;
+export type DateActionTypes = ChangeDate | DeleteAllDates | AddDates;
 export type ModalActionTypes = ToggleCalendarModal | LoginRegisterModal;
-export type StatusActionTypes = SetStatus;
-export type CommentActionTypes = AddComment | ChangeComment | DeleteComment;
+export type StatusActionTypes = SetStatus | DeleteAllStatuses | AddStatuses;
+export type CommentActionTypes =
+  | AddComment
+  | AddComments
+  | ChangeComment
+  | DeleteComment
+  | DeleteAllComments;
 export type NodeActionTypes =
   | AddChildnode
   | DeleteChildnode
   | SetCardHeading
-  | AddCenternode;
+  | DeleteAllHeadings
+  | AddHeadings
+  | AddCenternode
+  | DeleteAllNodes
+  | AddNodes;
 
 export type AppActions =
   | StatusActionTypes
