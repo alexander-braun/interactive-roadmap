@@ -1,7 +1,13 @@
-import { SET_ALERT, REMOVE_ALERT } from './constants';
+import { SET_ALERT, REMOVE_ALERT, AppActions, SetAlert } from './constants';
 import { v4 as uuidv4 } from 'uuid';
+import { Action } from 'redux';
+import { AppState } from '../reducers/index';
+import { ThunkAction } from 'redux-thunk';
 
-export const setAlert = (msg: any, alertType: any) => (dispatch: any) => {
+export const setAlert = (
+  msg: string,
+  alertType: string
+): ThunkAction<void, AppState, unknown, Action<string>> => (dispatch: any) => {
   const id = uuidv4();
   dispatch({
     type: SET_ALERT,

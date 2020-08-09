@@ -27,7 +27,12 @@ function Navigation({ isAuthenticated }: Navigation): JSX.Element {
         </Link>
         <div className='menue-bar__links'>
           <button className='menue-bar__link'>Save</button>
-          <button className='menue-bar__link'>Load</button>
+          <Link
+            to={`${isAuthenticated ? '/load' : '/login'}`}
+            className='menue-bar__link'
+          >
+            Load
+          </Link>
 
           {!isAuthenticated ? (
             <>

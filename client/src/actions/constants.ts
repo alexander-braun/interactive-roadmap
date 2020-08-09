@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { Nodes } from '../components/types/Map-Data';
 
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const CHANGE_COMMENT = 'CHANGE_COMMENT';
@@ -23,6 +24,11 @@ export const LOGOUT = 'LOGOUT';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const LOAD_PRESETS = 'LOAD_PRESETS';
+export const PRESET_ERROR = 'PRESET_ERROR';
+export const ADD_PRESET = 'ADD_PRESET';
+export const DELETE_PRESET_ERROR = 'DELETE_PRESET_ERROR';
+export const DELETE_PRESET_SUCCESS = 'DELETE_PRESET_SUCCESS';
 
 export type Comment = string;
 export type ID = string;
@@ -50,6 +56,12 @@ export type Recommendation =
 export type Recommendations = {
   [key: string]: Recommendation;
 };
+export interface SetAlert {
+  type: typeof SET_ALERT;
+  msg: string;
+  alertType: string;
+}
+export interface RemoveAlert {}
 export type LoginRegisterModalState = boolean;
 export interface Auth {
   token: string | null;
@@ -152,7 +164,46 @@ export interface LoginFail {
 export interface Logout {
   type: typeof LOGOUT;
 }
+export type Preset = {
+  user: PayloadUser;
+  description?: string;
+  name: string;
+  date: string;
+  comments?: Comments;
+  nodes: Nodes;
+  goalDates?: Dates;
+  headings: Headings;
+  recommendations?: Recommendations;
+  statuses?: Statuses;
+  __v: number;
+  __id: string;
+};
+export interface LoadPresets {
+  type: typeof LOAD_PRESETS;
+  payload: Preset[];
+}
+export interface PresetError {
+  type: typeof PRESET_ERROR;
+}
+export interface AddPreset {
+  type: typeof ADD_PRESET;
+  payload: Preset;
+}
+export interface DeletePresetError {
+  type: typeof DELETE_PRESET_ERROR;
+}
+export interface DeletePresetSuccess {
+  type: typeof DELETE_PRESET_SUCCESS;
+  id: string;
+}
 
+export type PresetActionTypes =
+  | LoadPresets
+  | PresetError
+  | AddPreset
+  | DeletePresetError
+  | DeletePresetSuccess;
+export type AlertActionTypes = SetAlert;
 export type AuthActionTypes =
   | LoadUser
   | RegisterSuccess
@@ -179,4 +230,6 @@ export type AppActions =
   | ModalActionTypes
   | DateActionTypes
   | RecommendationActionTypes
-  | AuthActionTypes;
+  | AuthActionTypes
+  | AlertActionTypes
+  | PresetActionTypes;

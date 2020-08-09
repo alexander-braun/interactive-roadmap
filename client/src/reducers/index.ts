@@ -7,6 +7,7 @@ import { goalDates } from './goalDates';
 import { headings } from './headings';
 import { recommendations } from './recommendations';
 import { auth } from './auth';
+import { presets } from './presets';
 
 export const rootReducer = combineReducers({
   data,
@@ -17,6 +18,7 @@ export const rootReducer = combineReducers({
   headings,
   recommendations,
   auth,
+  presets,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

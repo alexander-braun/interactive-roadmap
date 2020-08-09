@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Map from './map/Map';
 import '../styles/main.css';
 import { Nodes } from './types/Map-Data';
@@ -13,6 +13,10 @@ import RegisterModal from './login/RegisterModal';
 import { Router, Route, Switch } from 'react-router-dom';
 import History from './helper/history';
 import setAuthToken from '../utils/setAuthToken';
+import LoadPresetModal from './load-preset/LoadPresetModal';
+import { loadUser } from '../actions/authenticate';
+import { loadPresets } from '../actions/presets';
+import { useDispatch } from 'react-redux';
 
 interface AppProps {
   data: Nodes;
@@ -25,33 +29,33 @@ if (localStorage.token) {
 
 export type IDs = [string, string][];
 function App({ data, isAuthenticated }: AppProps): JSX.Element {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+    dispatch(loadPresets());
+  }, []);
+
   return (
     <div className='App'>
       <Router history={History}>
         <Switch>
-          <Route exact path='/'>
-            <Navigation />
-            <Header />
-            <Map data={data} />
-            <SvgGenerator />
-            <CalendarModal />
-          </Route>
           <Route exact path='/login'>
-            <Navigation />
-            <Header />
-            <Map data={data} />
-            <SvgGenerator />
             <LoginModal />
           </Route>
           <Route exact path='/register'>
-            <Navigation />
-            <Header />
-            <Map data={data} />
-            <SvgGenerator />
             <RegisterModal />
+          </Route>
+          <Route exact path='/load'>
+            <LoadPresetModal />
           </Route>
         </Switch>
       </Router>
+      <Navigation />
+      <Header />
+      <Map data={data} />
+      <SvgGenerator />
+      <CalendarModal />
     </div>
   );
 }

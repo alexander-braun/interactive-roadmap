@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import LoginSvg from './LoginSvg';
+import RegisterSvg from './RegisterSvg';
 import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -48,7 +48,7 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
   return (
     <div className='register-modal' onClick={handleClick}>
       <div className='register-modal__body'>
-        <LoginSvg />
+        <RegisterSvg />
         <h1>Register</h1>
         <form name='form' className='register-modal__form'>
           <div className='register-modal__form-group'>
@@ -61,11 +61,11 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
               onChange={handleChange}
             />
           </div>
-          <div className='login-modal__form-group'>
+          <div className='register-modal__form-group'>
             <label htmlFor='email'>Email</label>
             <input
               type='email'
-              className='login-modal__form-control'
+              className='register-modal__form-control'
               name='email'
               value={formData.email}
               onChange={handleChange}
@@ -89,7 +89,7 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
               Register
             </button>
             <button
-              className='login-modal__btn'
+              className='register-modal__btn'
               onClick={() => History.push('/login')}
             >
               Login

@@ -71,7 +71,7 @@ export const register = ({
     const errors = error.response.data.errors;
     if (errors) {
       errors.forEach((error: NodeJS.ErrnoException) =>
-        dispatch(setAlert(error.code, 'danger'))
+        dispatch(setAlert(error.code as string, 'danger'))
       );
     }
     dispatch({
@@ -106,7 +106,7 @@ export const login = ({
       const errors = error.response.data.errors;
       if (errors) {
         errors.forEach((error: NodeJS.ErrnoException) =>
-          dispatch(setAlert(error.code, 'danger'))
+          dispatch(setAlert(error.code as string, 'danger'))
         );
       }
     }
