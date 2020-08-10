@@ -22,7 +22,7 @@ const initialState: Preset[] = [
     nodes: {},
     headings: {},
     __v: 0,
-    __id: '',
+    _id: '',
   },
 ];
 
@@ -36,7 +36,7 @@ export const presets = (state = initialState, action: AppActions) => {
     case DELETE_PRESET_ERROR:
       return state;
     case DELETE_PRESET_SUCCESS:
-      return state.filter((preset) => preset.__id !== action.id);
+      return state.filter((preset) => preset._id !== action.id);
     default:
       return state;
   }

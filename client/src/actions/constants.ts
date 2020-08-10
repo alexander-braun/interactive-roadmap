@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { Nodes } from '../components/types/Map-Data';
 
 export const ADD_COMMENT = 'ADD_COMMENT';
@@ -26,6 +25,7 @@ export const ADD_RECOMMENDATIONS = 'ADD_RECOMMENDATIONS';
 export const ADD_STATUSES = 'ADD_STATUSES';
 export const UPDATE_PRESET_SUCCESS = 'UPDATE_PRESET_SUCCESS';
 export const UPDATE_PRESET_ERROR = 'UPDATE_PRESET_ERROR';
+export const UPDATE_CURRENT_PRESET = 'UPDATE_CURRENT_PRESET';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
@@ -62,6 +62,11 @@ export type Dates = {
 export type Headings = {
   [key: string]: string;
 };
+export type Alert = {
+  msg: string;
+  alertType: string;
+  id: string;
+};
 export type Recommendation =
   | 'option'
   | 'recommended'
@@ -72,10 +77,12 @@ export type Recommendations = {
 };
 export interface SetAlert {
   type: typeof SET_ALERT;
-  msg: string;
-  alertType: string;
+  payload: Alert;
 }
-export interface RemoveAlert {}
+export interface RemoveAlert {
+  type: typeof REMOVE_ALERT;
+  payload: ID;
+}
 export type LoginRegisterModalState = boolean;
 export interface Auth {
   token: string | null;
@@ -232,11 +239,32 @@ export type Preset = {
   recommendations?: Recommendations;
   statuses?: Statuses;
   __v: number;
-  __id: string;
+  _id: string;
+};
+export type AddDefaultPreset = {
+  user: PayloadUser;
+  description?: string;
+  name: string;
+  comments: Comments;
+  nodes: Nodes;
+  headings: Headings;
+  recommendations: Recommendations;
+};
+export type SavePreset = {
+  description?: string;
+  name?: string;
+  date?: string;
+  comments?: Comments;
+  nodes?: Nodes;
+  goalDates?: Dates;
+  headings?: Headings;
+  recommendations?: Recommendations;
+  statuses?: Statuses;
 };
 export type NewPreset = {
   user: PayloadUser;
   name: string;
+  description?: string;
 };
 export interface UpdatePresetSuccess {
   type: typeof UPDATE_PRESET_SUCCESS;
@@ -264,7 +292,12 @@ export interface DeletePresetSuccess {
   type: typeof DELETE_PRESET_SUCCESS;
   id: string;
 }
+export interface UpdateCurrentPreset {
+  type: typeof UPDATE_CURRENT_PRESET;
+  presetId: ID;
+}
 
+export type CurrentPresetActionTypes = UpdateCurrentPreset;
 export type PresetActionTypes =
   | LoadPresets
   | PresetError
@@ -273,7 +306,7 @@ export type PresetActionTypes =
   | DeletePresetSuccess
   | UpdatePresetSuccess
   | UpdatePresetErrror;
-export type AlertActionTypes = SetAlert;
+export type AlertActionTypes = SetAlert | RemoveAlert;
 export type AuthActionTypes =
   | LoadUser
   | RegisterSuccess
@@ -314,4 +347,5 @@ export type AppActions =
   | RecommendationActionTypes
   | AuthActionTypes
   | AlertActionTypes
-  | PresetActionTypes;
+  | PresetActionTypes
+  | CurrentPresetActionTypes;

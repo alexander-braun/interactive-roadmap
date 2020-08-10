@@ -8,6 +8,8 @@ import { headings } from './headings';
 import { recommendations } from './recommendations';
 import { auth } from './auth';
 import { presets } from './presets';
+import { currentPreset } from './currentPreset';
+import { alert } from './alert';
 
 export const rootReducer = combineReducers({
   nodes,
@@ -19,6 +21,8 @@ export const rootReducer = combineReducers({
   recommendations,
   auth,
   presets,
+  currentPreset,
+  alert,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

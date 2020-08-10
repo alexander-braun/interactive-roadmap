@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { AppState } from '../../reducers';
 import { register } from '../../actions/authenticate';
 import { RegisterUser } from '../../actions/constants';
+import Alert from '../alert/index';
 
 interface RegisterModal {
   isAuthenticated: boolean | null;
@@ -50,6 +51,7 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
       <div className='register-modal__body'>
         <RegisterSvg />
         <h1>Register</h1>
+        <Alert />
         <form name='form' className='register-modal__form'>
           <div className='register-modal__form-group'>
             <label htmlFor='name'>Username</label>

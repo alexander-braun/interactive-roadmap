@@ -36,7 +36,6 @@ export const loadUser = (): ThunkAction<
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: AUTH_ERROR,
     });
@@ -70,9 +69,7 @@ export const register = ({
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
-      errors.forEach((error: NodeJS.ErrnoException) =>
-        dispatch(setAlert(error.code as string, 'danger'))
-      );
+      errors.forEach((error: any) => dispatch(setAlert(error.msg, 'danger')));
     }
     dispatch({
       type: REGISTER_FAIL,
@@ -102,12 +99,9 @@ export const login = ({
     dispatch(loadUser());
   } catch (error) {
     if (error.response) {
-      console.log(error);
       const errors = error.response.data.errors;
       if (errors) {
-        errors.forEach((error: NodeJS.ErrnoException) =>
-          dispatch(setAlert(error.code as string, 'danger'))
-        );
+        errors.forEach((error: any) => dispatch(setAlert(error.msg, 'danger')));
       }
     }
     dispatch({

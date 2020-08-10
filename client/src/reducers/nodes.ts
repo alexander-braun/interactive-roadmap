@@ -7,10 +7,10 @@ import {
   ADD_NODES,
 } from '../actions/constants';
 import { Nodes } from '../components/types/Map-Data';
-import { frontend } from '../roadmap-data/frontendmap';
+import { nodes as nodesdata } from '../roadmap-data/frontendmap';
 import { v4 as uuidv4 } from 'uuid';
 
-const initialState = frontend;
+const initialState = nodesdata;
 
 export const nodes = (
   state: Nodes = initialState,

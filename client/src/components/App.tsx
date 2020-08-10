@@ -34,7 +34,7 @@ function App({ nodes, isAuthenticated }: AppProps): JSX.Element {
   useEffect(() => {
     dispatch(loadUser());
     dispatch(loadPresets());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='App'>

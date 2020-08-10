@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/authenticate';
 import { useDispatch } from 'react-redux';
 import { AppState } from '../../reducers';
+import Alert from '../alert/index';
 
 interface LoginModal {
   isAuthenticated: boolean | null;
@@ -48,6 +49,7 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
       <div className='login-modal__body'>
         <LoginSvg />
         <h1>Login</h1>
+        <Alert />
         <form name='form' className='login-modal__form'>
           <div className='login-modal__form-group'>
             <label htmlFor='email'>Email</label>
