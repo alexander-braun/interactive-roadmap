@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 
 if (process.env.NODE_ENV === 'DEVELOPMENT') {
   dotenv.config({ path: './config/config.env' });
+} else {
+  dotenv.config();
 }
 
 const db = process.env.mongoURI;
