@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 
-if (process.env.NODE_ENV !== 'PRODUCTION') {
+if (process.env.NODE_ENV === 'DEVELOPMENT') {
   dotenv.config({ path: './config/config.env' });
 }
 
