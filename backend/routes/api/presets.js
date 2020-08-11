@@ -77,7 +77,6 @@ router.get('/', auth, async (req, res) => {
 router.get('/:id', auth, async (req, res) => {
   try {
     const preset = await Preset.findById(req.params.id);
-    console.log(req.params.id);
     if (!preset) {
       return res.status(404).json({ msg: 'No preset found' });
     }

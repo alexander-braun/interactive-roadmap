@@ -17,16 +17,7 @@ import LoadPresetModal from './load-preset/LoadPresetModal';
 import { loadUser } from '../actions/authenticate';
 import { loadPresets } from '../actions/presets';
 import { useDispatch } from 'react-redux';
-import {
-  ID,
-  Preset,
-  PayloadUser,
-  Comments,
-  Dates,
-  Headings,
-  Recommendations,
-  Statuses,
-} from '../actions/constants';
+import { ID, Preset } from '../actions/constants';
 import EditPresetModal from './edit-preset/EditPresetModal';
 import { deleteAllComments } from '../actions/deleteAllComments';
 import { deleteAllDates } from '../actions/deleteAllDates';
@@ -41,13 +32,6 @@ interface AppProps {
   isAuthenticated: boolean | null;
   currentPreset: ID;
   presets: Preset[];
-
-  user: PayloadUser | null;
-  comments: Comments;
-  goalDates: Dates;
-  headings: Headings;
-  recommendations: Recommendations;
-  status: Statuses;
 }
 
 if (localStorage.token) {
@@ -60,12 +44,6 @@ function App({
   isAuthenticated,
   currentPreset,
   presets,
-  user,
-  comments,
-  goalDates,
-  headings,
-  recommendations,
-  status,
 }: AppProps): JSX.Element {
   const dispatch = useDispatch();
 
@@ -78,7 +56,6 @@ function App({
 
   useEffect(() => {
     if (!currentPreset.length) {
-      History.push('/');
       dispatch(deleteAllComments());
       dispatch(deleteAllDates());
       dispatch(deleteAllHeadings());
@@ -121,13 +98,6 @@ interface StateProps {
   isAuthenticated: boolean | null;
   currentPreset: ID;
   presets: Preset[];
-
-  user: PayloadUser | null;
-  comments: Comments;
-  goalDates: Dates;
-  headings: Headings;
-  recommendations: Recommendations;
-  status: Statuses;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
@@ -135,13 +105,6 @@ const mapStateToProps = (state: AppState): StateProps => ({
   isAuthenticated: state.auth.isAuthenticated,
   currentPreset: state.currentPreset,
   presets: state.presets,
-
-  user: state.auth.user,
-  comments: state.comments,
-  goalDates: state.goalDates,
-  headings: state.headings,
-  recommendations: state.recommendations,
-  status: state.status,
 });
 
 export default connect(mapStateToProps)(App);

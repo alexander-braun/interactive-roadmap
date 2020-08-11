@@ -175,7 +175,7 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
         <LoadPresetSvg />
         <div className='load-presets-modal__presets'>
           <h1>Your Presets</h1>
-          {presets.length ? (
+          {presets.length && presets[0].name !== '' ? (
             presets.map((preset) => {
               return (
                 <div className='load-presets-modal__preset' key={uuidv4()}>

@@ -26,7 +26,7 @@ export const loadPresets = (): ThunkAction<
   Action<string>
 > => async (dispatch) => {
   try {
-    const res = await axios.get('./api/presets');
+    const res = await axios.get('/api/presets');
     dispatch({
       type: LOAD_PRESETS,
       payload: res.data,
@@ -42,14 +42,13 @@ export const loadPresets = (): ThunkAction<
 export const addPreset = (
   formData: NewPreset
 ): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
-  console.log(formData);
   try {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    const res = await axios.post('./api/presets', formData, config);
+    const res = await axios.post('/api/presets', formData, config);
     dispatch({
       type: ADD_PRESET,
       payload: res.data,
@@ -75,7 +74,7 @@ export const addDefaultPreset = (
         'Content-Type': 'application/json',
       },
     };
-    const res = await axios.post('./api/presets', formData, config);
+    const res = await axios.post('/api/presets', formData, config);
     dispatch({
       type: ADD_PRESET,
       payload: res.data,
@@ -116,7 +115,7 @@ export const deletePreset = (
   id: ID
 ): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
   try {
-    const res = await axios.delete(`./api/presets/${id}`);
+    const res = await axios.delete(`/api/presets/${id}`);
     dispatch({
       type: DELETE_PRESET_SUCCESS,
       payload: res.data,
