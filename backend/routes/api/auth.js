@@ -63,7 +63,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.jwtSecret,
         { expiresIn: 3600000 },
         (err, token) => {
           if (err) throw err;
