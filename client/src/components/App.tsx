@@ -28,6 +28,13 @@ import {
   Statuses,
 } from '../actions/constants';
 import EditPresetModal from './edit-preset/EditPresetModal';
+import { deleteAllComments } from '../actions/deleteAllComments';
+import { deleteAllDates } from '../actions/deleteAllDates';
+import { deleteAllHeadings } from '../actions/deleteAllHeadings';
+import { deleteAllNodes } from '../actions/deleteAllNodes';
+import { deleteAllRecommendations } from '../actions/deleteAllRecommendations';
+import { deleteAllStatuses } from '../actions/deleteAllStatuses';
+import { setCurrentPreset } from '../actions/setCurrentPreset';
 
 interface AppProps {
   nodes: Nodes;
@@ -68,6 +75,19 @@ function App({
       dispatch(loadPresets());
     }
   }, [dispatch, isAuthenticated]);
+
+  useEffect(() => {
+    if (!currentPreset.length) {
+      History.push('/');
+      dispatch(deleteAllComments());
+      dispatch(deleteAllDates());
+      dispatch(deleteAllHeadings());
+      dispatch(deleteAllNodes());
+      dispatch(deleteAllRecommendations());
+      dispatch(deleteAllStatuses());
+      dispatch(setCurrentPreset(''));
+    }
+  }, [currentPreset, dispatch]);
 
   return (
     <div className='App'>

@@ -20,8 +20,8 @@ router.post(
       const preset = await Preset.find({
         name: 'Frontend Developer',
         user: req.user.id,
-      }).then((name) => name[0]);
-      if (preset) {
+      }).then((name) => name);
+      if (preset.length) {
         return res.status(400).json({ msg: 'Preset already exists' });
       }
     }

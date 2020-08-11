@@ -4,15 +4,7 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AppState } from '../../reducers';
 import LoadPresetSvg from './LoadPresetSvg';
-import {
-  Preset,
-  ID,
-  Comments,
-  Dates,
-  Headings,
-  Recommendations,
-  Statuses,
-} from '../../actions/constants';
+import { Preset, ID } from '../../actions/constants';
 import { deleteAllComments } from '../../actions/deleteAllComments';
 import { deleteAllDates } from '../../actions/deleteAllDates';
 import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
@@ -32,35 +24,15 @@ import { setCurrentPreset } from '../../actions/setCurrentPreset';
 import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { frontendTitles as titles } from '../../roadmap-data/frontend-titles';
-import { Nodes } from '../types/Map-Data';
 import { addDefaultPreset } from '../../actions/presets';
 
 interface LoginModal {
-  isAuthenticated: boolean | null;
   presets: Preset[];
   user: PayloadUser | null;
-
-  comments: Comments;
-  nodes: Nodes;
-  goalDates: Dates;
-  headings: Headings;
-  recommendations: Recommendations;
   currentPreset: ID;
-  status: Statuses;
 }
 
-const LoadPresetModal = ({
-  isAuthenticated,
-  presets,
-  user,
-  comments,
-  nodes,
-  goalDates,
-  headings,
-  recommendations,
-  currentPreset,
-  status,
-}: LoginModal) => {
+const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
   const dispatch = useDispatch();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -120,7 +92,7 @@ const LoadPresetModal = ({
   };
 
   const handleDeletePreset = useCallback(
-    (id: ID) => {
+    (id: ID, restore: boolean) => {
       dispatch(deletePreset(id));
       if (currentPreset === id) {
         dispatch(setCurrentPreset(''));
@@ -130,6 +102,9 @@ const LoadPresetModal = ({
         dispatch(deleteAllNodes());
         dispatch(deleteAllRecommendations());
         dispatch(deleteAllStatuses());
+      }
+      if (restore) {
+        setTimeout(() => History.push('/load'));
       }
     },
     [currentPreset, dispatch]
@@ -166,7 +141,7 @@ const LoadPresetModal = ({
       );
     }
     if (oldID.length) {
-      handleDeletePreset(oldID);
+      handleDeletePreset(oldID, false);
       dispatch(setCurrentPreset(''));
     }
   }, [checkIfDefaultPreset, dispatch, handleDeletePreset, user]);
@@ -176,9 +151,21 @@ const LoadPresetModal = ({
   };
 
   useEffect(() => {
-    if (!checkIfDefaultPreset()[0] && isAuthenticated && user !== null) {
+    if (!checkIfDefaultPreset()[0] && user !== null) {
       createDefaultPreset();
       dispatch(setCurrentPreset(''));
+    }
+  }, [presets, checkIfDefaultPreset, createDefaultPreset, dispatch, user]);
+
+  useEffect(() => {
+    let times = 0;
+    for (const preset of presets) {
+      if (preset.name === 'Frontend Developer') {
+        times++;
+        if (times === 2) {
+          handleDeletePreset(preset._id, true);
+        }
+      }
     }
   });
 
@@ -203,7 +190,7 @@ const LoadPresetModal = ({
                   </button>
                   {preset.name !== 'Frontend Developer' && (
                     <button
-                      onClick={() => handleDeletePreset(preset._id)}
+                      onClick={() => handleDeletePreset(preset._id, false)}
                       className='load-presets-modal__btn-delete load-presets-modal__btn'
                     >
                       Delete
@@ -211,7 +198,9 @@ const LoadPresetModal = ({
                   )}
                   {preset.name === 'Frontend Developer' && (
                     <button
-                      onClick={() => handleDeletePreset(preset._id)}
+                      onClick={() => {
+                        handleDeletePreset(preset._id, true);
+                      }}
                       className='load-presets-modal__btn-delete load-presets-modal__btn'
                     >
                       Restore
@@ -269,30 +258,16 @@ const LoadPresetModal = ({
 };
 
 interface StateProps {
-  isAuthenticated: boolean | null;
   presets: Preset[];
   user: PayloadUser | null;
-  comments: Comments;
-  nodes: Nodes;
-  goalDates: Dates;
-  headings: Headings;
-  recommendations: Recommendations;
+
   currentPreset: ID;
-  status: Statuses;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-  isAuthenticated: state.auth.isAuthenticated,
   presets: state.presets,
   user: state.auth.user,
-
-  comments: state.comments,
-  nodes: state.nodes,
-  goalDates: state.goalDates,
-  headings: state.headings,
-  recommendations: state.recommendations,
   currentPreset: state.currentPreset,
-  status: state.status,
 });
 
 export default connect(mapStateToProps)(LoadPresetModal);
