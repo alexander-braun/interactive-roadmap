@@ -4,15 +4,14 @@ const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
 
+dotenv.config();
 if (process.env.NODE_ENV === 'DEVELOPMENT') {
   dotenv.config({ path: './config/config.env' });
-} else {
-  dotenv.config();
 }
 
 const db = process.env.mongoURI;
 
-console.log(db);
+console.log(db, process.env.NODE_ENV);
 
 const connectDB = async () => {
   try {
