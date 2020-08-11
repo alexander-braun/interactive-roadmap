@@ -2,6 +2,9 @@ const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const app = express();
 
 //Connect database
@@ -19,7 +22,7 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/presets', require('./routes/api/presets'));
 
 //Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'PRODUCTION') {
   app.use(express.static('../client/build'));
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
