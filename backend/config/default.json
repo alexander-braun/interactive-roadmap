@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://AlexBraun:88876839@cluster0.mouk4.mongodb.net/InteractiveRoadmap?retryWrites=true&w=majority",
-  "jwtSecret": "mydsupersecrettoken"
-}

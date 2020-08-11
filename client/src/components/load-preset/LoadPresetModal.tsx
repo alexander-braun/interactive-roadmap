@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -33,7 +33,7 @@ import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { frontendTitles as titles } from '../../roadmap-data/frontend-titles';
 import { Nodes } from '../types/Map-Data';
-import { updatePreset, addDefaultPreset } from '../../actions/presets';
+import { addDefaultPreset } from '../../actions/presets';
 
 interface LoginModal {
   isAuthenticated: boolean | null;
@@ -119,46 +119,37 @@ const LoadPresetModal = ({
     updateFormdata({ name: '', description: '' });
   };
 
-  const handleAddDefaultPreset = () => {
-    if (user) {
-      dispatch(
-        addPreset({
-          user,
-          name: 'Frontend Developer',
-          description: 'Default Frontend Developer Preset',
-        })
-      );
-    }
-  };
+  const handleDeletePreset = useCallback(
+    (id: ID) => {
+      dispatch(deletePreset(id));
+      if (currentPreset === id) {
+        dispatch(setCurrentPreset(''));
+        dispatch(deleteAllComments());
+        dispatch(deleteAllDates());
+        dispatch(deleteAllHeadings());
+        dispatch(deleteAllNodes());
+        dispatch(deleteAllRecommendations());
+        dispatch(deleteAllStatuses());
+      }
+    },
+    [currentPreset, dispatch]
+  );
 
-  const handleDeletePreset = (id: ID) => {
-    dispatch(deletePreset(id));
-  };
-
-  const handleSave = () => {
-    if (!isAuthenticated) History.push('/login');
-    const preset = {
-      comments,
-      nodes,
-      goalDates,
-      headings,
-      recommendations,
-      status,
-    };
-    if (currentPreset) {
-      dispatch(updatePreset(currentPreset, preset));
-    }
-  };
-
-  useEffect(() => {
-    let defaultExists = false;
+  const checkIfDefaultPreset = useCallback((): [boolean, string] => {
     for (const preset of presets) {
       if (preset.name === 'Frontend Developer') {
-        defaultExists = true;
-        return;
+        return [true, preset._id];
       }
     }
-    if (!defaultExists && user !== null) {
+    return [false, ''];
+  }, [presets]);
+
+  const createDefaultPreset = useCallback(() => {
+    let oldID: ID = '';
+    if (checkIfDefaultPreset()[0]) {
+      oldID = checkIfDefaultPreset()[1];
+    }
+    if (user !== null) {
       const comments = {
         '2cfc0a72-712d-4b59-896b-e4ce8ef91d01': ['Edit me!'],
       };
@@ -174,7 +165,22 @@ const LoadPresetModal = ({
         })
       );
     }
-  }, []);
+    if (oldID.length) {
+      handleDeletePreset(oldID);
+      dispatch(setCurrentPreset(''));
+    }
+  }, [checkIfDefaultPreset, dispatch, handleDeletePreset, user]);
+
+  const handleEditPreset = (id: ID) => {
+    History.push(`/edit-preset/${id}`);
+  };
+
+  useEffect(() => {
+    if (!checkIfDefaultPreset()[0] && isAuthenticated && user !== null) {
+      createDefaultPreset();
+      dispatch(setCurrentPreset(''));
+    }
+  });
 
   return (
     <div className='load-presets-modal' onClick={handleClick}>
@@ -203,6 +209,20 @@ const LoadPresetModal = ({
                       Delete
                     </button>
                   )}
+                  {preset.name === 'Frontend Developer' && (
+                    <button
+                      onClick={() => handleDeletePreset(preset._id)}
+                      className='load-presets-modal__btn-delete load-presets-modal__btn'
+                    >
+                      Restore
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleEditPreset(preset._id)}
+                    className='load-presets-modal__btn-delete load-presets-modal__btn'
+                  >
+                    Edit
+                  </button>
                 </div>
               );
             })

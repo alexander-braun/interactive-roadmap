@@ -63,7 +63,7 @@
 
   &__body {
     background: white;
-    width: 45rem;
+    width: 55rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -158,4 +158,11 @@
   align-self: center;
   margin-top: 3rem;
   margin-bottom: 2rem;
+}
+
+.login-modal,
+.register-modal {
+  &__body {
+    width: 45rem;
+  }
 }

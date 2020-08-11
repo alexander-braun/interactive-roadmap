@@ -17,7 +17,24 @@ import {
 import History from '../helper/history';
 import { Nodes } from '../types/Map-Data';
 import { updatePreset } from '../../actions/presets';
-import { loadPresets, addPreset } from '../../actions//presets';
+import { loadPresets } from '../../actions//presets';
+import { setCurrentPreset } from '../../actions/setCurrentPreset';
+import { deleteAllComments } from '../../actions/deleteAllComments';
+import { deleteAllDates } from '../../actions/deleteAllDates';
+import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
+import { deleteAllNodes } from '../../actions/deleteAllNodes';
+import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
+import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
+
+import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
+import { recommendation } from '../../roadmap-data/frontend-recommendation';
+import { frontendTitles } from '../../roadmap-data/frontend-titles';
+import { addComments } from '../../actions/addComments';
+import { addNodes } from '../../actions/addNodes';
+import { addDates } from '../../actions/addDates';
+import { addHeadings } from '../../actions/addHeadings';
+import { addStatuses } from '../../actions/addStatuses';
+import { addRecommendations } from '../../actions/addRecommendations';
 
 export type IDs = [string, string][];
 
@@ -51,6 +68,21 @@ function Navigation({
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(deleteAllComments());
+    dispatch(deleteAllDates());
+    dispatch(deleteAllHeadings());
+    dispatch(deleteAllNodes());
+    dispatch(deleteAllRecommendations());
+    dispatch(deleteAllStatuses());
+    dispatch(setCurrentPreset(''));
+    const comments = { '2cfc0a72-712d-4b59-896b-e4ce8ef91d01': ['Edit me!'] };
+    dispatch(addComments(comments));
+    dispatch(addNodes(defaultNodes));
+    dispatch(addDates({}));
+    dispatch(addHeadings(frontendTitles));
+    dispatch(addRecommendations(recommendation));
+    dispatch(addStatuses({}));
+    dispatch(setCurrentPreset(''));
   };
 
   const handleSave = () => {
@@ -80,7 +112,7 @@ function Navigation({
           Interactive Roadmap
         </Link>
         <div className='menue-bar__links'>
-          {currentPreset && (
+          {(currentPreset.length || !isAuthenticated) && (
             <button className='menue-bar__link' onClick={handleSave}>
               Save
               <span className='menue-bar__free-indicator'>(current Map)</span>

@@ -12,11 +12,14 @@ const PresetSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   date: {
     type: String,
-    default: Date.now(),
+    default: Date.now,
+  },
+  saved: {
+    type: String,
+    default: new Date(Date.now()),
   },
   comments: {
     type: Object,

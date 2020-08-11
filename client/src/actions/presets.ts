@@ -42,6 +42,7 @@ export const loadPresets = (): ThunkAction<
 export const addPreset = (
   formData: NewPreset
 ): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
+  console.log(formData);
   try {
     const config = {
       headers: {

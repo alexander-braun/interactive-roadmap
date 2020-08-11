@@ -46,6 +46,7 @@ export const auth = (state: Auth = initialState, action: AppActions): Auth => {
         token: null,
         isAuthenticated: false,
         loading: false,
+        user: null,
       };
     default:
       return state;

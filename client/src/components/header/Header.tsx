@@ -3,6 +3,7 @@ import HeaderSvg from './HeaderSvg';
 import { connect } from 'react-redux';
 import { Preset, ID } from '../../actions/constants';
 import { AppState } from '../../reducers';
+import { v4 as uuidv4 } from 'uuid';
 
 export type IDs = [string, string][];
 
@@ -15,11 +16,19 @@ function Header({ currentPreset, presets }: Header): JSX.Element {
   return (
     <div className='header'>
       <HeaderSvg />
-      <h1 className='header__heading'>
-        {currentPreset && presets && presets.length
-          ? presets.map((preset) => preset._id === currentPreset && preset.name)
-          : 'Frontend Developer'}
-      </h1>
+      {currentPreset.length && presets.length ? (
+        presets.map(
+          (preset) =>
+            preset._id === currentPreset && (
+              <div className='header__wrapper' key={uuidv4()}>
+                <h1 className='header__heading'>{preset.name}</h1>
+                <h4 className='header__subheading'>{preset.description}</h4>
+              </div>
+            )
+        )
+      ) : (
+        <h1 className='header__heading'>No preset loaded</h1>
+      )}
     </div>
   );
 }

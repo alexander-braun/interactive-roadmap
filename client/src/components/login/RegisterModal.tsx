@@ -7,6 +7,13 @@ import { AppState } from '../../reducers';
 import { register } from '../../actions/authenticate';
 import { RegisterUser } from '../../actions/constants';
 import Alert from '../alert/index';
+import { deleteAllComments } from '../../actions/deleteAllComments';
+import { deleteAllDates } from '../../actions/deleteAllDates';
+import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
+import { deleteAllNodes } from '../../actions/deleteAllNodes';
+import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
+import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
+import { setCurrentPreset } from '../../actions/setCurrentPreset';
 
 interface RegisterModal {
   isAuthenticated: boolean | null;
@@ -43,8 +50,15 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
   useEffect(() => {
     if (isAuthenticated) {
       History.push('/');
+      dispatch(deleteAllComments());
+      dispatch(deleteAllDates());
+      dispatch(deleteAllHeadings());
+      dispatch(deleteAllNodes());
+      dispatch(deleteAllRecommendations());
+      dispatch(deleteAllStatuses());
+      dispatch(setCurrentPreset(''));
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, dispatch]);
 
   return (
     <div className='register-modal' onClick={handleClick}>

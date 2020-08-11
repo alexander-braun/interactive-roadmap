@@ -26,7 +26,6 @@ export const ADD_STATUSES = 'ADD_STATUSES';
 export const UPDATE_PRESET_SUCCESS = 'UPDATE_PRESET_SUCCESS';
 export const UPDATE_PRESET_ERROR = 'UPDATE_PRESET_ERROR';
 export const UPDATE_CURRENT_PRESET = 'UPDATE_CURRENT_PRESET';
-
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const USER_LOADED = 'USER_LOADED';
@@ -265,6 +264,10 @@ export type NewPreset = {
   user: PayloadUser;
   name: string;
   description?: string;
+  comments?: Comments;
+  nodes?: Nodes;
+  headings?: Headings;
+  recommendations?: Recommendations;
 };
 export interface UpdatePresetSuccess {
   type: typeof UPDATE_PRESET_SUCCESS;

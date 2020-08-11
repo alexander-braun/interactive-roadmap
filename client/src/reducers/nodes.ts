@@ -19,6 +19,9 @@ export const nodes = (
   const newState = Object.assign({}, state);
   switch (action.type) {
     case ADD_NODES:
+      if (action.nodes === undefined) {
+        return {};
+      }
       return action.nodes;
     case DELETE_ALL_NODES:
       return {};

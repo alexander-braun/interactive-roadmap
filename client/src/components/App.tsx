@@ -17,10 +17,30 @@ import LoadPresetModal from './load-preset/LoadPresetModal';
 import { loadUser } from '../actions/authenticate';
 import { loadPresets } from '../actions/presets';
 import { useDispatch } from 'react-redux';
+import {
+  ID,
+  Preset,
+  PayloadUser,
+  Comments,
+  Dates,
+  Headings,
+  Recommendations,
+  Statuses,
+} from '../actions/constants';
+import EditPresetModal from './edit-preset/EditPresetModal';
 
 interface AppProps {
   nodes: Nodes;
   isAuthenticated: boolean | null;
+  currentPreset: ID;
+  presets: Preset[];
+
+  user: PayloadUser | null;
+  comments: Comments;
+  goalDates: Dates;
+  headings: Headings;
+  recommendations: Recommendations;
+  status: Statuses;
 }
 
 if (localStorage.token) {
@@ -28,13 +48,26 @@ if (localStorage.token) {
 }
 
 export type IDs = [string, string][];
-function App({ nodes, isAuthenticated }: AppProps): JSX.Element {
+function App({
+  nodes,
+  isAuthenticated,
+  currentPreset,
+  presets,
+  user,
+  comments,
+  goalDates,
+  headings,
+  recommendations,
+  status,
+}: AppProps): JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadUser());
-    dispatch(loadPresets());
-  }, [dispatch]);
+    if (!isAuthenticated && localStorage.getItem('token')) {
+      dispatch(loadUser());
+      dispatch(loadPresets());
+    }
+  }, [dispatch, isAuthenticated]);
 
   return (
     <div className='App'>
@@ -48,6 +81,9 @@ function App({ nodes, isAuthenticated }: AppProps): JSX.Element {
           </Route>
           <Route exact path='/load'>
             <LoadPresetModal />
+          </Route>
+          <Route path='/edit-preset/'>
+            <EditPresetModal />
           </Route>
         </Switch>
       </Router>
@@ -63,11 +99,29 @@ function App({ nodes, isAuthenticated }: AppProps): JSX.Element {
 interface StateProps {
   nodes: Nodes;
   isAuthenticated: boolean | null;
+  currentPreset: ID;
+  presets: Preset[];
+
+  user: PayloadUser | null;
+  comments: Comments;
+  goalDates: Dates;
+  headings: Headings;
+  recommendations: Recommendations;
+  status: Statuses;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
   nodes: state.nodes,
   isAuthenticated: state.auth.isAuthenticated,
+  currentPreset: state.currentPreset,
+  presets: state.presets,
+
+  user: state.auth.user,
+  comments: state.comments,
+  goalDates: state.goalDates,
+  headings: state.headings,
+  recommendations: state.recommendations,
+  status: state.status,
 });
 
 export default connect(mapStateToProps)(App);

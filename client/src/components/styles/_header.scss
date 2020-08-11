@@ -9,7 +9,8 @@
   box-shadow: inset 0 -1px 0 #e1e4e8;
   position: relative;
 
-  &__heading {
+  &__heading,
+  &__subheading {
     color: black;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
@@ -20,6 +21,12 @@
       sans-serif, Apple Color Emoji, Segoe UI Emoji;
     font-size: 8rem;
     font-weight: 700;
+  }
+
+  &__subheading {
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: italic;
   }
 
   &__svg-left {
@@ -34,5 +41,12 @@
     position: absolute;
     bottom: 0;
     width: 20vw;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
