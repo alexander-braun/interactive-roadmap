@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 
-dotenv.config({ path: __dirname + '../.env' });
+dotenv.config();
 
 module.exports = function (req, res, next) {
   // Get token from header
