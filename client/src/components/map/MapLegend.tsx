@@ -14,31 +14,25 @@ const MapLegend = () => {
       <div className='map__legend'>
         <ul className='map__ul'>
           <li className='map__li'>
-            <FontAwesomeIcon
-              icon={faExclamation}
-              className='map__indication-circle'
-            />
+            <div className='map__indication-circle'>!</div>
             Recommended Option
           </li>
           <li className='map__li'>
-            <FontAwesomeIcon
-              icon={faCheck}
-              className='map__indication-circle map__indication-circle--option'
-            />
+            <div className='map__indication-circle--option map__indication-circle'>
+              ✓
+            </div>
             Good Alternative
           </li>
           <li className='map__li'>
-            <FontAwesomeIcon
-              className='map__indication-circle map__indication-circle--not-recommended'
-              icon={faTimes}
-            />
+            <div className='map__indication-circle map__indication-circle--not-recommended'>
+              ✘
+            </div>
             Not recommended
           </li>
           <li className='map__li'>
-            <FontAwesomeIcon
-              className='map__indication-circle map__indication-circle--own-edit'
-              icon={faPenNib}
-            />
+            <div className='map__indication-circle map__indication-circle--own-edit'>
+              A
+            </div>
             Assign yourself
           </li>
         </ul>

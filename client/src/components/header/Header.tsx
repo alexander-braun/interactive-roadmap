@@ -10,9 +10,14 @@ export type IDs = [string, string][];
 interface Header {
   currentPreset: ID;
   presets: Preset[];
+  isAuthenticated: boolean | null;
 }
 
-function Header({ currentPreset, presets }: Header): JSX.Element {
+function Header({
+  currentPreset,
+  presets,
+  isAuthenticated,
+}: Header): JSX.Element {
   return (
     <div className='header'>
       <HeaderSvg />
@@ -26,8 +31,13 @@ function Header({ currentPreset, presets }: Header): JSX.Element {
               </div>
             )
         )
-      ) : (
+      ) : isAuthenticated ? (
         <h1 className='header__heading'>No preset loaded</h1>
+      ) : (
+        <div className='header__wrapper' key={uuidv4()}>
+          <h1 className='header__heading'>Frontend Developer</h1>
+          <h4 className='header__subheading'>Default Frontend Roadmap</h4>
+        </div>
       )}
     </div>
   );
@@ -36,11 +46,13 @@ function Header({ currentPreset, presets }: Header): JSX.Element {
 interface StateProps {
   currentPreset: ID;
   presets: Preset[];
+  isAuthenticated: boolean | null;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
   currentPreset: state.currentPreset,
   presets: state.presets,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(Header);

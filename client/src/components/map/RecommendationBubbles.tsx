@@ -1,7 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { faCheck, faTimes, faPenNib } from '@fortawesome/free-solid-svg-icons';
 import { changeRecommendation } from '../../actions/changeRecommendation';
 import { Recommendation } from '../../actions/constants';
 import { useDispatch } from 'react-redux';
@@ -22,43 +19,55 @@ const RecommendationBubbles = ({
 
   const check = (submit: boolean) => {
     return (
-      <FontAwesomeIcon
-        className='card__font-awesome-exclamation'
-        icon={faCheck}
+      <div
+        className={`card__font-awesome-exclamation ${
+          !submit ? 'card__font-awesome-exclamation--main' : ''
+        }`}
         onClick={() => (submit ? submitRecommendation('option') : null)}
-      />
+      >
+        ✓
+      </div>
     );
   };
 
   const exclamation = (submit: boolean) => {
     return (
-      <FontAwesomeIcon
-        className='card__font-awesome-exclamation'
-        icon={faExclamation}
+      <div
+        className={`card__font-awesome-exclamation ${
+          !submit ? 'card__font-awesome-exclamation--main' : ''
+        }`}
         onClick={() => (submit ? submitRecommendation('recommended') : null)}
-      />
+      >
+        !
+      </div>
     );
   };
 
   const times = (submit: boolean) => {
     return (
-      <FontAwesomeIcon
-        className='card__font-awesome-exclamation'
-        icon={faTimes}
+      <div
+        className={`card__font-awesome-exclamation ${
+          !submit ? 'card__font-awesome-exclamation--main' : ''
+        }`}
         onClick={() =>
           submit ? submitRecommendation('not-recommended') : null
         }
-      />
+      >
+        ✘
+      </div>
     );
   };
 
   const pen = (submit: boolean) => {
     return (
-      <FontAwesomeIcon
-        className='card__font-awesome-exclamation'
-        icon={faPenNib}
+      <div
+        className={`card__font-awesome-exclamation ${
+          !submit ? 'card__font-awesome-exclamation--main' : ''
+        }`}
         onClick={() => (submit ? submitRecommendation('own') : null)}
-      />
+      >
+        A
+      </div>
     );
   };
 
