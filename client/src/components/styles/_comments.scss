@@ -84,18 +84,25 @@
   &__font-awesome-trash {
     font-size: 1.5rem;
     cursor: pointer;
+    color: #2a445d;
+
+    &:hover {
+      color: #3b6e9e;
+    }
   }
 
   &__font-awesome-trash {
     font-size: 2rem;
-    color: #2a445d !important;
   }
 
   &__font-awesome-plus {
-    color: #2a445d;
     padding: 2px;
     border: 1px solid transparent;
     transition-duration: 0.1s;
+  }
+
+  &__add-comment-button:hover > &__font-awesome-plus {
+    color: #3b6e9e;
   }
 
   &__comment-action-button {

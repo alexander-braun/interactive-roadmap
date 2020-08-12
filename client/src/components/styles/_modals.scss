@@ -1,6 +1,4 @@
-.login-modal,
-.register-modal,
-.load-presets-modal {
+.modal {
   font-size: 200%;
   width: 100vw;
   height: 100vh;
@@ -75,6 +73,10 @@
     justify-content: center;
     align-items: flex-start;
     padding: 5rem;
+
+    &--sm {
+      width: 45rem;
+    }
   }
 
   h1 {
@@ -146,10 +148,7 @@
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
-
-    &:first-child {
-      margin-right: 1rem;
-    }
+    margin-right: 1rem;
 
     &--active {
       color: #fff;
@@ -157,18 +156,11 @@
       border-color: #d34242;
     }
   }
-}
 
-#drink {
-  height: 100px;
-  align-self: center;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-}
-
-.login-modal,
-.register-modal {
-  &__body {
-    width: 45rem;
+  &__top-svg {
+    height: 100px;
+    align-self: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
   }
 }

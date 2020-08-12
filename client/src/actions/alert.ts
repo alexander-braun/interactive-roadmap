@@ -9,7 +9,6 @@ export const setAlert = (
   alertType: string
 ): ThunkAction<void, AppState, unknown, Action<string>> => (dispatch: any) => {
   const id = uuidv4();
-  console.log(msg, alertType);
   dispatch({
     type: SET_ALERT,
     payload: { msg, alertType, id },

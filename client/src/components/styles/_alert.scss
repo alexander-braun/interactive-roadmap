@@ -1,6 +1,5 @@
 .alert {
   color: white;
-  background-color: rgba(255, 88, 110, 1);
   text-align: center;
   width: fit-content;
   font-size: 1.75rem;
@@ -13,4 +12,11 @@
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji;
+
+  &--danger {
+    background-color: rgba(255, 88, 110, 1);
+  }
+  &--success {
+    background-color: rgb(78, 231, 73);
+  }
 }

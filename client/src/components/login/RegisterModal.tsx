@@ -34,7 +34,7 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('register-modal')) {
+    if (target.classList.contains('modal')) {
       History.push('/');
     }
   };
@@ -61,51 +61,51 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
   }, [isAuthenticated, dispatch]);
 
   return (
-    <div className='register-modal' onClick={handleClick}>
-      <div className='register-modal__body'>
+    <div className='modal' onClick={handleClick}>
+      <div className='modal__body modal__body--sm'>
         <RegisterSvg />
         <h1>Register</h1>
         <Alert />
-        <form name='form' className='register-modal__form'>
-          <div className='register-modal__form-group'>
+        <form name='form' className='modal__form'>
+          <div className='modal__form-group'>
             <label htmlFor='name'>Username</label>
             <input
               type='text'
-              className='register-modal__form-control'
+              className='modal__form-control'
               name='name'
               value={formData.name}
               onChange={handleChange}
             />
           </div>
-          <div className='register-modal__form-group'>
+          <div className='modal__form-group'>
             <label htmlFor='email'>Email</label>
             <input
               type='email'
-              className='register-modal__form-control'
+              className='modal__form-control'
               name='email'
               value={formData.email}
               onChange={handleChange}
             />
           </div>
-          <div className='register-modal__form-group'>
+          <div className='modal__form-group'>
             <label htmlFor='password'>Password</label>
             <input
               type='password'
-              className='register-modal__form-control'
+              className='modal__form-control'
               name='password'
               value={formData.password}
               onChange={handleChange}
             />
           </div>
-          <div className='register-modal__form-group'>
+          <div className='modal__form-group'>
             <button
-              className='register-modal__btn register-modal__btn--active'
+              className='modal__btn modal__btn--active'
               onClick={handleSubmit}
             >
               Register
             </button>
             <button
-              className='register-modal__btn'
+              className='modal__btn'
               onClick={() => History.push('/login')}
             >
               Login

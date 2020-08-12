@@ -42,6 +42,10 @@ export const ADD_PRESET = 'ADD_PRESET';
 export const DELETE_PRESET_ERROR = 'DELETE_PRESET_ERROR';
 export const DELETE_PRESET_SUCCESS = 'DELETE_PRESET_SUCCESS';
 export const ADD_NODES = 'ADD_NODES';
+export const PASSWORD_MAIL_SENT = 'PASSWORD_MAIL_SENT';
+export const PASSWORD_RECOVERY_ERROR = 'PASSWORD_RECOVERY_ERROR';
+export const PASSWORD_RESET_SUCCESS = 'PASSWORD_RESET_SUCCESS';
+export const PASSWORD_RESET_ERROR = 'PASSWORD_RESET_ERROR';
 
 export type Comment = string;
 export type ID = string;
@@ -299,6 +303,21 @@ export interface UpdateCurrentPreset {
   type: typeof UPDATE_CURRENT_PRESET;
   presetId: ID;
 }
+export interface SendPassword {
+  type: typeof PASSWORD_MAIL_SENT;
+  email: string;
+}
+export interface SendPasswordError {
+  type: typeof PASSWORD_RECOVERY_ERROR;
+}
+export interface ResetPassword {
+  type: typeof PASSWORD_RESET_SUCCESS;
+  password: string;
+  token: string;
+}
+export interface ResetPasswordError {
+  type: typeof PASSWORD_RESET_ERROR;
+}
 
 export type CurrentPresetActionTypes = UpdateCurrentPreset;
 export type PresetActionTypes =
@@ -312,12 +331,16 @@ export type PresetActionTypes =
 export type AlertActionTypes = SetAlert | RemoveAlert;
 export type AuthActionTypes =
   | LoadUser
+  | ResetPassword
+  | ResetPasswordError
   | RegisterSuccess
   | LoginSuccess
   | RegisterFail
   | AuthError
   | LoginFail
-  | Logout;
+  | Logout
+  | SendPassword
+  | SendPasswordError;
 export type RecommendationActionTypes =
   | ChangeRecommendation
   | DeleteAllRecommendations

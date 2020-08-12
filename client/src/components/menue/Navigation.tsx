@@ -17,7 +17,7 @@ import {
 import History from '../helper/history';
 import { Nodes } from '../types/Map-Data';
 import { updatePreset } from '../../actions/presets';
-import { loadPresets } from '../../actions//presets';
+import { loadPresets } from '../../actions/presets';
 import { setCurrentPreset } from '../../actions/setCurrentPreset';
 import { deleteAllComments } from '../../actions/deleteAllComments';
 import { deleteAllDates } from '../../actions/deleteAllDates';
@@ -137,9 +137,11 @@ function Navigation({
               </Link>
             </>
           ) : (
-            <button className='menue-bar__link' onClick={handleLogout}>
-              Logout
-            </button>
+            <>
+              <button className='menue-bar__link' onClick={handleLogout}>
+                Logout
+              </button>
+            </>
           )}
         </div>
       </div>

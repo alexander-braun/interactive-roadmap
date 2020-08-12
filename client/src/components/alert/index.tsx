@@ -11,7 +11,7 @@ const Alert = ({ alerts }: AlertProps) => {
   return (
     <>
       {alerts.map((alert: AlertT) => (
-        <div key={alert.id} className={`alert alert-${alert.alertType}`}>
+        <div key={alert.id} className={`alert alert--${alert.alertType}`}>
           {alert.msg}
         </div>
       ))}

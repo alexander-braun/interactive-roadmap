@@ -35,7 +35,7 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('login-modal')) {
+    if (target.classList.contains('modal')) {
       History.push('/');
     }
   };
@@ -59,45 +59,51 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
   }, [isAuthenticated, dispatch]);
 
   return (
-    <div className='login-modal' onClick={handleClick}>
-      <div className='login-modal__body'>
+    <div className='modal' onClick={handleClick}>
+      <div className='modal__body modal__body--sm'>
         <LoginSvg />
         <h1>Login</h1>
         <Alert />
-        <form name='form' className='login-modal__form'>
-          <div className='login-modal__form-group'>
+        <form name='form' className='modal__form'>
+          <div className='modal__form-group'>
             <label htmlFor='email'>Email</label>
             <input
               type='email'
-              className='login-modal__form-control'
+              className='modal__form-control'
               name='email'
               value={formData.email}
               onChange={handleChange}
             />
           </div>
-          <div className='login-modal__form-group'>
+          <div className='modal__form-group'>
             <label htmlFor='password'>Password</label>
             <input
               type='password'
-              className='login-modal__form-control'
+              className='modal__form-control'
               name='password'
               value={formData.password}
               onChange={handleChange}
             />
           </div>
-          <div className='login-modal__form-group'>
+          <div className='modal__form-group'>
             <button
               type='submit'
               onClick={handleSubmit}
-              className='login-modal__btn login-modal__btn--active'
+              className='modal__btn modal__btn--active'
             >
               Login
             </button>
             <button
-              className='login-modal__btn'
+              className='modal__btn'
               onClick={() => History.push('/register')}
             >
               Register
+            </button>
+            <button
+              className='modal__btn'
+              onClick={() => History.push('/forgotpassword')}
+            >
+              Recover Password
             </button>
           </div>
         </form>

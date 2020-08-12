@@ -16,7 +16,7 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
   const dispatch = useDispatch();
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('load-presets-modal')) {
+    if (target.classList.contains('modal')) {
       History.push('/');
     }
   };
@@ -63,40 +63,37 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
   }, [presets, updateForm]);
 
   return (
-    <div className='load-presets-modal' onClick={handleClick}>
-      <div className='load-presets-modal__body'>
+    <div className='modal' onClick={handleClick}>
+      <div className='modal__body'>
         <EditPresetModalSvg />
-        <div className='load-presets-modal__add-new'>
-          <form name='form' className='load-presets-modal__form'>
-            <h1 className='load-presets-modal__create-heading'>Edit Preset</h1>
-            <div className='load-presets-modal__form-group'>
+        <div className='modal__add-new'>
+          <form name='form' className='modal__form'>
+            <h1 className='modal__create-heading'>Edit Preset</h1>
+            <div className='modal__form-group'>
               <label htmlFor='name'>Preset Name</label>
               <input
                 type='name'
-                className='load-presets-modal__form-control'
+                className='modal__form-control'
                 name='name'
                 value={formData.name}
                 onChange={handleChange}
               />
             </div>
-            <div className='load-presets-modal__form-group'>
+            <div className='modal__form-group'>
               <label htmlFor='description'>Preset Description</label>
               <input
                 type='description'
-                className='load-presets-modal__form-control'
+                className='modal__form-control'
                 name='description'
                 value={formData.description}
                 onChange={handleChange}
               />
             </div>
-            <button
-              className='load-presets-modal__btn-load load-presets-modal__btn'
-              onClick={handleSave}
-            >
+            <button className='modal__btn-load modal__btn' onClick={handleSave}>
               Save
             </button>
             <button
-              className='load-presets-modal__btn-back load-presets-modal__btn'
+              className='modal__btn-back modal__btn'
               onClick={() => History.push('/load')}
             >
               Go Back

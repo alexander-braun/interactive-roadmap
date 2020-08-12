@@ -82,7 +82,6 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
         onClick={handleDelete}
       >
         <FontAwesomeIcon
-          style={{ color: '#dd4b39' }}
           className='comments-row__font-awesome-trash'
           icon={faTrashAlt}
         />

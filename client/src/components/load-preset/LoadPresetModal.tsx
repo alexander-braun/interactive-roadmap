@@ -37,7 +37,7 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('load-presets-modal')) {
+    if (target.classList.contains('modal')) {
       History.push('/');
     }
   };
@@ -170,28 +170,26 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
   });
 
   return (
-    <div className='load-presets-modal' onClick={handleClick}>
-      <div className='load-presets-modal__body'>
+    <div className='modal' onClick={handleClick}>
+      <div className='modal__body'>
         <LoadPresetSvg />
-        <div className='load-presets-modal__presets'>
+        <div className='modal__presets'>
           <h1>Your Presets</h1>
           {presets.length && presets[0].name !== '' ? (
             presets.map((preset) => {
               return (
-                <div className='load-presets-modal__preset' key={uuidv4()}>
-                  <h3 className='load-presets-modal__preset-title'>
-                    {preset.name}
-                  </h3>
+                <div className='modal__preset' key={uuidv4()}>
+                  <h3 className='modal__preset-title'>{preset.name}</h3>
                   <button
                     onClick={() => handleLoadPreset(preset)}
-                    className='load-presets-modal__btn-load load-presets-modal__btn'
+                    className='modal__btn-load modal__btn'
                   >
                     Load
                   </button>
                   {preset.name !== 'Frontend Developer' && (
                     <button
                       onClick={() => handleDeletePreset(preset._id, false)}
-                      className='load-presets-modal__btn-delete load-presets-modal__btn'
+                      className='modal__btn-delete modal__btn'
                     >
                       Delete
                     </button>
@@ -201,14 +199,14 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
                       onClick={() => {
                         handleDeletePreset(preset._id, true);
                       }}
-                      className='load-presets-modal__btn-delete load-presets-modal__btn'
+                      className='modal__btn-delete modal__btn'
                     >
                       Restore
                     </button>
                   )}
                   <button
                     onClick={() => handleEditPreset(preset._id)}
-                    className='load-presets-modal__btn-delete load-presets-modal__btn'
+                    className='modal__btn-delete modal__btn'
                   >
                     Edit
                   </button>
@@ -216,36 +214,34 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
               );
             })
           ) : (
-            <div className='load-presets-modal__no-presets'>
-              You have no saved presets.
-            </div>
+            <div className='modal__no-presets'>You have no saved presets.</div>
           )}
         </div>
-        <div className='load-presets-modal__add-new'>
-          <form name='form' className='load-presets-modal__form'>
-            <h1 className='load-presets-modal__create-heading'>Create new</h1>
-            <div className='load-presets-modal__form-group'>
+        <div className='modal__add-new'>
+          <form name='form' className='modal__form'>
+            <h1 className='modal__create-heading'>Create new</h1>
+            <div className='modal__form-group'>
               <label htmlFor='name'>Preset Name</label>
               <input
                 type='name'
-                className='load-presets-modal__form-control'
+                className='modal__form-control'
                 name='name'
                 value={formData.name}
                 onChange={handleChange}
               />
             </div>
-            <div className='load-presets-modal__form-group'>
+            <div className='modal__form-group'>
               <label htmlFor='description'>Preset Description</label>
               <input
                 type='description'
-                className='load-presets-modal__form-control'
+                className='modal__form-control'
                 name='description'
                 value={formData.description}
                 onChange={handleChange}
               />
             </div>
             <button
-              className='load-presets-modal__btn load-presets-modal__btn--active'
+              className='modal__btn modal__btn--active'
               onClick={handleAddPreset}
             >
               Add New!

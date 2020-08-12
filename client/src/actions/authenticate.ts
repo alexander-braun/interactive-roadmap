@@ -8,6 +8,10 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   CLEAR_PROFILE,
+  PASSWORD_MAIL_SENT,
+  PASSWORD_RECOVERY_ERROR,
+  PASSWORD_RESET_SUCCESS,
+  PASSWORD_RESET_ERROR,
   RegisterUser,
   Login,
 } from './constants';
@@ -39,6 +43,57 @@ export const loadUser = (): ThunkAction<
     dispatch({
       type: AUTH_ERROR,
     });
+  }
+};
+
+//Request Password Link
+export const requestPasswordLink = (
+  email: string
+): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const res = await axios.post('/api/auth/forgotpassword', { email }, config);
+    dispatch({
+      type: PASSWORD_MAIL_SENT,
+      payload: res.data,
+    });
+    dispatch(setAlert('Mail was sent to your inbox!', 'success'));
+  } catch (error) {
+    dispatch({
+      type: PASSWORD_RECOVERY_ERROR,
+    });
+  }
+};
+
+export const setNewPassword = (
+  password: string,
+  token: string
+): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const res = await axios.put(
+      `/api/auth/resetpassword/${token}`,
+      { password },
+      config
+    );
+    dispatch({
+      type: PASSWORD_RESET_SUCCESS,
+      payload: res.data,
+    });
+    dispatch(setAlert('Password changed!', 'success'));
+  } catch (error) {
+    dispatch({
+      type: PASSWORD_RESET_ERROR,
+    });
+    dispatch(setAlert('Something went wrong', 'danger'));
   }
 };
 

@@ -6,7 +6,7 @@ import { AppState } from '../reducers';
 import { connect } from 'react-redux';
 import SvgGenerator from './map/SvgGenerator';
 import CalendarModal from './map/CalendarModal';
-import Navigation from './header/Navigation';
+import Navigation from './menue/Navigation';
 import Header from './header/Header';
 import LoginModal from './login/LoginModal';
 import RegisterModal from './login/RegisterModal';
@@ -26,6 +26,8 @@ import { deleteAllNodes } from '../actions/deleteAllNodes';
 import { deleteAllRecommendations } from '../actions/deleteAllRecommendations';
 import { deleteAllStatuses } from '../actions/deleteAllStatuses';
 import { setCurrentPreset } from '../actions/setCurrentPreset';
+import RecoverPasswordModal from './RecoverPassword/RecoverPasswordModal';
+import ResetPasswordModal from './RecoverPassword/ResetPasswordModal';
 
 interface AppProps {
   nodes: Nodes;
@@ -55,7 +57,7 @@ function App({
   }, [dispatch, isAuthenticated]);
 
   useEffect(() => {
-    if (!currentPreset.length) {
+    if (!currentPreset.length && isAuthenticated) {
       dispatch(deleteAllComments());
       dispatch(deleteAllDates());
       dispatch(deleteAllHeadings());
@@ -64,7 +66,7 @@ function App({
       dispatch(deleteAllStatuses());
       dispatch(setCurrentPreset(''));
     }
-  }, [currentPreset, dispatch]);
+  }, [currentPreset, dispatch, isAuthenticated]);
 
   return (
     <div className='App'>
@@ -78,6 +80,12 @@ function App({
           </Route>
           <Route exact path='/load'>
             <LoadPresetModal />
+          </Route>
+          <Route exact path='/forgotpassword'>
+            <RecoverPasswordModal />
+          </Route>
+          <Route path='/resetpassword/'>
+            <ResetPasswordModal />
           </Route>
           <Route path='/edit-preset/'>
             <EditPresetModal />
