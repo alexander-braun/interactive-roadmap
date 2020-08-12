@@ -44,6 +44,7 @@ function SvgGenerator({ nodes }: SvgGenerator) {
       const bubbleDivs: JSX.Element[] = [];
       const svgCollection: JSX.Element[] = [];
       const scrollHeight: number = window.scrollY;
+      const width = window.innerWidth;
 
       for (const id of ids) {
         const parent = document.getElementById(id[0]);
@@ -57,6 +58,29 @@ function SvgGenerator({ nodes }: SvgGenerator) {
           parent.classList.contains('card--center') &&
           child.classList.contains('card--center');
 
+        if (
+          width <= 1100 &&
+          parent.classList.contains('card--center') &&
+          !child.classList.contains('card--center')
+        ) {
+          continue;
+        }
+
+        const top =
+          width > 1100
+            ? scrollHeight -
+              childRect.height / 2 +
+              parentRect.height / 2 +
+              childRect.y -
+              (childRect.y - parentRect.y) / 2 +
+              8
+            : scrollHeight + childRect.y - parentRect.height;
+
+        const left =
+          width > 1100
+            ? 'calc(50% - 22px)'
+            : childRect.x + childRect.width / 2 - 21.5;
+
         if (center) {
           bubbleDivs.push(
             <div
@@ -66,13 +90,8 @@ function SvgGenerator({ nodes }: SvgGenerator) {
                 dispatch(addCenternode(id[0]));
               }}
               style={{
-                top:
-                  scrollHeight -
-                  childRect.height / 2 +
-                  parentRect.height / 2 +
-                  childRect.y -
-                  (childRect.y - parentRect.y) / 2 +
-                  8,
+                top,
+                left,
               }}
               //8 is for borderradius 4px * 2
             ></div>

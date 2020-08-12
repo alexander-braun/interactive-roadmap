@@ -3,13 +3,17 @@
   padding: 1rem 1.5rem;
   text-align: center;
   font-size: 1.5rem;
-  max-width: 12vw;
   margin: 2.5rem 0;
   position: relative;
-  width: 12vw;
+  width: 30vw;
   will-change: border, background;
   transition: border 0.3s, background 0.5s;
   border-radius: $radius-standard;
+
+  @media only screen and(min-width: 1100px) {
+    width: 12vw;
+    max-width: 12vw;
+  }
 
   &--element {
     background: $standard;
@@ -93,15 +97,18 @@
 
   &__heading {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     align-self: center;
     justify-content: center;
+
+    @media only screen and(min-width: 1100px) {
+      flex-direction: row;
+    }
   }
 
   &__inner-text {
     margin-right: auto;
-    font-size: 2rem;
     resize: none;
     padding: 5px;
     border: 1px dashed transparent;
@@ -114,6 +121,21 @@
     letter-spacing: -0.1rem;
     color: $color-standard;
     transition: border 0.2s, background 0.2s;
+    word-break: break-all;
+    hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    padding-left: 0;
+    font-size: 1.5rem;
+
+    @media only screen and(min-width: 800px) {
+      font-size: 1.8rem;
+    }
+
+    @media only screen and(min-width: 1100px) {
+      font-size: 2rem;
+      padding-left: 5px;
+    }
 
     &:hover {
       background: $textbox-standard-hover;
@@ -197,7 +219,8 @@
   }
 
   &__due-date {
-    margin-left: auto;
+    margin-left: 0;
+    margin-right: auto;
     font-weight: 400;
     font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto,
       'Segoe UI', Arial, sans-serif;
@@ -205,7 +228,16 @@
     width: fit-content;
     align-self: center;
     justify-self: center;
-    font-size: 1.25rem;
+    font-size: 1rem;
+
+    @media only screen and(min-width: 800px) {
+      font-size: 1.3rem;
+    }
+
+    @media only screen and(min-width: 1100px) {
+      margin-left: auto;
+      font-size: 1.25rem;
+    }
 
     &:hover {
       text-decoration: underline;
@@ -236,6 +268,11 @@
       will-change: font-weight;
       font-family: Inter, system, -apple-system, BlinkMacSystemFont, Roboto,
         'Segoe UI', Arial, sans-serif;
+      font-size: 1.2rem;
+
+      @media only screen and(min-width: 1100px) {
+        font-size: 1.5rem;
+      }
     }
 
     &--done-dot {
@@ -262,10 +299,14 @@
 
   &__bottom-row {
     margin-left: auto;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     margin-bottom: 0.5rem;
     width: fit-content;
     line-height: 1;
+
+    @media only screen and(min-width: 1100px) {
+      margin-top: 2rem;
+    }
   }
 
   &__status-choice {
