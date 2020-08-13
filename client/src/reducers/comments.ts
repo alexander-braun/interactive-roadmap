@@ -9,7 +9,7 @@ import {
 } from '../actions/constants';
 
 const initialState = {
-  '2cfc0a72-712d-4b59-896b-e4ce8ef91d01': ['Edit me!'],
+  'adfe4aca-1edb-4015-b639-874a302d132e': ['Add your own notes here!'],
 };
 
 export const comments = (

@@ -87,6 +87,7 @@ function Navigation({
 
   const handleSave = () => {
     if (!isAuthenticated) History.push('/login');
+    console.log(Object.keys(nodes));
     const preset = {
       comments,
       nodes,

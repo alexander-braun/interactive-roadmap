@@ -3,584 +3,201 @@ import { Nodes } from '../components/types/Map-Data';
 export const nodes: Nodes = {
   '74050a71-967b-42d3-ae83-66907a1ac017': {
     mainKnot: true,
-    children: [],
-  },
-  '18ee04b1-b978-4305-bcf0-0b8140439ad4': {
-    mainKnot: true,
     children: [
-      'c695bcd0-fa4b-4cc2-8ba0-9709f2d36374',
-      '3d7b7cb0-f45d-4e35-9e10-9e40b7319bf6',
-      '2cfc0a72-712d-4b59-896b-e4ce8ef91d01',
+      'adfe4aca-1edb-4015-b639-874a302d132e',
+      'd81646ac-0f93-46b2-93ed-759b04d4bc8f',
+      'fdc55838-af4e-46bc-be31-8bac6d6b994a',
     ],
   },
-  'c695bcd0-fa4b-4cc2-8ba0-9709f2d36374': {
+  '5b66952b-32f5-4995-a4f1-c42fe7b90542': {
     children: [
-      '7d1a85f5-04c0-4505-a0ec-90c801055a73',
-      'd0ee0e22-0c12-42b9-afb3-9502b69a7c0f',
-      'a13fc893-8223-412e-9a26-5308293e1794',
-    ],
-  },
-  '3d7b7cb0-f45d-4e35-9e10-9e40b7319bf6': {
-    children: [],
-  },
-  '2cfc0a72-712d-4b59-896b-e4ce8ef91d01': {
-    children: [],
-  },
-  '0808dc9d-74e9-40e3-ae2d-8287dcd938a5': {
-    mainKnot: true,
-    children: [
-      '949433cb-a528-44d3-9617-da0b4613812a',
-      'd645056e-94cc-4f86-bea4-1786805f0b84',
-      '85fe770e-0867-410a-a81f-2f56cf807f3c',
-      'da9eef46-53e6-439a-b7cc-04dd1d8042d6',
-    ],
-  },
-  '949433cb-a528-44d3-9617-da0b4613812a': {
-    children: [],
-  },
-  'd645056e-94cc-4f86-bea4-1786805f0b84': {
-    children: [],
-  },
-  '85fe770e-0867-410a-a81f-2f56cf807f3c': {
-    children: [],
-  },
-  'da9eef46-53e6-439a-b7cc-04dd1d8042d6': {
-    children: [
-      'ca813ccd-a3b2-4c81-8a15-d426d523f896',
-      'ca813ccd-a3b2-4c81-8a15-d426d533f896',
-    ],
-  },
-  'ca813ccd-a3b2-4c81-8a15-d426d533f896': {
-    children: [],
-  },
-  'ca813ccd-a3b2-4c81-8a15-d426d523f896': {
-    children: [],
-  },
-  '86a76dfc-e128-4d15-b2d6-a77dfb71ad8c': {
-    mainKnot: true,
-    children: [
-      '681d34a4-1d0c-4c7f-a08e-484a0d4abf80',
-      'fa4deea3-4aff-4b7f-be6e-83e50d050090',
-      '23a4a20b-8e1b-40fb-b0f1-9d14594cbeaf',
-      'ce164afd-d623-401d-ab2b-6249b5cc8a6a',
-    ],
-  },
-  '681d34a4-1d0c-4c7f-a08e-484a0d4abf80': {
-    children: [
-      'e730fcef-9c4e-4790-be00-ef295c7ee211',
-      'ad915d3d-41a0-403b-963f-2cde2cd46b34',
-      '2fb40e5e-8304-4678-b637-3da6027d856f',
-      '5d8de85f-75df-4cb9-895c-0305b7064b17',
-      '0314e1ed-043e-457b-a918-97f75a6aa4c4',
-      'ec4e3afc-8598-4b51-8c11-eaa08add9653',
-    ],
-  },
-  'fa4deea3-4aff-4b7f-be6e-83e50d050090': {
-    children: [],
-  },
-  '23a4a20b-8e1b-40fb-b0f1-9d14594cbeaf': {
-    children: [
-      '19232b44-29bd-4a26-8cc6-b4175ee0fefc',
-      'a47f9cd0-58f7-40e8-8cce-f77273077668',
-      '850e2e61-472c-4257-92af-48e973d7a64d',
-      '6ce7aaff-24bc-4534-a206-ae4f178284d2',
-    ],
-  },
-  '19232b44-29bd-4a26-8cc6-b4175ee0fefc': {
-    children: [],
-  },
-  'a47f9cd0-58f7-40e8-8cce-f77273077668': {
-    children: [],
-  },
-  '850e2e61-472c-4257-92af-48e973d7a64d': {
-    children: [],
-  },
-  '6ce7aaff-24bc-4534-a206-ae4f178284d2': {
-    children: [],
-  },
-  '4a32e213-d638-4697-885d-c752fc5194db': {
-    mainKnot: true,
-    children: [
-      '3fce124b-857c-4e15-8c3c-771faeecd240',
-      '53457859-a03b-44d9-90c3-f9f953449eaa',
-      '62cf0cc1-19c6-4ae3-be70-4214e6c2224e',
-      'cf38a7ff-ad70-46f1-8a0d-6e5d5565316a',
-      'a60a3b84-ec24-46d3-89f2-4dcdad4851a5',
-      '51225c2b-705b-4c79-bf8a-8295f7a3844f',
-      'abcb76ba-8fe6-4c9d-be2e-9c2d39ed1759',
-    ],
-  },
-  '3fce124b-857c-4e15-8c3c-771faeecd240': {
-    children: [
-      '24ceb1c2-c3d1-4b3b-8eca-d87ea82171c4',
-      '9e423f75-9b00-47f7-93e1-72f3ca07e3f6',
-      '71e04865-8b62-4db6-a25a-e671ad5bf956',
-      '248088d6-307b-4a53-af5f-d338e442b6c8',
-      'd9cec797-183c-4d5d-b458-56d56580e4ba',
-    ],
-  },
-  '53457859-a03b-44d9-90c3-f9f953449eaa': {
-    children: [],
-  },
-  '62cf0cc1-19c6-4ae3-be70-4214e6c2224e': {
-    children: [
-      'c391fa35-58c5-4316-abaf-ccc34cfcaddb',
-      'e14b4425-ab30-41ff-bfa0-bb8a9676528d',
-      'b5deab53-1e25-4c15-a17d-254f661332f2',
-    ],
-  },
-  'cf38a7ff-ad70-46f1-8a0d-6e5d5565316a': {
-    children: [],
-  },
-  'a60a3b84-ec24-46d3-89f2-4dcdad4851a5': {
-    children: [
-      '7bf45a6f-5e70-4d97-81a8-fa6cf4949f70',
-      '7507df7e-686b-4c4e-9dbb-d1da250a46bb',
-      '5d212448-f12b-4173-a759-0acedf923c1b',
-      '52880081-10c3-4f3f-b019-76daab8a922f',
-      'd627daf3-1632-4d12-8f82-d9e70b87f3cd',
-      'e50c08c1-c7a7-4ba3-b966-31823c397ac0',
-      '5b4e24c0-1d99-4a38-b65b-300fbbc69ca7',
-      '6f120b57-c540-4671-8d6c-c42f69ebc7bc',
-    ],
-  },
-  '7bf45a6f-5e70-4d97-81a8-fa6cf4949f70': {
-    children: [],
-  },
-  '7507df7e-686b-4c4e-9dbb-d1da250a46bb': {
-    children: [],
-  },
-  '5d212448-f12b-4173-a759-0acedf923c1b': {
-    children: [],
-  },
-  '52880081-10c3-4f3f-b019-76daab8a922f': {
-    children: [],
-  },
-  'd627daf3-1632-4d12-8f82-d9e70b87f3cd': {
-    children: [],
-  },
-  'e50c08c1-c7a7-4ba3-b966-31823c397ac0': {
-    children: [],
-  },
-  '22d1e3cb-1cef-4901-9930-b5094b037858': {
-    mainKnot: true,
-    children: [
-      '655d42b5-d7a8-4ee4-aa1d-3316e024079f',
-      'f9c27d05-c65b-42b7-9448-a2693f78c428',
-      'f145ef78-2d03-46ce-b1f6-7fee4c40a481',
-    ],
-  },
-  '655d42b5-d7a8-4ee4-aa1d-3316e024079f': {
-    children: [
-      '45fec16d-fc6b-4ee5-9b53-55d6adbc4500',
-      '6a50fa09-b08d-453d-87ed-2e4c779aa3f7',
-      '6a49a3f2-408a-47de-88fd-03e58ef6eeb1',
-    ],
-  },
-  '45fec16d-fc6b-4ee5-9b53-55d6adbc4500': {
-    children: [],
-  },
-  '6a50fa09-b08d-453d-87ed-2e4c779aa3f7': {
-    children: [],
-  },
-  '6a49a3f2-408a-47de-88fd-03e58ef6eeb1': {
-    children: [],
-  },
-  'f9c27d05-c65b-42b7-9448-a2693f78c428': {
-    children: [
-      '9a4ff0e1-d1e1-4448-a12f-dda42e361f66',
-      '57b8585c-637d-42bb-99e0-1ef5f61f882b',
-      '4548e3ba-e06a-4670-9260-de173983be28',
-    ],
-  },
-  '58ab4c01-f7b3-44a5-85d6-da96d617d6d9': {
-    mainKnot: true,
-    children: [
-      'eeeea718-330a-481a-93c7-f88dc9802a75',
-      '73714197-213c-40ab-9b9e-2aeb67284917',
-      'd54335e4-245e-446a-aa1d-ee2eb1279e56',
-    ],
-  },
-  'eeeea718-330a-481a-93c7-f88dc9802a75': {
-    children: [
-      '48619d45-2228-4fa2-9541-f9ad9651fca9',
-      'e86b7c9a-9152-408f-88f1-f3a6420da046',
-      '6868898b-2b1d-4baf-bad1-a9b87304ed29',
-    ],
-  },
-  '73714197-213c-40ab-9b9e-2aeb67284917': {
-    children: [
-      '455d1477-b8bf-4033-8db9-50d0b499b539',
-      '9de871d4-7a89-4c05-a568-9d38d338a55a',
-    ],
-  },
-  '5ff7cd53-f879-4e6e-9e9d-51b358ba6fe9': {
-    mainKnot: true,
-    children: [
-      '567ffa6a-e205-4470-ba07-372e84eec162',
-      '4e4ea590-57c8-4699-9139-5effd9d9a6bf',
-      '3c68069a-ea25-4215-b7f2-336288ee3cb3',
-    ],
-  },
-  '567ffa6a-e205-4470-ba07-372e84eec162': {
-    children: [
-      '06174070-ce7f-49d8-bd91-f0eb1b443091',
-      '55a552a0-77de-4d6c-85ec-0c68c7955814',
-    ],
-  },
-  '4e4ea590-57c8-4699-9139-5effd9d9a6bf': {
-    children: [
-      '8fcbf334-3497-47ea-8cc6-3753a75ae59c',
-      '0fb9a2d0-3640-49e4-b9ec-0e05327f8a79',
-    ],
-  },
-  'cb2817d3-5cec-402f-848b-d9ea13b4881a': {
-    mainKnot: true,
-    children: [
-      '8aa91502-8d8d-4050-922a-2441d7c46572',
-      'a6d69b50-ed36-4e71-869f-b6759f54cc81',
-      '59024f22-94fa-4429-bfef-b3fc3791a4ab',
-    ],
-  },
-  '8aa91502-8d8d-4050-922a-2441d7c46572': {
-    children: [],
-  },
-  'a6d69b50-ed36-4e71-869f-b6759f54cc81': {
-    children: [],
-  },
-  '59024f22-94fa-4429-bfef-b3fc3791a4ab': {
-    children: [],
-  },
-  '2394cd22-9c9e-427b-830d-224fd40d8f54': {
-    mainKnot: true,
-    children: [
-      '3e19091e-fbc5-44ec-988c-c36df758f825',
-      '2c78bb4d-80a3-4f4a-b581-4d15b68e6d59',
-      '0ba26120-e085-4d1a-b50e-fd607c5c2e8c',
-      '479cc89a-5702-4e05-9ea1-71fcab6df919',
-    ],
-  },
-  '3e19091e-fbc5-44ec-988c-c36df758f825': {
-    children: [
-      '951ddd9b-b407-450b-9e0e-54a505b45bf3',
-      '696b8b83-6c80-452f-b4f6-f31d08350bda',
-    ],
-  },
-  '2c78bb4d-80a3-4f4a-b581-4d15b68e6d59': {
-    children: [
-      '468172ae-daff-4f7f-848c-70e317513c66',
-      '51d260ce-0d12-415b-b68b-c4916cb7ce27',
-    ],
-  },
-  '0ba26120-e085-4d1a-b50e-fd607c5c2e8c': {
-    children: ['a0f7c40d-cc1d-4fd5-bc45-1c2a2030592e'],
-  },
-  'b01cdc70-e7f4-4ea0-9880-20a4fc0c46b6': {
-    mainKnot: true,
-    children: [
-      '5e428a98-f47f-4eb9-8ec2-5d1b7a288e04',
-      '51ff62bc-4398-49e4-bf68-7cc8d459d349',
-    ],
-  },
-  'ac0af27b-dc78-4e2d-a8c8-7af8bfe0dd4b': {
-    children: [
-      '8eb249e0-2018-44b0-8280-4e4978dd66f8',
-      '7bfac2cc-da48-4927-8ab9-19227347289b',
-      '92297db2-0cb8-495f-96e9-d050187de74d',
+      '59476012-ac9e-46dd-807d-b8fdd11b6f20',
+      '1e52ca86-4408-4738-ab58-46fd7b93b812',
+      'e5fafe83-6e55-4367-88ad-42fc98e4c594',
+      '054cd058-ecb9-4de8-9a91-cf0c1103ffa0',
     ],
     mainKnot: true,
   },
-  '361c25c4-66a3-42da-b502-135dedeb928f': {
+  '5d2ead20-49b1-4d65-9e69-986bf9748ccf': {
     children: [
-      '601d338d-75a5-418c-ba6a-50cf29956f2b',
-      'bd5f925f-41af-4565-b345-93ef1da4d410',
-      'cfa715cd-0146-4446-80b4-02ae7babb379',
+      '6ba5489e-93d0-4c6d-9e95-6e04283d4ecc',
+      '99bc5d1e-28cc-4c24-909b-682e1af7aa33',
+      'f87a4964-cb68-453c-9cf8-a7ea54271fba',
+      '0fec6232-015a-434f-82e0-95d284294b34',
     ],
     mainKnot: true,
   },
-  'c7fac2af-88e6-49e9-81ad-f86d5854b2ae': {
+  '92eb6e15-85bc-4b0f-8785-1f9e594f561f': {
+    children: [
+      '0b315737-626a-434e-957f-78efcf98ee1d',
+      '2798627e-f6d9-43f9-8d54-d6b0364e0373',
+      '40a64420-1927-48f1-b054-68c906b07751',
+      '8c2f08a4-4884-4bb0-8dc0-e65f5e2432c0',
+    ],
     mainKnot: true,
+  },
+  'ac032109-c1af-4ddf-89c4-d53fd2319012': {
     children: [
-      '4a8b104a-0bdf-4ae2-af1b-938c7eff66fa',
-      '093e4cf6-6ad2-4548-9c79-e283901b823a',
-      'e367609b-2eca-4760-ba4b-f9c616f9f858',
-      'b8348f3d-894d-46e7-898c-19c789c6e5dc',
-      'dbbe42b4-5f65-45e1-9aa8-e1f6012901d9',
-      'd82a727e-4bb6-4fa2-a06a-20e74a94d22f',
+      '9df0902d-dd51-42dc-9d7f-ebc59ac457d5',
+      'b6cd3a06-ec82-47b1-b95d-41d73e5de729',
     ],
-  },
-  '4a8b104a-0bdf-4ae2-af1b-938c7eff66fa': {
-    children: [],
-  },
-  '093e4cf6-6ad2-4548-9c79-e283901b823a': {
-    children: [],
-  },
-  'e367609b-2eca-4760-ba4b-f9c616f9f858': {
-    children: [],
-  },
-  'b709d9e5-8fda-458e-9650-166aba43945c': {
     mainKnot: true,
+  },
+  'eaeee072-d35f-4193-8643-499f712f24f9': {
     children: [
-      '09dd6583-25db-42f3-8be7-01da317bccfb',
-      '356f0a65-65df-47c4-9d2c-1cfe5bbf246a',
-      '1c156b3f-6c63-4b38-8ec0-15a58e632c3b',
-      'df1b5330-55c6-4b37-bbb8-d55f44690c7a',
-      'f9c2d4c8-9485-44e8-96fc-74825b19cf45',
-      'cb28ac0d-5e55-4f46-8d5c-bca8f54f9fdf',
-      'bf4efad0-f41f-4901-9622-cda90aab1854',
+      '73a21d5e-af9c-4c25-9b73-336518d898ed',
+      '80f943dd-20b3-42c5-891c-4028c7e2dce9',
+      'e65a479b-a480-4a3d-b36f-8480a75e2215',
     ],
-  },
-  '09dd6583-25db-42f3-8be7-01da317bccfb': {
-    children: [],
-  },
-  '356f0a65-65df-47c4-9d2c-1cfe5bbf246a': {
-    children: [],
-  },
-  '1c156b3f-6c63-4b38-8ec0-15a58e632c3b': {
-    children: [],
-  },
-  'df1b5330-55c6-4b37-bbb8-d55f44690c7a': {
-    children: [],
-  },
-  'f9c2d4c8-9485-44e8-96fc-74825b19cf45': {
-    children: [],
-  },
-  'cb28ac0d-5e55-4f46-8d5c-bca8f54f9fdf': {
-    children: [],
-  },
-  'bf4efad0-f41f-4901-9622-cda90aab1854': {
-    children: [],
-  },
-  '3934ddca-3f7d-40d4-8c75-93258f10b643': {
     mainKnot: true,
-    children: [],
   },
-  '5a5e3912-e717-4f54-abb1-b54b9e80086f': {
+  'dce09328-7495-4453-a249-f031ed4f20b1': {
+    children: [
+      'e0886eec-a454-4169-a42e-a1b2c129f115',
+      'cb878197-3f9a-4d3a-850e-bbd0fad3d7df',
+      '3b294450-289d-4ab9-9aa1-1b84ec7226c8',
+    ],
     mainKnot: true,
-    children: [],
   },
-  '7d1a85f5-04c0-4505-a0ec-90c801055a73': {
-    children: [],
-  },
-  'd0ee0e22-0c12-42b9-afb3-9502b69a7c0f': {
-    children: [],
-  },
-  'a13fc893-8223-412e-9a26-5308293e1794': {
-    children: [],
-  },
-  'e730fcef-9c4e-4790-be00-ef295c7ee211': {
-    children: [],
-  },
-  'ad915d3d-41a0-403b-963f-2cde2cd46b34': {
-    children: [],
-  },
-  '2fb40e5e-8304-4678-b637-3da6027d856f': {
-    children: [],
-  },
-  '5d8de85f-75df-4cb9-895c-0305b7064b17': {
-    children: [],
-  },
-  '0314e1ed-043e-457b-a918-97f75a6aa4c4': {
-    children: [],
-  },
-  'ec4e3afc-8598-4b51-8c11-eaa08add9653': {
-    children: [],
-  },
-  'ce164afd-d623-401d-ab2b-6249b5cc8a6a': {
-    children: [],
-  },
-  '24ceb1c2-c3d1-4b3b-8eca-d87ea82171c4': {
-    children: [],
-  },
-  '9e423f75-9b00-47f7-93e1-72f3ca07e3f6': {
-    children: [],
-  },
-  '71e04865-8b62-4db6-a25a-e671ad5bf956': {
-    children: [],
-  },
-  '248088d6-307b-4a53-af5f-d338e442b6c8': {
-    children: [],
-  },
-  'd9cec797-183c-4d5d-b458-56d56580e4ba': {
-    children: [],
-  },
-  'c391fa35-58c5-4316-abaf-ccc34cfcaddb': {
-    children: [],
-  },
-  'e14b4425-ab30-41ff-bfa0-bb8a9676528d': {
-    children: [],
-  },
-  'b5deab53-1e25-4c15-a17d-254f661332f2': {
-    children: [],
-  },
-  '51225c2b-705b-4c79-bf8a-8295f7a3844f': {
-    children: ['f80c9908-e85e-4abf-9008-c834383ceb62'],
-  },
-  '5b4e24c0-1d99-4a38-b65b-300fbbc69ca7': {
-    children: [],
-  },
-  '6f120b57-c540-4671-8d6c-c42f69ebc7bc': {
-    children: [],
-  },
-  'abcb76ba-8fe6-4c9d-be2e-9c2d39ed1759': {
-    children: [],
-  },
-  'f80c9908-e85e-4abf-9008-c834383ceb62': {
-    children: [],
-  },
-  '9a4ff0e1-d1e1-4448-a12f-dda42e361f66': {
-    children: [],
-  },
-  '57b8585c-637d-42bb-99e0-1ef5f61f882b': {
-    children: [],
-  },
-  'f145ef78-2d03-46ce-b1f6-7fee4c40a481': {
+  'd491eae2-36cd-4650-9c61-6852c319d498': {
     children: [
-      '006a1dfe-7d3b-4183-925c-9788ecf0816e',
-      'cfbcc7fa-bf22-42c4-bf3a-c91ff70a87a6',
-      '122bf525-2f1e-49e3-a26e-764a191088ae',
-      '277d8c6b-94f5-4f21-aa6c-1cfb1dd84418',
-      'cf176822-2a21-401c-bf43-0bb11bc0e091',
-      '45126098-de6c-4336-a286-29ad0b536641',
+      '512f09f1-3fb7-498a-9998-75c558f42185',
+      'bb75d80d-f52e-4efe-8b6b-3afa56b6e965',
+      'f215e725-594f-4624-b7c6-9884b43ba541',
+      '63e7a715-e247-4479-b74e-c5662310fcb8',
+      '386813ba-2245-49d1-97d0-b98c2cdc5895',
+      '0a2b3f1d-bcb1-451d-ad09-14910348e3f0',
+      '57338acf-9789-4ae3-90a7-6a4a6080d543',
+      'd08bce18-6bde-4e3e-83fa-8d28b706cb96',
     ],
+    mainKnot: true,
   },
-  '4548e3ba-e06a-4670-9260-de173983be28': {
-    children: [],
-  },
-  '006a1dfe-7d3b-4183-925c-9788ecf0816e': {
-    children: [],
-  },
-  'cfbcc7fa-bf22-42c4-bf3a-c91ff70a87a6': {
-    children: [],
-  },
-  '122bf525-2f1e-49e3-a26e-764a191088ae': {
-    children: [],
-  },
-  '277d8c6b-94f5-4f21-aa6c-1cfb1dd84418': {
-    children: [],
-  },
-  'cf176822-2a21-401c-bf43-0bb11bc0e091': {
-    children: [],
-  },
-  '45126098-de6c-4336-a286-29ad0b536641': {
-    children: [],
-  },
-  'd54335e4-245e-446a-aa1d-ee2eb1279e56': {
-    children: [],
-  },
-  '48619d45-2228-4fa2-9541-f9ad9651fca9': {
-    children: [],
-  },
-  'e86b7c9a-9152-408f-88f1-f3a6420da046': {
-    children: [],
-  },
-  '6868898b-2b1d-4baf-bad1-a9b87304ed29': {
-    children: [],
-  },
-  '455d1477-b8bf-4033-8db9-50d0b499b539': {
-    children: [],
-  },
-  '9de871d4-7a89-4c05-a568-9d38d338a55a': {
-    children: [],
-  },
-  '3c68069a-ea25-4215-b7f2-336288ee3cb3': {
+  '627c6ebe-1e92-48bf-8ebd-45b7f6305ad1': { children: [], mainKnot: true },
+  'adfe4aca-1edb-4015-b639-874a302d132e': { children: [], mainKnot: false },
+  'd81646ac-0f93-46b2-93ed-759b04d4bc8f': { children: [], mainKnot: false },
+  '59476012-ac9e-46dd-807d-b8fdd11b6f20': {
     children: [
-      '1082cd07-4b98-4ca8-88ec-778a15d63adc',
-      '8a0ad729-7a85-4bba-abbc-db9143b774c2',
-      'd34401c2-47d8-4049-9c99-6363304a6bd7',
+      '4cb68c6f-4fca-484a-b9e3-cff08fb13028',
+      '21306a5f-bec3-4b0d-bd0f-d6bfe18e8b5f',
+      '5c37e6fc-dcef-45dc-b6c8-4e915da4782c',
+      'bc6df3ee-4d24-4065-a569-010098e3024a',
+      '4bf4b841-d22e-44d1-97ee-41033e1a33eb',
     ],
+    mainKnot: false,
   },
-  '06174070-ce7f-49d8-bd91-f0eb1b443091': {
-    children: [],
-  },
-  '55a552a0-77de-4d6c-85ec-0c68c7955814': {
-    children: [],
-  },
-  '8fcbf334-3497-47ea-8cc6-3753a75ae59c': {
-    children: [],
-  },
-  '0fb9a2d0-3640-49e4-b9ec-0e05327f8a79': {
-    children: [],
-  },
-  '1082cd07-4b98-4ca8-88ec-778a15d63adc': {
-    children: [],
-  },
-  '8a0ad729-7a85-4bba-abbc-db9143b774c2': {
-    children: [],
-  },
-  'd34401c2-47d8-4049-9c99-6363304a6bd7': {
-    children: [],
-  },
-  '479cc89a-5702-4e05-9ea1-71fcab6df919': {
+  '1e52ca86-4408-4738-ab58-46fd7b93b812': { children: [], mainKnot: false },
+  'e5fafe83-6e55-4367-88ad-42fc98e4c594': {
     children: [
-      '75f5b635-3c37-4d17-95a4-110860a25cc2',
-      '57a21238-0d89-4880-84f4-53f296279be2',
-      'b524a78a-e8f4-4151-bd23-484275f8b0db',
-      'bef448d9-e19c-4963-a9bc-52eb1f24af9e',
-      'e30fbf6c-afa0-41b0-98ff-1a1a2677942b',
+      'e087ea1e-4415-4b35-ad42-cd8bf488a7d7',
+      'fc513abe-013a-4fdb-8dfe-4aa5e6049a64',
+      'ddc8a1e4-04fc-4685-8dbd-b6db4b27290c',
     ],
+    mainKnot: false,
   },
-  '75f5b635-3c37-4d17-95a4-110860a25cc2': {
-    children: [],
+  '4cb68c6f-4fca-484a-b9e3-cff08fb13028': { children: [], mainKnot: false },
+  '21306a5f-bec3-4b0d-bd0f-d6bfe18e8b5f': { children: [], mainKnot: false },
+  '5c37e6fc-dcef-45dc-b6c8-4e915da4782c': { children: [], mainKnot: false },
+  'bc6df3ee-4d24-4065-a569-010098e3024a': { children: [], mainKnot: false },
+  '4bf4b841-d22e-44d1-97ee-41033e1a33eb': { children: [], mainKnot: false },
+  'e087ea1e-4415-4b35-ad42-cd8bf488a7d7': { children: [], mainKnot: false },
+  'fc513abe-013a-4fdb-8dfe-4aa5e6049a64': { children: [], mainKnot: false },
+  'ddc8a1e4-04fc-4685-8dbd-b6db4b27290c': { children: [], mainKnot: false },
+  'fdc55838-af4e-46bc-be31-8bac6d6b994a': { children: [], mainKnot: false },
+  '6ba5489e-93d0-4c6d-9e95-6e04283d4ecc': {
+    children: [
+      '0e46a0e6-bc98-4eff-a439-849bc39c8658',
+      '333e06d3-a200-4d85-948f-08aa18157ba9',
+      '1d1e4791-a558-4ef3-b577-3e6c5174d9e6',
+      'ce4bf361-8fcf-44b4-b29a-a3fc91370843',
+    ],
+    mainKnot: false,
   },
-  '57a21238-0d89-4880-84f4-53f296279be2': {
-    children: [],
+  '99bc5d1e-28cc-4c24-909b-682e1af7aa33': { children: [], mainKnot: false },
+  'f87a4964-cb68-453c-9cf8-a7ea54271fba': { children: [], mainKnot: false },
+  '0fec6232-015a-434f-82e0-95d284294b34': {
+    children: [
+      '257c3e2b-cc19-4bcb-a1ce-133ac3bd4c9b',
+      'a3afe138-f161-4fa8-add3-6c015b7b2b8c',
+      '3fad31ea-677f-4a23-b80d-3e9edd5cd360',
+      '5b1aaa62-1619-42a8-bfdc-80a7ed6ca1e9',
+      '59a1d661-346f-4281-ac73-5cb5dbba72d9',
+    ],
+    mainKnot: false,
   },
-  'b524a78a-e8f4-4151-bd23-484275f8b0db': {
-    children: [],
+  '0e46a0e6-bc98-4eff-a439-849bc39c8658': { children: [], mainKnot: false },
+  '333e06d3-a200-4d85-948f-08aa18157ba9': { children: [], mainKnot: false },
+  '1d1e4791-a558-4ef3-b577-3e6c5174d9e6': { children: [], mainKnot: false },
+  'ce4bf361-8fcf-44b4-b29a-a3fc91370843': { children: [], mainKnot: false },
+  '257c3e2b-cc19-4bcb-a1ce-133ac3bd4c9b': { children: [], mainKnot: false },
+  'a3afe138-f161-4fa8-add3-6c015b7b2b8c': { children: [], mainKnot: false },
+  '3fad31ea-677f-4a23-b80d-3e9edd5cd360': { children: [], mainKnot: false },
+  '5b1aaa62-1619-42a8-bfdc-80a7ed6ca1e9': { children: [], mainKnot: false },
+  '59a1d661-346f-4281-ac73-5cb5dbba72d9': { children: [], mainKnot: false },
+  '0b315737-626a-434e-957f-78efcf98ee1d': { children: [], mainKnot: false },
+  '2798627e-f6d9-43f9-8d54-d6b0364e0373': {
+    children: [
+      '1db3dea7-2c7c-43f1-9344-220b9d95b85b',
+      '8bcefe3c-e0dc-4df2-be3b-94aeee9526ad',
+      'd9f470a6-229c-4b0b-bd59-2152162b3058',
+    ],
+    mainKnot: false,
   },
-  'bef448d9-e19c-4963-a9bc-52eb1f24af9e': {
-    children: [],
+  '1db3dea7-2c7c-43f1-9344-220b9d95b85b': { children: [], mainKnot: false },
+  '8bcefe3c-e0dc-4df2-be3b-94aeee9526ad': { children: [], mainKnot: false },
+  'd9f470a6-229c-4b0b-bd59-2152162b3058': { children: [], mainKnot: false },
+  '40a64420-1927-48f1-b054-68c906b07751': { children: [], mainKnot: false },
+  '8c2f08a4-4884-4bb0-8dc0-e65f5e2432c0': { children: [], mainKnot: false },
+  '9df0902d-dd51-42dc-9d7f-ebc59ac457d5': {
+    children: [
+      '4a36bef4-8efc-48ce-b3e8-e69b347f53e1',
+      '6ffa639b-e22f-4f70-9428-2a340edb7a80',
+    ],
+    mainKnot: false,
   },
-  'e30fbf6c-afa0-41b0-98ff-1a1a2677942b': {
-    children: [],
+  '4a36bef4-8efc-48ce-b3e8-e69b347f53e1': { children: [], mainKnot: false },
+  '6ffa639b-e22f-4f70-9428-2a340edb7a80': { children: [], mainKnot: false },
+  'b6cd3a06-ec82-47b1-b95d-41d73e5de729': {
+    children: [
+      '40d8dc8a-a9a3-4b17-9125-506647f8c522',
+      '78923478-31cb-4991-9016-9adc0cb82632',
+      '7e8e17ab-366a-4746-82c5-2077caa9f27d',
+    ],
+    mainKnot: false,
   },
-  '951ddd9b-b407-450b-9e0e-54a505b45bf3': {
-    children: [],
+  '40d8dc8a-a9a3-4b17-9125-506647f8c522': { children: [], mainKnot: false },
+  '78923478-31cb-4991-9016-9adc0cb82632': { children: [], mainKnot: false },
+  '7e8e17ab-366a-4746-82c5-2077caa9f27d': { children: [], mainKnot: false },
+  '054cd058-ecb9-4de8-9a91-cf0c1103ffa0': {
+    children: [
+      '8e915842-fc11-4298-b785-18c4c12c9973',
+      '8904b2b7-e5fa-4885-8c5f-f630cc144ec1',
+    ],
+    mainKnot: false,
   },
-  '696b8b83-6c80-452f-b4f6-f31d08350bda': {
-    children: [],
+  '8e915842-fc11-4298-b785-18c4c12c9973': { children: [], mainKnot: false },
+  '8904b2b7-e5fa-4885-8c5f-f630cc144ec1': { children: [], mainKnot: false },
+  '512f09f1-3fb7-498a-9998-75c558f42185': { children: [], mainKnot: false },
+  'bb75d80d-f52e-4efe-8b6b-3afa56b6e965': { children: [], mainKnot: false },
+  'f215e725-594f-4624-b7c6-9884b43ba541': { children: [], mainKnot: false },
+  '63e7a715-e247-4479-b74e-c5662310fcb8': { children: [], mainKnot: false },
+  '386813ba-2245-49d1-97d0-b98c2cdc5895': {
+    children: [
+      '47070f58-67f4-447a-ab7c-3c7f7e858703',
+      '023480c8-0237-422a-95a8-8b1a72b58e45',
+      '20b2c30e-c713-4ad4-a096-f74179f6f053',
+    ],
+    mainKnot: false,
   },
-  '468172ae-daff-4f7f-848c-70e317513c66': {
-    children: [],
-  },
-  '51d260ce-0d12-415b-b68b-c4916cb7ce27': {
-    children: [],
-  },
-  'a0f7c40d-cc1d-4fd5-bc45-1c2a2030592e': {
-    children: [],
-  },
-  '5e428a98-f47f-4eb9-8ec2-5d1b7a288e04': {
-    children: [],
-  },
-  '51ff62bc-4398-49e4-bf68-7cc8d459d349': {
-    children: [],
-  },
-  '8eb249e0-2018-44b0-8280-4e4978dd66f8': {
-    children: [],
-  },
-  '7bfac2cc-da48-4927-8ab9-19227347289b': {
-    children: [],
-  },
-  '92297db2-0cb8-495f-96e9-d050187de74d': {
-    children: [],
-  },
-  '601d338d-75a5-418c-ba6a-50cf29956f2b': {
-    children: [],
-  },
-  'bd5f925f-41af-4565-b345-93ef1da4d410': {
-    children: [],
-  },
-  'cfa715cd-0146-4446-80b4-02ae7babb379': {
-    children: [],
-  },
-  'b8348f3d-894d-46e7-898c-19c789c6e5dc': {
-    children: [],
-  },
-  'dbbe42b4-5f65-45e1-9aa8-e1f6012901d9': {
-    children: [],
-  },
-  'd82a727e-4bb6-4fa2-a06a-20e74a94d22f': {
-    children: [],
-  },
+  '47070f58-67f4-447a-ab7c-3c7f7e858703': { children: [], mainKnot: false },
+  '023480c8-0237-422a-95a8-8b1a72b58e45': { children: [], mainKnot: false },
+  '20b2c30e-c713-4ad4-a096-f74179f6f053': { children: [], mainKnot: false },
+  '0a2b3f1d-bcb1-451d-ad09-14910348e3f0': { children: [], mainKnot: false },
+  '57338acf-9789-4ae3-90a7-6a4a6080d543': { children: [], mainKnot: false },
+  'd08bce18-6bde-4e3e-83fa-8d28b706cb96': { children: [], mainKnot: false },
+  '73a21d5e-af9c-4c25-9b73-336518d898ed': { children: [], mainKnot: false },
+  '80f943dd-20b3-42c5-891c-4028c7e2dce9': { children: [], mainKnot: false },
+  'e65a479b-a480-4a3d-b36f-8480a75e2215': { children: [], mainKnot: false },
+  'e0886eec-a454-4169-a42e-a1b2c129f115': { children: [], mainKnot: false },
+  'cb878197-3f9a-4d3a-850e-bbd0fad3d7df': { children: [], mainKnot: false },
+  '3b294450-289d-4ab9-9aa1-1b84ec7226c8': { children: [], mainKnot: false },
 };
