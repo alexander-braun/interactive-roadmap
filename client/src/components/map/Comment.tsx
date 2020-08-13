@@ -37,6 +37,13 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
     }
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (text === 'Edit me!') {
+      updateText('');
+      e.currentTarget.innerText = '';
+    }
+  };
+
   const textareaRef = useRef<HTMLDivElement>(null);
   return (
     <li className='comments-row__list-item'>
@@ -69,6 +76,7 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
         onKeyPress={(e) => {
           handleKeyPress(e);
         }}
+        onClick={handleClick}
         defaultValue={comment}
       >
         {comment}
