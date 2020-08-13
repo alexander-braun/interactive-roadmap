@@ -37,10 +37,21 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleClick = (
+    e:
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+      | React.FocusEvent<HTMLDivElement>
+  ) => {
     if (text === 'Edit me!') {
       updateText('');
       e.currentTarget.innerText = '';
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (text === '') {
+      updateText('Edit me!');
+      e.currentTarget.innerText = 'Edit me!';
     }
   };
 
@@ -66,10 +77,12 @@ function Comment({ comment, id, index }: Comment): JSX.Element {
           }
         }}
         className='comments-row__comments-textarea'
-        onFocus={() => {
+        onFocus={(e) => {
           handleFocus();
+          handleClick(e);
         }}
         onBlur={(e) => {
+          handleBlur(e);
           handleFocus();
           handleSubmit();
         }}
