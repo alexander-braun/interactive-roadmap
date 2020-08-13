@@ -28,6 +28,7 @@ import { deleteAllStatuses } from '../actions/deleteAllStatuses';
 import { setCurrentPreset } from '../actions/setCurrentPreset';
 import RecoverPasswordModal from './RecoverPassword/RecoverPasswordModal';
 import ResetPasswordModal from './RecoverPassword/ResetPasswordModal';
+import SidenavSlideIn from './menue/SidenavSlideIn';
 
 interface AppProps {
   nodes: Nodes;
@@ -93,6 +94,7 @@ function App({
         </Switch>
       </Router>
       <Navigation />
+      <SidenavSlideIn />
       <Header />
       <Map nodes={nodes} />
       <SvgGenerator />

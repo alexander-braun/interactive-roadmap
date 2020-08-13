@@ -1,13 +1,28 @@
 .header {
   width: 100%;
-  height: 45vh;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column-reverse;
+  justify-content: space-between;
   align-items: center;
   background-color: #fafbfc;
   box-shadow: inset 0 -1px 0 #e1e4e8;
   position: relative;
+
+  @media only screen and(min-width: 800px) {
+    flex-direction: row;
+  }
+
+  @media only screen and(min-width: 1280px) {
+    width: 100%;
+    height: 45vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafbfc;
+    box-shadow: inset 0 -1px 0 #e1e4e8;
+    position: relative;
+  }
 
   &__heading,
   &__subheading {
@@ -19,21 +34,52 @@
       'Lucida Console', Monaco, monospace;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
       sans-serif, Apple Color Emoji, Segoe UI Emoji;
-    font-size: 8rem;
+    font-size: 4rem;
     font-weight: 700;
+    line-height: 1;
+    text-align: center;
+
+    @media only screen and(min-width: 600px) {
+      font-size: 5rem;
+    }
+
+    @media only screen and(min-width: 1280px) {
+      font-size: 8rem;
+    }
   }
 
   &__subheading {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: 400;
     font-style: italic;
+    line-height: 2;
+
+    @media only screen and(min-width: 600px) {
+      font-size: 2rem;
+    }
+
+    @media only screen and(min-width: 1280px) {
+      font-size: 2.5rem;
+    }
   }
 
   &__svg-left {
-    left: 0;
-    position: absolute;
-    bottom: 0;
-    width: 25vw;
+    /* width: 25vw; */
+    width: 80vw;
+    align-self: flex-start;
+
+    @media only screen and(min-width: 800px) {
+      align-self: flex-end;
+      width: 50vw;
+    }
+
+    @media only screen and(min-width: 1280px) {
+      left: 0;
+      position: absolute;
+      bottom: 0;
+      width: 25vw;
+      height: auto;
+    }
   }
 
   &__svg-right {
@@ -41,6 +87,11 @@
     position: absolute;
     bottom: 0;
     width: 20vw;
+    display: none;
+
+    @media only screen and(min-width: 1280px) {
+      display: block;
+    }
   }
 
   &__wrapper {
@@ -48,5 +99,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    justify-self: center;
+    margin-top: 5vh;
+
+    @media only screen and(min-width: 800px) {
+    }
+
+    @media only screen and(min-width: 1280px) {
+      margin: 0 auto;
+    }
   }
 }

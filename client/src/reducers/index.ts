@@ -10,6 +10,7 @@ import { auth } from './auth';
 import { presets } from './presets';
 import { currentPreset } from './currentPreset';
 import { alert } from './alert';
+import { sidenav } from './sidenav';
 
 export const rootReducer = combineReducers({
   nodes,
@@ -23,6 +24,7 @@ export const rootReducer = combineReducers({
   presets,
   currentPreset,
   alert,
+  sidenav,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

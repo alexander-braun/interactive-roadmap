@@ -46,6 +46,7 @@ export const PASSWORD_MAIL_SENT = 'PASSWORD_MAIL_SENT';
 export const PASSWORD_RECOVERY_ERROR = 'PASSWORD_RECOVERY_ERROR';
 export const PASSWORD_RESET_SUCCESS = 'PASSWORD_RESET_SUCCESS';
 export const PASSWORD_RESET_ERROR = 'PASSWORD_RESET_ERROR';
+export const TOGGLE_SIDENAV = 'TOGGLE_SIDENAV';
 
 export type Comment = string;
 export type ID = string;
@@ -318,7 +319,11 @@ export interface ResetPassword {
 export interface ResetPasswordError {
   type: typeof PASSWORD_RESET_ERROR;
 }
+export interface ToggleSidenav {
+  type: typeof TOGGLE_SIDENAV;
+}
 
+export type SidenavActionTypes = ToggleSidenav;
 export type CurrentPresetActionTypes = UpdateCurrentPreset;
 export type PresetActionTypes =
   | LoadPresets
@@ -374,4 +379,5 @@ export type AppActions =
   | AuthActionTypes
   | AlertActionTypes
   | PresetActionTypes
-  | CurrentPresetActionTypes;
+  | CurrentPresetActionTypes
+  | SidenavActionTypes;

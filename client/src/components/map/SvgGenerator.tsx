@@ -74,7 +74,14 @@ function SvgGenerator({ nodes }: SvgGenerator) {
               childRect.y -
               (childRect.y - parentRect.y) / 2 +
               8
-            : scrollHeight + childRect.y - parentRect.height;
+            : nodes[id[0]].children.length
+            ? scrollHeight + childRect.y - parentRect.height
+            : scrollHeight -
+              childRect.height / 2 +
+              parentRect.height / 2 +
+              childRect.y -
+              (childRect.y - parentRect.y) / 2 +
+              8;
 
         const left =
           width > 1100
@@ -110,7 +117,7 @@ function SvgGenerator({ nodes }: SvgGenerator) {
       setBubbles(bubbleDivs);
       setSvgs(svgCollection);
     },
-    [dispatch]
+    [dispatch, nodes]
   );
 
   useEffect(() => {

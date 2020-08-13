@@ -5,10 +5,14 @@
 
   &__section-start {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     margin-top: 10rem;
+
+    @media only screen and(min-width: 700px) {
+      flex-direction: row;
+    }
   }
 
   &__legend,
@@ -18,13 +22,28 @@
     margin: 0 auto;
     padding: 5rem;
     box-shadow: rgb(201, 201, 201) 0 5px 30px -15px;
-    max-width: 25vw;
     flex-direction: column;
     display: flex;
   }
 
   &__legend {
-    max-width: 35vw;
+    width: 50vw;
+    margin-top: 4rem;
+
+    @media only screen and(min-width: 700px) {
+      max-width: 35vw;
+      width: fit-content;
+      margin-top: 0;
+    }
+  }
+
+  &__resource-wrapper {
+    width: 50vw;
+
+    @media only screen and(min-width: 700px) {
+      max-width: 20vw;
+      max-width: 25vw;
+    }
   }
 
   &__ul {
@@ -32,7 +51,7 @@
   }
 
   &__li {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     margin-left: auto;
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
       'Lucida Console', Monaco, monospace;
@@ -44,6 +63,10 @@
     align-items: center;
     margin-top: 1rem;
     letter-spacing: 0.05rem;
+
+    @media only screen and(min-width: 600px) {
+      font-size: 2.25rem;
+    }
   }
 
   &__github-link {
@@ -67,12 +90,16 @@
     border-radius: 50%;
     color: white;
     padding: 5px;
-    margin-right: 1rem;
+    margin-right: 3rem;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2.6rem;
     line-height: 1;
     font-weight: 600;
+
+    @media only screen and(min-width: 600px) {
+      margin-right: 1rem;
+    }
 
     &--not-recommended {
       background-color: $not-recommended;
@@ -88,7 +115,7 @@
   }
 
   &__resource-text {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     margin-left: auto;
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
       'Lucida Console', Monaco, monospace;
@@ -100,5 +127,9 @@
     align-items: center;
     margin-top: 1rem;
     letter-spacing: 0.05rem;
+
+    @media only screen and(min-width: 600px) {
+      font-size: 2.25rem;
+    }
   }
 }

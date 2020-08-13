@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppState } from '../../reducers';
 import { connect } from 'react-redux';
@@ -25,7 +25,6 @@ import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
 import { deleteAllNodes } from '../../actions/deleteAllNodes';
 import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
 import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
-
 import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { frontendTitles } from '../../roadmap-data/frontend-titles';
@@ -35,6 +34,7 @@ import { addDates } from '../../actions/addDates';
 import { addHeadings } from '../../actions/addHeadings';
 import { addStatuses } from '../../actions/addStatuses';
 import { addRecommendations } from '../../actions/addRecommendations';
+import { toggleSidenav } from '../../actions/toggleSidenav';
 
 export type IDs = [string, string][];
 
@@ -104,6 +104,20 @@ function Navigation({
     dispatch(loadPresets());
   };
 
+  const [hamBurgerClasslist, toggleHamburgerClasslist] = useState(
+    'menue-bar__menu-btn'
+  );
+
+  const handleHamburgerClick = () => {
+    if (hamBurgerClasslist.indexOf('menue-bar__menu-btn--open') >= 0) {
+      toggleHamburgerClasslist('menue-bar__menu-btn');
+      dispatch(toggleSidenav());
+    } else {
+      toggleHamburgerClasslist('menue-bar__menu-btn menue-bar__menu-btn--open');
+      dispatch(toggleSidenav());
+    }
+  };
+
   return (
     <>
       <div className='menue-bar__spaceholder'></div>
@@ -111,6 +125,9 @@ function Navigation({
         <Link to='/' className='menue-bar__title'>
           Interactive Roadmap
         </Link>
+        <div className={hamBurgerClasslist} onClick={handleHamburgerClick}>
+          <div className='menue-bar__burger'></div>
+        </div>
         <div className='menue-bar__links'>
           {(currentPreset.length || !isAuthenticated) && (
             <button className='menue-bar__link' onClick={handleSave}>

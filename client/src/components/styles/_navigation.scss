@@ -1,7 +1,6 @@
 .menue-bar {
-  min-height: 65px;
+  height: 75px;
   width: 100%;
-  background-color: #2b78e4;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   position: fixed;
@@ -24,24 +23,96 @@
     justify-self: flex-start;
     background-color: transparent;
     border: none;
-    font-size: 3rem;
+    font-size: 1.5rem;
     cursor: pointer;
     padding: 0 1rem;
     margin-left: 4vw;
-    line-height: 1;
+    line-height: 1.5;
     font-weight: 200;
     letter-spacing: 0.2rem;
     font-family: 'Quadrit';
     color: #ec4c4c;
+
+    @media only screen and(min-width: 375px) {
+      font-size: 1.75rem;
+    }
+
+    @media only screen and(min-width: 600px) {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    @media only screen and(min-width: 1200px) {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__menu-btn {
+    --box-shadow-color: rgba(255, 101, 47, 0.2);
+    width: 50px;
+    height: 50px;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    margin-right: 5rem;
+
+    @media only screen and(min-width:900px) {
+      display: none;
+    }
+  }
+
+  &__burger,
+  &__burger::before,
+  &__burger::after {
+    width: 40px;
+    height: 4px;
+
+    border-radius: 5px;
+    background-color: rgb(70, 70, 70);
+
+    transition: all 0.3s ease-in-out;
+  }
+  &__burger::before,
+  &__burger::after {
+    content: '';
+    position: absolute;
+  }
+  &__burger::before {
+    transform: translateY(-12px);
+    transform-origin: center center;
+  }
+  &__burger::after {
+    transform: translateY(12px);
+    transform-origin: center center;
+  }
+
+  /* ANIMATION */
+  &__menu-btn--open &__burger {
+    background-color: transparent;
+  }
+  &__menu-btn--open &__burger::before {
+    transform: rotate(45deg);
+  }
+  &__menu-btn--open &__burger::after {
+    transform: rotate(-45deg);
   }
 
   &__links {
-    display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     height: 100%;
     margin-right: 4vw;
+    display: none;
+
+    @media only screen and(min-width:900px) {
+      display: flex;
+    }
   }
 
   &__link {
@@ -50,12 +121,16 @@
     border: none;
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono',
       'Lucida Console', Monaco, monospace;
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
     padding: 0 1rem;
+
+    @media only screen and(min-width: 1200px) {
+      font-size: 2rem;
+    }
   }
 
   &__spaceholder {
-    min-height: 65px;
+    height: 75px;
   }
 }

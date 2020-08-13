@@ -2,9 +2,6 @@
   position: relative;
   margin: 8vh auto;
   display: grid;
-  grid-gap: 1rem;
-  margin-left: 4vw;
-  margin-right: 4vw;
   //height: 200vh;
   grid-template-rows: 1fr;
   grid-template-areas:
@@ -13,10 +10,17 @@
     'right-side sub-right';
   grid-template-columns: 1fr 1fr;
 
+  grid-gap: 0.25rem;
+  margin-left: 1vw;
+  margin-right: 1vw;
+
   @media only screen and(min-width: 1100px) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: 'sub-left left-side centered right-side sub-right';
     grid-gap: 2rem;
+    grid-gap: 1rem;
+    margin-left: 4vw;
+    margin-right: 4vw;
   }
 
   &:first-child {
