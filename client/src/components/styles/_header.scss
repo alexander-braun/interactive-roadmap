@@ -7,6 +7,7 @@
   background-color: #fafbfc;
   box-shadow: inset 0 -1px 0 #e1e4e8;
   position: relative;
+  height: calc(100vh - 75px);
 
   @media only screen and(min-width: 800px) {
     flex-direction: row;
@@ -102,9 +103,10 @@
     margin-left: auto;
     margin-right: auto;
     justify-self: center;
-    margin-top: 5vh;
+    margin-top: 25vh;
 
     @media only screen and(min-width: 800px) {
+      margin-top: 0;
     }
 
     @media only screen and(min-width: 1280px) {
