@@ -9,9 +9,11 @@
     justify-content: center;
     align-items: center;
     margin-top: 10rem;
+    margin-bottom: 5rem;
 
     @media only screen and(min-width: 700px) {
       flex-direction: row;
+      margin-bottom: 0;
     }
   }
 

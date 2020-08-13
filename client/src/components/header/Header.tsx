@@ -32,7 +32,9 @@ function Header({
             )
         )
       ) : isAuthenticated ? (
-        <h1 className='header__heading'>No preset loaded</h1>
+        <div className='header__wrapper'>
+          <h1 className='header__heading'>No preset loaded</h1>
+        </div>
       ) : (
         <div className='header__wrapper' key={uuidv4()}>
           <h1 className='header__heading'>Frontend Developer</h1>

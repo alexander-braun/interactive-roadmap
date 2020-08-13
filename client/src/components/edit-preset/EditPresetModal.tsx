@@ -16,7 +16,10 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
   const dispatch = useDispatch();
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('modal')) {
+    if (
+      target.classList.contains('modal') ||
+      target.classList.contains('modal__close')
+    ) {
       History.push('/');
     }
   };
@@ -65,6 +68,9 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body'>
+        <div className='modal__close' onClick={handleClick}>
+          🞪
+        </div>
         <EditPresetModalSvg />
         <div className='modal__add-new'>
           <form name='form' className='modal__form'>

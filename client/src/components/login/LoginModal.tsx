@@ -35,7 +35,10 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('modal')) {
+    if (
+      target.classList.contains('modal') ||
+      target.classList.contains('modal__close')
+    ) {
       History.push('/');
     }
   };
@@ -61,6 +64,9 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body modal__body--sm'>
+        <div className='modal__close' onClick={handleClick}>
+          🞪
+        </div>
         <LoginSvg />
         <h1>Login</h1>
         <Alert />
@@ -100,7 +106,7 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
               Register
             </button>
             <button
-              className='modal__btn'
+              className='modal__btn modal__btn--secondary'
               onClick={() => History.push('/forgotpassword')}
             >
               Recover Password

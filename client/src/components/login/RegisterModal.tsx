@@ -34,7 +34,10 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('modal')) {
+    if (
+      target.classList.contains('modal') ||
+      target.classList.contains('modal__close')
+    ) {
       History.push('/');
     }
   };
@@ -63,6 +66,9 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body modal__body--sm'>
+        <div className='modal__close' onClick={handleClick}>
+          🞪
+        </div>
         <RegisterSvg />
         <h1>Register</h1>
         <Alert />

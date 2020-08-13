@@ -1,6 +1,6 @@
 .modal {
   font-size: 200%;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -67,15 +67,28 @@
 
   &__body {
     background: white;
-    width: 55rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 5rem;
+    padding: 3rem;
+    margin-top: 75px;
+    width: 100%;
+    height: 100%;
+
+    @media only screen and(min-width: 600px) {
+      width: 55rem;
+      height: auto;
+    }
 
     &--sm {
-      width: 45rem;
+      width: 100%;
+
+      @media only screen and(min-width: 600px) {
+        padding: 5rem;
+        width: 45rem;
+        height: auto;
+      }
     }
   }
 
@@ -124,15 +137,32 @@
     box-sizing: border-box;
 
     &:last-child {
-      margin-top: 2.5vh;
+      margin-top: 5vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+
+      @media only screen and(min-width: 400px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+      }
     }
+  }
+
+  &__close {
+    margin-left: auto;
+    font-size: 3rem;
+    cursor: pointer;
   }
 
   &__btn {
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.42857143;
     text-align: center;
@@ -147,13 +177,25 @@
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px;
     margin-right: 1rem;
+    border-radius: 0;
+
+    @media only screen and(min-width: 400px) {
+      border-radius: 4px;
+    }
+
+    @media only screen and(min-width: 600px) {
+      font-size: 14px;
+    }
 
     &--active {
       color: #fff;
       background-color: #ec4c4c;
       border-color: #d34242;
+    }
+
+    &--secondary {
+      background-color: transparent;
     }
   }
 

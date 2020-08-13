@@ -37,7 +37,10 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('modal')) {
+    if (
+      target.classList.contains('modal') ||
+      target.classList.contains('modal__close')
+    ) {
       History.push('/');
     }
   };
@@ -172,6 +175,9 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body'>
+        <div className='modal__close' onClick={handleClick}>
+          🞪
+        </div>
         <LoadPresetSvg />
         <div className='modal__presets'>
           <h1>Your Presets</h1>
