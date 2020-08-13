@@ -13,6 +13,8 @@ import { deleteAllNodes } from '../../actions/deleteAllNodes';
 import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
 import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
 import { setCurrentPreset } from '../../actions/setCurrentPreset';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 interface LoginModal {
   isAuthenticated: boolean | null;
@@ -43,6 +45,10 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
     }
   };
 
+  const handleClose = () => {
+    History.push('/');
+  };
+
   const [formData, updateFormdata] = useState({
     email: '',
     password: '',
@@ -64,9 +70,11 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body modal__body--sm'>
-        <div className='modal__close' onClick={handleClick}>
-          🞪
-        </div>
+        <FontAwesomeIcon
+          icon={faTimes}
+          className='modal__close'
+          onClick={handleClose}
+        />
         <LoginSvg />
         <h1>Login</h1>
         <Alert />

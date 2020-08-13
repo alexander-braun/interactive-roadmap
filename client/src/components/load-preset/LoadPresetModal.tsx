@@ -25,6 +25,8 @@ import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { frontendTitles as titles } from '../../roadmap-data/frontend-titles';
 import { addDefaultPreset } from '../../actions/presets';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 interface LoginModal {
   presets: Preset[];
@@ -43,6 +45,10 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
     ) {
       History.push('/');
     }
+  };
+
+  const handleClose = () => {
+    History.push('/');
   };
 
   const handleLoadPreset = (preset: Preset) => {
@@ -175,9 +181,11 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body'>
-        <div className='modal__close' onClick={handleClick}>
-          🞪
-        </div>
+        <FontAwesomeIcon
+          icon={faTimes}
+          className='modal__close'
+          onClick={handleClose}
+        />
         <LoadPresetSvg />
         <div className='modal__presets'>
           <h1>Your Presets</h1>

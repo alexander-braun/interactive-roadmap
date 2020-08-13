@@ -6,6 +6,8 @@ import { AppState } from '../../reducers';
 import EditPresetModalSvg from './EditPresetModalSvg';
 import { useDispatch } from 'react-redux';
 import { updatePreset, loadPresets } from '../../actions/presets';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 interface EditPresetModal {
   presets: Preset[];
@@ -14,6 +16,7 @@ interface EditPresetModal {
 
 const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
   const dispatch = useDispatch();
+
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
     if (
@@ -22,6 +25,10 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
     ) {
       History.push('/');
     }
+  };
+
+  const handleClose = () => {
+    History.push('/');
   };
 
   const [formData, updateFormdata] = useState({
@@ -68,9 +75,11 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body'>
-        <div className='modal__close' onClick={handleClick}>
-          🞪
-        </div>
+        <FontAwesomeIcon
+          icon={faTimes}
+          className='modal__close'
+          onClick={handleClose}
+        />
         <EditPresetModalSvg />
         <div className='modal__add-new'>
           <form name='form' className='modal__form'>

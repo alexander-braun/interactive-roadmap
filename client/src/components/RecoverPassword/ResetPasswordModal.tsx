@@ -4,6 +4,8 @@ import History from '../helper/history';
 import { setNewPassword } from '../../actions/authenticate';
 import { useDispatch } from 'react-redux';
 import Alert from '../alert/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const ResetPasswordModal = () => {
   const dispatch = useDispatch();
@@ -42,12 +44,18 @@ const ResetPasswordModal = () => {
     password: '',
   });
 
+  const handleClose = () => {
+    History.push('/');
+  };
+
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body modal__body--sm'>
-        <div className='modal__close' onClick={handleClick}>
-          🞪
-        </div>
+        <FontAwesomeIcon
+          icon={faTimes}
+          className='modal__close'
+          onClick={handleClose}
+        />
         <RecoverPasswordModalSvg />
         <Alert />
         <h1>New password</h1>

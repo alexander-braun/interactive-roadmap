@@ -4,6 +4,8 @@ import History from '../helper/history';
 import { requestPasswordLink } from '../../actions/authenticate';
 import { useDispatch } from 'react-redux';
 import Alert from '../alert/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const RecoverPasswordModal = () => {
   const dispatch = useDispatch();
@@ -34,12 +36,18 @@ const RecoverPasswordModal = () => {
     email: '',
   });
 
+  const handleClose = () => {
+    History.push('/');
+  };
+
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body modal__body--sm'>
-        <div className='modal__close' onClick={handleClick}>
-          🞪
-        </div>
+        <FontAwesomeIcon
+          icon={faTimes}
+          className='modal__close'
+          onClick={handleClose}
+        />
         <RecoverPasswordModalSvg />
         <Alert />
         <h1>Recover Password</h1>

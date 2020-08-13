@@ -14,6 +14,8 @@ import { deleteAllNodes } from '../../actions/deleteAllNodes';
 import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
 import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
 import { setCurrentPreset } from '../../actions/setCurrentPreset';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 interface RegisterModal {
   isAuthenticated: boolean | null;
@@ -41,6 +43,9 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
       History.push('/');
     }
   };
+  const handleClose = () => {
+    History.push('/');
+  };
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -66,9 +71,11 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
   return (
     <div className='modal' onClick={handleClick}>
       <div className='modal__body modal__body--sm'>
-        <div className='modal__close' onClick={handleClick}>
-          🞪
-        </div>
+        <FontAwesomeIcon
+          icon={faTimes}
+          className='modal__close'
+          onClick={handleClose}
+        />
         <RegisterSvg />
         <h1>Register</h1>
         <Alert />
