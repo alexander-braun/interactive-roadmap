@@ -232,6 +232,8 @@
     align-self: center;
     justify-self: center;
     font-size: 1rem;
+    letter-spacing: 0.05rem;
+    font-style: italic;
 
     @media only screen and(min-width: 800px) {
       font-size: 1rem;
@@ -306,7 +308,7 @@
 
   &__bottom-row {
     margin-left: auto;
-    padding-top: 2.5rem;
+    padding-top: 1rem;
     margin-bottom: 0.5rem;
     line-height: 1;
     width: 100%;
