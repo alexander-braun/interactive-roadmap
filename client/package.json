@@ -27,7 +27,9 @@
     "@types/uuid": "^8.0.0",
     "@welldone-software/why-did-you-render": "^4.2.7",
     "axios": "^0.19.2",
+    "core-js": "^3.6.5",
     "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
     "react-calendar": "^3.1.0",
     "react-dom": "^16.13.1",
     "react-intersection-observer": "^8.26.2",
@@ -59,14 +61,16 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">0.1%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie >= 9"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "last 1 ie version"
     ]
   },
   "devDependencies": {
