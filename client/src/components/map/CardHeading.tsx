@@ -19,6 +19,17 @@ const CardHeading = ({
   handleFocus,
   textareaRef,
 }: CardHeading) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (e.currentTarget.innerText === 'Edit me!') {
+      e.currentTarget.innerText = '';
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (e.currentTarget.innerText === '') {
+      e.currentTarget.innerText = 'Edit me!';
+    }
+  };
   return (
     <div
       suppressContentEditableWarning={true}
@@ -34,13 +45,15 @@ const CardHeading = ({
       onFocus={() => {
         handleFocus();
       }}
-      onBlur={() => {
+      onBlur={(e) => {
         handleFocus();
         handleSubmit();
+        handleBlur(e);
       }}
       onKeyPress={(e) => {
         handleKeyPress(e);
       }}
+      onClick={(e) => handleClick(e)}
       defaultValue={title}
     >
       {title}

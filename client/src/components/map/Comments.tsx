@@ -23,9 +23,10 @@ function Comments({ child, nodes, comments }: Comments): JSX.Element {
   const handleAddNewComment = (id: ID): void => {
     dispatch(addComment('', id));
   };
+
   return (
     <>
-      {!nodes[child].mainKnot && (
+      {nodes[child] && !nodes[child].mainKnot && (
         <div className='comments-row'>
           {comments[child] ? (
             <ul className='comments-row__list'>
