@@ -73,7 +73,11 @@ export const nodes: Nodes = {
     mainKnot: true,
   },
   '627c6ebe-1e92-48bf-8ebd-45b7f6305ad1': { children: [], mainKnot: true },
-  'adfe4aca-1edb-4015-b639-874a302d132e': { children: [], mainKnot: false },
+  'adfe4aca-1edb-4015-b639-874a302d132e': {
+    children: ['cecc9ac9-6f4a-4cef-b221-4115aa618290'],
+    mainKnot: false,
+  },
+  'cecc9ac9-6f4a-4cef-b221-4115aa618290': { children: [], mainKnot: false },
   'd81646ac-0f93-46b2-93ed-759b04d4bc8f': { children: [], mainKnot: false },
   '59476012-ac9e-46dd-807d-b8fdd11b6f20': {
     children: [

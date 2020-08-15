@@ -6,6 +6,7 @@ export const frontendTitles = {
   '8bc111e6-4a7d-4fed-8346-d07e552b5c8f': 'Positioning',
   '3da919b6-38dd-490b-8e2a-1c5c499bacd1': 'Box Model',
   'e1bcb139-5a40-46ce-ba60-c41e9ee551d9': 'Flexbox',
+  'cecc9ac9-6f4a-4cef-b221-4115aa618290': 'Edit me!',
   'ff75385b-c409-4b29-a99e-e4b14284e9c5': 'Browser Dev Tools',
   'f1419463-76d5-4166-9542-d23af1e3dfb5': 'Custom Properties',
   '98cddaaf-d652-4deb-9514-3dd412410006': 'Responsive Layouts',
