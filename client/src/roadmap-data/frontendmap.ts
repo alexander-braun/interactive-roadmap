@@ -121,7 +121,6 @@ export const nodes: Nodes = {
   '0fec6232-015a-434f-82e0-95d284294b34': {
     children: [
       '257c3e2b-cc19-4bcb-a1ce-133ac3bd4c9b',
-      'a3afe138-f161-4fa8-add3-6c015b7b2b8c',
       '3fad31ea-677f-4a23-b80d-3e9edd5cd360',
       '5b1aaa62-1619-42a8-bfdc-80a7ed6ca1e9',
       '59a1d661-346f-4281-ac73-5cb5dbba72d9',

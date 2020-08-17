@@ -13,6 +13,7 @@ function Section({ sectionId, nodes }: Section) {
   if (!nodes[sectionId]) {
     return null;
   }
+
   const children: string[] = nodes[sectionId].children;
 
   const generateChildren = (direction: Direction): string[] => {
@@ -35,12 +36,15 @@ function Section({ sectionId, nodes }: Section) {
     const m = direction === 'left' ? 0 : middle;
 
     for (let i = m; i < l; i++) {
-      const subchildren = nodes[children[i]].children;
-      if (subchildren.length) {
-        if (direction === 'left') {
-          childrenNew = [...childrenNew, ...subchildren];
-        } else if (direction === 'right') {
-          childrenNew = [...childrenNew, ...subchildren];
+      console.log(nodes[children[i]].children);
+      if (nodes[children[i]]) {
+        const subchildren = nodes[children[i]].children;
+        if (subchildren.length) {
+          if (direction === 'left') {
+            childrenNew = [...childrenNew, ...subchildren];
+          } else if (direction === 'right') {
+            childrenNew = [...childrenNew, ...subchildren];
+          }
         }
       }
     }
