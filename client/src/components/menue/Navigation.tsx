@@ -135,6 +135,12 @@ function Navigation({
               <span className='menue-bar__free-indicator'>(current Map)</span>
             </button>
           )}
+          <Link to='/upload-json' className='menue-bar__link'>
+            Load<span className='menue-bar__free-indicator'>(JSON)</span>
+          </Link>
+          <Link to='/download-json' className='menue-bar__link'>
+            Download<span className='menue-bar__free-indicator'>(as JSON)</span>
+          </Link>
           <Link
             to={`${isAuthenticated ? '/load' : '/login'}`}
             className='menue-bar__link'

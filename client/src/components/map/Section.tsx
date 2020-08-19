@@ -36,7 +36,6 @@ function Section({ sectionId, nodes }: Section) {
     const m = direction === 'left' ? 0 : middle;
 
     for (let i = m; i < l; i++) {
-      console.log(nodes[children[i]].children);
       if (nodes[children[i]]) {
         const subchildren = nodes[children[i]].children;
         if (subchildren.length) {

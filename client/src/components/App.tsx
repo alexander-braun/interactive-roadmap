@@ -29,6 +29,8 @@ import { setCurrentPreset } from '../actions/setCurrentPreset';
 import RecoverPasswordModal from './RecoverPassword/RecoverPasswordModal';
 import ResetPasswordModal from './RecoverPassword/ResetPasswordModal';
 import SidenavSlideIn from './menue/SidenavSlideIn';
+import UploadJSONModal from './uploadPreset/UploadJSONModal';
+import DownloadPresetModal from './downloadPreset/DownloadPresetModal';
 
 interface AppProps {
   nodes: Nodes;
@@ -90,6 +92,12 @@ function App({
           </Route>
           <Route path='/edit-preset/'>
             <EditPresetModal />
+          </Route>
+          <Route exact path='/upload-json'>
+            <UploadJSONModal />
+          </Route>
+          <Route exact path='/download-json'>
+            <DownloadPresetModal />
           </Route>
         </Switch>
       </Router>
