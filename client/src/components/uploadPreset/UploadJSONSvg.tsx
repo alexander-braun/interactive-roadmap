@@ -19,9 +19,9 @@ const UploadJSONSvg = () => {
             y2='292.5'
             gradientUnits='userSpaceOnUse'
           >
-            <stop offset='0' stop-color='gray' stop-opacity='0.25' />
-            <stop offset='0.54' stop-color='gray' stop-opacity='0.12' />
-            <stop offset='1' stop-color='gray' stop-opacity='0.1' />
+            <stop offset='0' stopColor='gray' stopOpacity='0.25' />
+            <stop offset='0.54' stopColor='gray' stopOpacity='0.12' />
+            <stop offset='1' stopColor='gray' stopOpacity='0.1' />
           </linearGradient>
         </defs>
         <title>uploading</title>
@@ -256,8 +256,8 @@ const UploadJSONSvg = () => {
           rx='12'
           fill='none'
           stroke='#3f3d56'
-          stroke-miterlimit='10'
-          stroke-width='9'
+          strokeMiterlimit='10'
+          strokeWidth='9'
         />
         <path
           d='M452.76,314.79A18.1,18.1,0,0,0,418.93,310a14.48,14.48,0,0,0,1.57,28.88h31.42A12.11,12.11,0,0,0,464,326.75,11.93,11.93,0,0,0,452.76,314.79Zm-13.89,7.13v9.18h-7.74v-9.18h-8.21L435,309.83l12.08,12.09Z'

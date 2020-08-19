@@ -195,6 +195,12 @@
       border-color: #d34242;
     }
 
+    &--center {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
     &--secondary {
       background-color: transparent;
     }

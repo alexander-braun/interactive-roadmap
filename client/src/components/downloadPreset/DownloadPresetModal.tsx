@@ -3,7 +3,15 @@ import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AppState } from '../../reducers';
-import { Preset, ID } from '../../actions/constants';
+import {
+  Preset,
+  ID,
+  Comments,
+  Dates,
+  Headings,
+  Recommendations,
+  Statuses,
+} from '../../actions/constants';
 import { deleteAllComments } from '../../actions/deleteAllComments';
 import { deleteAllDates } from '../../actions/deleteAllDates';
 import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
@@ -27,16 +35,31 @@ import { addDefaultPreset } from '../../actions/presets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import DownloadPresetSvg from './DownloadPresetSvg';
+import { Nodes } from '../types/Map-Data';
 
 interface LoginModal {
   presets: Preset[];
   user: PayloadUser | null;
   currentPreset: ID;
+  nodes: Nodes;
+  comments: Comments;
+  goalDates: Dates;
+  headings: Headings;
+  recommendations: Recommendations;
+  statuses: Statuses;
 }
 
-const DownloadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
-  const dispatch = useDispatch();
-
+const DownloadPresetModal = ({
+  presets,
+  user,
+  currentPreset,
+  nodes,
+  comments,
+  goalDates,
+  headings,
+  recommendations,
+  statuses,
+}: LoginModal) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
     if (
@@ -51,26 +74,22 @@ const DownloadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
     History.push('/');
   };
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [data, updateData] = useState<string>();
 
-  const importJSON = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    const target = inputRef.current as HTMLInputElement;
-    const files = target.files;
-    if (files) {
-      const file = files[0];
-      const Reader = new FileReader();
-      let data;
-      Reader.onload = (event) => {
-        if (event.target && event.target.result) {
-          const stringCast = event.target.result as string;
-          data = JSON.parse(stringCast);
-          console.log(data);
-        }
-      };
-      Reader.readAsText(file);
-    }
-  };
+  useEffect(() => {
+    const JSONOBJ = {
+      nodes,
+      comments,
+      goalDates,
+      headings,
+      recommendations,
+      statuses,
+    };
+    const data =
+      'data:text/json;charset=utf-8,' +
+      encodeURIComponent(JSON.stringify(JSONOBJ));
+    updateData(data);
+  });
 
   return (
     <div className='modal' onClick={handleClick}>
@@ -83,22 +102,13 @@ const DownloadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
         <DownloadPresetSvg />
         <div className='modal__add-new'>
           <form name='form' className='modal__form'>
-            <h1 className='modal__create-heading'>Upload Preset</h1>
-            <div className='modal__form-group'>
-              <label htmlFor='name'>Preset Name</label>
-              <input
-                ref={inputRef}
-                type='file'
-                className='modal__form-control'
-                name='name'
-              />
-            </div>
-            <button
-              className='modal__btn modal__btn--active'
-              onClick={(e) => importJSON(e)}
+            <a
+              className='modal__btn modal__btn--active modal__btn--center'
+              href={data}
+              download='map.json'
             >
-              Add New!
-            </button>
+              Download
+            </a>
           </form>
         </div>
       </div>
@@ -109,14 +119,25 @@ const DownloadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
 interface StateProps {
   presets: Preset[];
   user: PayloadUser | null;
-
   currentPreset: ID;
+  nodes: Nodes;
+  comments: Comments;
+  goalDates: Dates;
+  headings: Headings;
+  recommendations: Recommendations;
+  statuses: Statuses;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
   presets: state.presets,
   user: state.auth.user,
   currentPreset: state.currentPreset,
+  nodes: state.nodes,
+  comments: state.comments,
+  goalDates: state.goalDates,
+  headings: state.headings,
+  recommendations: state.recommendations,
+  statuses: state.status,
 });
 
 export default connect(mapStateToProps)(DownloadPresetModal);

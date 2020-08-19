@@ -3,7 +3,7 @@ import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AppState } from '../../reducers';
-import { Preset, ID } from '../../actions/constants';
+import { Preset, ID, Comments } from '../../actions/constants';
 import { deleteAllComments } from '../../actions/deleteAllComments';
 import { deleteAllDates } from '../../actions/deleteAllDates';
 import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
@@ -65,7 +65,22 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
         if (event.target && event.target.result) {
           const stringCast = event.target.result as string;
           data = JSON.parse(stringCast);
-          console.log(data);
+
+          if (
+            data.comments &&
+            data.nodes &&
+            data.goalDates &&
+            data.headings &&
+            data.recommendations &&
+            data.statuses
+          ) {
+            dispatch(addComments(data.comments));
+            dispatch(addNodes(data.nodes));
+            dispatch(addDates(data.goalDates));
+            dispatch(addHeadings(data.headings));
+            dispatch(addRecommendations(data.recommendations));
+            dispatch(addStatuses(data.statuses));
+          }
         }
       };
       Reader.readAsText(file);
@@ -97,7 +112,7 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
               className='modal__btn modal__btn--active'
               onClick={(e) => importJSON(e)}
             >
-              Add New!
+              Load Map!
             </button>
           </form>
         </div>
