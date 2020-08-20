@@ -17,7 +17,7 @@ import LoadPresetModal from './load-preset/LoadPresetModal';
 import { loadUser } from '../actions/authenticate';
 import { loadPresets } from '../actions/presets';
 import { useDispatch } from 'react-redux';
-import { ID, Preset } from '../actions/constants';
+import { ID } from '../actions/constants';
 import EditPresetModal from './edit-preset/EditPresetModal';
 import { deleteAllComments } from '../actions/deleteAllComments';
 import { deleteAllDates } from '../actions/deleteAllDates';

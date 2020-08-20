@@ -1,23 +1,17 @@
 import React, { useRef } from 'react';
 import History from '../helper/history';
-import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { AppState } from '../../reducers';
-import { Preset, ID } from '../../actions/constants';
 import { addComments } from '../../actions/addComments';
 import { addNodes } from '../../actions/addNodes';
 import { addDates } from '../../actions/addDates';
 import { addHeadings } from '../../actions/addHeadings';
 import { addRecommendations } from '../../actions/addRecommendations';
 import { addStatuses } from '../../actions/addStatuses';
-import { PayloadUser } from '../../actions/constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import UploadJSONSvg from './UploadJSONSvg';
 
-interface LoginModal {}
-
-const LoadPresetModal = ({}: LoginModal) => {
+const LoadPresetModal = () => {
   const dispatch = useDispatch();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -104,8 +98,4 @@ const LoadPresetModal = ({}: LoginModal) => {
   );
 };
 
-interface StateProps {}
-
-const mapStateToProps = (state: AppState): StateProps => ({});
-
-export default connect(mapStateToProps)(LoadPresetModal);
+export default LoadPresetModal;
