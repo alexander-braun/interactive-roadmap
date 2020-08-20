@@ -1,15 +1,9 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useRef } from 'react';
 import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AppState } from '../../reducers';
-import { Preset, ID, Comments } from '../../actions/constants';
-import { deleteAllComments } from '../../actions/deleteAllComments';
-import { deleteAllDates } from '../../actions/deleteAllDates';
-import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
-import { deleteAllNodes } from '../../actions/deleteAllNodes';
-import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
-import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
+import { Preset, ID } from '../../actions/constants';
 import { addComments } from '../../actions/addComments';
 import { addNodes } from '../../actions/addNodes';
 import { addDates } from '../../actions/addDates';
@@ -17,24 +11,13 @@ import { addHeadings } from '../../actions/addHeadings';
 import { addRecommendations } from '../../actions/addRecommendations';
 import { addStatuses } from '../../actions/addStatuses';
 import { PayloadUser } from '../../actions/constants';
-import { addPreset, deletePreset } from '../../actions/presets';
-import { v4 as uuidv4 } from 'uuid';
-import { setCurrentPreset } from '../../actions/setCurrentPreset';
-import { recommendation } from '../../roadmap-data/frontend-recommendation';
-import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
-import { frontendTitles as titles } from '../../roadmap-data/frontend-titles';
-import { addDefaultPreset } from '../../actions/presets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import UploadJSONSvg from './UploadJSONSvg';
 
-interface LoginModal {
-  presets: Preset[];
-  user: PayloadUser | null;
-  currentPreset: ID;
-}
+interface LoginModal {}
 
-const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
+const LoadPresetModal = ({}: LoginModal) => {
   const dispatch = useDispatch();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -98,9 +81,9 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
         <UploadJSONSvg />
         <div className='modal__add-new'>
           <form name='form' className='modal__form'>
-            <h1 className='modal__create-heading'>Upload Preset</h1>
+            <h1 className='modal__create-heading'>Upload JSON</h1>
             <div className='modal__form-group'>
-              <label htmlFor='name'>Preset Name</label>
+              <label htmlFor='name'>Choose File</label>
               <input
                 ref={inputRef}
                 type='file'
@@ -112,7 +95,7 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
               className='modal__btn modal__btn--active'
               onClick={(e) => importJSON(e)}
             >
-              Load Map!
+              Load as Map!
             </button>
           </form>
         </div>
@@ -121,17 +104,8 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
   );
 };
 
-interface StateProps {
-  presets: Preset[];
-  user: PayloadUser | null;
+interface StateProps {}
 
-  currentPreset: ID;
-}
-
-const mapStateToProps = (state: AppState): StateProps => ({
-  presets: state.presets,
-  user: state.auth.user,
-  currentPreset: state.currentPreset,
-});
+const mapStateToProps = (state: AppState): StateProps => ({});
 
 export default connect(mapStateToProps)(LoadPresetModal);

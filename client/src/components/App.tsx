@@ -36,7 +36,6 @@ interface AppProps {
   nodes: Nodes;
   isAuthenticated: boolean | null;
   currentPreset: ID;
-  presets: Preset[];
 }
 
 if (localStorage.token) {
@@ -44,12 +43,7 @@ if (localStorage.token) {
 }
 
 export type IDs = [string, string][];
-function App({
-  nodes,
-  isAuthenticated,
-  currentPreset,
-  presets,
-}: AppProps): JSX.Element {
+function App({ nodes, isAuthenticated, currentPreset }: AppProps): JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -115,14 +109,12 @@ interface StateProps {
   nodes: Nodes;
   isAuthenticated: boolean | null;
   currentPreset: ID;
-  presets: Preset[];
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
   nodes: state.nodes,
   isAuthenticated: state.auth.isAuthenticated,
   currentPreset: state.currentPreset,
-  presets: state.presets,
 });
 
 export default connect(mapStateToProps)(App);
