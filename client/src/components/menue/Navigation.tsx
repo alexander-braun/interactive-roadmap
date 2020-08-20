@@ -147,7 +147,6 @@ function Navigation({
           {(currentPreset.length || !isAuthenticated) && (
             <button className='menue-bar__link' onClick={handleSave}>
               Save
-              <span className='menue-bar__free-indicator'>(current Map)</span>
             </button>
           )}
           <Link
