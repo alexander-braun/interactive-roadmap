@@ -14,5 +14,6 @@
 ## Key Features
 
 - Create, update and save custom roadmaps
+- Download and Load the created map in unregistered mode via JSON
 - Nodes have editable comment-, title-, date-, recommendation-indication- and status fields
 - Relationship between tasks displayed by svg lines

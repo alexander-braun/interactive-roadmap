@@ -144,18 +144,20 @@ function Navigation({
               </button>
             </>
           )}
-          {(currentPreset.length || !isAuthenticated) && (
+          {(currentPreset.length || isAuthenticated) && (
             <button className='menue-bar__link' onClick={handleSave}>
               Save
             </button>
           )}
-          <Link
-            to={`${isAuthenticated ? '/load' : '/login'}`}
-            className='menue-bar__link'
-            onClick={handleLoadClick}
-          >
-            Load
-          </Link>
+          {isAuthenticated && (
+            <Link
+              to={`${isAuthenticated ? '/load' : '/login'}`}
+              className='menue-bar__link'
+              onClick={handleLoadClick}
+            >
+              Load
+            </Link>
+          )}
           <Link to='/upload-json' className='menue-bar__link'>
             Upload<span className='menue-bar__free-indicator'>(JSON)</span>
           </Link>

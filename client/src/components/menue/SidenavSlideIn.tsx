@@ -113,20 +113,21 @@ const SidenavSlideIn = ({
             </button>
           </>
         )}
-        {(currentPreset.length || !isAuthenticated) && (
+        {(currentPreset.length || isAuthenticated) && (
           <button className='sidenav__link' onClick={handleSave}>
             Save
             <span className='sidenav__free-indicator'>(current Map)</span>
           </button>
         )}
-        <Link
-          to={`${isAuthenticated ? '/load' : '/login'}`}
-          className='sidenav__link'
-          onClick={handleLoadClick}
-        >
-          Load
-        </Link>
-
+        {isAuthenticated && (
+          <Link
+            to={`${isAuthenticated ? '/load' : '/login'}`}
+            className='sidenav__link'
+            onClick={handleLoadClick}
+          >
+            Load
+          </Link>
+        )}
         <Link to='/upload-json' className='sidenav__link'>
           Upload<span className='sidenav__free-indicator'>(JSON)</span>
         </Link>
