@@ -6,7 +6,11 @@ interface SVG {
   center?: boolean;
   scrollHeight: number;
 }
-
+/**
+ * Component calculates the right curvature for the svg lines
+ * based on their position and depending on if they are a
+ * mainKnot (centernode)
+ */
 function SVG(props: SVG): JSX.Element | null {
   const insetSvgBy = 5;
 
@@ -58,7 +62,5 @@ function SVG(props: SVG): JSX.Element | null {
     </>
   );
 }
-
-// x2 for left side + props.childRect.width / 2
 
 export default memo(SVG);

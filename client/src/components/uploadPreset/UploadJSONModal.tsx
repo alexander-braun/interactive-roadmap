@@ -1,35 +1,35 @@
 import React, { useRef } from 'react';
-import History from '../helper/history';
 import { useDispatch } from 'react-redux';
-import { addComments } from '../../actions/addComments';
-import { addNodes } from '../../actions/addNodes';
-import { addDates } from '../../actions/addDates';
-import { addHeadings } from '../../actions/addHeadings';
-import { addRecommendations } from '../../actions/addRecommendations';
-import { addStatuses } from '../../actions/addStatuses';
+
+//Helper
+import History from '../helper/history';
+import { closeModalOnWrapperClick } from '../helper/closeModalOnWrapperClick';
+
+//Actions
+import {
+  addComments,
+  addNodes,
+  addDates,
+  addHeadings,
+  addRecommendations,
+  addStatuses,
+} from '../../actions';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+//Components
 import UploadJSONSvg from './UploadJSONSvg';
 
 const LoadPresetModal = () => {
   const dispatch = useDispatch();
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLDivElement;
-    if (
-      target.classList.contains('modal') ||
-      target.classList.contains('modal__close')
-    ) {
-      History.push('/');
-    }
-  };
-
-  const handleClose = () => {
-    History.push('/');
-  };
-
   const inputRef = useRef<HTMLInputElement>(null);
 
+  /**
+   * Import the uploaded file and send it to redux.
+   */
   const importJSON = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const target = inputRef.current as HTMLInputElement;
@@ -66,12 +66,12 @@ const LoadPresetModal = () => {
   };
 
   return (
-    <div className='modal' onClick={handleClick}>
+    <div className='modal' onClick={closeModalOnWrapperClick}>
       <div className='modal__body'>
         <FontAwesomeIcon
           icon={faTimes}
           className='modal__close'
-          onClick={handleClose}
+          onClick={() => History.push('/')}
         />
         <UploadJSONSvg />
         <div className='modal__add-new'>

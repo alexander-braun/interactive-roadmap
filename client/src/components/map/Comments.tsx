@@ -1,15 +1,23 @@
 import React, { memo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { addComment } from '../../actions/addComment';
+import { connect } from 'react-redux';
+
+//Actions
+import { addComment, ID, Comments as CommentsState } from '../../actions';
+
+//Components
 import Comment from './Comment';
-import { ID } from '../../actions/constants';
+
+//Default data
 import { Nodes } from '../types/Map-Data';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+//Global state
 import { AppState } from '../../reducers';
-import { connect } from 'react-redux';
-import { Comments as CommentsState } from '../../actions/constants';
 
 interface Comments {
   child: string;

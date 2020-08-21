@@ -1,7 +1,13 @@
 import React from 'react';
-import { changeRecommendation } from '../../actions/changeRecommendation';
-import { Recommendation } from '../../actions/constants';
 import { useDispatch } from 'react-redux';
+
+//Actions
+import { changeRecommendation, Recommendation } from '../../actions';
+
+/**
+ * Recommendation system wich is visible on the top right corner of a card
+ * as a selectible bubble
+ */
 
 interface RecommendationBubbles {
   id: string;
@@ -13,10 +19,14 @@ const RecommendationBubbles = ({
   recommendation,
 }: RecommendationBubbles) => {
   const dispatch = useDispatch();
+
   const submitRecommendation = (recommendation: Recommendation): void => {
     dispatch(changeRecommendation(id, recommendation));
   };
 
+  /**
+   * Checkmark Recommendation: "Good Alternative"
+   */
   const check = (submit: boolean) => {
     return (
       <div
@@ -30,6 +40,9 @@ const RecommendationBubbles = ({
     );
   };
 
+  /**
+   * Exclamation mark recommendation: "Recommended option"
+   */
   const exclamation = (submit: boolean) => {
     return (
       <div
@@ -43,6 +56,9 @@ const RecommendationBubbles = ({
     );
   };
 
+  /**
+   * X-Recommendation mark: "Not recommended"
+   */
   const times = (submit: boolean) => {
     return (
       <div
@@ -58,7 +74,10 @@ const RecommendationBubbles = ({
     );
   };
 
-  const pen = (submit: boolean) => {
+  /**
+   * A-Recommendation mark: "Assign yourself"
+   */
+  const assign = (submit: boolean) => {
     return (
       <div
         className={`card__font-awesome-exclamation ${
@@ -80,7 +99,7 @@ const RecommendationBubbles = ({
           ? exclamation(false)
           : recommendation === 'not-recommended'
           ? times(false)
-          : pen(false)}
+          : assign(false)}
       </div>
       <div className='card__recommend-choice'>
         <div className='card__indication-circle card__indication-circle--recommended'>
@@ -93,7 +112,7 @@ const RecommendationBubbles = ({
           {times(true)}
         </div>
         <div className='card__indication-circle card__indication-circle--own-edit'>
-          {pen(true)}
+          {assign(true)}
         </div>
       </div>
     </>

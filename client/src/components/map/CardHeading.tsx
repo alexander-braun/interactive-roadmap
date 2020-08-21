@@ -2,29 +2,34 @@ import React from 'react';
 
 interface CardHeading {
   title: string;
-  updateText: React.Dispatch<React.SetStateAction<string>>;
+  updateHeading: React.Dispatch<React.SetStateAction<string>>;
   handleKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
   handleKeyPress: (e: React.KeyboardEvent) => void;
   handleSubmit: () => void;
-  handleFocus: () => void;
   textareaRef: React.MutableRefObject<null>;
 }
 
 const CardHeading = ({
   title,
-  updateText,
+  updateHeading,
   handleKeyDown,
   handleKeyPress,
   handleSubmit,
-  handleFocus,
   textareaRef,
 }: CardHeading) => {
+  /**
+   * If the default text is still the current cardheading
+   * delete it...
+   */
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.currentTarget.innerText === 'Edit me!') {
       e.currentTarget.innerText = '';
     }
   };
 
+  /**
+   * ...and change it back on blur.
+   */
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (e.currentTarget.innerText === '') {
       e.currentTarget.innerText = 'Edit me!';
@@ -36,17 +41,13 @@ const CardHeading = ({
       ref={textareaRef}
       contentEditable
       onInput={(e) => {
-        updateText(e.currentTarget.innerText);
+        updateHeading(e.currentTarget.innerText);
       }}
       onKeyDown={(e) => {
         handleKeyDown(e);
       }}
       className='card__inner-text'
-      onFocus={() => {
-        handleFocus();
-      }}
       onBlur={(e) => {
-        handleFocus();
         handleSubmit();
         handleBlur(e);
       }}

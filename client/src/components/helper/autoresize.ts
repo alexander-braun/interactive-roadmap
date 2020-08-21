@@ -1,3 +1,7 @@
+/**
+ * Autoresize for contenteditable elements
+ */
+
 export const autoresize = (evt: HTMLDivElement) => {
   let el = evt;
   el.style.height = '';

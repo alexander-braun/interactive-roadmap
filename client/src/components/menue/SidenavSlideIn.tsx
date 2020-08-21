@@ -1,32 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+//Global state type
 import { AppState } from '../../reducers';
+
+//Actions
 import {
   Comments,
+  Statuses,
   Dates,
   Headings,
   Recommendations,
-  Statuses,
-} from '../../actions/constants';
+  logout,
+  updatePreset,
+  loadPresets,
+  setCurrentPreset,
+  deleteAllComments,
+  deleteAllDates,
+  deleteAllHeadings,
+  deleteAllNodes,
+  deleteAllRecommendations,
+  deleteAllStatuses,
+  addComments,
+  addNodes,
+  addDates,
+  addHeadings,
+  addStatuses,
+  addRecommendations,
+} from '../../actions';
+
+//types
 import { Nodes } from '../types/Map-Data';
-import { useDispatch } from 'react-redux';
+
+//Helpers
 import History from '../helper/history';
-import { updatePreset, loadPresets } from '../../actions/presets';
-import { Link } from 'react-router-dom';
-import { deleteAllComments } from '../../actions/deleteAllComments';
-import { deleteAllDates } from '../../actions/deleteAllDates';
-import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
-import { deleteAllNodes } from '../../actions/deleteAllNodes';
-import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
-import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
-import { addComments } from '../../actions/addComments';
-import { addNodes } from '../../actions/addNodes';
-import { addDates } from '../../actions/addDates';
-import { addHeadings } from '../../actions/addHeadings';
-import { addStatuses } from '../../actions/addStatuses';
-import { addRecommendations } from '../../actions/addRecommendations';
-import { setCurrentPreset } from '../../actions/setCurrentPreset';
-import { logout } from '../../actions/authenticate';
+
+//Default data
 import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { frontendTitles } from '../../roadmap-data/frontend-titles';
@@ -56,6 +67,10 @@ const SidenavSlideIn = ({
 }: SidenavSlideIn) => {
   const dispatch = useDispatch();
 
+  /**
+   * Saves the current visible map OR leads to
+   * /login if the user is not authenticated.
+   */
   const handleSave = () => {
     if (!isAuthenticated) History.push('/login');
     const preset = {
@@ -71,10 +86,18 @@ const SidenavSlideIn = ({
     }
   };
 
+  /**
+   * On click the presets have to start loading so they
+   * can display in the load preset dialoge.
+   */
   const handleLoadClick = () => {
     dispatch(loadPresets());
   };
 
+  /**
+   * On logout all current preset map data has to be removed.
+   * In addition the default map data has to be added in.
+   */
   const handleLogout = () => {
     dispatch(logout());
     dispatch(deleteAllComments());
@@ -93,6 +116,7 @@ const SidenavSlideIn = ({
     dispatch(addStatuses({}));
     dispatch(setCurrentPreset(''));
   };
+
   return (
     <div className={`sidenav${sidenav ? ' sidenav--visible' : ''}`}>
       <div className='sidenav__links'>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert as AlertT } from '../../actions/constants';
+import { Alert as AlertT } from '../../actions';
 import { AppState } from '../../reducers';
 
 interface AlertProps {

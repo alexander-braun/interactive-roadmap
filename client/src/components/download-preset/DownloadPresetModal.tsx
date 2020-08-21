@@ -1,18 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import History from '../helper/history';
 import { connect } from 'react-redux';
+
+//Global State
 import { AppState } from '../../reducers';
+
+//Helper
+import History from '../helper/history';
+import { closeModalOnWrapperClick } from '../helper/closeModalOnWrapperClick';
+
+//Actions
 import {
   Comments,
   Dates,
   Headings,
   Recommendations,
   Statuses,
-} from '../../actions/constants';
+} from '../../actions';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import DownloadPresetSvg from './DownloadPresetSvg';
 import { Nodes } from '../types/Map-Data';
+
+/**
+ * Download Preset Modal to download the current map as JSON.
+ * This is in case the user is not registered but still wants
+ * to save progress.
+ */
 
 interface LoginModal {
   nodes: Nodes;
@@ -31,22 +46,14 @@ const DownloadPresetModal = ({
   recommendations,
   statuses,
 }: LoginModal) => {
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLDivElement;
-    if (
-      target.classList.contains('modal') ||
-      target.classList.contains('modal__close')
-    ) {
-      History.push('/');
-    }
-  };
-
-  const handleClose = () => {
-    History.push('/');
-  };
-
+  /**
+   * JSON file
+   */
   const [data, updateData] = useState<string>();
 
+  /**
+   * Creates the JSON file
+   */
   useEffect(() => {
     const JSONOBJ = {
       nodes,
@@ -56,19 +63,19 @@ const DownloadPresetModal = ({
       recommendations,
       statuses,
     };
-    const data =
+    const newData =
       'data:text/json;charset=utf-8,' +
       encodeURIComponent(JSON.stringify(JSONOBJ));
-    updateData(data);
+    updateData(newData);
   }, [nodes, comments, goalDates, headings, recommendations, statuses]);
 
   return (
-    <div className='modal' onClick={handleClick}>
+    <div className='modal' onClick={closeModalOnWrapperClick}>
       <div className='modal__body'>
         <FontAwesomeIcon
           icon={faTimes}
           className='modal__close'
-          onClick={handleClose}
+          onClick={() => History.push('/')}
         />
         <DownloadPresetSvg />
         <div className='modal__add-new'>

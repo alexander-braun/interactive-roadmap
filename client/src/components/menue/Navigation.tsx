@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppState } from '../../reducers';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../actions/authenticate';
+
+//Global State
+import { AppState } from '../../reducers';
+
+//Actions
 import {
   PayloadUser,
   Comments,
@@ -13,35 +16,44 @@ import {
   Recommendations,
   ID,
   Preset,
-} from '../../actions/constants';
+  logout,
+  updatePreset,
+  loadPresets,
+  setCurrentPreset,
+  deleteAllComments,
+  deleteAllDates,
+  deleteAllHeadings,
+  deleteAllNodes,
+  deleteAllRecommendations,
+  deleteAllStatuses,
+  addComments,
+  addNodes,
+  addDates,
+  addHeadings,
+  addStatuses,
+  addRecommendations,
+  toggleSidenav,
+} from '../../actions';
+
+//Helper
 import History from '../helper/history';
+
+//Types
 import { Nodes } from '../types/Map-Data';
-import { updatePreset } from '../../actions/presets';
-import { loadPresets } from '../../actions/presets';
-import { setCurrentPreset } from '../../actions/setCurrentPreset';
-import { deleteAllComments } from '../../actions/deleteAllComments';
-import { deleteAllDates } from '../../actions/deleteAllDates';
-import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
-import { deleteAllNodes } from '../../actions/deleteAllNodes';
-import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
-import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
+
+//Default Data
 import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { frontendTitles } from '../../roadmap-data/frontend-titles';
-import { addComments } from '../../actions/addComments';
-import { addNodes } from '../../actions/addNodes';
-import { addDates } from '../../actions/addDates';
-import { addHeadings } from '../../actions/addHeadings';
-import { addStatuses } from '../../actions/addStatuses';
-import { addRecommendations } from '../../actions/addRecommendations';
-import { toggleSidenav } from '../../actions/toggleSidenav';
+
+/**
+ * Top navigation bar
+ */
 
 export type IDs = [string, string][];
-
 interface Navigation {
   isAuthenticated: boolean | null;
   user: PayloadUser | null;
-
   nodes: Nodes;
   comments: Comments;
   status: Statuses;
@@ -64,6 +76,10 @@ function Navigation({
 }: Navigation): JSX.Element {
   const dispatch = useDispatch();
 
+  /**
+   * On logout all current preset map data has to be removed.
+   * In addition the default map data has to be added in.
+   */
   const handleLogout = () => {
     dispatch(logout());
     dispatch(deleteAllComments());
@@ -83,6 +99,10 @@ function Navigation({
     dispatch(setCurrentPreset(''));
   };
 
+  /**
+   * Saves the current visible map OR leads to
+   * /login if the user is not authenticated.
+   */
   const handleSave = () => {
     if (!isAuthenticated) History.push('/login');
     const preset = {
@@ -98,10 +118,17 @@ function Navigation({
     }
   };
 
+  /**
+   * On click the presets have to start loading so they
+   * can display in the load preset dialoge.
+   */
   const handleLoadClick = () => {
     dispatch(loadPresets());
   };
 
+  /**
+   * Hamburger menue toggle logic
+   */
   const [hamBurgerClasslist, toggleHamburgerClasslist] = useState(
     'menue-bar__menu-btn'
   );

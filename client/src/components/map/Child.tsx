@@ -1,26 +1,33 @@
 import React, { memo, useRef, useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
+
+//Components
 import Comments from './Comments';
-import { addChildnode } from '../../actions/addChildnode';
-import { deleteChildnode } from '../../actions/deleteChildnode';
-import { setCardHeading } from '../../actions/setCardHeading';
-import { setStatus } from '../../actions/setStatus';
 import CardHeading from './CardHeading';
 import Statusrow from './Statusrow';
-import { toggleCalendarModal } from '../../actions/toggleCalendarModal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import RecommendationBubbles from './RecommendationBubbles';
+
+//Actions
 import {
+  addChildnode,
+  deleteChildnode,
+  setCardHeading,
+  setStatus,
+  toggleCalendarModal,
   Statuses,
   Dates,
   Headings,
   Recommendations,
-} from '../../actions/constants';
-import RecommendationBubbles from './RecommendationBubbles';
+} from '../../actions';
 
+//FA
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
+//Global State
 import { AppState } from '../../reducers';
-import { connect } from 'react-redux';
 
 interface Child {
   child: string;
@@ -44,10 +51,13 @@ function Child({
 }: Child): JSX.Element {
   const dispatch = useDispatch();
 
-  const [text, updateText] = useState<string>(
+  const [text, updateHeading] = useState<string>(
     headings[child] && headings[child].trim()
   );
 
+  /**
+   * In case of a newly created card without heading.
+   */
   useEffect(() => {
     if (headings[child] === undefined) {
       dispatch(setCardHeading(child, 'Edit me!'));
@@ -64,15 +74,11 @@ function Child({
     dispatch(deleteChildnode(child));
   };
 
-  const [focus, toggleFocus] = useState<boolean>(false);
-
-  const handleFocus = (): void => {
-    toggleFocus(!focus);
-  };
-
+  /**
+   * Card Heading Change (if heading actually changed)
+   */
   const handleSubmit = useCallback((): void => {
     if (headings[child] === text && text) return;
-    else if (!text) dispatch(setCardHeading(child, 'Edit me!'));
     else dispatch(setCardHeading(child, text));
   }, [headings, child, dispatch, text]);
 
@@ -91,6 +97,10 @@ function Child({
     }
   };
 
+  /**
+   * Check if the heading is too long but leave the option
+   * to remove characters.
+   */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (
       e.currentTarget.innerHTML.length > 60 &&
@@ -111,6 +121,11 @@ function Child({
     return `${day}.${month}.${year}`;
   };
 
+  /**
+   * Children can have different statuses -> different bg colors.
+   * Children can also be center / standard cards.
+   * According to the passed props the style of a child is changed.
+   */
   const style = () => {
     const styles: string[] = [];
     if (props.center) {
@@ -157,11 +172,10 @@ function Child({
       <div className='card__heading'>
         <CardHeading
           title={headings[child] || 'Edit me!'}
-          updateText={updateText}
+          updateHeading={updateHeading}
           handleKeyDown={handleKeyDown}
           handleKeyPress={handleKeyPress}
           handleSubmit={handleSubmit}
-          handleFocus={handleFocus}
           textareaRef={textareaRef}
         />
         {!props.center && (

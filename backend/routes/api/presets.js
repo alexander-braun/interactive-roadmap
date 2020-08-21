@@ -16,12 +16,17 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     if (req.body.name === 'Frontend Developer') {
-      const preset = await Preset.find({
-        name: 'Frontend Developer',
-        user: req.user.id,
-      }).then((name) => name);
-      if (preset.length) {
-        return res.status(400).json({ msg: 'Preset already exists' });
+      try {
+        const preset = await Preset.find({
+          name: 'Frontend Developer',
+          user: req.user.id,
+        }).then((name) => name);
+        if (preset.length) {
+          console.log('F');
+          return res.status(400).json({ msg: 'Preset already exists' });
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
     try {

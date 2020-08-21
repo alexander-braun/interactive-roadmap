@@ -1,72 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import RecoverPasswordModalSvg from './RecoverPasswordModalSvg';
-import History from '../helper/history';
-import { setNewPassword } from '../../actions/authenticate';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
+//Components
+import RecoverPasswordModalSvg from './RecoverPasswordModalSvg';
+
+//Helper
+import History from '../helper/history';
+import { closeModalOnWrapperClick } from '../helper/closeModalOnWrapperClick';
+
+//Actions
+import { requestPasswordLink } from '../../actions/authenticate';
+
 import Alert from '../alert/index';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const ResetPasswordModal = () => {
+const RecoverPasswordModal = () => {
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateFormdata({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const [token, updateToken] = useState<string>();
-
+  /**
+   * Request Password reset mail
+   */
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    if (token) {
-      e.preventDefault();
-      const { password } = formData;
-      dispatch(setNewPassword(password, token));
-    }
-  };
-
-  useEffect(() => {
-    updateToken(History.location.pathname.split('/')[2]);
-  }, []);
-
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLDivElement;
-    if (
-      target.classList.contains('modal') ||
-      target.classList.contains('modal__close')
-    ) {
-      History.push('/');
-    }
+    e.preventDefault();
+    const { email } = formData;
+    dispatch(requestPasswordLink(email));
   };
 
   const [formData, updateFormdata] = useState({
-    password: '',
+    email: '',
   });
 
-  const handleClose = () => {
-    History.push('/');
-  };
-
   return (
-    <div className='modal' onClick={handleClick}>
+    <div className='modal' onClick={closeModalOnWrapperClick}>
       <div className='modal__body modal__body--sm'>
         <FontAwesomeIcon
           icon={faTimes}
           className='modal__close'
-          onClick={handleClose}
+          onClick={() => History.push('/')}
         />
         <RecoverPasswordModalSvg />
         <Alert />
-        <h1>New password</h1>
+        <h1>Recover Password</h1>
         <form name='form' className='modal__form'>
           <div className='modal__form-group'>
-            <label htmlFor='password'>Password</label>
+            <label htmlFor='email'>Email</label>
             <input
-              type='password'
+              type='email'
               className='modal__form-control'
-              name='password'
-              value={formData.password}
+              name='email'
+              value={formData.email}
               onChange={handleChange}
             />
           </div>
@@ -82,7 +73,7 @@ const ResetPasswordModal = () => {
               className='modal__btn'
               onClick={() => History.push('/login')}
             >
-              Login
+              Go Back
             </button>
           </div>
         </form>
@@ -91,4 +82,4 @@ const ResetPasswordModal = () => {
   );
 };
 
-export default ResetPasswordModal;
+export default RecoverPasswordModal;

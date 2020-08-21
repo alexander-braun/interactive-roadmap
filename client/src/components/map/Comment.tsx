@@ -1,7 +1,10 @@
 import React, { useState, useRef, memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeComment } from '../../actions/changeComment';
-import { deleteComment } from '../../actions/deleteComment';
+
+//Action
+import { changeComment, deleteComment } from '../../actions';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 

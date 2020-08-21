@@ -10,6 +10,10 @@ interface Children {
   right?: boolean;
 }
 
+/**
+ * Maps one row of children
+ */
+
 function Children({ children, ...props }: Children): JSX.Element | null {
   if (Array.isArray(children) && children.length === 0) return null;
   return (

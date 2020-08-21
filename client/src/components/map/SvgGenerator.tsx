@@ -16,6 +16,12 @@ export type IDs = [string, string][];
 
 function SvgGenerator({ nodes }: SvgGenerator) {
   const dispatch = useDispatch();
+
+  /**
+   * For every connection line there needs to be a pair
+   * of child-parend elements -> this method generates
+   * their ids
+   */
   const generateSvgParentsAndChildrenIds = useCallback((): IDs => {
     const pairs: IDs = [];
     const nodeIds = Object.keys(nodes);
@@ -39,6 +45,9 @@ function SvgGenerator({ nodes }: SvgGenerator) {
     return pairs;
   }, [nodes]);
 
+  /**
+   * Method to generate the svgs together with their "+ bubbles"
+   */
   const generateSvg = useCallback(
     (ids: [string, string][]): void => {
       const bubbleDivs: JSX.Element[] = [];
@@ -46,6 +55,9 @@ function SvgGenerator({ nodes }: SvgGenerator) {
       const scrollHeight: number = window.scrollY;
       const width = window.innerWidth;
 
+      /**
+       * Loop through all the nodes and get the parent-child elements
+       */
       for (const id of ids) {
         const parent = document.getElementById(id[0]);
         const child = document.getElementById(id[1]);
@@ -54,10 +66,20 @@ function SvgGenerator({ nodes }: SvgGenerator) {
 
         const parentRect = parent.getBoundingClientRect();
         const childRect = child.getBoundingClientRect();
+
+        /**
+         * Center is the svg between two mainKnots
+         */
         const center =
           parent.classList.contains('card--center') &&
           child.classList.contains('card--center');
 
+        /**
+         * When width <= 1100 we don't want a connection line
+         * between a center element and its children. the connection
+         * is happening when the center connects with the next center
+         * via a straight line.
+         */
         if (
           width <= 1100 &&
           parent.classList.contains('card--center') &&
@@ -66,6 +88,12 @@ function SvgGenerator({ nodes }: SvgGenerator) {
           continue;
         }
 
+        /**
+         * The bubbleheight is adjusted according to the viewport width.
+         * On smaller screens the bubble needs to be on the bottom of the
+         * section so it doesn't intersect with other elements. Otherwise
+         * it is in the center of two center elements.
+         */
         const top =
           width > 1100
             ? scrollHeight -
@@ -83,11 +111,17 @@ function SvgGenerator({ nodes }: SvgGenerator) {
               (childRect.y - parentRect.y) / 2 +
               8;
 
+        /**
+         *  On smaller screens the bubble needs to fit with the center line.
+         */
         const left =
           width > 1100
             ? 'calc(50% - 22px)'
             : childRect.x + childRect.width / 2 - 21.5;
 
+        /**
+         * Finally the bubble is generated
+         */
         if (center) {
           bubbleDivs.push(
             <div
@@ -104,6 +138,9 @@ function SvgGenerator({ nodes }: SvgGenerator) {
             ></div>
           );
         }
+        /**
+         * .. and the svg line
+         */
         svgCollection.push(
           <Svg
             key={uuidv4()}

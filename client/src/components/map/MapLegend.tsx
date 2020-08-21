@@ -1,7 +1,12 @@
 import React from 'react';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
+/**
+ * Explanatory stateless component
+ */
 const MapLegend = () => {
   return (
     <div className='map__section-start'>

@@ -1,13 +1,28 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import History from '../helper/history';
-import { Preset, ID } from '../../actions/constants';
 import { connect } from 'react-redux';
-import { AppState } from '../../reducers';
-import EditPresetModalSvg from './EditPresetModalSvg';
 import { useDispatch } from 'react-redux';
-import { updatePreset, loadPresets } from '../../actions/presets';
+
+//Helper
+import History from '../helper/history';
+import { closeModalOnWrapperClick } from '../helper/closeModalOnWrapperClick';
+
+//Global State
+import { AppState } from '../../reducers';
+
+//Components
+import EditPresetModalSvg from './EditPresetModalSvg';
+
+//Actions
+import { updatePreset, loadPresets, Preset, ID } from '../../actions';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+/**
+ *  Edit Preset Modal lets the user change
+ *  the name and the description of a preset
+ */
 
 interface EditPresetModal {
   presets: Preset[];
@@ -16,20 +31,6 @@ interface EditPresetModal {
 
 const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
   const dispatch = useDispatch();
-
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLDivElement;
-    if (
-      target.classList.contains('modal') ||
-      target.classList.contains('modal__close')
-    ) {
-      History.push('/');
-    }
-  };
-
-  const handleClose = () => {
-    History.push('/');
-  };
 
   const [formData, updateFormdata] = useState({
     name: '',
@@ -40,8 +41,14 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
     updateFormdata({ ...formData, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Holds the id from the url
+   */
   const [id, updateId] = useState<ID>();
 
+  /**
+   * Saves the current preset to db and then reloads all presets from db
+   */
   const handleSave = () => {
     if (!isAuthenticated) History.push('/login');
     const preset = {
@@ -54,6 +61,11 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
     }
   };
 
+  /**
+   * The url holds the preset id so this gets the id from the pathname and
+   * searches for the belonging preset to prefill the name and description
+   * fields with the current values.
+   */
   const updateForm = useCallback(() => {
     const id: ID = History.location.pathname.split('/')[2];
     updateId(id);
@@ -68,17 +80,20 @@ const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
     }
   }, [presets]);
 
+  /**
+   * Prefill form
+   */
   useEffect(() => {
     updateForm();
   }, [presets, updateForm]);
 
   return (
-    <div className='modal' onClick={handleClick}>
+    <div className='modal' onClick={closeModalOnWrapperClick}>
       <div className='modal__body'>
         <FontAwesomeIcon
           icon={faTimes}
           className='modal__close'
-          onClick={handleClose}
+          onClick={() => History.push('/')}
         />
         <EditPresetModalSvg />
         <div className='modal__add-new'>

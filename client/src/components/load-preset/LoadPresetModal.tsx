@@ -1,32 +1,53 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { AppState } from '../../reducers';
-import LoadPresetSvg from './LoadPresetSvg';
-import { Preset, ID } from '../../actions/constants';
-import { deleteAllComments } from '../../actions/deleteAllComments';
-import { deleteAllDates } from '../../actions/deleteAllDates';
-import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
-import { deleteAllNodes } from '../../actions/deleteAllNodes';
-import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
-import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
-import { addComments } from '../../actions/addComments';
-import { addNodes } from '../../actions/addNodes';
-import { addDates } from '../../actions/addDates';
-import { addHeadings } from '../../actions/addHeadings';
-import { addRecommendations } from '../../actions/addRecommendations';
-import { addStatuses } from '../../actions/addStatuses';
-import { PayloadUser } from '../../actions/constants';
-import { addPreset, deletePreset } from '../../actions/presets';
 import { v4 as uuidv4 } from 'uuid';
-import { setCurrentPreset } from '../../actions/setCurrentPreset';
+
+//Helper
+import History from '../helper/history';
+import { closeModalOnWrapperClick } from '../helper/closeModalOnWrapperClick';
+
+//Components
+import LoadPresetSvg from './LoadPresetSvg';
+
+//Default Data
 import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { frontendTitles as titles } from '../../roadmap-data/frontend-titles';
-import { addDefaultPreset } from '../../actions/presets';
+
+//Actions
+import {
+  setCurrentPreset,
+  Preset,
+  ID,
+  deleteAllComments,
+  deleteAllDates,
+  deleteAllHeadings,
+  deleteAllNodes,
+  deleteAllRecommendations,
+  deleteAllStatuses,
+  addDefaultPreset,
+  addPreset,
+  deletePreset,
+  PayloadUser,
+  addStatuses,
+  addRecommendations,
+  addHeadings,
+  addDates,
+  addNodes,
+  addComments,
+} from '../../actions';
+
+//Global State
+import { AppState } from '../../reducers';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+/**
+ * Load Presets Modal with all saved presets and create new preset functionality
+ */
 
 interface LoginModal {
   presets: Preset[];
@@ -37,20 +58,14 @@ interface LoginModal {
 const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
   const dispatch = useDispatch();
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLDivElement;
-    if (
-      target.classList.contains('modal') ||
-      target.classList.contains('modal__close')
-    ) {
-      History.push('/');
-    }
-  };
-
   const handleClose = () => {
     History.push('/');
   };
 
+  /**
+   * Removes all current map-state
+   * Adds the new state from the chosen preset
+   */
   const handleLoadPreset = (preset: Preset) => {
     dispatch(deleteAllComments());
     dispatch(deleteAllDates());
@@ -69,6 +84,9 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
     History.push('/');
   };
 
+  /**
+   * Formdata and belonging update function
+   */
   const [formData, updateFormdata] = useState({
     name: '',
     description: '',
@@ -78,6 +96,9 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
     updateFormdata({ ...formData, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Try to save the new preset to the db
+   */
   const handleAddPreset = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -100,6 +121,11 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
     updateFormdata({ name: '', description: '' });
   };
 
+  /**
+   * Deletes the selected preset from the db.
+   * If the deleted preset === the current map,
+   * the current map is also removed.
+   */
   const handleDeletePreset = useCallback(
     (id: ID, restore: boolean) => {
       dispatch(deletePreset(id));
@@ -119,6 +145,10 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
     [currentPreset, dispatch]
   );
 
+  /**
+   * Helper to check if the default Frontend Developer
+   * map is already loaded to the the users maps.
+   */
   const checkIfDefaultPreset = useCallback((): [boolean, string] => {
     for (const preset of presets) {
       if (preset.name === 'Frontend Developer') {
@@ -128,20 +158,19 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
     return [false, ''];
   }, [presets]);
 
+  /**
+   * Creates the default Frontend Developer preset for the user.
+   */
   const createDefaultPreset = useCallback(() => {
-    let oldID: ID = '';
-    if (checkIfDefaultPreset()[0]) {
-      oldID = checkIfDefaultPreset()[1];
-    }
     if (user !== null) {
       const comments = {
         '2cfc0a72-712d-4b59-896b-e4ce8ef91d01': ['Edit me!'],
       };
       dispatch(
         addDefaultPreset({
-          user: user,
+          user,
           nodes: defaultNodes,
-          comments: comments,
+          comments,
           recommendations: recommendation,
           headings: titles,
           name: 'Frontend Developer',
@@ -149,16 +178,19 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
         })
       );
     }
-    if (oldID.length) {
-      handleDeletePreset(oldID, false);
-      dispatch(setCurrentPreset(''));
-    }
-  }, [checkIfDefaultPreset, dispatch, handleDeletePreset, user]);
+  }, [dispatch, user]);
 
+  /**
+   * Opens the edit preset subdialogue
+   */
   const handleEditPreset = (id: ID) => {
     History.push(`/edit-preset/${id}`);
   };
 
+  /**
+   * If there is no default preset
+   * Create a new default preset
+   */
   useEffect(() => {
     if (!checkIfDefaultPreset()[0] && user !== null) {
       createDefaultPreset();
@@ -166,20 +198,8 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
     }
   }, [presets, checkIfDefaultPreset, createDefaultPreset, dispatch, user]);
 
-  useEffect(() => {
-    let times = 0;
-    for (const preset of presets) {
-      if (preset.name === 'Frontend Developer') {
-        times++;
-        if (times === 2) {
-          handleDeletePreset(preset._id, true);
-        }
-      }
-    }
-  });
-
   return (
-    <div className='modal' onClick={handleClick}>
+    <div className='modal' onClick={closeModalOnWrapperClick}>
       <div className='modal__body'>
         <FontAwesomeIcon
           icon={faTimes}
@@ -270,7 +290,6 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
 interface StateProps {
   presets: Preset[];
   user: PayloadUser | null;
-
   currentPreset: ID;
 }
 

@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import RegisterSvg from './RegisterSvg';
-import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { AppState } from '../../reducers';
-import { register } from '../../actions/authenticate';
-import { RegisterUser } from '../../actions/constants';
+
+//Components
+import RegisterSvg from './RegisterSvg';
 import Alert from '../alert/index';
-import { deleteAllComments } from '../../actions/deleteAllComments';
-import { deleteAllDates } from '../../actions/deleteAllDates';
-import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
-import { deleteAllNodes } from '../../actions/deleteAllNodes';
-import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
-import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
-import { setCurrentPreset } from '../../actions/setCurrentPreset';
+
+//Helper
+import History from '../helper/history';
+import { closeModalOnWrapperClick } from '../helper/closeModalOnWrapperClick';
+
+//Global state type
+import { AppState } from '../../reducers';
+
+//Actions
+import {
+  register,
+  RegisterUser,
+  deleteAllDates,
+  deleteAllComments,
+  deleteAllHeadings,
+  deleteAllNodes,
+  deleteAllRecommendations,
+  deleteAllStatuses,
+  setCurrentPreset,
+} from '../../actions';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -34,19 +47,9 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
     updateFormdata({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLDivElement;
-    if (
-      target.classList.contains('modal') ||
-      target.classList.contains('modal__close')
-    ) {
-      History.push('/');
-    }
-  };
-  const handleClose = () => {
-    History.push('/');
-  };
-
+  /**
+   * Dispatch register
+   */
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -55,26 +58,22 @@ const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
     dispatch(register({ email, password, name }));
   };
 
+  /**
+   * If is authenticated after register go to /
+   */
   useEffect(() => {
     if (isAuthenticated) {
       History.push('/');
-      dispatch(deleteAllComments());
-      dispatch(deleteAllDates());
-      dispatch(deleteAllHeadings());
-      dispatch(deleteAllNodes());
-      dispatch(deleteAllRecommendations());
-      dispatch(deleteAllStatuses());
-      dispatch(setCurrentPreset(''));
     }
   }, [isAuthenticated, dispatch]);
 
   return (
-    <div className='modal' onClick={handleClick}>
+    <div className='modal' onClick={closeModalOnWrapperClick}>
       <div className='modal__body modal__body--sm'>
         <FontAwesomeIcon
           icon={faTimes}
           className='modal__close'
-          onClick={handleClose}
+          onClick={() => History.push('/')}
         />
         <RegisterSvg />
         <h1>Register</h1>

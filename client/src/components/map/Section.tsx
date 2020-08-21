@@ -1,12 +1,15 @@
 import React, { memo } from 'react';
+
+//Components
 import Children from './Children';
+
+//Types
 import { Nodes } from '../types/Map-Data';
 
 interface Section {
   sectionId: string;
   nodes: Nodes;
 }
-
 type Direction = 'left' | 'right';
 
 function Section({ sectionId, nodes }: Section) {
@@ -16,6 +19,9 @@ function Section({ sectionId, nodes }: Section) {
 
   const children: string[] = nodes[sectionId].children;
 
+  /**
+   * children are the first level of a section
+   */
   const generateChildren = (direction: Direction): string[] => {
     if (!children) return [];
     if (children.length === 1) {
@@ -27,6 +33,9 @@ function Section({ sectionId, nodes }: Section) {
     } else return children.slice(middle);
   };
 
+  /**
+   * subchildren are on the second level of a section
+   */
   const generateSubChildren = (direction: Direction): string[] => {
     // Get the appropriate subchildren for the left or right position
     let childrenNew: string[] = [];

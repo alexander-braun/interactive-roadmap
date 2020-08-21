@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import LoginSvg from './LoginSvg';
-import History from '../helper/history';
 import { connect } from 'react-redux';
-import { login } from '../../actions/authenticate';
 import { useDispatch } from 'react-redux';
-import { AppState } from '../../reducers';
+
+//Components
+import LoginSvg from './LoginSvg';
 import Alert from '../alert/index';
-import { deleteAllComments } from '../../actions/deleteAllComments';
-import { deleteAllDates } from '../../actions/deleteAllDates';
-import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
-import { deleteAllNodes } from '../../actions/deleteAllNodes';
-import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
-import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
-import { setCurrentPreset } from '../../actions/setCurrentPreset';
+
+//Helper
+import History from '../helper/history';
+import { closeModalOnWrapperClick } from '../helper/closeModalOnWrapperClick';
+
+//Actions
+import { login } from '../../actions';
+
+//Global State
+import { AppState } from '../../reducers';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+/**
+ * Login Modal has links to register and recover password.
+ * Handels user login.
+ */
 
 interface LoginModal {
   isAuthenticated: boolean | null;
@@ -27,6 +36,9 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
     updateFormdata({ ...formData, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Login User
+   */
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -35,45 +47,27 @@ const LoginModal = ({ isAuthenticated }: LoginModal) => {
     dispatch(login({ email, password }));
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLDivElement;
-    if (
-      target.classList.contains('modal') ||
-      target.classList.contains('modal__close')
-    ) {
-      History.push('/');
-    }
-  };
-
-  const handleClose = () => {
-    History.push('/');
-  };
-
   const [formData, updateFormdata] = useState({
     email: '',
     password: '',
   });
 
+  /**
+   * If the user is authenticated the login modal closes.
+   */
   useEffect(() => {
     if (isAuthenticated) {
       History.push('/');
-      dispatch(deleteAllComments());
-      dispatch(deleteAllDates());
-      dispatch(deleteAllHeadings());
-      dispatch(deleteAllNodes());
-      dispatch(deleteAllRecommendations());
-      dispatch(deleteAllStatuses());
-      dispatch(setCurrentPreset(''));
     }
   }, [isAuthenticated, dispatch]);
 
   return (
-    <div className='modal' onClick={handleClick}>
+    <div className='modal' onClick={closeModalOnWrapperClick}>
       <div className='modal__body modal__body--sm'>
         <FontAwesomeIcon
           icon={faTimes}
           className='modal__close'
-          onClick={handleClose}
+          onClick={() => History.push('/')}
         />
         <LoginSvg />
         <h1>Login</h1>

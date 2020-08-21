@@ -1,12 +1,22 @@
 import React from 'react';
-import HeaderSvg from './HeaderSvg';
 import { connect } from 'react-redux';
-import { Preset, ID } from '../../actions/constants';
-import { AppState } from '../../reducers';
 import { v4 as uuidv4 } from 'uuid';
 
-export type IDs = [string, string][];
+//Components
+import HeaderSvg from './HeaderSvg';
 
+//Actions
+import { Preset, ID } from '../../actions';
+
+//Global State
+import { AppState } from '../../reducers';
+
+/**
+ * Header displays the current preset name and description as
+ * well as different svg graphics.
+ */
+
+export type IDs = [string, string][];
 interface Header {
   currentPreset: ID;
   presets: Preset[];

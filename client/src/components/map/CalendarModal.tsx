@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { AppState } from '../../reducers';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { toggleCalendarModal } from '../../actions/toggleCalendarModal';
-import { CalendarModal as CalendarModalType } from '../../actions/constants';
-import { changeDate } from '../../actions/changeDate';
+
+//Global state
+import { AppState } from '../../reducers';
+
+//Actions
+import {
+  toggleCalendarModal,
+  CalendarModal as CalendarModalType,
+  changeDate,
+} from '../../actions';
 
 interface Modal {
   calendarModal: CalendarModalType;
@@ -14,6 +20,11 @@ interface Modal {
 
 const CalendarModal = ({ calendarModal }: Modal) => {
   const dispatch = useDispatch();
+
+  /**
+   * Calendar modal visibility state is handled by redux.
+   * [ID of card, time in ms, visible]
+   */
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
     if (target.classList.contains('calendar-modal')) {
@@ -23,6 +34,10 @@ const CalendarModal = ({ calendarModal }: Modal) => {
 
   const [date, updateDate] = useState<Date>(new Date(calendarModal[1]));
 
+  /**
+   * Update local state: date
+   * Apparently a range select is possible so check if array.
+   */
   const handleChange = (e: Date | Date[]) => {
     if (!Array.isArray(e)) {
       updateDate(e);
@@ -36,7 +51,7 @@ const CalendarModal = ({ calendarModal }: Modal) => {
   if (!calendarModal[2]) return null;
   else
     return (
-      <div className='calendar-modal' onClick={(e) => handleClick(e)}>
+      <div className='calendar-modal modal' onClick={(e) => handleClick(e)}>
         <Calendar
           className='calendar-modal__calendar'
           onChange={handleChange}

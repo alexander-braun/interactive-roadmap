@@ -1,36 +1,51 @@
 import React, { useState } from 'react';
-import History from '../helper/history';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
+
+//Helper
+import History from '../helper/history';
+
+//Global state type
 import { AppState } from '../../reducers';
+
+//Components
 import ProfileSvg from './ProfileSvg';
-import { PayloadUser } from '../../actions/constants';
+import Alert from '../alert/index';
+
+//Actions
+import {
+  PayloadUser,
+  deleteUser,
+  changePassword,
+  deleteAllComments,
+  deleteAllDates,
+  deleteAllHeadings,
+  deleteAllNodes,
+  deleteAllRecommendations,
+  deleteAllStatuses,
+  addComments,
+  addNodes,
+  addDates,
+  addHeadings,
+  addStatuses,
+  addRecommendations,
+  setCurrentPreset,
+} from '../../actions';
+
+//FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { deleteUser, changePassword } from '../../actions/authenticate';
-import Alert from '../alert/index';
-import { deleteAllComments } from '../../actions/deleteAllComments';
-import { deleteAllDates } from '../../actions/deleteAllDates';
-import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
-import { deleteAllNodes } from '../../actions/deleteAllNodes';
-import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
-import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
-import { addComments } from '../../actions/addComments';
-import { addNodes } from '../../actions/addNodes';
-import { addDates } from '../../actions/addDates';
-import { addHeadings } from '../../actions/addHeadings';
-import { addStatuses } from '../../actions/addStatuses';
-import { addRecommendations } from '../../actions/addRecommendations';
-import { setCurrentPreset } from '../../actions/setCurrentPreset';
+
+//Default data
 import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { frontendTitles } from '../../roadmap-data/frontend-titles';
 
-interface LoginModal {
+interface Profile {
   user: PayloadUser | null;
 }
 
-const Profile = ({ user }: LoginModal) => {
+const Profile = ({ user }: Profile) => {
   const dispatch = useDispatch();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
