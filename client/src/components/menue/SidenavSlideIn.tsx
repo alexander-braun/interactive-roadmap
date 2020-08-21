@@ -134,6 +134,11 @@ const SidenavSlideIn = ({
         <Link to='/download-json' className='sidenav__link'>
           Download<span className='sidenav__free-indicator'>(as JSON)</span>
         </Link>
+        {isAuthenticated && (
+          <Link to='/profile-settings' className='sidenav__link'>
+            Profile
+          </Link>
+        )}
       </div>
     </div>
   );
