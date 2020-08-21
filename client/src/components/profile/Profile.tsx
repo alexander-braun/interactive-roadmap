@@ -9,6 +9,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { deleteUser, changePassword } from '../../actions/authenticate';
 import Alert from '../alert/index';
+import { deleteAllComments } from '../../actions/deleteAllComments';
+import { deleteAllDates } from '../../actions/deleteAllDates';
+import { deleteAllHeadings } from '../../actions/deleteAllHeadings';
+import { deleteAllNodes } from '../../actions/deleteAllNodes';
+import { deleteAllRecommendations } from '../../actions/deleteAllRecommendations';
+import { deleteAllStatuses } from '../../actions/deleteAllStatuses';
+import { addComments } from '../../actions/addComments';
+import { addNodes } from '../../actions/addNodes';
+import { addDates } from '../../actions/addDates';
+import { addHeadings } from '../../actions/addHeadings';
+import { addStatuses } from '../../actions/addStatuses';
+import { addRecommendations } from '../../actions/addRecommendations';
+import { setCurrentPreset } from '../../actions/setCurrentPreset';
+import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
+import { recommendation } from '../../roadmap-data/frontend-recommendation';
+import { frontendTitles } from '../../roadmap-data/frontend-titles';
 
 interface LoginModal {
   user: PayloadUser | null;
@@ -27,6 +43,24 @@ const Profile = ({ user }: LoginModal) => {
     }
   };
 
+  const handleLogout = () => {
+    dispatch(deleteAllComments());
+    dispatch(deleteAllDates());
+    dispatch(deleteAllHeadings());
+    dispatch(deleteAllNodes());
+    dispatch(deleteAllRecommendations());
+    dispatch(deleteAllStatuses());
+    dispatch(setCurrentPreset(''));
+    const comments = { '2cfc0a72-712d-4b59-896b-e4ce8ef91d01': ['Edit me!'] };
+    dispatch(addComments(comments));
+    dispatch(addNodes(defaultNodes));
+    dispatch(addDates({}));
+    dispatch(addHeadings(frontendTitles));
+    dispatch(addRecommendations(recommendation));
+    dispatch(addStatuses({}));
+    dispatch(setCurrentPreset(''));
+  };
+
   const handleClose = () => {
     History.push('/');
   };
@@ -34,6 +68,7 @@ const Profile = ({ user }: LoginModal) => {
   const handleDeleteProfile = () => {
     if (user) {
       dispatch(deleteUser(user._id));
+      handleLogout();
       History.push('/');
     }
   };
