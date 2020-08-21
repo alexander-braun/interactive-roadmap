@@ -127,7 +127,7 @@ function Navigation({
           <div className='menue-bar__burger'></div>
         </div>
         <div className='menue-bar__links'>
-          {!isAuthenticated ? (
+          {!isAuthenticated && (
             <>
               <Link to='/login' className='menue-bar__link'>
                 Login
@@ -136,12 +136,6 @@ function Navigation({
                 Register
                 <span className='menue-bar__free-indicator'>(free)</span>
               </Link>
-            </>
-          ) : (
-            <>
-              <button className='menue-bar__link' onClick={handleLogout}>
-                Logout
-              </button>
             </>
           )}
           {(currentPreset.length || isAuthenticated) && (
@@ -165,9 +159,14 @@ function Navigation({
             Download<span className='menue-bar__free-indicator'>(as JSON)</span>
           </Link>
           {isAuthenticated && (
-            <Link to='/profile-settings' className='menue-bar__link'>
-              Profile
-            </Link>
+            <>
+              <Link to='/profile-settings' className='menue-bar__link'>
+                Profile
+              </Link>
+              <button className='menue-bar__link' onClick={handleLogout}>
+                Logout
+              </button>
+            </>
           )}
         </div>
       </div>

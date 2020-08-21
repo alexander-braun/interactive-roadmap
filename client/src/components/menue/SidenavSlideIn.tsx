@@ -96,7 +96,7 @@ const SidenavSlideIn = ({
   return (
     <div className={`sidenav${sidenav ? ' sidenav--visible' : ''}`}>
       <div className='sidenav__links'>
-        {!isAuthenticated ? (
+        {!isAuthenticated && (
           <>
             <Link to='/login' className='sidenav__link'>
               Login
@@ -105,12 +105,6 @@ const SidenavSlideIn = ({
               Register
               <span className='sidenav__free-indicator'>(free)</span>
             </Link>
-          </>
-        ) : (
-          <>
-            <button className='sidenav__link' onClick={handleLogout}>
-              Logout
-            </button>
           </>
         )}
         {(currentPreset.length || isAuthenticated) && (
@@ -135,9 +129,14 @@ const SidenavSlideIn = ({
           Download<span className='sidenav__free-indicator'>(as JSON)</span>
         </Link>
         {isAuthenticated && (
-          <Link to='/profile-settings' className='sidenav__link'>
-            Profile
-          </Link>
+          <>
+            <Link to='/profile-settings' className='sidenav__link'>
+              Profile
+            </Link>
+            <button className='sidenav__link' onClick={handleLogout}>
+              Logout
+            </button>
+          </>
         )}
       </div>
     </div>
