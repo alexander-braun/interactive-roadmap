@@ -12,8 +12,10 @@ import {
   PASSWORD_RECOVERY_ERROR,
   PASSWORD_RESET_SUCCESS,
   PASSWORD_RESET_ERROR,
+  DELETE_USER_SUCCESS,
   RegisterUser,
   Login,
+  ID,
 } from './constants';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
@@ -178,4 +180,47 @@ export const logout = (): ThunkAction<
   dispatch({
     type: LOGOUT,
   });
+};
+
+//Delete a user
+export const deleteUser = (
+  id: ID
+): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/users/${id}`);
+    dispatch({
+      type: DELETE_USER_SUCCESS,
+      payload: res.data,
+      id: id,
+    });
+  } catch (error) {
+    console.error('ERROR', error);
+    dispatch(setAlert('User could not be removed', 'danger'));
+  }
+};
+
+//Change Password
+export const changePassword = (
+  id: ID,
+  password: string
+): ThunkAction<void, AppState, unknown, Action<string>> => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const body = JSON.stringify({ password });
+  try {
+    const res = await axios.put(`api/users/${id}`, body, config);
+    dispatch({
+      type: PASSWORD_RESET_SUCCESS,
+      payload: res.data,
+    });
+    dispatch(setAlert('Password changed!', 'success'));
+  } catch (error) {
+    dispatch({
+      type: PASSWORD_RESET_ERROR,
+    });
+    dispatch(setAlert('Something went wrong', 'danger'));
+  }
 };

@@ -7,7 +7,6 @@ const Preset = require('../../models/Preset');
 // @route       POST api/presets
 // @description Create a preset
 // @access      Private
-
 router.post(
   '/',
   [auth, [check('name', 'Preset name is required').not().isEmpty()]],
@@ -109,7 +108,6 @@ router.put('/:id', auth, async (req, res) => {
 // @route       DELETE api/presets/:id
 // @description Delete a preset
 // @access      Private
-
 router.delete('/:id', auth, async (req, res) => {
   try {
     const preset = await Preset.findById(req.params.id);

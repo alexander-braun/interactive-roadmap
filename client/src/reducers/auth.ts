@@ -5,6 +5,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  DELETE_USER_SUCCESS,
   LOGOUT,
   AppActions,
   Auth,
@@ -37,6 +38,7 @@ export const auth = (state: Auth = initialState, action: AppActions): Auth => {
         loading: false,
       };
     case REGISTER_FAIL:
+    case DELETE_USER_SUCCESS:
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT:

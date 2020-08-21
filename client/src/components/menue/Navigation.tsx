@@ -164,6 +164,11 @@ function Navigation({
           <Link to='/download-json' className='menue-bar__link'>
             Download<span className='menue-bar__free-indicator'>(as JSON)</span>
           </Link>
+          {isAuthenticated && (
+            <Link to='/profile-settings' className='menue-bar__link'>
+              Profile
+            </Link>
+          )}
         </div>
       </div>
     </>

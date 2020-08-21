@@ -62,6 +62,7 @@ const LoadPresetModal = () => {
       };
       Reader.readAsText(file);
     }
+    History.push('/');
   };
 
   return (

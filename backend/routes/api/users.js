@@ -12,7 +12,6 @@ const User = require('../../models/User');
 // @route       POST api/users
 // @description Register user
 // @access      Public
-
 router.post(
   '/',
   [
@@ -73,7 +72,6 @@ router.post(
 // @route       GET api/users/
 // @description Get all users
 // @access      Private
-
 router.get('/', auth, async (req, res) => {
   try {
     const users = await User.find();
@@ -88,10 +86,36 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route       PUT api/users/:id
+// @description Change PW
+// @access      Private
+router.put('/:id', async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return res.status(400).json({ errors: [{ msg: 'User not found' }] });
+  }
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(req.body.password, salt);
+  await user.save();
+  const payload = {
+    user: {
+      id: user.id,
+    },
+  };
+  jwt.sign(
+    payload,
+    process.env.jwtSecret,
+    { expiresIn: 3600000 },
+    (err, token) => {
+      if (err) throw err;
+      res.json({ token });
+    }
+  );
+});
+
 // @route       GET api/users/:id
 // @description Get user by id
 // @access      Private
-
 router.get('/:id', auth, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -101,6 +125,26 @@ router.get('/:id', auth, async (req, res) => {
     res.json(user);
   } catch (error) {
     console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route       DELETE api/users/:id
+// @description Delete a user
+// @access      Private
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+    await user.remove();
+    res.json({ msg: 'User removed' });
+  } catch (error) {
+    console.error(error.message);
+    if (error.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'User not found' });
+    }
     res.status(500).send('Server Error');
   }
 });

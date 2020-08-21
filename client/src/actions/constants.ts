@@ -41,6 +41,7 @@ export const PRESET_ERROR = 'PRESET_ERROR';
 export const ADD_PRESET = 'ADD_PRESET';
 export const DELETE_PRESET_ERROR = 'DELETE_PRESET_ERROR';
 export const DELETE_PRESET_SUCCESS = 'DELETE_PRESET_SUCCESS';
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const ADD_NODES = 'ADD_NODES';
 export const PASSWORD_MAIL_SENT = 'PASSWORD_MAIL_SENT';
 export const PASSWORD_RECOVERY_ERROR = 'PASSWORD_RECOVERY_ERROR';
@@ -300,6 +301,10 @@ export interface DeletePresetSuccess {
   type: typeof DELETE_PRESET_SUCCESS;
   id: string;
 }
+export interface DeleteUserSuccess {
+  type: typeof DELETE_USER_SUCCESS;
+  id: string;
+}
 export interface UpdateCurrentPreset {
   type: typeof UPDATE_CURRENT_PRESET;
   presetId: ID;
@@ -336,6 +341,7 @@ export type PresetActionTypes =
 export type AlertActionTypes = SetAlert | RemoveAlert;
 export type AuthActionTypes =
   | LoadUser
+  | DeleteUserSuccess
   | ResetPassword
   | ResetPasswordError
   | RegisterSuccess

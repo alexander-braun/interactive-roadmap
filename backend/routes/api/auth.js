@@ -11,7 +11,7 @@ const crypto = require('crypto');
 const User = require('../../models/User');
 
 // @route       GET api/auth
-// @description Test route
+// @description Get user
 // @access      Public
 router.get('/', auth, async (req, res) => {
   try {
@@ -41,7 +41,6 @@ router.post('/forgotpassword', async (req, res) => {
   const resetUrl = `${req.protocol}://${req.get(
     'host'
   )}/resetpassword/${resetToken}`;
-  //Paste frontend link here
   const message = `You have requested a new password. Please make a put request to ${resetUrl}`;
   try {
     await sendEmail({

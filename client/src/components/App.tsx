@@ -31,6 +31,7 @@ import ResetPasswordModal from './RecoverPassword/ResetPasswordModal';
 import SidenavSlideIn from './menue/SidenavSlideIn';
 import UploadJSONModal from './uploadPreset/UploadJSONModal';
 import DownloadPresetModal from './downloadPreset/DownloadPresetModal';
+import Profile from './profile/Profile';
 
 interface AppProps {
   nodes: Nodes;
@@ -92,6 +93,9 @@ function App({ nodes, isAuthenticated, currentPreset }: AppProps): JSX.Element {
           </Route>
           <Route exact path='/download-json'>
             <DownloadPresetModal />
+          </Route>
+          <Route exact path='/profile-settings'>
+            <Profile />
           </Route>
         </Switch>
       </Router>
