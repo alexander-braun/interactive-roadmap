@@ -13,6 +13,10 @@
     /* Safari, Android, iOS */ url('./fonts/Quadrit.svg#OpenSans') format('svg'); /* Legacy iOS */
 }
 
+#root {
+  min-height: 100vh;
+}
+
 *,
 *::after,
 *::before {
@@ -40,4 +44,5 @@ body {
 .App {
   height: 100%;
   position: relative;
+  min-height: 100vh;
 }

@@ -51,6 +51,7 @@ import { frontendTitles } from '../../roadmap-data/frontend-titles';
  */
 
 export type IDs = [string, string][];
+
 interface Navigation {
   isAuthenticated: boolean | null;
   user: PayloadUser | null;
@@ -62,6 +63,7 @@ interface Navigation {
   recommendations: Recommendations;
   currentPreset: ID;
   presets: Preset[];
+  sideWidth: number;
 }
 
 function Navigation({
@@ -73,6 +75,7 @@ function Navigation({
   headings,
   recommendations,
   currentPreset,
+  sideWidth,
 }: Navigation): JSX.Element {
   const dispatch = useDispatch();
 
@@ -129,16 +132,16 @@ function Navigation({
   /**
    * Hamburger menue toggle logic
    */
-  const [hamBurgerClasslist, toggleHamburgerClasslist] = useState(
+  const [hamburgerClasslist, togglehamburgerClasslist] = useState(
     'menue-bar__menu-btn'
   );
 
   const handleHamburgerClick = () => {
-    if (hamBurgerClasslist.indexOf('menue-bar__menu-btn--open') >= 0) {
-      toggleHamburgerClasslist('menue-bar__menu-btn');
+    if (hamburgerClasslist.indexOf('menue-bar__menu-btn--open') >= 0) {
+      togglehamburgerClasslist('menue-bar__menu-btn');
       dispatch(toggleSidenav());
     } else {
-      toggleHamburgerClasslist('menue-bar__menu-btn menue-bar__menu-btn--open');
+      togglehamburgerClasslist('menue-bar__menu-btn menue-bar__menu-btn--open');
       dispatch(toggleSidenav());
     }
   };
@@ -150,10 +153,23 @@ function Navigation({
         <Link to='/' className='menue-bar__title'>
           Interactive Roadmap
         </Link>
-        <div className={hamBurgerClasslist} onClick={handleHamburgerClick}>
-          <div className='menue-bar__burger'></div>
-        </div>
-        <div className='menue-bar__links'>
+        {sideWidth >= 1100 ? null : (
+          <div
+            role='button'
+            className={hamburgerClasslist}
+            onClick={handleHamburgerClick}
+            aria-label='Open Sidenavigation'
+            aria-pressed={
+              hamburgerClasslist.indexOf('menue-bar__menu-btn--open') >= 0
+                ? true
+                : false
+            }
+            tabIndex={0}
+          >
+            <div className='menue-bar__burger'></div>
+          </div>
+        )}
+        <nav className='menue-bar__links'>
           {!isAuthenticated && (
             <>
               <Link to='/login' className='menue-bar__link'>
@@ -195,7 +211,7 @@ function Navigation({
               </button>
             </>
           )}
-        </div>
+        </nav>
       </div>
     </>
   );

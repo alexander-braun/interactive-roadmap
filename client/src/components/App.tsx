@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import ResizeObserver from 'react-resize-observer';
 
 //Components
 import Map from './map/Map';
@@ -90,8 +91,15 @@ function App({ nodes, isAuthenticated, currentPreset }: AppProps): JSX.Element {
     }
   }, [currentPreset, dispatch, isAuthenticated]);
 
+  const [sideWidth, updateSideWidth] = useState<number>(0);
+
   return (
     <div className='App'>
+      <ResizeObserver
+        onResize={(rect) => {
+          updateSideWidth(rect.width);
+        }}
+      />
       <Router history={History}>
         <Switch>
           <Route exact path='/login'>
@@ -123,7 +131,7 @@ function App({ nodes, isAuthenticated, currentPreset }: AppProps): JSX.Element {
           </Route>
         </Switch>
       </Router>
-      <Navigation />
+      <Navigation sideWidth={sideWidth} />
       <SidenavSlideIn />
       <Header />
       <Map nodes={nodes} />

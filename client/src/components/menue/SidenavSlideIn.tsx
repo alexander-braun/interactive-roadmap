@@ -119,7 +119,7 @@ const SidenavSlideIn = ({
 
   return (
     <div className={`sidenav${sidenav ? ' sidenav--visible' : ''}`}>
-      <div className='sidenav__links'>
+      <nav className='sidenav__links'>
         {!isAuthenticated && (
           <>
             <Link to='/login' className='sidenav__link'>
@@ -162,7 +162,7 @@ const SidenavSlideIn = ({
             </button>
           </>
         )}
-      </div>
+      </nav>
     </div>
   );
 };
