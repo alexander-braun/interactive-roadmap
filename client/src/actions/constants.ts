@@ -287,7 +287,7 @@ export interface LoadPresets {
 export interface PresetError {
   type: typeof PRESET_ERROR;
 }
-export interface UpdatePresetErrror {
+export interface UpdatePresetError {
   type: typeof UPDATE_PRESET_ERROR;
 }
 export interface AddPreset {
@@ -337,7 +337,7 @@ export type PresetActionTypes =
   | DeletePresetError
   | DeletePresetSuccess
   | UpdatePresetSuccess
-  | UpdatePresetErrror;
+  | UpdatePresetError;
 export type AlertActionTypes = SetAlert | RemoveAlert;
 export type AuthActionTypes =
   | LoadUser
