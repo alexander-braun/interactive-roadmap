@@ -66,7 +66,7 @@ const Profile = ({ user }: Profile) => {
     dispatch(deleteAllRecommendations());
     dispatch(deleteAllStatuses());
     dispatch(setCurrentPreset(''));
-    const comments = { '2cfc0a72-712d-4b59-896b-e4ce8ef91d01': ['Edit me!'] };
+    const comments = {};
     dispatch(addComments(comments));
     dispatch(addNodes(defaultNodes));
     dispatch(addDates({}));

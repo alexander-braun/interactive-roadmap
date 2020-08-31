@@ -163,9 +163,7 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
    */
   const createDefaultPreset = useCallback(() => {
     if (user !== null) {
-      const comments = {
-        '2cfc0a72-712d-4b59-896b-e4ce8ef91d01': ['Edit me!'],
-      };
+      const comments = {};
       dispatch(
         addDefaultPreset({
           user,

@@ -14,17 +14,7 @@ import { closeModalOnWrapperClick } from '../helper/closeModalOnWrapperClick';
 import { AppState } from '../../reducers';
 
 //Actions
-import {
-  register,
-  RegisterUser,
-  deleteAllDates,
-  deleteAllComments,
-  deleteAllHeadings,
-  deleteAllNodes,
-  deleteAllRecommendations,
-  deleteAllStatuses,
-  setCurrentPreset,
-} from '../../actions';
+import { register, RegisterUser } from '../../actions';
 
 //FA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
