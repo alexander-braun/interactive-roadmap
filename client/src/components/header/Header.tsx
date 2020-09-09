@@ -29,7 +29,7 @@ function Header({
   isAuthenticated,
 }: Header): JSX.Element {
   return (
-    <section className='header'>
+    <header className='header'>
       <HeaderSvg />
       {currentPreset.length && presets.length ? (
         presets.map(
@@ -51,7 +51,7 @@ function Header({
           <h2 className='header__subheading'>Default Frontend Roadmap</h2>
         </div>
       )}
-    </section>
+    </header>
   );
 }
 
