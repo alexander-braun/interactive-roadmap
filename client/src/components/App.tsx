@@ -94,7 +94,7 @@ function App({ nodes, isAuthenticated, currentPreset }: AppProps): JSX.Element {
   const [sideWidth, updateSideWidth] = useState<number>(0);
 
   return (
-    <div className='App'>
+    <>
       <ResizeObserver
         onResize={(rect) => {
           updateSideWidth(rect.width);
@@ -137,7 +137,7 @@ function App({ nodes, isAuthenticated, currentPreset }: AppProps): JSX.Element {
       <Map nodes={nodes} />
       <SvgGenerator />
       <CalendarModal />
-    </div>
+    </>
   );
 }
 

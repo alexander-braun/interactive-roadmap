@@ -149,7 +149,7 @@ function Navigation({
   return (
     <>
       <div className='menue-bar__spaceholder'></div>
-      <div className='menue-bar'>
+      <nav className='menue-bar'>
         <Link to='/' className='menue-bar__title'>
           Interactive Roadmap
         </Link>
@@ -169,7 +169,7 @@ function Navigation({
             <div className='menue-bar__burger'></div>
           </div>
         )}
-        <nav className='menue-bar__links'>
+        <div className='menue-bar__links'>
           {!isAuthenticated && (
             <>
               <Link to='/login' className='menue-bar__link'>
@@ -211,8 +211,8 @@ function Navigation({
               </button>
             </>
           )}
-        </nav>
-      </div>
+        </div>
+      </nav>
     </>
   );
 }

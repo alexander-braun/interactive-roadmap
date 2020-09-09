@@ -179,14 +179,14 @@ function Child({
           textareaRef={textareaRef}
         />
         {!props.center && (
-          <div
+          <time
             onClick={() => {
               openCalender();
             }}
             className='card__due-date'
           >
             {convertDate(goalDates[child] || Date.now())}
-          </div>
+          </time>
         )}
       </div>
       <Comments child={child} />

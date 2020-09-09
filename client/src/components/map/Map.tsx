@@ -35,12 +35,12 @@ function Map({ nodes }: Map): JSX.Element {
   }, [generateSections, nodes]);
 
   return (
-    <div className='map'>
+    <main className='map'>
       <MapLegend />
       {sections.map((section) => {
         return <Section key={uuidv4()} sectionId={section} nodes={nodes} />;
       })}
-    </div>
+    </main>
   );
 }
 
