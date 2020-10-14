@@ -56,7 +56,8 @@ const PresetSchema = new mongoose.Schema({
   statuses: {
     type: Object,
     default: {},
-  },
+    required: true,
+  }
 });
 
 const Preset = mongoose.model('preset', PresetSchema);

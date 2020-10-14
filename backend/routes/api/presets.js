@@ -22,7 +22,6 @@ router.post(
           user: req.user.id,
         }).then((name) => name);
         if (preset.length) {
-          console.log('F');
           return res.status(400).json({ msg: 'Preset already exists' });
         }
       } catch (error) {
@@ -31,7 +30,9 @@ router.post(
     }
     try {
       let today = new Date();
+      const status = req.body.status || {};
       const newPreset = new Preset({
+        statuses: status,
         user: req.user.id,
         description: req.body.description,
         name: req.body.name,
@@ -45,8 +46,7 @@ router.post(
         nodes: req.body.nodes,
         goalDates: req.body.goalDates,
         headings: req.body.headings,
-        recommendations: req.body.recommendations,
-        statuses: req.body.statuses,
+        recommendations: req.body.recommendations
       });
       const preset = await newPreset.save();
       res.json(preset);
