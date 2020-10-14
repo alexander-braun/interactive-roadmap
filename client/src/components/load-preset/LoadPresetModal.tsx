@@ -173,6 +173,7 @@ const LoadPresetModal = ({ presets, user, currentPreset }: LoginModal) => {
           headings: titles,
           name: 'Frontend Developer',
           description: 'Default Frontend Roadmap',
+          statuses: {}
         })
       );
     }

@@ -21,6 +21,7 @@ const initialState: Preset[] = [
     date: '',
     nodes: {},
     headings: {},
+    statuses: {},
     __v: 0,
     _id: '',
   },

@@ -7,6 +7,7 @@ const Preset = require('../../models/Preset');
 // @route       POST api/presets
 // @description Create a preset
 // @access      Private
+
 router.post(
   '/',
   [auth, [check('name', 'Preset name is required').not().isEmpty()]],
@@ -30,9 +31,9 @@ router.post(
     }
     try {
       let today = new Date();
-      const status = req.body.status || {};
+      const statuses = req.body.statuses || {};
       const newPreset = new Preset({
-        statuses: status,
+        statuses: statuses,
         user: req.user.id,
         description: req.body.description,
         name: req.body.name,

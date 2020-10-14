@@ -254,6 +254,7 @@ export type AddDefaultPreset = {
   nodes: Nodes;
   headings: Headings;
   recommendations: Recommendations;
+  statuses: Statuses;
 };
 export type SavePreset = {
   description?: string;

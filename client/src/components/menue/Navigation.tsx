@@ -114,7 +114,7 @@ function Navigation({
       goalDates,
       headings,
       recommendations,
-      status,
+      statuses: status,
     };
     if (currentPreset) {
       dispatch(updatePreset(currentPreset, preset));
