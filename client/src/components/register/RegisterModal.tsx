@@ -20,11 +20,11 @@ import { register, RegisterUser } from '../../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-interface RegisterModal {
+interface RegisterModalT {
   isAuthenticated: boolean | null;
 }
 
-const RegisterModal = ({ isAuthenticated }: RegisterModal) => {
+const RegisterModal = ({ isAuthenticated }: RegisterModalT) => {
   const dispatch = useDispatch();
 
   const [formData, updateFormdata] = useState<RegisterUser>({

@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface CardHeading {
+interface CardHeadingT {
   title: string;
   updateHeading: React.Dispatch<React.SetStateAction<string>>;
   handleKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
@@ -16,7 +16,7 @@ const CardHeading = ({
   handleKeyPress,
   handleSubmit,
   textareaRef,
-}: CardHeading) => {
+}: CardHeadingT) => {
   /**
    * If the default text is still the current cardheading
    * delete it...

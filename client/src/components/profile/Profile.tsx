@@ -41,11 +41,11 @@ import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { frontendTitles } from '../../roadmap-data/frontend-titles';
 
-interface Profile {
+interface ProfileT {
   user: PayloadUser | null;
 }
 
-const Profile = ({ user }: Profile) => {
+const Profile = ({ user }: ProfileT) => {
   const dispatch = useDispatch();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

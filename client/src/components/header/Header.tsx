@@ -17,7 +17,7 @@ import { AppState } from '../../reducers';
  */
 
 export type IDs = [string, string][];
-interface Header {
+interface HeaderT {
   currentPreset: ID;
   presets: Preset[];
   isAuthenticated: boolean | null;
@@ -27,7 +27,7 @@ function Header({
   currentPreset,
   presets,
   isAuthenticated,
-}: Header): JSX.Element {
+}: HeaderT): JSX.Element {
   return (
     <header className='header'>
       <HeaderSvg />

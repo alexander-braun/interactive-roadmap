@@ -8,12 +8,12 @@ import { Nodes } from '../types/Map-Data';
 import MapLegend from './MapLegend';
 import Section from './Section';
 
-export interface Map {
+export interface MapT {
   nodes: Nodes;
 }
 export type Sections = string[];
 
-function Map({ nodes }: Map): JSX.Element {
+function Map({ nodes }: MapT): JSX.Element {
   const [sections, updateSections] = useState<Sections>([]);
 
   /**

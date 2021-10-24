@@ -29,7 +29,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 //Global State
 import { AppState } from '../../reducers';
 
-interface Child {
+interface ChildT {
   child: string;
   subchildren?: boolean;
   center?: boolean;
@@ -48,7 +48,7 @@ function Child({
   headings,
   recommendations,
   ...props
-}: Child): JSX.Element {
+}: ChildT): JSX.Element {
   const dispatch = useDispatch();
 
   const [text, updateHeading] = useState<string>(

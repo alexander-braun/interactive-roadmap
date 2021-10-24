@@ -8,13 +8,13 @@ import { Nodes } from '../types/Map-Data';
 import { useDispatch } from 'react-redux';
 import { addCenternode } from '../../actions/addCenternode';
 
-interface SvgGenerator {
+interface SvgGeneratorT {
   nodes: Nodes;
 }
 
 export type IDs = [string, string][];
 
-function SvgGenerator({ nodes }: SvgGenerator) {
+function SvgGenerator({ nodes }: SvgGeneratorT) {
   const dispatch = useDispatch();
 
   /**

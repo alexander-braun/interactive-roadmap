@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-interface Statusrow {
+interface StatusrowT {
   handleStatusUpdate: (status: string) => void;
   status: string;
 }
 
-const Statusrow = ({ handleStatusUpdate, status }: Statusrow) => {
+const Statusrow = ({ handleStatusUpdate, status }: StatusrowT) => {
   const [statusVisible, updateStatusVisible] = useState(false);
   return (
     <div className='card__bottom-row'>

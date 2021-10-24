@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import Child from './Child';
 import { v4 as uuidv4 } from 'uuid';
 
-interface Children {
+interface ChildrenT {
   children: string[];
   subchildren?: boolean;
   center?: boolean;
@@ -14,7 +14,7 @@ interface Children {
  * Maps one row of children
  */
 
-function Children({ children, ...props }: Children): JSX.Element | null {
+function Children({ children, ...props }: ChildrenT): JSX.Element | null {
   if (Array.isArray(children) && children.length === 0) return null;
   return (
     <div

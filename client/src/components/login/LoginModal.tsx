@@ -25,11 +25,11 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
  * Handels user login.
  */
 
-interface LoginModal {
+interface LoginModalT {
   isAuthenticated: boolean | null;
 }
 
-const LoginModal = ({ isAuthenticated }: LoginModal) => {
+const LoginModal = ({ isAuthenticated }: LoginModalT) => {
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -24,12 +24,12 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
  *  the name and the description of a preset
  */
 
-interface EditPresetModal {
+interface EditPresetModalT {
   presets: Preset[];
   isAuthenticated: boolean | null;
 }
 
-const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModal) => {
+const EditPresetModal = ({ presets, isAuthenticated }: EditPresetModalT) => {
   const dispatch = useDispatch();
 
   const [formData, updateFormdata] = useState({

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-interface SVG {
+interface SVGT {
   parentRect: DOMRect;
   childRect: DOMRect;
   center?: boolean;
@@ -11,7 +11,7 @@ interface SVG {
  * based on their position and depending on if they are a
  * mainKnot (centernode)
  */
-function SVG(props: SVG): JSX.Element | null {
+function SVG(props: SVGT): JSX.Element | null {
   const insetSvgBy = 5;
 
   const moveToX =

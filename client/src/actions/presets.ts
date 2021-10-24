@@ -54,13 +54,15 @@ export const addPreset = (
       payload: res.data,
     });
   } catch (error) {
-    dispatch({
-      type: PRESET_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
+    if (axios.isAxiosError(error) && error.response && error.response.data) {
+      dispatch({
+        type: PRESET_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
   }
 };
 
@@ -80,13 +82,15 @@ export const addDefaultPreset = (
       payload: res.data,
     });
   } catch (error) {
-    dispatch({
-      type: PRESET_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
+    if (axios.isAxiosError(error) && error.response && error.response.data) {
+      dispatch({
+        type: PRESET_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
   }
 };
 

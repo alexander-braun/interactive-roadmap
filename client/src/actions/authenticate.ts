@@ -124,13 +124,16 @@ export const register = ({
     });
     dispatch(loadUser());
   } catch (error) {
-    const errors = error.response.data.errors;
-    if (errors) {
-      errors.forEach((error: any) => dispatch(setAlert(error.msg, 'danger')));
+    if (axios.isAxiosError(error) && error.response && error.response.data) 
+     {
+      const errors = (error.response.data as { errors: any}).errors;
+      if (errors) {
+        errors.forEach((error: any) => dispatch(setAlert(error.msg, 'danger')));
+      }
+      dispatch({
+        type: REGISTER_FAIL,
+      });
     }
-    dispatch({
-      type: REGISTER_FAIL,
-    });
   }
 };
 
@@ -155,13 +158,14 @@ export const login = ({
     });
     dispatch(loadUser());
   } catch (error) {
-    if (error.response) {
-      const errors = error.response.data.errors;
+    if (axios.isAxiosError(error) && error.response && error.response.data) 
+     {
+      const errors = (error.response.data as { errors: any}).errors
       if (errors) {
         errors.forEach((error: any) => dispatch(setAlert(error.msg, 'danger')));
       }
-    }
-    dispatch({
+     }
+     dispatch({
       type: LOGIN_FAIL,
     });
   }

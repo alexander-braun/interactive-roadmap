@@ -42,7 +42,7 @@ import { nodes as defaultNodes } from '../../roadmap-data/frontendmap';
 import { recommendation } from '../../roadmap-data/frontend-recommendation';
 import { frontendTitles } from '../../roadmap-data/frontend-titles';
 
-interface SidenavSlideIn {
+interface SidenavSlideInT {
   sidenav: boolean;
   currentPreset: string;
   isAuthenticated: boolean | null;
@@ -64,7 +64,7 @@ const SidenavSlideIn = ({
   headings,
   recommendations,
   status,
-}: SidenavSlideIn) => {
+}: SidenavSlideInT) => {
   const dispatch = useDispatch();
 
   /**

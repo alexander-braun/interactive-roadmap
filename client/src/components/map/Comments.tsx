@@ -19,13 +19,13 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 //Global state
 import { AppState } from '../../reducers';
 
-interface Comments {
+interface CommentsT {
   child: string;
   nodes: Nodes;
   comments: CommentsState;
 }
 
-function Comments({ child, nodes, comments }: Comments): JSX.Element {
+function Comments({ child, nodes, comments }: CommentsT): JSX.Element {
   const dispatch = useDispatch();
 
   const handleAddNewComment = (id: ID): void => {

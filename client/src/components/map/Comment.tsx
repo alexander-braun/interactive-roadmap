@@ -8,13 +8,13 @@ import { changeComment, deleteComment } from '../../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-interface Comment {
+interface CommentT {
   comment: string;
   id: string;
   index: number;
 }
 
-function Comment({ comment, id, index }: Comment): JSX.Element {
+function Comment({ comment, id, index }: CommentT): JSX.Element {
   const dispatch = useDispatch();
   const [text, updateText] = useState<string>(comment);
   const [focus, toggleFocus] = useState<boolean>(false);

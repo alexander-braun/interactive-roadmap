@@ -6,13 +6,13 @@ import Children from './Children';
 //Types
 import { Nodes } from '../types/Map-Data';
 
-interface Section {
+interface SectionT {
   sectionId: string;
   nodes: Nodes;
 }
 type Direction = 'left' | 'right';
 
-function Section({ sectionId, nodes }: Section) {
+function Section({ sectionId, nodes }: SectionT) {
   if (!nodes[sectionId]) {
     return null;
   }

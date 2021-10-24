@@ -9,7 +9,7 @@ import { changeRecommendation, Recommendation } from '../../actions';
  * as a selectible bubble
  */
 
-interface RecommendationBubbles {
+interface RecommendationBubblesT {
   id: string;
   recommendation: Recommendation;
 }
@@ -17,7 +17,7 @@ interface RecommendationBubbles {
 const RecommendationBubbles = ({
   id,
   recommendation,
-}: RecommendationBubbles) => {
+}: RecommendationBubblesT) => {
   const dispatch = useDispatch();
 
   const submitRecommendation = (recommendation: Recommendation): void => {

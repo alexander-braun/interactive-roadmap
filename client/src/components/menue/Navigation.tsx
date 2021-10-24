@@ -51,8 +51,8 @@ import { frontendTitles } from '../../roadmap-data/frontend-titles';
  */
 
 export type IDs = [string, string][];
-
-interface Navigation {
+ 
+interface NavigationT {
   isAuthenticated: boolean | null;
   user: PayloadUser | null;
   nodes: Nodes;
@@ -76,7 +76,7 @@ function Navigation({
   recommendations,
   currentPreset,
   sideWidth,
-}: Navigation): JSX.Element {
+}: NavigationT): JSX.Element {
   const dispatch = useDispatch();
 
   /**
