@@ -23,7 +23,7 @@
   "homepage": "https://github.com/alexander-braun/interactive-roadmap#readme",
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
     "axios": "^0.23.0",
