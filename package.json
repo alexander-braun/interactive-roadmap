@@ -35,7 +35,7 @@
     "express-validator": "^6.13.0",
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.4.6",
     "nodemailer": "^6.7.0",
     "prettier": "^2.4.1",
     "request": "^2.88.2"
