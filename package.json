@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=DEVELOPMENT concurrently \"cd backend && npm run dev\" \"cd client && npm start\" ",
-    "build1": "cd client && npm run build",
-    "build": "npm run install-client && npm run build",
-    "install-client": "cd client && npm install && npm run build && cd ../backend && npm install",
+    "build": "cd backend && npm install && cd .. && npm run install-client",
+    "install-client": "cd client && npm install && npm run build",
     "heroku-postbuild": "npm run install-client && npm run build",
     "start": "concurrently \"cd backend && node server\"",
     "client": "cd client && npm start"
