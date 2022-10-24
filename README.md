@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-    <a href="https://interactive-roadmap.herokuapp.com/">
+    <a href="https://interactive-roadmap.up.railway.app/">
     Live Demo: Interactive Roadmap
     </a>
 </h1>
